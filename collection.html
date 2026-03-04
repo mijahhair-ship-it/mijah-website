@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#2b3d24" />
+  <link rel="icon" type="image/png" href="photosAndvideos/MîJah.Logo.Png" />
+  <link rel="apple-touch-icon" href="photosAndvideos/MîJah.Logo.Png" />
+  <title>Collection — MÎJAH | Tous Nos Soins Capillaires Naturels</title>
+  <meta name="description" content="Collection MÎJAH : Élixir €21.90, Huile Rosemary €12.80, Beurre Mangue €19.90, Trio €49.90. Soins naturels pour cheveux Afro & Bouclés." />
+  <meta name="keywords" content="collection mijah, élixir anti-chute, huile rosemary, beurre de mangue, coffret cheveux, soins afro, cheveux bouclés, acheter soin naturel" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://mijah.fr/collection.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="MÎJAH" />
+  <meta property="og:title" content="Collection MÎJAH — Soins Naturels Afro & Bouclés" />
+  <meta property="og:description" content="Élixir Anti-Chute, Huile Rosemary, Beurre de Mangue et Coffret Trio. Tous nos soins naturels pour cheveux Afro et Bouclés." />
+  <meta property="og:image" content="https://mijah.fr/photosAndvideos/Cleint%20Mijah%20Trio.jpg" />
+  <meta property="og:url" content="https://mijah.fr/collection.html" />
+  <meta property="og:locale" content="fr_FR" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Collection MÎJAH — Soins Naturels Afro & Bouclés" />
+  <meta name="twitter:description" content="Élixir Anti-Chute, Huile Rosemary, Beurre de Mangue et Coffret Trio. Soins naturels pour cheveux Afro et Bouclés." />
+  <meta name="twitter:image" content="https://mijah.fr/photosAndvideos/Cleint%20Mijah%20Trio.jpg" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "Collection MÎJAH — Soins Naturels Afro & Bouclés",
+    "description": "Découvrez tous les soins capillaires naturels MÎJAH pour cheveux Afro et Bouclés.",
+    "url": "https://mijah.fr/collection.html",
+    "hasPart": [
+      {"@type": "Product", "name": "Élixir Anti-Chute MÎJAH", "offers": {"@type": "Offer", "price": "21.90", "priceCurrency": "EUR"}, "url": "https://mijah.fr/product-elixir.html"},
+      {"@type": "Product", "name": "Huile de Croissance Rosemary MÎJAH", "offers": {"@type": "Offer", "price": "12.80", "priceCurrency": "EUR"}, "url": "https://mijah.fr/product-rosemary.html"},
+      {"@type": "Product", "name": "Beurre de Mangue MÎJAH", "offers": {"@type": "Offer", "price": "19.90", "priceCurrency": "EUR"}, "url": "https://mijah.fr/product-mango.html"},
+      {"@type": "Product", "name": "Le Coffret MÎJAH Trio", "offers": {"@type": "Offer", "price": "49.90", "priceCurrency": "EUR"}}
+    ]
+  }
+  </script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,600&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js"></script>
+  <script src="https://unpkg.com/@phosphor-icons/web@2.1.1/src/index.js" type="module"></script>
+  <script src="lang.js" defer></script>
+  <script>
+    tailwind.config = {
+      theme: { extend: {
+        colors: {
+          sage:  { 50:'#f4f7f0',100:'#e5ede0',200:'#ccdcc4',300:'#aac59e',400:'#82a874',500:'#5f8a50',600:'#4a6e3d',700:'#3d5a33',800:'#33492b',900:'#2b3d24' },
+          cream: { 50:'#fefdf9',100:'#faf8f0',200:'#f5f0e4' },
+          gold:  { 300:'#e8c98a',400:'#d4a853',500:'#c09040' },
+        },
+        fontFamily: { serif:['Cormorant Garamond','Georgia','serif'], sans:['Jost','system-ui','sans-serif'] }
+      }}
+    }
+  </script>
+  <style>
+    *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{font-family:'Jost',sans-serif;background:#FEFDF9;color:#1A1A1A;overflow-x:hidden}
+    ::-webkit-scrollbar{width:5px}::-webkit-scrollbar-track{background:#f5f0e4}::-webkit-scrollbar-thumb{background:#4a6e3d;border-radius:4px}
+    /* Header */
+    #site-header{transition:background 0.5s,box-shadow 0.5s}
+    .header-glass{background:rgba(254,253,249,0.92)!important;backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);box-shadow:0 1px 0 rgba(74,110,61,0.10)}
+    .nav-link{font-size:0.75rem;font-weight:400;letter-spacing:0.12em;text-transform:uppercase;text-decoration:none;transition:color 0.25s;position:relative;color:#1A1A1A}
+    .nav-link::after{content:'';position:absolute;bottom:-3px;left:0;width:0;height:1px;background:currentColor;transition:width 0.3s}
+    .nav-link:hover::after,.nav-active::after{width:100%}
+    .nav-active{color:#4a6e3d!important}
+    /* Buttons */
+    .btn-gold{display:inline-flex;align-items:center;gap:10px;background:linear-gradient(135deg,#c09040,#d4a853);color:#fff;padding:14px 34px;border-radius:100px;font-weight:500;letter-spacing:0.08em;font-size:0.82rem;text-transform:uppercase;text-decoration:none;border:none;cursor:pointer;transition:transform 0.25s,box-shadow 0.25s;box-shadow:0 6px 24px rgba(192,144,64,0.30)}
+    .btn-gold:hover{transform:translateY(-3px);box-shadow:0 16px 40px rgba(192,144,64,0.42)}
+    .btn-dark{display:inline-flex;align-items:center;gap:8px;background:#2b3d24;color:#fff;padding:10px 22px;border-radius:100px;font-size:0.72rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;border:none;cursor:pointer;transition:background 0.25s;text-decoration:none}
+    .btn-dark:hover{background:#4a6e3d}
+    .btn-outline-dark{display:inline-flex;align-items:center;gap:8px;border:1.5px solid #2b3d24;color:#2b3d24;padding:10px 22px;border-radius:100px;font-size:0.72rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;background:transparent;cursor:pointer;transition:background 0.25s,color 0.25s;text-decoration:none}
+    .btn-outline-dark:hover{background:#2b3d24;color:#fff}
+    .btn-ghost-white{display:inline-flex;align-items:center;gap:8px;border:1.5px solid rgba(255,255,255,0.45);color:rgba(255,255,255,0.88);padding:14px 32px;border-radius:100px;font-weight:400;letter-spacing:0.06em;font-size:0.82rem;text-decoration:none;cursor:pointer;background:transparent;transition:background 0.25s,border-color 0.25s}
+    .btn-ghost-white:hover{background:rgba(255,255,255,0.08);border-color:rgba(255,255,255,0.75)}
+    /* Badges */
+    .badge{display:inline-flex;align-items:center;gap:6px;padding:5px 14px;border-radius:100px;font-size:0.7rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase}
+    .badge-green{background:#e5ede0;color:#4a6e3d}
+    .badge-amber{background:#f5e8cc;color:#c09040}
+    /* Misc */
+    .gold-line{width:44px;height:2px;border-radius:2px;background:linear-gradient(90deg,#d4a853,#e8c98a)}
+    .sec-label{font-size:0.68rem;font-weight:600;letter-spacing:0.22em;text-transform:uppercase;color:#5f8a50}
+    .price{font-family:'Cormorant Garamond',serif;font-size:1.65rem;font-weight:600;color:#4a6e3d}
+    /* Product cards */
+    .p-card{background:#fff;border-radius:24px;overflow:hidden;box-shadow:0 4px 28px rgba(0,0,0,0.055);transition:box-shadow 0.4s,transform 0.4s}
+    .p-card:hover{box-shadow:0 28px 72px rgba(74,110,61,0.16),0 8px 24px rgba(0,0,0,0.07)}
+    .p-card-img-wrap{position:relative;overflow:hidden;height:320px}
+    .p-card-img-wrap img{width:100%;height:100%;object-fit:contain;padding:28px;transition:transform 0.65s}
+    .p-card:hover .p-card-img-wrap img{transform:scale(1.08)}
+    .quick-add{position:absolute;bottom:0;left:0;right:0;transform:translateY(100%);transition:transform 0.4s;background:linear-gradient(135deg,#3d5a33,#4a6e3d);color:#fff;text-align:center;padding:13px;font-size:0.72rem;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;cursor:pointer}
+    .p-card:hover .quick-add{transform:translateY(0)}
+    /* Filter pills */
+    .filter-pill{display:inline-flex;align-items:center;gap:6px;padding:8px 20px;border-radius:100px;border:1.5px solid rgba(74,110,61,0.22);background:transparent;font-family:'Jost',sans-serif;font-size:0.75rem;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;color:#4a6e3d;cursor:pointer;transition:all 0.25s}
+    .filter-pill:hover,.filter-pill.active{background:#4a6e3d;color:#fff;border-color:#4a6e3d}
+    /* Testimonial card */
+    .t-card{background:#fff;border:1px solid rgba(74,110,61,0.09);border-radius:20px;padding:26px 30px}
+    /* Footer */
+    .foot-link{font-size:0.84rem;color:rgba(255,255,255,0.50);text-decoration:none;line-height:2.3;transition:color 0.2s}
+    .foot-link:hover{color:#e8c98a}
+    /* Page banner */
+    .page-banner{background:linear-gradient(135deg,#2b3d24 0%,#3d5a33 55%,#4a6e3d 100%);position:relative;overflow:hidden;padding:100px 24px 60px}
+    /* Bundle band */
+    .bundle-band{background:linear-gradient(135deg,#f4f7f0,#e5ede0);border-radius:28px}
+    /* Mobile nav */
+    #mob-menu{display:none;position:fixed;inset:0;z-index:200;background:rgba(254,253,249,0.98);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);flex-direction:column;align-items:center;justify-content:center}
+    #mob-menu.open{display:flex}
+    .mob-nav-link{font-size:1.3rem;letter-spacing:0.14em;text-transform:uppercase;text-decoration:none;color:#2b3d24;font-weight:400;font-family:'Cormorant Garamond',serif;transition:color 0.2s}
+    .mob-nav-link:hover{color:#4a6e3d}
+    @media(max-width:767px){
+      .page-banner { padding: 86px 20px 48px !important; }
+      .filter-pill { padding: 6px 14px !important; font-size: 0.7rem !important; }
+      .grid.md\:grid-cols-3 { grid-template-columns: 1fr !important; gap: 20px !important; }
+      .p-card { transform: none !important; }
+      .p-card-img-wrap { height: 240px !important; }
+      .flex.flex-wrap { flex-wrap: nowrap !important; overflow-x: auto !important; padding-bottom: 8px !important; -webkit-overflow-scrolling: touch !important; }
+      .grid.lg\:grid-cols-2 { grid-template-columns: 1fr !important; gap: 20px !important; }
+      [style*="width:380px"] { width: 100% !important; max-width: 280px !important; margin: 0 auto !important; }
+      svg.absolute { display: none !important; }
+      .py-24 { padding-top: 48px !important; padding-bottom: 48px !important; }
+      section { padding-left: 16px !important; padding-right: 16px !important; }
+      .gap-10 { gap: 16px !important; }
+      .gap-8 { gap: 14px !important; }
+    }
+    @keyframes logoFloat { 0%,100%{transform:translateY(0px)} 50%{transform:translateY(-5px)} }
+    @keyframes logoFadeIn { from{opacity:0;transform:translateY(-8px)} to{opacity:1;transform:translateY(0)} }
+    .logo-anim { animation: logoFadeIn 0.8s ease forwards, logoFloat 3.5s ease-in-out 0.8s infinite; transition: filter 0.3s ease; }
+    .logo-anim:hover { animation-play-state: paused; filter: brightness(1.1) drop-shadow(0 4px 14px rgba(74,110,61,0.35)); transform: scale(1.06); }
+  </style>
+  <!-- Google Analytics — Remplace G-XXXXXXXXXX par ton Measurement ID (Google Analytics 4) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-XXXXXXXXXX");</script>
+</head>
+<body>
+
+<!-- HEADER -->
+<header id="site-header" class="header-glass fixed top-0 left-0 right-0 z-50">
+  <nav class="max-w-7xl mx-auto px-6 lg:px-12 h-[66px] flex items-center justify-between">
+    <a href="index.html" class="flex items-center gap-2.5 shrink-0">
+      <img src="photosAndvideos/MîJah.Logo.Png" alt="MÎJAH Logo" class="logo-anim" style="height:78px;width:auto;object-fit:contain;" />
+    </a>
+    <div class="hidden md:flex items-center gap-9">
+      <a href="collection.html" class="nav-link nav-active" data-fr="Collection" data-en="Collection">Collection</a>
+      <a href="about.html"      class="nav-link" data-fr="Notre Histoire" data-en="Our Story">Notre Histoire</a>
+      <a href="contact.html"    class="nav-link" data-fr="Contact" data-en="Contact">Contact</a>
+    </div>
+    <div class="flex items-center gap-3">
+      <button id="lang-toggle" onclick="toggleLang()"
+              class="hidden md:flex items-center gap-1 rounded-full border text-xs font-medium tracking-widest uppercase"
+              style="padding:5px 13px;border-color:rgba(74,110,61,0.3);color:#2b3d24;
+                     background:transparent;transition:all 0.3s;cursor:pointer;">
+        <span id="lang-fr" style="font-weight:600;">FR</span>
+        <span style="opacity:0.3;margin:0 2px;">|</span>
+        <span id="lang-en" style="opacity:0.4;">EN</span>
+      </button>
+      <button class="relative p-2 rounded-full" style="color:#2b3d24;">
+        <i class="ph-bold ph-shopping-cart" style="font-size:1.25rem;"></i>
+        <span class="absolute -top-0.5 -right-0.5 w-[18px] h-[18px] rounded-full text-white flex items-center justify-center font-bold" style="font-size:9px;background:#d4a853;display:none;">0</span>
+      </button>
+      <button class="md:hidden p-2" onclick="toggleMobMenu()"
+              style="background:none;border:none;cursor:pointer;color:#2b3d24;margin-left:2px;">
+        <i class="ph-bold ph-list" style="font-size:1.4rem;"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+
+<!-- PAGE BANNER -->
+<div class="page-banner">
+  <div style="position:absolute;top:-20%;right:-4%;width:280px;opacity:0.07;pointer-events:none;">
+    <svg viewBox="0 0 200 300" fill="none"><path d="M100 10C150 60 180 120 160 200C140 270 80 290 40 260C10 240 20 180 40 140C60 100 50 50 100 10Z" fill="#82a874"/></svg>
+  </div>
+  <div class="max-w-7xl mx-auto text-center relative z-10">
+    <p class="sec-label mb-3" style="color:rgba(212,168,83,0.8);" data-fr="La Boutique" data-en="The Shop">La Boutique</p>
+    <div class="gold-line mx-auto mb-5"></div>
+    <h1 style="font-family:'Cormorant Garamond',serif;font-size:clamp(2.2rem,5vw,3.8rem);font-weight:400;color:#fff;letter-spacing:-0.01em;"
+        data-fr="La Collection MÎJAH" data-en="The MÎJAH Collection">La Collection MÎJAH</h1>
+    <p style="font-size:0.9rem;color:rgba(255,255,255,0.60);margin-top:12px;font-weight:300;"
+       data-fr="Naturel · Nourrissant · Fabriqué en France" data-en="Natural · Nourishing · Made in France">Naturel · Nourrissant · Fabriqué en France</p>
+    <!-- Breadcrumb -->
+    <div style="margin-top:20px;display:flex;align-items:center;justify-content:center;gap:8px;font-size:0.75rem;color:rgba(255,255,255,0.45);">
+      <a href="index.html" style="color:rgba(255,255,255,0.55);text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#e8c98a'" onmouseout="this.style.color='rgba(255,255,255,0.55)'" data-fr="Accueil" data-en="Home">Accueil</a>
+      <i class="ph ph-caret-right" style="font-size:0.65rem;"></i>
+      <span>Collection</span>
+    </div>
+  </div>
+</div>
+
+<!-- FILTER + PRODUCTS -->
+<section class="py-20 px-6 lg:px-12" style="background:#FEFDF9;">
+  <div class="max-w-7xl mx-auto">
+
+    <!-- Filter pills -->
+    <div style="display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-bottom:48px;" id="filters">
+      <button class="filter-pill active" data-filter="all" data-fr="Tous les produits" data-en="All products">Tous les produits</button>
+      <button class="filter-pill" data-filter="scalp" data-fr="Cuir chevelu" data-en="Scalp Care">Cuir chevelu</button>
+      <button class="filter-pill" data-filter="growth" data-fr="Pousse" data-en="Growth">Pousse</button>
+      <button class="filter-pill" data-filter="moisturizing" data-fr="Hydratation" data-en="Moisturizing">Hydratation</button>
+    </div>
+
+    <!-- Product Grid -->
+    <div class="grid md:grid-cols-3 gap-8 lg:gap-10" id="product-grid">
+
+      <!-- Elixir Anti-Chute -->
+      <div class="p-card js-card" data-tags="scalp">
+        <div class="p-card-img-wrap" style="background:linear-gradient(135deg,#f4f7f0,#e5ede0);">
+          <div style="position:absolute;top:14px;left:14px;z-index:2;"><span class="badge badge-green" data-fr="Anti-Chute" data-en="Anti Hair-Loss">Anti-Chute</span></div>
+          <img src="photosAndvideos/mijah anti-chute.png" alt="MÎJAH Elixir Anti-Chute" />
+          <div class="quick-add"><i class="ph ph-plus-circle" style="margin-right:6px;"></i><span data-fr="Ajouter au Panier" data-en="Quick Add">Ajouter au Panier</span></div>
+        </div>
+        <div style="padding:24px 26px 26px;">
+          <p class="sec-label mb-1">Elixir</p>
+          <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:500;color:#2b3d24;margin-bottom:8px;" data-fr="Anti-Chute" data-en="Anti Hair-Loss">Anti-Chute</h3>
+          <p style="font-size:0.83rem;color:#777;line-height:1.7;font-weight:300;margin-bottom:14px;" data-fr="Cible la chute et la casse. Renforce les fibres capillaires, ajoute volume et densité avec un sérum botanique premium." data-en="Targets alopecia and breakage. Strengthens hair fibers, adds volume and density with a premium botanical serum blend.">Cible la chute et la casse. Renforce les fibres capillaires, ajoute volume et densité avec un sérum botanique premium.</p>
+          <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:18px;">
+            <span class="badge badge-green" style="padding:3px 10px;font-size:0.65rem;">Volume +</span>
+            <span class="badge badge-green" style="padding:3px 10px;font-size:0.65rem;" data-fr="Renforçant" data-en="Strengthens">Renforçant</span>
+            <span class="badge badge-green" style="padding:3px 10px;font-size:0.65rem;">60 ml</span>
+          </div>
+          <div style="display:flex;align-items:center;justify-content:space-between;">
+            <span class="price">€21.90</span>
+            <div style="display:flex;gap:8px;">
+              <a href="product-elixir.html" class="btn-outline-dark" data-fr="Détails" data-en="Details">Détails</a>
+              <button class="btn-dark" data-fr="Ajouter" data-en="Add">Ajouter</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Rosemary Hair Growth Oil -->
+      <div class="p-card js-card" data-tags="growth scalp" style="transform:translateY(-20px);">
+        <div class="p-card-img-wrap" style="background:linear-gradient(135deg,#e5ede0,#ccdcc4);">
+          <div style="position:absolute;top:14px;left:14px;z-index:2;"><span class="badge badge-green" data-fr="Pousse Capillaire" data-en="Hair Growth">Pousse Capillaire</span></div>
+          <div style="position:absolute;top:14px;right:14px;z-index:2;background:linear-gradient(135deg,#c09040,#d4a853);color:#fff;padding:4px 12px;border-radius:100px;font-size:0.63rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;" data-fr="Meilleures Ventes" data-en="Best Seller">Meilleures Ventes</div>
+          <img src="photosAndvideos/Mijah hair growth oil.png" alt="MÎJAH Rosemary Hair Growth Oil" />
+          <div class="quick-add"><i class="ph ph-plus-circle" style="margin-right:6px;"></i><span data-fr="Ajouter au Panier" data-en="Quick Add">Ajouter au Panier</span></div>
+        </div>
+        <div style="padding:24px 26px 26px;">
+          <p class="sec-label mb-1" style="color:#c09040;">Rosemary</p>
+          <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:500;color:#2b3d24;margin-bottom:8px;" data-fr="Huile de Croissance" data-en="Hair Growth Oil">Huile de Croissance</h3>
+          <p style="font-size:0.83rem;color:#777;line-height:1.7;font-weight:300;margin-bottom:14px;" data-fr="Soin profondément nourrissant. Pressé à froid avec 100% d'huiles botaniques naturelles pour une croissance accélérée et une santé du cuir chevelu optimale." data-en="Deeply nourishing & fortifying. Cold-pressed with 100% natural botanical oils for accelerated growth and scalp health.">Soin profondément nourrissant. Pressé à froid avec 100% d'huiles botaniques naturelles pour une croissance accélérée et une santé du cuir chevelu optimale.</p>
+          <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:18px;">
+            <span class="badge badge-amber" style="padding:3px 10px;font-size:0.65rem;" data-fr="Pousse" data-en="Growth">Pousse</span>
+            <span class="badge badge-amber" style="padding:3px 10px;font-size:0.65rem;" data-fr="Nourrissant" data-en="Nourishing">Nourrissant</span>
+            <span class="badge badge-amber" style="padding:3px 10px;font-size:0.65rem;">100 ml</span>
+          </div>
+          <div style="display:flex;align-items:center;justify-content:space-between;">
+            <span class="price">€12.80</span>
+            <div style="display:flex;gap:8px;">
+              <a href="product-rosemary.html" class="btn-outline-dark" data-fr="Détails" data-en="Details">Détails</a>
+              <button class="btn-gold" style="padding:10px 22px;font-size:0.72rem;" data-fr="Ajouter" data-en="Add">Ajouter</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mango Hair Butter -->
+      <div class="p-card js-card" data-tags="moisturizing">
+        <div class="p-card-img-wrap" style="background:linear-gradient(135deg,#f7f4ed,#ede8d8);">
+          <div style="position:absolute;top:14px;left:14px;z-index:2;"><span class="badge badge-green" data-fr="Hydratante" data-en="Moisturizing">Hydratante</span></div>
+          <img src="photosAndvideos/Mango Hair Butter.png" alt="MÎJAH Mango Hair Butter" />
+          <div class="quick-add"><i class="ph ph-plus-circle" style="margin-right:6px;"></i><span data-fr="Ajouter au Panier" data-en="Quick Add">Ajouter au Panier</span></div>
+        </div>
+        <div style="padding:24px 26px 26px;">
+          <p class="sec-label mb-1">Mango</p>
+          <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:500;color:#2b3d24;margin-bottom:8px;" data-fr="Beurre Capillaire" data-en="Hair Butter">Beurre Capillaire</h3>
+          <p style="font-size:0.83rem;color:#777;line-height:1.7;font-weight:300;margin-bottom:14px;" data-fr="Composé de beurre de mangue et d'huile de batana. Combat la sécheresse, définit les boucles et apporte un éclat lumineux à chaque mèche." data-en="Made with mango butter and batana oil. Combats dryness, defines curls, and adds luminous shine to every strand.">Composé de beurre de mangue et d'huile de batana. Combat la sécheresse, définit les boucles et apporte un éclat lumineux à chaque mèche.</p>
+          <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:18px;">
+            <span class="badge badge-green" style="padding:3px 10px;font-size:0.65rem;" data-fr="Hydratation" data-en="Hydration">Hydratation</span>
+            <span class="badge badge-green" style="padding:3px 10px;font-size:0.65rem;" data-fr="Boucles Définies" data-en="Curl Define">Boucles Définies</span>
+            <span class="badge badge-green" style="padding:3px 10px;font-size:0.65rem;">150 ml</span>
+          </div>
+          <div style="display:flex;align-items:center;justify-content:space-between;">
+            <span class="price">€19.90</span>
+            <div style="display:flex;gap:8px;">
+              <a href="product-mango.html" class="btn-outline-dark" data-fr="Détails" data-en="Details">Détails</a>
+              <button class="btn-dark" data-fr="Ajouter" data-en="Add">Ajouter</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- BUNDLE PROMO -->
+<section id="bundle" class="py-16 px-6 lg:px-12" style="background:linear-gradient(135deg,#f4f7f0,#FEFDF9);">
+  <div class="max-w-5xl mx-auto">
+    <div class="bundle-band p-10 lg:p-14">
+      <div class="grid lg:grid-cols-2 gap-10 items-center">
+        <div>
+          <p class="sec-label mb-4" style="color:#c09040;" data-fr="Offre Spéciale" data-en="Special Offer">Offre Spéciale</p>
+          <div class="gold-line mb-5"></div>
+          <h2 style="font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,4vw,3rem);font-weight:400;color:#2b3d24;line-height:1.15;margin-bottom:16px;">
+            <span data-fr="Le Coffret Complet" data-en="The Complete">Le Coffret Complet</span><br><em style="color:#4a6e3d;">MÎJAH Trio</em>
+          </h2>
+          <p style="font-size:0.9rem;color:#555;line-height:1.75;font-weight:300;margin-bottom:22px;max-width:360px;"
+             data-fr="Obtenez les trois produits phares en une seule routine capillaire complète. Économisez en achetant toute la collection — nourrissez, renforcez et définissez chaque boucle."
+             data-en="Get all three flagship products in one complete hair care routine. Save when you shop the full collection — nourish, strengthen, and define every curl.">
+            Obtenez les trois produits phares en une seule routine capillaire complète. Économisez en achetant toute la collection — nourrissez, renforcez et définissez chaque boucle.
+          </p>
+          <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:28px;">
+            <span class="badge badge-green">Elixir Anti-Chute</span>
+            <span class="badge badge-green">Rosemary Oil</span>
+            <span class="badge badge-green">Mango Butter</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:18px;flex-wrap:wrap;">
+            <div>
+              <p style="font-size:0.75rem;color:#999;text-decoration:line-through;font-family:'Jost';">€54.60</p>
+              <p style="font-family:'Cormorant Garamond',serif;font-size:2.2rem;font-weight:600;color:#4a6e3d;line-height:1;">€49.90</p>
+              <p style="font-size:0.7rem;color:#5f8a50;font-weight:600;letter-spacing:0.08em;" data-fr="Économisez €4.70" data-en="Save €4.70">Économisez €4.70</p>
+            </div>
+            <a href="https://buy.stripe.com/bJebJ0dQEeicdQLcfe1wY00" target="_blank" class="btn-gold" style="display:inline-flex;align-items:center;gap:8px;text-decoration:none;">
+              <span data-fr="Commander le Trio" data-en="Shop the Trio">Commander le Trio</span> <i class="ph-bold ph-arrow-right"></i>
+            </a>
+          </div>
+        </div>
+        <div class="flex justify-center">
+          <img src="photosAndvideos/Mijah Trio with Ingredient.jpeg" alt="MÎJAH Complete Trio" style="width:380px;max-width:100%;filter:drop-shadow(0 20px 50px rgba(0,0,0,0.12));" />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIAL STRIP -->
+<section class="py-20 px-6 lg:px-12" style="background:#FEFDF9;">
+  <div class="max-w-7xl mx-auto">
+    <div class="text-center mb-12 js-test-hdr">
+      <p class="sec-label mb-3" data-fr="Avis Clients" data-en="Customer Reviews">Avis Clients</p>
+      <div class="gold-line mx-auto mb-5"></div>
+      <h2 style="font-family:'Cormorant Garamond',serif;font-size:2.5rem;font-weight:400;color:#2b3d24;"
+          data-fr="Ce Qu'elles Disent" data-en="What They're Saying">Ce Qu'elles Disent</h2>
+    </div>
+    <div class="grid md:grid-cols-3 gap-7">
+      <div class="t-card js-review">
+        <p style="color:#d4a853;font-size:0.8rem;letter-spacing:2px;margin-bottom:10px;">★★★★★</p>
+        <p style="font-size:0.9rem;color:#444;line-height:1.72;font-style:italic;margin-bottom:14px;">"L'huile de romarin a vraiment changé ma routine. Mes cheveux poussent tellement plus vite !"</p>
+        <div style="display:flex;align-items:center;gap:9px;">
+          <div style="width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,#4a6e3d,#82a874);display:flex;align-items:center;justify-content:center;color:#fff;font-size:0.75rem;font-weight:600;">A</div>
+          <div><p style="font-size:0.8rem;font-weight:600;color:#2b3d24;">Aissatou M.</p><p style="font-size:0.7rem;color:#aaa;">Paris</p></div>
+        </div>
+      </div>
+      <div class="t-card js-review">
+        <p style="color:#d4a853;font-size:0.8rem;letter-spacing:2px;margin-bottom:10px;">★★★★★</p>
+        <p style="font-size:0.9rem;color:#444;line-height:1.72;font-style:italic;margin-bottom:14px;">"The Elixir Anti-Chute stopped my hair loss within the first month. I'm genuinely amazed by these results."</p>
+        <div style="display:flex;align-items:center;gap:9px;">
+          <div style="width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,#3d5a33,#5f8a50);display:flex;align-items:center;justify-content:center;color:#fff;font-size:0.75rem;font-weight:600;">N</div>
+          <div><p style="font-size:0.8rem;font-weight:600;color:#2b3d24;">Naomi K.</p><p style="font-size:0.7rem;color:#aaa;">Brussels</p></div>
+        </div>
+      </div>
+      <div class="t-card js-review">
+        <p style="color:#d4a853;font-size:0.8rem;letter-spacing:2px;margin-bottom:10px;">★★★★★</p>
+        <p style="font-size:0.9rem;color:#444;line-height:1.72;font-style:italic;margin-bottom:14px;">"Le beurre de mangue est une révélation. Mes boucles sont définies et brillantes. Je recommande à toutes !"</p>
+        <div style="display:flex;align-items:center;gap:9px;">
+          <div style="width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,#c09040,#e8c98a);display:flex;align-items:center;justify-content:center;color:#fff;font-size:0.75rem;font-weight:600;">F</div>
+          <div><p style="font-size:0.8rem;font-weight:600;color:#2b3d24;">Fatou D.</p><p style="font-size:0.7rem;color:#aaa;">Lyon</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="py-16 px-6 lg:px-12" style="background:#16210f;">
+  <div class="max-w-7xl mx-auto">
+    <div class="grid md:grid-cols-4 gap-10 mb-10">
+      <div class="md:col-span-2">
+        <img src="photosAndvideos/MîJah.Logo.Png" alt="MÎJAH" style="height:60px;width:auto;object-fit:contain;filter:brightness(0) invert(1);" />
+        <p style="font-size:0.82rem;color:rgba(255,255,255,0.42);margin-top:10px;line-height:1.75;max-width:270px;font-weight:300;" data-fr="Soin naturel premium pour cheveux Afro &amp; Bouclés.<br>Formulé avec amour en France." data-en="Premium natural care for Afro &amp; Curly hair.<br>Formulated with love in France.">Soin naturel premium pour cheveux Afro &amp; Bouclés.<br>Formulé avec amour en France.</p>
+        <div style="display:flex;gap:11px;margin-top:20px;">
+          <a href="https://www.instagram.com/mijah_hair?igsh=MXg0dmRkenRmYWFlZA==" target="_blank" style="width:34px;height:34px;border-radius:50%;border:1px solid rgba(255,255,255,0.14);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.48);transition:all 0.25s;" onmouseover="this.style.borderColor='rgba(212,168,83,0.5)';this.style.color='#e8c98a'" onmouseout="this.style.borderColor='rgba(255,255,255,0.14)';this.style.color='rgba(255,255,255,0.48)'"><i class="ph ph-instagram-logo"></i></a>
+          <a href="https://www.tiktok.com/@mijahhair?_r=1&_t=ZN-94O6pbmK9tW" target="_blank" style="width:34px;height:34px;border-radius:50%;border:1px solid rgba(255,255,255,0.14);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.48);transition:all 0.25s;" onmouseover="this.style.borderColor='rgba(212,168,83,0.5)';this.style.color='#e8c98a'" onmouseout="this.style.borderColor='rgba(255,255,255,0.14)';this.style.color='rgba(255,255,255,0.48)'"><i class="ph ph-tiktok-logo"></i></a>
+          <a href="#" style="width:34px;height:34px;border-radius:50%;border:1px solid rgba(255,255,255,0.14);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.48);transition:all 0.25s;" onmouseover="this.style.borderColor='rgba(212,168,83,0.5)';this.style.color='#e8c98a'" onmouseout="this.style.borderColor='rgba(255,255,255,0.14)';this.style.color='rgba(255,255,255,0.48)'"><i class="ph ph-facebook-logo"></i></a>
+        </div>
+      </div>
+      <div>
+        <p style="font-size:0.68rem;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:rgba(255,255,255,0.36);margin-bottom:14px;" data-fr="Produits" data-en="Products">Produits</p>
+        <ul style="list-style:none;"><li><a class="foot-link" href="product-elixir.html">Elixir Anti-Chute</a></li><li><a class="foot-link" href="product-rosemary.html">Rosemary Hair Growth Oil</a></li><li><a class="foot-link" href="product-mango.html">Mango Hair Butter</a></li><li><a class="foot-link" href="#bundle">The Complete Set</a></li></ul>
+      </div>
+      <div>
+        <p style="font-size:0.68rem;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:rgba(255,255,255,0.36);margin-bottom:14px;" data-fr="La Marque" data-en="The Brand">La Marque</p>
+        <ul style="list-style:none;"><li><a class="foot-link" href="about.html">Notre Histoire</a></li><li><a class="foot-link" href="about.html#ingredients">Ingrédients</a></li><li><a class="foot-link" href="contact.html">Contact</a></li></ul>
+      </div>
+    </div>
+    <div style="border-top:1px solid rgba(255,255,255,0.07);padding-top:20px;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:12px;">
+      <p style="font-size:0.73rem;color:rgba(255,255,255,0.28);" data-fr="© 2024 MÎJAH. Tous droits réservés. Fabriqué en France." data-en="© 2024 MÎJAH. All rights reserved. Made in France.">© 2024 MÎJAH. Tous droits réservés. Fabriqué en France.</p>
+      <div style="display:flex;gap:20px;"><a href="#" class="foot-link" style="font-size:0.73rem;" data-fr="Politique de Confidentialité" data-en="Privacy Policy">Politique de Confidentialité</a><a href="#" class="foot-link" style="font-size:0.73rem;" data-fr="Conditions d'Utilisation" data-en="Terms of Service">Conditions d'Utilisation</a></div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
+
+  // Scroll to bundle on hash
+  if (window.location.hash === '#bundle') {
+    setTimeout(() => {
+      const el = document.getElementById('bundle');
+      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 200);
+  }
+
+  // Entrance animations
+  gsap.from('.js-card', { opacity:0, y:60, duration:0.9, stagger:0.15, ease:'power3.out',
+    scrollTrigger: { trigger:'#product-grid', start:'top 80%' }
+  });
+  gsap.from('.js-review', { opacity:0, y:40, duration:0.8, stagger:0.15, ease:'power3.out',
+    scrollTrigger: { trigger:'.js-test-hdr', start:'top 80%' }
+  });
+  gsap.from('.bundle-band', { opacity:0, y:40, duration:0.9, ease:'power3.out',
+    scrollTrigger: { trigger:'#bundle', start:'top 80%' }
+  });
+
+  // Card hover lift
+  document.querySelectorAll('.p-card').forEach(c => {
+    const base = c.style.transform.includes('-20px') ? -20 : 0;
+    c.addEventListener('mouseenter', () => gsap.to(c, { y: base-9, duration:0.35, ease:'power2.out' }));
+    c.addEventListener('mouseleave', () => gsap.to(c, { y: base,   duration:0.35, ease:'power2.out' }));
+  });
+
+  // Filter pills
+  const pills = document.querySelectorAll('.filter-pill');
+  const cards = document.querySelectorAll('.js-card');
+  pills.forEach(pill => {
+    pill.addEventListener('click', () => {
+      pills.forEach(p => p.classList.remove('active'));
+      pill.classList.add('active');
+      const filter = pill.dataset.filter;
+      cards.forEach(card => {
+        const tags = card.dataset.tags || '';
+        const show = filter === 'all' || tags.includes(filter);
+        gsap.to(card, { opacity: show?1:0.2, scale: show?1:0.95, duration:0.35, ease:'power2.out' });
+      });
+    });
+  });
+  function toggleMobMenu() {
+    var m = document.getElementById('mob-menu');
+    if (m.classList.contains('open')) { m.classList.remove('open'); document.body.style.overflow=''; }
+    else { m.classList.add('open'); document.body.style.overflow='hidden'; }
+  }
+</script>
+
+<div id="mob-menu">
+  <button onclick="toggleMobMenu()" style="position:absolute;top:18px;right:20px;background:none;border:none;cursor:pointer;color:#2b3d24;padding:8px;line-height:1;">
+    <i class="ph-bold ph-x" style="font-size:1.5rem;"></i>
+  </button>
+  <div style="display:flex;flex-direction:column;align-items:center;gap:30px;padding:20px 40px;width:100%;max-width:340px;">
+    <span style="font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:600;letter-spacing:0.18em;color:#2b3d24;">MÎJAH</span>
+    <div style="width:40px;height:1.5px;background:linear-gradient(90deg,#d4a853,#e8c98a);"></div>
+    <a href="collection.html" class="mob-nav-link" onclick="toggleMobMenu()" data-fr="Collection" data-en="Collection">Collection</a>
+    <a href="about.html"      class="mob-nav-link" onclick="toggleMobMenu()" data-fr="Notre Histoire" data-en="Our Story">Notre Histoire</a>
+    <a href="contact.html"    class="mob-nav-link" onclick="toggleMobMenu()" data-fr="Contact" data-en="Contact">Contact</a>
+    <div style="width:40px;height:1.5px;background:rgba(74,110,61,0.15);"></div>
+    <button onclick="toggleLang()" style="display:flex;align-items:center;gap:6px;background:none;border:1.5px solid rgba(74,110,61,0.3);border-radius:100px;padding:8px 20px;cursor:pointer;font-family:'Jost',sans-serif;font-size:0.78rem;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:#2b3d24;">
+      <span id="mob-lang-fr" style="font-weight:600;">FR</span>
+      <span style="opacity:0.35;margin:0 3px;">|</span>
+      <span id="mob-lang-en" style="opacity:0.45;">EN</span>
+    </button>
+    <a href="collection.html" class="btn-gold" onclick="toggleMobMenu()" style="font-size:0.82rem;padding:14px 32px;width:100%;justify-content:center;text-decoration:none;">
+      <span data-fr="Voir la Collection" data-en="Shop Now">Voir la Collection</span> <i class="ph-bold ph-arrow-right"></i>
+    </a>
+  </div>
+</div>
+
+<!-- WhatsApp Floating Button -->
+<a href="https://wa.me/VOTRE_NUMERO?text=Bonjour%20MÎJAH%2C%20j'ai%20une%20question%20sur%20vos%20produits%20!" target="_blank" rel="noopener"
+   style="position:fixed;bottom:24px;right:24px;z-index:9997;width:56px;height:56px;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(37,211,102,0.45);transition:transform 0.25s,box-shadow 0.25s;text-decoration:none;"
+   onmouseover="this.style.transform='scale(1.1)';this.style.boxShadow='0 8px 30px rgba(37,211,102,0.6)'" onmouseout="this.style.transform='scale(1)';this.style.boxShadow='0 4px 20px rgba(37,211,102,0.45)'"
+   title="Contactez-nous sur WhatsApp">
+  <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+</body>
+</html>
