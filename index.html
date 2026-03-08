@@ -1338,25 +1338,30 @@
 <!-- ════════════════════════════════════════════════
      NEWSLETTER
 ════════════════════════════════════════════════ -->
-<section style="background:#2b3d24;padding:80px 24px;">
-  <div class="max-w-2xl mx-auto text-center">
-    <span style="font-size:0.7rem;letter-spacing:0.2em;text-transform:uppercase;color:#d4a853;font-weight:500;">
+<section id="newsletter-section" style="
+    position:relative;overflow:hidden;padding:100px 24px;
+    background:
+      linear-gradient(135deg, rgba(22,33,15,0.80) 0%, rgba(43,61,36,0.72) 50%, rgba(22,33,15,0.85) 100%),
+      url('photosAndvideos/Black%20girl%20holding%20Mijah%20product.jpeg') center/cover no-repeat;
+  ">
+  <div class="max-w-2xl mx-auto text-center" style="position:relative;z-index:2;">
+    <span class="js-nl-badge" style="font-size:0.7rem;letter-spacing:0.2em;text-transform:uppercase;color:#d4a853;font-weight:500;opacity:0;transform:translateY(20px);display:inline-block;">
       Newsletter
     </span>
-    <h2 style="font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,4vw,3rem);
-               font-weight:400;color:#fff;margin-top:12px;line-height:1.15;"
+    <h2 class="js-nl-title" style="font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,4vw,3rem);
+               font-weight:400;color:#fff;margin-top:12px;line-height:1.15;opacity:0;transform:translateY(30px);"
         data-fr="Rejoignez la Communauté MÎJAH"
         data-en="Join the MÎJAH Community">
       Rejoignez la Communauté MÎJAH
     </h2>
-    <p style="color:rgba(255,255,255,0.58);font-size:0.9rem;line-height:1.8;margin-top:16px;font-weight:300;"
+    <p class="js-nl-body" style="color:rgba(255,255,255,0.72);font-size:0.9rem;line-height:1.8;margin-top:16px;font-weight:300;opacity:0;transform:translateY(24px);"
        data-fr="Conseils capillaires exclusifs, offres réservées aux membres et nouveautés en avant-première — directement dans votre boîte mail."
        data-en="Exclusive hair care tips, member-only offers, and early access to new launches — straight to your inbox.">
       Conseils capillaires exclusifs, offres réservées aux membres et nouveautés en avant-première — directement dans votre boîte mail.
     </p>
     <!-- Brevo Form — replace BREVO_FORM_ACTION_URL after creating your Brevo account -->
-    <form action="BREVO_FORM_ACTION_URL" method="post" target="_blank"
-          style="display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:32px;">
+    <form class="js-nl-form" action="BREVO_FORM_ACTION_URL" method="post" target="_blank"
+          style="display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:32px;opacity:0;transform:translateY(24px);">
       <input type="email" name="EMAIL" required
              placeholder="Votre adresse email"
              style="flex:1;min-width:240px;max-width:360px;padding:15px 20px;border-radius:4px;
@@ -1634,6 +1639,30 @@
   gsap.from('.js-cta-band', {
     opacity:0, y:48, duration:1.0, ease:'power3.out',
     scrollTrigger: { trigger:'.cta-band', start:'top 76%' },
+  });
+
+  /* ─── NEWSLETTER ─────────────────────────────── */
+  gsap.to('.js-nl-badge', {
+    opacity:1, y:0, duration:0.7, ease:'power3.out',
+    scrollTrigger: { trigger:'#newsletter-section', start:'top 80%' },
+  });
+  gsap.to('.js-nl-title', {
+    opacity:1, y:0, duration:0.9, ease:'power3.out', delay:0.12,
+    scrollTrigger: { trigger:'#newsletter-section', start:'top 80%' },
+  });
+  gsap.to('.js-nl-body', {
+    opacity:1, y:0, duration:0.85, ease:'power3.out', delay:0.25,
+    scrollTrigger: { trigger:'#newsletter-section', start:'top 80%' },
+  });
+  gsap.to('.js-nl-form', {
+    opacity:1, y:0, duration:0.85, ease:'power3.out', delay:0.40,
+    scrollTrigger: { trigger:'#newsletter-section', start:'top 80%' },
+  });
+  /* subtle parallax on the background image */
+  gsap.to('#newsletter-section', {
+    backgroundPositionY: '60%',
+    ease:'none',
+    scrollTrigger: { trigger:'#newsletter-section', start:'top bottom', end:'bottom top', scrub: true },
   });
 
   /* ─── VALUE CARD hover (GSAP scale) ─────────── */
