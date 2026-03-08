@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(start \"C:\\\\Users\\\\PC\\\\Desktop\\\\mijah.brandnew\\\\collection.html\")",
+      "Bash(start \"C:\\\\Users\\\\PC\\\\Desktop\\\\mijah.brandnew\\\\About.html\")",
+      "Bash(python3 -c \":*)"
+    ]
+  }
+}

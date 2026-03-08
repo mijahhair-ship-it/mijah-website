@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MÎJAH — Liens</title>
+  <link rel="icon" type="image/png" href="photosAndvideos/MîJah.Logo.Png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --forest: #2b3d24;
+      --gold:   #c9a84c;
+      --cream:  #f5f0e8;
+      --dark:   #1a2616;
+      --text:   #3d3428;
+    }
+
+    body {
+      min-height: 100vh;
+      background: var(--dark);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 48px 20px 64px;
+      font-family: 'Jost', sans-serif;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* subtle texture overlay */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 50% -10%, rgba(201,168,76,.12) 0%, transparent 70%),
+        radial-gradient(ellipse 60% 40% at 80% 100%, rgba(43,61,36,.6) 0%, transparent 60%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .wrapper {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      max-width: 440px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 32px;
+    }
+
+    /* ── Logo ── */
+    .logo-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .logo-wrap img {
+      width: 88px;
+      height: 88px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid var(--gold);
+      box-shadow: 0 0 0 4px rgba(201,168,76,.15);
+    }
+
+    .brand-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.2rem;
+      font-weight: 300;
+      letter-spacing: .25em;
+      color: var(--cream);
+      text-transform: uppercase;
+    }
+
+    .brand-tagline {
+      font-size: .75rem;
+      letter-spacing: .18em;
+      color: var(--gold);
+      text-transform: uppercase;
+      font-weight: 400;
+    }
+
+    /* ── Divider ── */
+    .divider {
+      width: 60px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    }
+
+    /* ── Link buttons ── */
+    .links {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      width: 100%;
+    }
+
+    .link-btn {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      width: 100%;
+      padding: 16px 24px;
+      border-radius: 4px;
+      text-decoration: none;
+      border: 1px solid rgba(201,168,76,.25);
+      background: rgba(255,255,255,.04);
+      backdrop-filter: blur(6px);
+      transition: background .25s, border-color .25s, transform .2s;
+      cursor: pointer;
+    }
+
+    .link-btn:hover {
+      background: rgba(201,168,76,.08);
+      border-color: var(--gold);
+      transform: translateY(-2px);
+    }
+
+    .link-btn .icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .link-btn .icon svg {
+      width: 22px;
+      height: 22px;
+    }
+
+    .link-btn .label {
+      flex: 1;
+    }
+
+    .link-btn .label-main {
+      font-size: .85rem;
+      font-weight: 500;
+      letter-spacing: .08em;
+      color: var(--cream);
+      text-transform: uppercase;
+    }
+
+    .link-btn .label-sub {
+      font-size: .72rem;
+      color: rgba(245,240,232,.45);
+      letter-spacing: .05em;
+      margin-top: 2px;
+    }
+
+    .link-btn .arrow {
+      color: var(--gold);
+      font-size: 1.1rem;
+      opacity: .7;
+      transition: opacity .2s;
+    }
+
+    .link-btn:hover .arrow { opacity: 1; }
+
+    /* icon colours */
+    .btn-website .icon { background: rgba(201,168,76,.15); }
+    .btn-website .icon svg { fill: var(--gold); }
+
+    .btn-instagram .icon { background: rgba(193,53,132,.15); }
+    .btn-instagram .icon svg { fill: #e1306c; }
+
+    .btn-tiktok .icon { background: rgba(105,201,208,.12); }
+    .btn-tiktok .icon svg { fill: #69c9d0; }
+
+    /* ── QR Section ── */
+    .qr-section {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .qr-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem;
+      letter-spacing: .2em;
+      color: rgba(245,240,232,.5);
+      text-transform: uppercase;
+    }
+
+    .qr-box {
+      background: var(--cream);
+      padding: 16px;
+      border-radius: 4px;
+      border: 1px solid rgba(201,168,76,.3);
+      display: inline-block;
+    }
+
+    #qrcode canvas, #qrcode img { display: block; }
+
+    .qr-hint {
+      font-size: .7rem;
+      letter-spacing: .1em;
+      color: rgba(245,240,232,.3);
+      text-align: center;
+      line-height: 1.6;
+    }
+
+    /* download btn */
+    .btn-download {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 24px;
+      border: 1px solid rgba(201,168,76,.4);
+      background: transparent;
+      color: var(--gold);
+      font-family: 'Jost', sans-serif;
+      font-size: .75rem;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      border-radius: 2px;
+      cursor: pointer;
+      transition: background .2s, color .2s;
+    }
+
+    .btn-download:hover {
+      background: var(--gold);
+      color: var(--dark);
+    }
+
+    /* footer */
+    .footer {
+      font-size: .65rem;
+      letter-spacing: .12em;
+      color: rgba(245,240,232,.2);
+      text-align: center;
+      text-transform: uppercase;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+
+    <!-- Logo -->
+    <div class="logo-wrap">
+      <img src="photosAndvideos/Mijah Logo.jpeg" alt="MÎJAH Logo" />
+      <div class="brand-name">Mîjah</div>
+      <div class="brand-tagline">Soins Capillaires Naturels</div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- Links -->
+    <div class="links">
+
+      <!-- Website -->
+      <a href="https://mijah.fr/" target="_blank" class="link-btn btn-website">
+        <div class="icon">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
+          </svg>
+        </div>
+        <div class="label">
+          <div class="label-main">Notre Site Web</div>
+          <div class="label-sub">mijah.fr</div>
+        </div>
+        <span class="arrow">›</span>
+      </a>
+
+      <!-- Instagram -->
+      <a href="https://www.instagram.com/mijah_hair?igsh=MXg0dmRkenRmYWFlZA==" target="_blank" class="link-btn btn-instagram">
+        <div class="icon">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+          </svg>
+        </div>
+        <div class="label">
+          <div class="label-main">Instagram</div>
+          <div class="label-sub">@mijah_hair</div>
+        </div>
+        <span class="arrow">›</span>
+      </a>
+
+      <!-- TikTok -->
+      <a href="https://www.tiktok.com/@mijahhair?_r=1&_t=ZN-94O6pbmK9tW" target="_blank" class="link-btn btn-tiktok">
+        <div class="icon">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.27 6.27 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.52V6.76a4.85 4.85 0 01-1.01-.07z"/>
+          </svg>
+        </div>
+        <div class="label">
+          <div class="label-main">TikTok</div>
+          <div class="label-sub">@mijahhair</div>
+        </div>
+        <span class="arrow">›</span>
+      </a>
+
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- QR Code -->
+    <div class="qr-section">
+      <div class="qr-title">Scannez-nous</div>
+      <div class="qr-box">
+        <div id="qrcode"></div>
+      </div>
+      <button class="btn-download" id="downloadBtn">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+        Télécharger le QR Code
+      </button>
+      <p class="qr-hint">Ce QR code renvoie vers cette page de liens<br/>Imprimez-le sur vos emballages ou flyers</p>
+    </div>
+
+    <div class="footer">© 2025 MÎJAH — Tous droits réservés</div>
+  </div>
+
+  <script>
+    // Generate QR code pointing to this links page (update URL when hosted)
+    const pageUrl = "https://www.instagram.com/mijah_hair?igsh=MXg0dmRkenRmYWFlZA==";
+
+    const qr = new QRCode(document.getElementById("qrcode"), {
+      text: pageUrl,
+      width: 200,
+      height: 200,
+      colorDark: "#1a2616",
+      colorLight: "#f5f0e8",
+      correctLevel: QRCode.CorrectLevel.H
+    });
+
+    // Download button
+    document.getElementById("downloadBtn").addEventListener("click", function() {
+      const canvas = document.querySelector("#qrcode canvas");
+      if (!canvas) {
+        alert("QR code still loading, please try again.");
+        return;
+      }
+
+      // Add brand logo watermark on download
+      const offscreen = document.createElement("canvas");
+      const size = 240;
+      offscreen.width = size;
+      offscreen.height = size;
+      const ctx = offscreen.getContext("2d");
+
+      // White background
+      ctx.fillStyle = "#f5f0e8";
+      ctx.fillRect(0, 0, size, size);
+
+      // QR code centered
+      ctx.drawImage(canvas, 20, 20, 200, 200);
+
+      const link = document.createElement("a");
+      link.download = "mijah-qrcode.png";
+      link.href = offscreen.toDataURL("image/png");
+      link.click();
+    });
+  </script>
+</body>
+</html>
