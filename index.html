@@ -502,9 +502,10 @@
     <div class="flex items-center gap-3">
       <!-- Language Toggle -->
       <button id="lang-toggle" onclick="toggleLang()"
-              class="hidden md:flex items-center gap-1 rounded-full border text-xs font-medium tracking-widest uppercase"
+              class="flex items-center gap-1 rounded-full border text-xs font-medium tracking-widest uppercase"
               style="padding:5px 13px;border-color:rgba(255,255,255,0.28);color:#fff;
                      background:rgba(255,255,255,0.08);transition:all 0.3s;cursor:pointer;">
+        <i class="ph-bold ph-globe" style="font-size:1rem;margin-right:3px;"></i>
         <span id="lang-fr" style="font-weight:600;">FR</span>
         <span style="opacity:0.3;margin:0 2px;">|</span>
         <span id="lang-en" style="opacity:0.4;">EN</span>
@@ -1908,15 +1909,15 @@ renderCart();
   <div style="background:#fff;border-radius:24px;max-width:420px;width:100%;overflow:hidden;box-shadow:0 24px 80px rgba(0,0,0,0.2);position:relative;animation:promoIn 0.45s cubic-bezier(0.34,1.56,0.64,1) both;">
     <div style="background:linear-gradient(135deg,#2b3d24,#4a6e3d);padding:32px 28px 24px;text-align:center;position:relative;">
       <button onclick="closePromo()" style="position:absolute;top:14px;right:16px;background:rgba(255,255,255,0.15);border:none;border-radius:50%;width:32px;height:32px;color:#fff;cursor:pointer;font-size:1rem;display:flex;align-items:center;justify-content:center;">✕</button>
-      <p style="font-size:0.7rem;letter-spacing:0.2em;text-transform:uppercase;color:rgba(212,168,83,0.9);margin-bottom:10px;">Offre Exclusive</p>
+      <p style="font-size:0.7rem;letter-spacing:0.2em;text-transform:uppercase;color:rgba(212,168,83,0.9);margin-bottom:10px;" data-fr="Offre Exclusive" data-en="Exclusive Offer">Offre Exclusive</p>
       <h2 style="font-family:'Cormorant Garamond',serif;font-size:2.8rem;font-weight:400;color:#fff;line-height:1;">-10%</h2>
-      <p style="font-family:'Cormorant Garamond',serif;font-size:1.3rem;color:rgba(255,255,255,0.85);margin-top:4px;">sur votre première commande</p>
+      <p style="font-family:'Cormorant Garamond',serif;font-size:1.3rem;color:rgba(255,255,255,0.85);margin-top:4px;" data-fr="sur votre première commande" data-en="on your first order">sur votre première commande</p>
     </div>
     <div style="padding:28px;text-align:center;">
-      <p style="font-size:0.85rem;color:#777;line-height:1.7;margin-bottom:20px;">Inscrivez-vous et recevez votre code promo exclusif directement dans votre boîte mail.</p>
-      <input type="email" id="promo-email" placeholder="votre@email.com" style="width:100%;padding:13px 16px;border:1.5px solid rgba(74,110,61,0.25);border-radius:12px;font-family:'Jost',sans-serif;font-size:0.88rem;outline:none;margin-bottom:12px;box-sizing:border-box;" />
-      <button onclick="claimPromo()" style="width:100%;padding:14px;background:linear-gradient(135deg,#c09040,#d4a853);color:#fff;border:none;border-radius:100px;font-family:'Jost',sans-serif;font-size:0.85rem;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;cursor:pointer;">Obtenir mon -10% →</button>
-      <p onclick="closePromo()" style="font-size:0.75rem;color:#bbb;margin-top:14px;cursor:pointer;text-decoration:underline;">Non merci, je préfère payer plein tarif</p>
+      <p style="font-size:0.85rem;color:#777;line-height:1.7;margin-bottom:20px;" data-fr="Inscrivez-vous et recevez votre code promo exclusif directement dans votre boîte mail." data-en="Sign up and receive your exclusive promo code directly in your inbox.">Inscrivez-vous et recevez votre code promo exclusif directement dans votre boîte mail.</p>
+      <input type="email" id="promo-email" placeholder="votre@email.com" data-fr-placeholder="votre@email.com" data-en-placeholder="your@email.com" style="width:100%;padding:13px 16px;border:1.5px solid rgba(74,110,61,0.25);border-radius:12px;font-family:'Jost',sans-serif;font-size:0.88rem;outline:none;margin-bottom:12px;box-sizing:border-box;" />
+      <button onclick="claimPromo()" style="width:100%;padding:14px;background:linear-gradient(135deg,#c09040,#d4a853);color:#fff;border:none;border-radius:100px;font-family:'Jost',sans-serif;font-size:0.85rem;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;cursor:pointer;" data-fr="Obtenir mon -10% →" data-en="Get my -10% →">Obtenir mon -10% →</button>
+      <p onclick="closePromo()" style="font-size:0.75rem;color:#bbb;margin-top:14px;cursor:pointer;text-decoration:underline;" data-fr="Non merci, je préfère payer plein tarif" data-en="No thanks, I'd rather pay full price">Non merci, je préfère payer plein tarif</p>
     </div>
   </div>
 </div>
@@ -1930,12 +1931,21 @@ renderCart();
   }
   function claimPromo() {
     const email = document.getElementById('promo-email').value;
-    if (!email || !email.includes('@')) { alert('Veuillez entrer une adresse email valide.'); return; }
+    const lang = localStorage.getItem('mijahLang') || 'fr';
+    if (!email || !email.includes('@')) {
+      alert(lang === 'en' ? 'Please enter a valid email address.' : 'Veuillez entrer une adresse email valide.');
+      return;
+    }
+    const thanks = lang === 'en' ? 'Thank you!' : 'Merci !';
+    const msg = lang === 'en'
+      ? `Your promo code <strong style="color:#c09040;">MIJAH10</strong> has been sent to <strong>${email}</strong>.`
+      : `Votre code promo <strong style="color:#c09040;">MIJAH10</strong> a été envoyé à <strong>${email}</strong>.`;
+    const cta = lang === 'en' ? 'Discover the Collection →' : 'Découvrir la Collection →';
     document.getElementById('promo-overlay').innerHTML = `<div style="background:#fff;border-radius:24px;max-width:420px;width:100%;padding:48px 28px;text-align:center;box-shadow:0 24px 80px rgba(0,0,0,0.2);">
       <div style="font-size:3rem;margin-bottom:16px;">🎉</div>
-      <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.8rem;color:#2b3d24;margin-bottom:10px;">Merci !</h3>
-      <p style="font-size:0.85rem;color:#777;line-height:1.7;margin-bottom:20px;">Votre code promo <strong style="color:#c09040;">MIJAH10</strong> a été envoyé à <strong>${email}</strong>.</p>
-      <button onclick="closePromo()" style="padding:12px 32px;background:linear-gradient(135deg,#2b3d24,#4a6e3d);color:#fff;border:none;border-radius:100px;font-family:'Jost',sans-serif;font-size:0.85rem;cursor:pointer;">Découvrir la Collection →</button>
+      <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.8rem;color:#2b3d24;margin-bottom:10px;">${thanks}</h3>
+      <p style="font-size:0.85rem;color:#777;line-height:1.7;margin-bottom:20px;">${msg}</p>
+      <button onclick="closePromo()" style="padding:12px 32px;background:linear-gradient(135deg,#2b3d24,#4a6e3d);color:#fff;border:none;border-radius:100px;font-family:'Jost',sans-serif;font-size:0.85rem;cursor:pointer;">${cta}</button>
     </div>`;
   }
   // Show popup after 6 seconds if not already seen
