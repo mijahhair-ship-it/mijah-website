@@ -1787,10 +1787,10 @@
 <script>
 /* ── Cart Data ── */
 const PRODUCTS = {
-  elixir:   { fr:'Élixir Anti-Chute',    en:'Anti Hair-Loss Elixir',  price:21.90, img:'photosAndvideos/mijah anti-chute.png',               stripe:'https://buy.stripe.com/8x2fZgaEsgqk6ojbba1wY02' },
-  rosemary: { fr:'Huile de Croissance',  en:'Rosemary Growth Oil',    price:12.80, img:'photosAndvideos/Mijah hair growth oil.png',           stripe:'https://buy.stripe.com/aFa7sK27W2zuh2X6UU1wY03' },
-  mango:    { fr:'Mango Hair Butter',    en:'Mango Hair Butter',      price:19.90, img:'photosAndvideos/Mango Hair Butter.png',               stripe:'https://buy.stripe.com/aFa7sK9Aoa1W6ojfrq1wY01' },
-  trio:     { fr:'Le Coffret MÎJAH Trio',en:'The MÎJAH Trio Set',     price:49.90, img:'photosAndvideos/Mijah Trio with Ingredient.jpeg',     stripe:'https://buy.stripe.com/bJebJ0dQEeicdQLcfe1wY00' }
+  elixir:   { fr:'Élixir Anti-Chute',    en:'Anti Hair-Loss Elixir',  price:21.90, img:'photosAndvideos/mijah anti-chute.png',           priceId:'price_1T7077D7x2m6lpvVoJv7Mhlr' },
+  rosemary: { fr:'Huile de Croissance',  en:'Rosemary Growth Oil',    price:12.80, img:'photosAndvideos/Mijah hair growth oil.png',       priceId:'price_1T702JD7x2m6lpvVGAxXYXys' },
+  mango:    { fr:'Mango Hair Butter',    en:'Mango Hair Butter',      price:19.90, img:'photosAndvideos/Mango Hair Butter.png',           priceId:'price_1T70AGD7x2m6lpvVWEexJ0Lh' },
+  trio:     { fr:'Le Coffret MÎJAH Trio',en:'The MÎJAH Trio Set',     price:49.90, img:'photosAndvideos/Mijah Trio with Ingredient.jpeg', priceId:'price_1T70G1D7x2m6lpvV7br7zQut' }
 };
 
 let cart = JSON.parse(localStorage.getItem('mijahCart') || '{}');
@@ -1882,20 +1882,52 @@ function renderCart() {
     </div>
     <p style="font-size:0.72rem;color:#bbb;margin-bottom:16px;">${lang==='fr'?'Livraison calculée à la commande':'Shipping calculated at checkout'}</p>`;
 
-  if (keys.length === 1) {
-    footHtml += `<a href="${PRODUCTS[keys[0]].stripe}" target="_blank" class="btn-gold" style="width:100%;justify-content:center;text-decoration:none;display:flex;gap:8px;">
-      <i class="ph ph-lock-simple"></i> ${lang==='fr'?'Passer la Commande':'Checkout Securely'}
-    </a>`;
-  } else {
-    footHtml += `<p style="font-size:0.73rem;color:#999;margin-bottom:10px;text-align:center;">${lang==='fr'?'Commander par produit :':'Checkout per product:'}</p>`;
-    keys.forEach(id => {
-      const p = PRODUCTS[id];
-      footHtml += `<a href="${p.stripe}" target="_blank" class="btn-gold" style="width:100%;justify-content:center;text-decoration:none;display:flex;gap:8px;margin-bottom:8px;font-size:0.78rem;padding:12px 20px;">
-        <i class="ph ph-lock-simple"></i> ${lang==='fr'?p.fr:p.en} ×${cart[id]}
-      </a>`;
-    });
-  }
+  footHtml += `<button onclick="openEmbeddedCheckout()" class="btn-gold" style="width:100%;justify-content:center;display:flex;gap:8px;border:none;cursor:pointer;">
+    <i class="ph ph-lock-simple"></i> ${lang==='fr'?'Passer la Commande':'Checkout Securely'}
+  </button>`;
   footer.innerHTML = footHtml;
+}
+
+async function openEmbeddedCheckout() {
+  const keys = Object.keys(cart).filter(k => PRODUCTS[k] && cart[k] > 0);
+  if (!keys.length) return;
+  const lang = typeof currentLang !== 'undefined' ? currentLang : 'fr';
+
+  const items = keys.map(id => ({ priceId: PRODUCTS[id].priceId, quantity: cart[id] }));
+
+  // Show loading modal
+  const overlay = document.getElementById('stripe-overlay');
+  const container = document.getElementById('stripe-container');
+  container.innerHTML = `<div style="text-align:center;padding:60px 20px;">
+    <div style="width:40px;height:40px;border:3px solid #e5ede0;border-top-color:#4a6e3d;border-radius:50%;animation:spin 0.8s linear infinite;margin:0 auto 16px;"></div>
+    <p style="font-family:'Jost',sans-serif;font-size:0.85rem;color:#666;">${lang==='fr'?'Chargement du paiement…':'Loading payment…'}</p>
+  </div>`;
+  overlay.style.display = 'flex';
+
+  try {
+    const res = await fetch('/.netlify/functions/create-checkout', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ items }),
+    });
+    const { clientSecret, error } = await res.json();
+    if (error) throw new Error(error);
+
+    const stripe = Stripe('pk_live_51T6y3AD7x2m6lpvVv6dyV3G8zGORVXlrNYRS8F0fRMCeu6AisuC6j5GjVDlVpt5mYJYkbsEFZ3j5JHeD5qk8c6sp00aVYKzPi0');
+    container.innerHTML = '<div id="stripe-checkout"></div>';
+    const checkout = await stripe.initEmbeddedCheckout({ clientSecret });
+    checkout.mount('#stripe-checkout');
+  } catch (e) {
+    container.innerHTML = `<div style="text-align:center;padding:40px 20px;">
+      <p style="color:#c00;font-size:0.85rem;">${lang==='fr'?'Une erreur est survenue. Veuillez réessayer.':'An error occurred. Please try again.'}</p>
+      <button onclick="closeStripeOverlay()" style="margin-top:16px;padding:10px 24px;background:#2b3d24;color:#fff;border:none;border-radius:100px;cursor:pointer;font-family:\'Jost\',sans-serif;">OK</button>
+    </div>`;
+  }
+}
+
+function closeStripeOverlay() {
+  document.getElementById('stripe-overlay').style.display = 'none';
+  document.getElementById('stripe-container').innerHTML = '';
 }
 
 /* Init */
@@ -1956,6 +1988,20 @@ renderCart();
     }, 6000);
   }
 </script>
+
+<!-- Stripe.js -->
+<script src="https://js.stripe.com/v3/"></script>
+
+<!-- Stripe Embedded Checkout Overlay -->
+<div id="stripe-overlay" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:20000;align-items:center;justify-content:center;padding:20px;">
+  <div style="background:#fff;border-radius:24px;max-width:560px;width:100%;max-height:90vh;overflow-y:auto;position:relative;box-shadow:0 24px 80px rgba(0,0,0,0.25);">
+    <button onclick="closeStripeOverlay()" style="position:absolute;top:14px;right:16px;background:rgba(0,0,0,0.08);border:none;border-radius:50%;width:32px;height:32px;cursor:pointer;font-size:1rem;z-index:1;display:flex;align-items:center;justify-content:center;">✕</button>
+    <div id="stripe-container" style="padding:24px;"></div>
+  </div>
+</div>
+<style>
+  @keyframes spin { to { transform: rotate(360deg); } }
+</style>
 
 <!-- WhatsApp Floating Button -->
 <a href="https://wa.me/VOTRE_NUMERO?text=Bonjour%20MÎJAH%2C%20j'ai%20une%20question%20sur%20vos%20produits%20!" target="_blank" rel="noopener"
