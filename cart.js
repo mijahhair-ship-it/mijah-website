@@ -13,7 +13,7 @@ const PAYPAL_CLIENT_ID = 'ATZqS9lY7OVclSuN8DHVlOXcKluLj5XWp8VJ3R-QGn7-64KQwE98DN
 
 /* ── Inject cart + PayPal modal HTML ── */
 (function injectCartHTML() {
-  if (document.getElementById('cart-drawer')) return;
+  if (document.getElementById('paypal-overlay')) return;
 
   document.body.insertAdjacentHTML('beforeend', `
   <style>
@@ -203,11 +203,6 @@ function openPayPalCheckout() {
 
   document.getElementById('paypal-overlay').classList.add('open');
 
-  if (!window.paypal) {
-    const script = document.createElement('script');
-    script.src = `https://www.paypal.com/sdk/js?client-id=${PAYPAL_CLIENT_ID}&currency=EUR`;
-    document.head.appendChild(script);
-  }
 }
 
 function selectZone(zoneId) {
@@ -274,4 +269,9 @@ document.addEventListener('DOMContentLoaded', () => {
   renderCart();
   const cartBtn = document.getElementById('cart-btn');
   if (cartBtn) cartBtn.addEventListener('click', openCart);
+  if (!document.querySelector('script[src*="paypal.com/sdk"]')) {
+    const s = document.createElement('script');
+    s.src = `https://www.paypal.com/sdk/js?client-id=${PAYPAL_CLIENT_ID}&currency=EUR`;
+    document.head.appendChild(s);
+  }
 });
