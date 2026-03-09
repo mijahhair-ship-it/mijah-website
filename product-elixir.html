@@ -122,25 +122,366 @@
     .logo-anim { animation: logoFadeIn 0.8s ease forwards, logoFloat 3.5s ease-in-out 0.8s infinite; transition: filter 0.3s ease; }
     .logo-anim:hover { animation-play-state: paused; filter: brightness(1.1) drop-shadow(0 4px 14px rgba(74,110,61,0.35)); transform: scale(1.06); }
   </style>
+  <!-- Google Analytics — Remplace G-XXXXXXXXXX par ton Measurement ID (Google Analytics 4) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-XXXXXXXXXX");</script>
+  <style>
+    #cart-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.4);z-index:8000;}
+    #cart-drawer{position:fixed;top:0;right:-420px;width:100%;max-width:420px;height:100%;background:#fff;z-index:8001;display:flex;flex-direction:column;transition:right 0.38s cubic-bezier(0.4,0,0.2,1);box-shadow:-8px 0 40px rgba(0,0,0,0.12);}
+    #cart-drawer.open{right:0;}
+    .cart-item{display:flex;align-items:flex-start;gap:14px;padding:14px 0;border-bottom:1px solid rgba(74,110,61,0.07);}
+    .cart-item img{width:70px;height:70px;object-fit:contain;border-radius:12px;background:#f4f7f0;}
+    .cart-qty-btn{width:26px;height:26px;border-radius:50%;border:1px solid rgba(74,110,61,0.2);background:#fff;cursor:pointer;font-size:1rem;display:flex;align-items:center;justify-content:center;color:#2b3d24;transition:background 0.2s;}
+    .cart-qty-btn:hover{background:#f4f7f0;}
+    #paypal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:20000;align-items:flex-end;justify-content:center;padding:0;}
+    #paypal-overlay.open{display:flex;}
+    #paypal-modal{background:#fff;border-radius:24px 24px 0 0;max-width:480px;width:100%;padding:28px 20px 32px;position:relative;box-shadow:0 -8px 40px rgba(0,0,0,0.2);max-height:92vh;overflow-y:auto;-webkit-overflow-scrolling:touch;}
+    @media(min-width:600px){#paypal-overlay{align-items:center;padding:20px;}#paypal-modal{border-radius:24px;max-height:85vh;}}
+  </style>
   <script src="https://www.paypal.com/sdk/js?client-id=ATZqS9lY7OVclSuN8DHVlOXcKluLj5XWp8VJ3R-QGn7-64KQwE98DNcQm8tMdH4ImyWaGGzlwjoGVQBm&currency=EUR"></script>
-<style>
-/* ═══ CART ═══════════════════════════════════ */
-#cart-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.4);z-index:8000;}
-#cart-drawer{position:fixed;top:0;right:-420px;width:100%;max-width:420px;height:100%;background:#fff;z-index:8001;display:flex;flex-direction:column;transition:right 0.38s cubic-bezier(0.4,0,0.2,1);box-shadow:-8px 0 40px rgba(0,0,0,0.12);}
-#cart-drawer.open{right:0;}
-.cart-item{display:flex;align-items:flex-start;gap:14px;padding:14px 0;border-bottom:1px solid rgba(74,110,61,0.07);}
-.cart-item img{width:70px;height:70px;object-fit:contain;border-radius:12px;background:#f4f7f0;}
-.cart-qty-btn{width:26px;height:26px;border-radius:50%;border:1px solid rgba(74,110,61,0.2);background:#fff;cursor:pointer;font-size:1rem;display:flex;align-items:center;justify-content:center;color:#2b3d24;transition:background 0.2s;}
-.cart-qty-btn:hover{background:#f4f7f0;}
-/* ═══ CHECKOUT ════════════════════════════════ */
-#checkout-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:20000;align-items:flex-end;justify-content:center;padding:0;}
-#checkout-overlay.open{display:flex;}
-#checkout-modal{background:#fff;border-radius:24px 24px 0 0;max-width:480px;width:100%;padding:28px 20px 32px;position:relative;box-shadow:0 -8px 40px rgba(0,0,0,0.2);max-height:92vh;overflow-y:auto;-webkit-overflow-scrolling:touch;}
-@media(min-width:600px){#checkout-overlay{align-items:center;padding:20px;}#checkout-modal{border-radius:24px;max-height:85vh;}}
-.co-label{display:block;font-size:0.75rem;font-weight:600;color:#2b3d24;letter-spacing:0.06em;text-transform:uppercase;margin-bottom:6px;}
-.co-input{width:100%;padding:11px 14px;border:1.5px solid rgba(74,110,61,0.25);border-radius:10px;font-family:'Jost',sans-serif;font-size:0.85rem;color:#2b3d24;box-sizing:border-box;outline:none;transition:border-color 0.2s;}
-.co-input:focus{border-color:#4a6e3d;}
-</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header-glass fixed top-0 left-0 right-0 z-50">
+  <nav class="max-w-7xl mx-auto px-6 lg:px-12 h-[66px] flex items-center justify-between">
+    <a href="index.html" class="flex items-center gap-2.5 shrink-0">
+      <img src="photosAndvideos/MîJah.Logo.Png" alt="MÎJAH Logo" class="logo-anim" style="height:78px;width:auto;object-fit:contain;" />
+    </a>
+    <div class="hidden md:flex items-center gap-9">
+      <a href="collection.html" class="nav-link" data-fr="Collection" data-en="Collection">Collection</a>
+      <a href="about.html"      class="nav-link" data-fr="Notre Histoire" data-en="Our Story">Notre Histoire</a>
+      <a href="blog.html"       class="nav-link" data-fr="Blog" data-en="Blog">Blog</a>
+      <a href="contact.html"    class="nav-link" data-fr="Contact" data-en="Contact">Contact</a>
+    </div>
+    <div class="flex items-center gap-3">
+      <button id="lang-toggle" onclick="toggleLang()"
+              class="hidden md:flex items-center gap-1 rounded-full border text-xs font-medium tracking-widest uppercase"
+              style="padding:5px 13px;border-color:rgba(74,110,61,0.3);color:#2b3d24;
+                     background:transparent;transition:all 0.3s;cursor:pointer;">
+        <span id="lang-fr" style="font-weight:600;">FR</span>
+        <span style="opacity:0.3;margin:0 2px;">|</span>
+        <span id="lang-en" style="opacity:0.4;">EN</span>
+      </button>
+      <button id="cart-btn" onclick="openCart()" class="relative p-2" style="color:#2b3d24;background:none;border:none;cursor:pointer;">
+        <i class="ph-bold ph-shopping-cart" style="font-size:1.25rem;"></i>
+        <span id="cart-count" class="absolute -top-0.5 -right-0.5 w-[18px] h-[18px] rounded-full text-white flex items-center justify-center font-bold" style="font-size:9px;background:#d4a853;display:none;">0</span>
+      </button>
+      <button class="md:hidden p-2" onclick="toggleMobMenu()"
+              style="background:none;border:none;cursor:pointer;color:#2b3d24;margin-left:2px;">
+        <i class="ph-bold ph-list" style="font-size:1.4rem;"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+
+<!-- BREADCRUMB -->
+<div style="padding:86px 24px 0;background:#FEFDF9;" class="max-w-7xl mx-auto">
+  <div style="display:flex;align-items:center;gap:8px;font-size:0.75rem;color:#aaa;padding:16px 0;">
+    <a href="index.html" style="color:#aaa;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#4a6e3d'" onmouseout="this.style.color='#aaa'" data-fr="Accueil" data-en="Home">Accueil</a>
+    <i class="ph ph-caret-right" style="font-size:0.65rem;"></i>
+    <a href="collection.html" style="color:#aaa;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#4a6e3d'" onmouseout="this.style.color='#aaa'" data-fr="Collection" data-en="Collection">Collection</a>
+    <i class="ph ph-caret-right" style="font-size:0.65rem;"></i>
+    <span style="color:#4a6e3d;">Elixir Anti-Chute</span>
+  </div>
+</div>
+
+<!-- PRODUCT DETAIL HERO -->
+<section class="py-12 px-6 lg:px-12" style="background:#FEFDF9;">
+  <div class="max-w-7xl mx-auto">
+    <div class="grid lg:grid-cols-2 gap-14 items-start" id="prod-hero">
+
+      <!-- Image -->
+      <div style="position:sticky;top:90px;">
+        <div style="background:linear-gradient(135deg,#f4f7f0,#e5ede0);border-radius:28px;padding:40px;display:flex;align-items:center;justify-content:center;min-height:480px;position:relative;overflow:hidden;">
+          <div style="position:absolute;top:-30px;right:-20px;width:150px;opacity:0.12;pointer-events:none;">
+            <svg viewBox="0 0 200 300" fill="none"><path d="M100 10C150 60 180 120 160 200C140 270 80 290 40 260C10 240 20 180 40 140C60 100 50 50 100 10Z" fill="#4a6e3d"/></svg>
+          </div>
+          <img src="photosAndvideos/mijah anti-chute.png" alt="MÎJAH Elixir Anti-Chute" id="prod-img"
+               style="width:300px;max-width:100%;filter:drop-shadow(0 20px 50px rgba(0,0,0,0.14));" />
+        </div>
+      </div>
+
+      <!-- Details -->
+      <div style="display:flex;flex-direction:column;gap:22px;" id="prod-details">
+
+        <div>
+          <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px;">
+            <span class="badge badge-green" data-fr="Anti-Chute" data-en="Anti Hair-Loss">Anti-Chute</span>
+            <span class="badge badge-green" data-fr="Fabriqué en France" data-en="Made in France">Fabriqué en France</span>
+            <span class="badge badge-green" data-fr="Vegan" data-en="Vegan">Vegan</span>
+          </div>
+          <p class="sec-label mb-2">Elixir</p>
+          <h1 style="font-family:'Cormorant Garamond',serif;font-size:clamp(2.2rem,4vw,3.2rem);font-weight:400;color:#2b3d24;line-height:1.1;margin-bottom:10px;" data-fr="Anti-Chute" data-en="Anti Hair-Loss">Anti-Chute</h1>
+          <p style="font-size:0.82rem;color:#999;letter-spacing:0.06em;font-weight:400;">Net 2 fl oz / 60 ml</p>
+        </div>
+
+        <!-- Rating -->
+        <div style="display:flex;align-items:center;gap:10px;">
+          <span style="color:#d4a853;font-size:0.9rem;letter-spacing:2px;">★★★★★</span>
+          <span style="font-size:0.8rem;color:#999;" data-fr="(128 avis)" data-en="(128 reviews)">(128 avis)</span>
+        </div>
+
+        <!-- Price -->
+        <div style="display:flex;align-items:baseline;gap:14px;">
+          <span class="price">€21.90</span>
+          <span style="font-size:0.8rem;color:#5f8a50;font-weight:500;background:#e5ede0;padding:3px 10px;border-radius:100px;" data-fr="En stock" data-en="In stock">En stock</span>
+        </div>
+
+        <!-- Short description -->
+        <p style="font-size:0.92rem;color:#555;line-height:1.78;font-weight:300;border-left:2px solid #d4a853;padding-left:16px;"
+           data-fr="Cible efficacement l'alopécie. Réduit la casse et renforce les fibres capillaires. Ajoute volume et densité pour des cheveux visiblement plus fournis et en bonne santé."
+           data-en="Effectively targets alopecia. Reduces breakage and strengthens hair fibers. Adds volume and density for visibly fuller, healthier hair.">
+          Cible efficacement l'alopécie. Réduit la casse et renforce les fibres capillaires. Ajoute volume et densité pour des cheveux visiblement plus fournis et en bonne santé.
+        </p>
+
+        <!-- Key benefits -->
+        <div style="background:linear-gradient(135deg,#f4f7f0,#fefdf9);border-radius:16px;padding:20px 22px;">
+          <p style="font-size:0.72rem;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:#5f8a50;margin-bottom:14px;" data-fr="Bénéfices clés" data-en="Key Benefits">Bénéfices clés</p>
+          <ul style="list-style:none;display:flex;flex-direction:column;gap:10px;">
+            <li style="display:flex;align-items:center;gap:10px;font-size:0.87rem;color:#444;font-weight:300;">
+              <div style="width:22px;height:22px;border-radius:50%;background:#e5ede0;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="ph-bold ph-check" style="color:#4a6e3d;font-size:0.65rem;"></i></div>
+              <span data-fr="Cible l'alopécie et la chute des cheveux à la racine" data-en="Targets alopecia and hair loss at the root">Cible l'alopécie et la chute des cheveux à la racine</span>
+            </li>
+            <li style="display:flex;align-items:center;gap:10px;font-size:0.87rem;color:#444;font-weight:300;">
+              <div style="width:22px;height:22px;border-radius:50%;background:#e5ede0;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="ph-bold ph-check" style="color:#4a6e3d;font-size:0.65rem;"></i></div>
+              <span data-fr="Réduit la casse et renforce les fibres capillaires" data-en="Reduces breakage and strengthens hair fibers">Réduit la casse et renforce les fibres capillaires</span>
+            </li>
+            <li style="display:flex;align-items:center;gap:10px;font-size:0.87rem;color:#444;font-weight:300;">
+              <div style="width:22px;height:22px;border-radius:50%;background:#e5ede0;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="ph-bold ph-check" style="color:#4a6e3d;font-size:0.65rem;"></i></div>
+              <span data-fr="Ajoute volume et densité visible" data-en="Adds volume and visible density">Ajoute volume et densité visible</span>
+            </li>
+            <li style="display:flex;align-items:center;gap:10px;font-size:0.87rem;color:#444;font-weight:300;">
+              <div style="width:22px;height:22px;border-radius:50%;background:#e5ede0;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="ph-bold ph-check" style="color:#4a6e3d;font-size:0.65rem;"></i></div>
+              <span data-fr="Formule botanique 100% naturelle — sans produits chimiques nocifs" data-en="100% natural botanical formula — no harmful chemicals">Formule botanique 100% naturelle — sans produits chimiques nocifs</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Quantity + Add to Cart -->
+        <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap;">
+          <div style="display:flex;align-items:center;gap:12px;background:#f4f7f0;border-radius:100px;padding:4px 14px;">
+            <button class="qty-btn" onclick="changeQty(-1)">−</button>
+            <span id="qty" style="font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:500;color:#2b3d24;min-width:24px;text-align:center;">1</span>
+            <button class="qty-btn" onclick="changeQty(1)">+</button>
+          </div>
+          <button onclick="addToCart('elixir')" class="btn-gold" style="flex:1;justify-content:center;cursor:pointer;">
+            <i class="ph ph-shopping-cart"></i> <span data-fr="Ajouter au Panier" data-en="Add to Cart">Ajouter au Panier</span>
+          </button>
+        </div>
+
+        <!-- Trust signals -->
+        <div style="display:flex;flex-wrap:wrap;gap:16px;padding-top:8px;border-top:1px solid rgba(74,110,61,0.1);">
+          <div style="display:flex;align-items:center;gap:7px;font-size:0.78rem;color:#666;">
+            <i class="ph ph-shield-check" style="color:#4a6e3d;font-size:1rem;"></i> <span data-fr="Paiement sécurisé" data-en="Secure payment">Paiement sécurisé</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:7px;font-size:0.78rem;color:#666;">
+            <i class="ph ph-arrow-counter-clockwise" style="color:#4a6e3d;font-size:1rem;"></i> <span data-fr="Retour 30 jours" data-en="30-day returns">Retour 30 jours</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TABS: Description / Ingredients / How to Use -->
+<section class="py-16 px-6 lg:px-12" style="background:#f4f7f0;">
+  <div class="max-w-4xl mx-auto">
+    <!-- Tab buttons -->
+    <div style="display:flex;flex-wrap:wrap;gap:10px;margin-bottom:36px;" id="tab-btns">
+      <button class="tab-btn active" data-tab="desc" data-fr="Description" data-en="Description">Description</button>
+      <button class="tab-btn" data-tab="ingr" data-fr="Ingrédients" data-en="Ingredients">Ingrédients</button>
+      <button class="tab-btn" data-tab="how" data-fr="Comment Utiliser" data-en="How to Use">Comment Utiliser</button>
+    </div>
+
+    <!-- Description -->
+    <div class="tab-panel active" id="tab-desc">
+      <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:400;color:#2b3d24;margin-bottom:14px;">À Propos de l'Élixir Anti-Chute</h3>
+      <p style="font-size:0.92rem;color:#555;line-height:1.85;font-weight:300;margin-bottom:14px;">
+        L'Élixir Anti-Chute MÎJAH est une formule sérumique premium développée spécifiquement pour les cheveux afro et bouclés souffrant de chute, de casse ou d'alopécie. Sa composition 100% naturelle agit directement sur les bulbes pileux pour renforcer la fibre capillaire de l'intérieur.
+      </p>
+      <p style="font-size:0.92rem;color:#555;line-height:1.85;font-weight:300;">
+        Formulé et fabriqué en France selon les normes cosmétiques européennes les plus strictes, cet élixir est testé dermatologiquement et convient à tous les types de cheveux texturés. Visible en 4 à 6 semaines d'utilisation régulière.
+      </p>
+    </div>
+
+    <!-- Ingredients -->
+    <div class="tab-panel" id="tab-ingr">
+      <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:400;color:#2b3d24;margin-bottom:14px;">Ingrédients Clés</h3>
+      <div class="grid md:grid-cols-2 gap-5">
+        <div style="background:#fff;border-radius:16px;padding:18px 20px;border:1px solid rgba(74,110,61,0.1);">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;">
+            <div style="width:36px;height:36px;border-radius:50%;background:#e5ede0;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="ph ph-leaf" style="color:#4a6e3d;font-size:1rem;"></i></div>
+            <p style="font-weight:600;color:#2b3d24;font-size:0.9rem;">Huile de Ricin</p>
+          </div>
+          <p style="font-size:0.82rem;color:#666;line-height:1.7;font-weight:300;">Fortifie les racines, stimule la circulation sanguine au niveau du cuir chevelu.</p>
+        </div>
+        <div style="background:#fff;border-radius:16px;padding:18px 20px;border:1px solid rgba(74,110,61,0.1);">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;">
+            <div style="width:36px;height:36px;border-radius:50%;background:#e5ede0;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="ph ph-leaf" style="color:#4a6e3d;font-size:1rem;"></i></div>
+            <p style="font-weight:600;color:#2b3d24;font-size:0.9rem;">Extrait de Romarin</p>
+          </div>
+          <p style="font-size:0.82rem;color:#666;line-height:1.7;font-weight:300;">Propriétés anti-inflammatoires. Aide à réduire la chute liée au stress oxydatif.</p>
+        </div>
+        <div style="background:#fff;border-radius:16px;padding:18px 20px;border:1px solid rgba(74,110,61,0.1);">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;">
+            <div style="width:36px;height:36px;border-radius:50%;background:#e5ede0;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="ph ph-leaf" style="color:#4a6e3d;font-size:1rem;"></i></div>
+            <p style="font-weight:600;color:#2b3d24;font-size:0.9rem;">Huile de Jojoba</p>
+          </div>
+          <p style="font-size:0.82rem;color:#666;line-height:1.7;font-weight:300;">Hydrate le cuir chevelu sans obstruer les follicules. Équilibre la production de sébum.</p>
+        </div>
+        <div style="background:#fff;border-radius:16px;padding:18px 20px;border:1px solid rgba(74,110,61,0.1);">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;">
+            <div style="width:36px;height:36px;border-radius:50%;background:#e5ede0;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="ph ph-leaf" style="color:#4a6e3d;font-size:1rem;"></i></div>
+            <p style="font-weight:600;color:#2b3d24;font-size:0.9rem;">Panthénol (Vit. B5)</p>
+          </div>
+          <p style="font-size:0.82rem;color:#666;line-height:1.7;font-weight:300;">Pénètre la fibre capillaire pour renforcer et ajouter de l'élasticité.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- How to Use -->
+    <div class="tab-panel" id="tab-how">
+      <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:400;color:#2b3d24;margin-bottom:20px;">Mode d'Emploi</h3>
+      <div style="display:flex;flex-direction:column;gap:16px;">
+        <div style="display:flex;gap:14px;align-items:flex-start;">
+          <div style="width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,#4a6e3d,#5f8a50);color:#fff;display:flex;align-items:center;justify-content:center;font-size:0.8rem;font-weight:600;flex-shrink:0;">1</div>
+          <div><p style="font-weight:500;color:#2b3d24;margin-bottom:4px;font-size:0.92rem;">Appliquer sur cuir chevelu</p><p style="font-size:0.85rem;color:#666;font-weight:300;line-height:1.7;">Appliquer directement sur le cuir chevelu sec ou légèrement humide. Diviser les cheveux en sections pour une meilleure absorption.</p></div>
+        </div>
+        <div style="display:flex;gap:14px;align-items:flex-start;">
+          <div style="width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,#4a6e3d,#5f8a50);color:#fff;display:flex;align-items:center;justify-content:center;font-size:0.8rem;font-weight:600;flex-shrink:0;">2</div>
+          <div><p style="font-weight:500;color:#2b3d24;margin-bottom:4px;font-size:0.92rem;">Masser pendant 3-5 minutes</p><p style="font-size:0.85rem;color:#666;font-weight:300;line-height:1.7;">Masser délicatement du bout des doigts pour activer la circulation et favoriser l'absorption de l'élixir.</p></div>
+        </div>
+        <div style="display:flex;gap:14px;align-items:flex-start;">
+          <div style="width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,#4a6e3d,#5f8a50);color:#fff;display:flex;align-items:center;justify-content:center;font-size:0.8rem;font-weight:600;flex-shrink:0;">3</div>
+          <div><p style="font-weight:500;color:#2b3d24;margin-bottom:4px;font-size:0.92rem;">Laisser poser</p><p style="font-size:0.85rem;color:#666;font-weight:300;line-height:1.7;">Laisser agir au moins 30 minutes ou toute la nuit. Rincer si désiré, ou laisser en leave-in selon votre routine.</p></div>
+        </div>
+        <div style="display:flex;gap:14px;align-items:flex-start;">
+          <div style="width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,#4a6e3d,#5f8a50);color:#fff;display:flex;align-items:center;justify-content:center;font-size:0.8rem;font-weight:600;flex-shrink:0;">4</div>
+          <div><p style="font-weight:500;color:#2b3d24;margin-bottom:4px;font-size:0.92rem;">Utiliser 2-3x par semaine</p><p style="font-size:0.85rem;color:#666;font-weight:300;line-height:1.7;">Pour des résultats optimaux, appliquer régulièrement. Les premiers effets sont visibles après 4 à 6 semaines d'utilisation.</p></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- RELATED PRODUCTS -->
+<section class="py-20 px-6 lg:px-12" style="background:#FEFDF9;">
+  <div class="max-w-7xl mx-auto">
+    <div class="text-center mb-12">
+      <p class="sec-label mb-3" data-fr="Complétez Votre Routine" data-en="Complete Your Routine">Complétez Votre Routine</p>
+      <div class="gold-line mx-auto mb-5"></div>
+      <h2 style="font-family:'Cormorant Garamond',serif;font-size:2.4rem;font-weight:400;color:#2b3d24;" data-fr="Vous Aimerez Aussi" data-en="You May Also Like">Vous Aimerez Aussi</h2>
+    </div>
+    <div class="grid md:grid-cols-2 gap-8 max-w-2xl mx-auto">
+      <a href="product-rosemary.html" class="r-card">
+        <div style="background:linear-gradient(135deg,#e5ede0,#ccdcc4);height:220px;display:flex;align-items:center;justify-content:center;padding:20px;overflow:hidden;">
+          <img src="photosAndvideos/Mijah hair growth oil.png" alt="Rosemary Oil" style="height:100%;object-fit:contain;" />
+        </div>
+        <div style="padding:18px 20px;">
+          <p class="sec-label mb-1" style="color:#c09040;">Rosemary</p>
+          <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:500;color:#2b3d24;margin-bottom:4px;" data-fr="Huile de Croissance" data-en="Hair Growth Oil">Huile de Croissance</h3>
+          <p style="font-size:0.82rem;color:#777;font-weight:300;">€12.80 · 100 ml</p>
+        </div>
+      </a>
+      <a href="product-mango.html" class="r-card">
+        <div style="background:linear-gradient(135deg,#f7f4ed,#ede8d8);height:220px;display:flex;align-items:center;justify-content:center;padding:20px;overflow:hidden;">
+          <img src="photosAndvideos/Mango Hair Butter.png" alt="Mango Butter" style="height:100%;object-fit:contain;" />
+        </div>
+        <div style="padding:18px 20px;">
+          <p class="sec-label mb-1">Mango</p>
+          <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:500;color:#2b3d24;margin-bottom:4px;" data-fr="Beurre Capillaire" data-en="Hair Butter">Beurre Capillaire</h3>
+          <p style="font-size:0.82rem;color:#777;font-weight:300;">€19.90 · 150 ml</p>
+        </div>
+      </a>
+    </div>
+    <div class="text-center mt-10">
+      <a href="collection.html" class="btn-dark" style="font-size:0.82rem;padding:12px 28px;">
+        <i class="ph ph-arrow-left"></i> <span data-fr="Voir toute la collection" data-en="View full collection">Voir toute la collection</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="py-14 px-6 lg:px-12" style="background:#16210f;">
+  <div class="max-w-7xl mx-auto">
+    <div class="grid md:grid-cols-4 gap-10 mb-10">
+      <div class="md:col-span-2">
+        <img src="photosAndvideos/MîJah.Logo.jpeg.jpeg" alt="MÎJAH" style="height:75px;width:auto;object-fit:contain;margin-bottom:16px;" />
+        <p style="font-size:0.82rem;color:rgba(255,255,255,0.42);margin-top:10px;line-height:1.75;max-width:270px;font-weight:300;" data-fr="Soin naturel premium pour cheveux Afro &amp; Bouclés. Formulé avec amour en France." data-en="Premium natural care for Afro &amp; Curly hair. Formulated with love in France.">Soin naturel premium pour cheveux Afro &amp; Bouclés. Formulé avec amour en France.</p>
+      </div>
+      <div><p style="font-size:0.68rem;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:rgba(255,255,255,0.36);margin-bottom:14px;" data-fr="Produits" data-en="Products">Produits</p><ul style="list-style:none;"><li><a class="foot-link" href="product-elixir.html">Elixir Anti-Chute</a></li><li><a class="foot-link" href="product-rosemary.html">Rosemary Hair Growth Oil</a></li><li><a class="foot-link" href="product-mango.html">Mango Hair Butter</a></li></ul></div>
+      <div><p style="font-size:0.68rem;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:rgba(255,255,255,0.36);margin-bottom:14px;" data-fr="La Marque" data-en="The Brand">La Marque</p><ul style="list-style:none;"><li><a class="foot-link" href="about.html" data-fr="Notre Histoire" data-en="Our Story">Notre Histoire</a></li><li><a class="foot-link" href="stockists.html" data-fr="Points de Vente" data-en="Stockists">Points de Vente</a></li><li><a class="foot-link" href="contact.html" data-fr="Contact" data-en="Contact">Contact</a></li></ul></div>
+    </div>
+    <div style="border-top:1px solid rgba(255,255,255,0.07);padding-top:20px;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:12px;">
+      <p style="font-size:0.73rem;color:rgba(255,255,255,0.28);" data-fr="© 2024 MÎJAH. Tous droits réservés. Fabriqué en France." data-en="© 2024 MÎJAH. All rights reserved. Made in France.">© 2024 MÎJAH. Tous droits réservés. Fabriqué en France.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  gsap.registerPlugin(ScrollTrigger);
+  gsap.from('#prod-img', { opacity:0, x:-40, duration:1, ease:'power3.out', delay:0.15 });
+  gsap.from('#prod-details', { opacity:0, x:40, duration:1, ease:'power3.out', delay:0.25 });
+
+  // Tabs
+  const tabBtns = document.querySelectorAll('.tab-btn');
+  tabBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      tabBtns.forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
+    });
+  });
+
+  // Quantity
+  let qty = 1;
+  function changeQty(delta) {
+    qty = Math.max(1, qty + delta);
+    document.getElementById('qty').textContent = qty;
+  }
+
+  function toggleMobMenu() {
+    var m = document.getElementById('mob-menu');
+    if (m.classList.contains('open')) { m.classList.remove('open'); document.body.style.overflow=''; }
+    else { m.classList.add('open'); document.body.style.overflow='hidden'; }
+  }
+</script>
+
+<div id="mob-menu">
+  <button onclick="toggleMobMenu()" style="position:absolute;top:18px;right:20px;background:none;border:none;cursor:pointer;color:#2b3d24;padding:8px;line-height:1;">
+    <i class="ph-bold ph-x" style="font-size:1.5rem;"></i>
+  </button>
+  <div style="display:flex;flex-direction:column;align-items:center;gap:30px;padding:20px 40px;width:100%;max-width:340px;">
+    <span style="font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:600;letter-spacing:0.18em;color:#2b3d24;">MÎJAH</span>
+    <div style="width:40px;height:1.5px;background:linear-gradient(90deg,#d4a853,#e8c98a);"></div>
+    <a href="collection.html" class="mob-nav-link" onclick="toggleMobMenu()" data-fr="Collection" data-en="Collection">Collection</a>
+    <a href="about.html"      class="mob-nav-link" onclick="toggleMobMenu()" data-fr="Notre Histoire" data-en="Our Story">Notre Histoire</a>
+    <a href="blog.html"       class="mob-nav-link" onclick="toggleMobMenu()" data-fr="Blog" data-en="Blog">Blog</a>
+    <a href="contact.html"    class="mob-nav-link" onclick="toggleMobMenu()" data-fr="Contact" data-en="Contact">Contact</a>
+    <div style="width:40px;height:1.5px;background:rgba(74,110,61,0.15);"></div>
+    <button onclick="toggleLang()" style="display:flex;align-items:center;gap:6px;background:none;border:1.5px solid rgba(74,110,61,0.3);border-radius:100px;padding:8px 20px;cursor:pointer;font-family:'Jost',sans-serif;font-size:0.78rem;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:#2b3d24;">
+      <span id="mob-lang-fr" style="font-weight:600;">FR</span>
+      <span style="opacity:0.35;margin:0 3px;">|</span>
+      <span id="mob-lang-en" style="opacity:0.45;">EN</span>
+    </button>
+    <a href="collection.html" class="btn-gold" onclick="toggleMobMenu()" style="font-size:0.82rem;padding:14px 32px;width:100%;justify-content:center;text-decoration:none;">
+      <span data-fr="Voir la Collection" data-en="Shop Now">Voir la Collection</span> <i class="ph-bold ph-arrow-right"></i>
+    </a>
+  </div>
+</div>
+
+<!-- WhatsApp Floating Button -->
+<a href="https://wa.me/VOTRE_NUMERO?text=Bonjour%20MÎJAH%2C%20j'ai%20une%20question%20sur%20vos%20produits%20!" target="_blank" rel="noopener"
+   style="position:fixed;bottom:24px;right:24px;z-index:9997;width:56px;height:56px;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(37,211,102,0.45);transition:transform 0.25s,box-shadow 0.25s;text-decoration:none;"
+   onmouseover="this.style.transform='scale(1.1)';this.style.boxShadow='0 8px 30px rgba(37,211,102,0.6)'" onmouseout="this.style.transform='scale(1)';this.style.boxShadow='0 4px 20px rgba(37,211,102,0.45)'"
+   title="Contactez-nous sur WhatsApp">
+  <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
 <!-- ═══ CART DRAWER ═══════════════════════════════ -->
 <div id="cart-overlay" onclick="closeCart()"></div>
 <div id="cart-drawer">
