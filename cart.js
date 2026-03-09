@@ -173,7 +173,8 @@ async function openEmbeddedCheckout() {
     checkout.mount('#stripe-checkout');
   } catch (e) {
     container.innerHTML = `<div style="text-align:center;padding:40px 20px;">
-      <p style="color:#c00;font-size:0.85rem;">${lang==='fr'?'Une erreur est survenue. Veuillez réessayer.':'An error occurred. Please try again.'}</p>
+      <p style="color:#c00;font-size:0.85rem;">${lang==='fr'?'Une erreur est survenue:':'Error:'}</p>
+      <p style="color:#c00;font-size:0.75rem;margin-top:8px;word-break:break-word;">${e.message}</p>
       <button onclick="closeStripeOverlay()" style="margin-top:16px;padding:10px 24px;background:#2b3d24;color:#fff;border:none;border-radius:100px;cursor:pointer;font-family:\'Jost\',sans-serif;">OK</button>
     </div>`;
   }
