@@ -19,52 +19,9 @@ exports.handler = async (event) => {
       ui_mode: 'embedded',
       line_items,
       mode: 'payment',
-      shipping_options: [
-        {
-          shipping_rate_data: {
-            type: 'fixed_amount',
-            fixed_amount: { amount: 549, currency: 'eur' },
-            display_name: 'France métropolitaine',
-            delivery_estimate: {
-              minimum: { unit: 'business_day', value: 3 },
-              maximum: { unit: 'business_day', value: 5 },
-            },
-          },
-        },
-        {
-          shipping_rate_data: {
-            type: 'fixed_amount',
-            fixed_amount: { amount: 1202, currency: 'eur' },
-            display_name: 'DOM-TOM & Outre-mer',
-            delivery_estimate: {
-              minimum: { unit: 'business_day', value: 7 },
-              maximum: { unit: 'business_day', value: 14 },
-            },
-          },
-        },
-        {
-          shipping_rate_data: {
-            type: 'fixed_amount',
-            fixed_amount: { amount: 1499, currency: 'eur' },
-            display_name: 'Europe',
-            delivery_estimate: {
-              minimum: { unit: 'business_day', value: 5 },
-              maximum: { unit: 'business_day', value: 10 },
-            },
-          },
-        },
-        {
-          shipping_rate_data: {
-            type: 'fixed_amount',
-            fixed_amount: { amount: 1999, currency: 'eur' },
-            display_name: 'International (Caraïbes, Amérique du Nord…)',
-            delivery_estimate: {
-              minimum: { unit: 'business_day', value: 10 },
-              maximum: { unit: 'business_day', value: 21 },
-            },
-          },
-        },
-      ],
+      shipping_address_collection: {
+        allowed_countries: ['FR', 'BE', 'CH', 'LU', 'MC', 'GP', 'MQ', 'GF', 'RE', 'YT', 'GB', 'DE', 'ES', 'IT', 'NL', 'PT', 'US', 'CA', 'HT', 'MF', 'SX', 'AI', 'DM', 'LC'],
+      },
       return_url: `${origin}/merci.html?session_id={CHECKOUT_SESSION_ID}`,
     });
 
