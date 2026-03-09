@@ -143,33 +143,13 @@ function renderCart() {
     </button>`;
 }
 
-/* ── Stripe Checkout (client-side, no backend) ── */
-async function openEmbeddedCheckout() {
+/* ── Stripe Payment Link checkout ── */
+const STRIPE_PAYMENT_LINK = 'PASTE_YOUR_STRIPE_PAYMENT_LINK_HERE';
+
+function openEmbeddedCheckout() {
   const keys = Object.keys(cart).filter(k => PRODUCTS[k] && cart[k] > 0);
   if (!keys.length) return;
-  const lang = typeof currentLang !== 'undefined' ? currentLang : (localStorage.getItem('mijahLang') || 'fr');
-
-  const btn = document.querySelector('#cart-footer button');
-  if (btn) { btn.disabled = true; btn.style.opacity = '0.7'; }
-
-  try {
-    const stripe = Stripe('pk_live_51T6y3AD7x2m6lpvVv6dyV3G8zGORVXlrNYRS8F0fRMCeu6AisuC6j5GjVDlVpt5mYJYkbsEFZ3j5JHeD5qk8c6sp00aVYKzPi0');
-    const result = await stripe.redirectToCheckout({
-      lineItems: keys.map(id => ({ price: PRODUCTS[id].priceId, quantity: cart[id] })),
-      mode: 'payment',
-      shippingAddressCollection: {
-        allowedCountries: ['FR', 'BE', 'CH', 'LU', 'MC', 'GP', 'MQ', 'GF', 'RE', 'YT', 'GB', 'DE', 'ES', 'IT', 'NL', 'PT', 'US', 'CA', 'HT', 'MF', 'SX', 'AI', 'DM', 'LC'],
-      },
-      successUrl: window.location.origin + '/merci.html',
-      cancelUrl: window.location.origin + '/collection.html',
-    });
-    if (result.error) throw new Error(result.error.message);
-  } catch (e) {
-    if (btn) { btn.disabled = false; btn.style.opacity = '1'; }
-    alert(lang === 'fr'
-      ? 'Une erreur est survenue : ' + e.message
-      : 'An error occurred: ' + e.message);
-  }
+  window.location.href = STRIPE_PAYMENT_LINK;
 }
 
 function closeStripeOverlay() {
