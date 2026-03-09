@@ -1882,7 +1882,7 @@ function renderCart() {
     </div>
     <p style="font-size:0.72rem;color:#bbb;margin-bottom:16px;">${lang==='fr'?'Livraison calculée à la commande':'Shipping calculated at checkout'}</p>`;
 
-  footHtml += `<button id="checkout-btn" class="btn-gold" style="width:100%;justify-content:center;display:flex;gap:8px;border:none;cursor:pointer;">
+  footHtml += `<button onclick="openPayPalCheckout()" class="btn-gold" style="width:100%;justify-content:center;display:flex;gap:8px;border:none;cursor:pointer;">
     <i class="ph ph-lock-simple"></i> ${lang==='fr'?'Passer la Commande':'Checkout Securely'}
   </button>`;
   footer.innerHTML = footHtml;

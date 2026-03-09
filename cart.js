@@ -1,5 +1,5 @@
 /* ═══════════════════════════════════════════════
-   MÎJAH — Shared Cart
+   MÎJAH — Shared Cart + PayPal Checkout
    ═══════════════════════════════════════════════ */
 
 const PRODUCTS = {
@@ -9,11 +9,13 @@ const PRODUCTS = {
   trio:     { fr:'Le Coffret MÎJAH Trio', en:'The MÎJAH Trio Set',    price:49.90, img:'photosAndvideos/Mijah Trio with Ingredient.jpeg' }
 };
 
-/* ── Inject cart HTML into every page ── */
+const PAYPAL_CLIENT_ID = 'ATZqS9lY7OVclSuN8DHVlOXcKluLj5XWp8VJ3R-QGn7-64KQwE98DNcQm8tMdH4ImyWaGGzlwjoGVQBm';
+
+/* ── Inject cart + PayPal modal HTML ── */
 (function injectCartHTML() {
   if (document.getElementById('cart-drawer')) return;
 
-  const cartHTML = `
+  document.body.insertAdjacentHTML('beforeend', `
   <style>
     #cart-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.4);z-index:8000;backdrop-filter:blur(3px);}
     #cart-drawer{position:fixed;top:0;right:-420px;width:100%;max-width:420px;height:100%;background:#fff;z-index:8001;display:flex;flex-direction:column;transition:right 0.38s cubic-bezier(0.4,0,0.2,1);box-shadow:-8px 0 40px rgba(0,0,0,0.12);}
@@ -22,6 +24,10 @@ const PRODUCTS = {
     .cart-item img{width:70px;height:70px;object-fit:contain;border-radius:12px;background:#f4f7f0;}
     .cart-qty-btn{width:26px;height:26px;border-radius:50%;border:1px solid rgba(74,110,61,0.2);background:#fff;cursor:pointer;font-size:1rem;display:flex;align-items:center;justify-content:center;color:#2b3d24;transition:background 0.2s;}
     .cart-qty-btn:hover{background:#f4f7f0;}
+    #paypal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:20000;align-items:center;justify-content:center;padding:20px;}
+    #paypal-overlay.open{display:flex;}
+    #paypal-modal{background:#fff;border-radius:24px;max-width:480px;width:100%;padding:32px 28px;position:relative;box-shadow:0 24px 80px rgba(0,0,0,0.25);}
+    @keyframes spin{to{transform:rotate(360deg);}}
   </style>
 
   <div id="cart-overlay" onclick="closeCart()"></div>
@@ -37,9 +43,16 @@ const PRODUCTS = {
     </div>
     <div id="cart-items" style="flex:1;overflow-y:auto;padding:16px 24px;"></div>
     <div id="cart-footer" style="padding:20px 24px;border-top:1px solid rgba(74,110,61,0.1);"></div>
-  </div>`;
+  </div>
 
-  document.body.insertAdjacentHTML('beforeend', cartHTML);
+  <div id="paypal-overlay">
+    <div id="paypal-modal">
+      <button onclick="closePayPal()" style="position:absolute;top:14px;right:16px;background:rgba(0,0,0,0.08);border:none;border-radius:50%;width:32px;height:32px;cursor:pointer;font-size:1rem;display:flex;align-items:center;justify-content:center;">✕</button>
+      <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.4rem;color:#2b3d24;margin-bottom:6px;" id="paypal-title">Paiement sécurisé</h3>
+      <p style="font-size:0.8rem;color:#999;margin-bottom:20px;" id="paypal-total"></p>
+      <div id="paypal-buttons"></div>
+    </div>
+  </div>`);
 })();
 
 /* ── State ── */
@@ -129,9 +142,68 @@ function renderCart() {
       <span style="font-size:0.8rem;color:#999;">${lang==='fr'?'Sous-total':'Subtotal'}</span>
       <span style="font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:600;color:#2b3d24;">€${total.toFixed(2)}</span>
     </div>
-    <button id="checkout-btn" style="width:100%;padding:15px;background:linear-gradient(135deg,#c09040,#d4a853);color:#fff;border:none;border-radius:100px;font-family:'Jost',sans-serif;font-size:0.85rem;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;">
+    <button onclick="openPayPalCheckout()" style="width:100%;padding:15px;background:linear-gradient(135deg,#c09040,#d4a853);color:#fff;border:none;border-radius:100px;font-family:'Jost',sans-serif;font-size:0.85rem;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;">
       <i class="ph ph-lock-simple"></i> ${lang==='fr'?'Passer la Commande':'Checkout Securely'}
     </button>`;
+}
+
+/* ── PayPal Checkout ── */
+function closePayPal() {
+  document.getElementById('paypal-overlay').classList.remove('open');
+  document.getElementById('paypal-buttons').innerHTML = '';
+}
+
+function openPayPalCheckout() {
+  const keys = Object.keys(cart).filter(k => PRODUCTS[k] && cart[k] > 0);
+  if (!keys.length) return;
+  const lang  = typeof currentLang !== 'undefined' ? currentLang : (localStorage.getItem('mijahLang') || 'fr');
+  const total = keys.reduce((sum, id) => sum + PRODUCTS[id].price * cart[id], 0);
+
+  document.getElementById('paypal-title').textContent = lang === 'fr' ? 'Paiement sécurisé' : 'Secure Payment';
+  document.getElementById('paypal-total').textContent = `Total : €${total.toFixed(2)}`;
+  document.getElementById('paypal-buttons').innerHTML = `<div style="text-align:center;padding:20px;">
+    <div style="width:36px;height:36px;border:3px solid #e5ede0;border-top-color:#4a6e3d;border-radius:50%;animation:spin 0.8s linear infinite;margin:0 auto;"></div>
+  </div>`;
+  document.getElementById('paypal-overlay').classList.add('open');
+
+  function renderPayPalButtons() {
+    document.getElementById('paypal-buttons').innerHTML = '';
+    paypal.Buttons({
+      style: { layout: 'vertical', color: 'gold', shape: 'pill', label: 'pay' },
+      createOrder: (data, actions) => actions.order.create({
+        purchase_units: [{
+          amount: {
+            currency_code: 'EUR',
+            value: total.toFixed(2),
+            breakdown: { item_total: { currency_code: 'EUR', value: total.toFixed(2) } }
+          },
+          items: keys.map(id => ({
+            name: lang === 'fr' ? PRODUCTS[id].fr : PRODUCTS[id].en,
+            unit_amount: { currency_code: 'EUR', value: PRODUCTS[id].price.toFixed(2) },
+            quantity: String(cart[id])
+          }))
+        }]
+      }),
+      onApprove: (data, actions) => actions.order.capture().then(() => {
+        cart = {};
+        saveCart();
+        updateBadge();
+        window.location.href = '/merci.html';
+      }),
+      onError: () => {
+        alert(lang === 'fr' ? 'Une erreur est survenue. Veuillez réessayer.' : 'An error occurred. Please try again.');
+      }
+    }).render('#paypal-buttons');
+  }
+
+  if (window.paypal) {
+    renderPayPalButtons();
+  } else {
+    const script = document.createElement('script');
+    script.src = `https://www.paypal.com/sdk/js?client-id=${PAYPAL_CLIENT_ID}&currency=EUR`;
+    script.onload = renderPayPalButtons;
+    document.head.appendChild(script);
+  }
 }
 
 /* ── Init ── */
