@@ -143,26 +143,27 @@ function renderCart() {
     </button>`;
 }
 
-/* ── Stripe Hosted Checkout (redirect) ── */
+/* ── Stripe Checkout (client-side, no backend) ── */
 async function openEmbeddedCheckout() {
   const keys = Object.keys(cart).filter(k => PRODUCTS[k] && cart[k] > 0);
   if (!keys.length) return;
   const lang = typeof currentLang !== 'undefined' ? currentLang : (localStorage.getItem('mijahLang') || 'fr');
-  const items = keys.map(id => ({ priceId: PRODUCTS[id].priceId, quantity: cart[id] }));
 
-  // Show loading state on the checkout button
   const btn = document.querySelector('#cart-footer button');
   if (btn) { btn.disabled = true; btn.style.opacity = '0.7'; }
 
   try {
-    const res = await fetch('/.netlify/functions/create-checkout', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ items }),
+    const stripe = Stripe('pk_live_51T6y3AD7x2m6lpvVv6dyV3G8zGORVXlrNYRS8F0fRMCeu6AisuC6j5GjVDlVpt5mYJYkbsEFZ3j5JHeD5qk8c6sp00aVYKzPi0');
+    const result = await stripe.redirectToCheckout({
+      lineItems: keys.map(id => ({ price: PRODUCTS[id].priceId, quantity: cart[id] })),
+      mode: 'payment',
+      shippingAddressCollection: {
+        allowedCountries: ['FR', 'BE', 'CH', 'LU', 'MC', 'GP', 'MQ', 'GF', 'RE', 'YT', 'GB', 'DE', 'ES', 'IT', 'NL', 'PT', 'US', 'CA', 'HT', 'MF', 'SX', 'AI', 'DM', 'LC'],
+      },
+      successUrl: window.location.origin + '/merci.html',
+      cancelUrl: window.location.origin + '/collection.html',
     });
-    const { url, error } = await res.json();
-    if (error) throw new Error(error);
-    window.location.href = url;
+    if (result.error) throw new Error(result.error.message);
   } catch (e) {
     if (btn) { btn.disabled = false; btn.style.opacity = '1'; }
     alert(lang === 'fr'
