@@ -1,5 +1,5 @@
 /* ═══════════════════════════════════════════════
-   MÎJAH — Shared Cart + Embedded Stripe Checkout
+   MÎJAH — Shared Cart + Stripe Payment Link
    ═══════════════════════════════════════════════ */
 
 const PRODUCTS = {
@@ -22,7 +22,6 @@ const PRODUCTS = {
     .cart-item img{width:70px;height:70px;object-fit:contain;border-radius:12px;background:#f4f7f0;}
     .cart-qty-btn{width:26px;height:26px;border-radius:50%;border:1px solid rgba(74,110,61,0.2);background:#fff;cursor:pointer;font-size:1rem;display:flex;align-items:center;justify-content:center;color:#2b3d24;transition:background 0.2s;}
     .cart-qty-btn:hover{background:#f4f7f0;}
-    #stripe-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:20000;align-items:center;justify-content:center;padding:20px;}
     @keyframes spin{to{transform:rotate(360deg);}}
   </style>
 
@@ -41,12 +40,7 @@ const PRODUCTS = {
     <div id="cart-footer" style="padding:20px 24px;border-top:1px solid rgba(74,110,61,0.1);"></div>
   </div>
 
-  <div id="stripe-overlay" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:20000;align-items:center;justify-content:center;padding:20px;">
-    <div style="background:#fff;border-radius:24px;max-width:560px;width:100%;max-height:90vh;overflow-y:auto;position:relative;box-shadow:0 24px 80px rgba(0,0,0,0.25);">
-      <button onclick="closeStripeOverlay()" style="position:absolute;top:14px;right:16px;background:rgba(0,0,0,0.08);border:none;border-radius:50%;width:32px;height:32px;cursor:pointer;font-size:1rem;z-index:1;display:flex;align-items:center;justify-content:center;">✕</button>
-      <div id="stripe-container" style="padding:24px;"></div>
-    </div>
-  </div>`;
+  `;
 
   document.body.insertAdjacentHTML('beforeend', cartHTML);
 })();
@@ -150,11 +144,6 @@ function openEmbeddedCheckout() {
   const keys = Object.keys(cart).filter(k => PRODUCTS[k] && cart[k] > 0);
   if (!keys.length) return;
   window.location.href = STRIPE_PAYMENT_LINK;
-}
-
-function closeStripeOverlay() {
-  document.getElementById('stripe-overlay').style.display = 'none';
-  document.getElementById('stripe-container').innerHTML = '';
 }
 
 /* ── Init ── */
