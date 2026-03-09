@@ -11,54 +11,6 @@ const PRODUCTS = {
 
 const PAYPAL_CLIENT_ID = 'ATZqS9lY7OVclSuN8DHVlOXcKluLj5XWp8VJ3R-QGn7-64KQwE98DNcQm8tMdH4ImyWaGGzlwjoGVQBm';
 
-/* ── Inject cart + PayPal modal HTML ── */
-(function injectCartHTML() {
-  if (document.getElementById('paypal-overlay')) return;
-
-  document.body.insertAdjacentHTML('beforeend', `
-  <style>
-    #cart-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.4);z-index:8000;backdrop-filter:blur(3px);}
-    #cart-drawer{position:fixed;top:0;right:-420px;width:100%;max-width:420px;height:100%;background:#fff;z-index:8001;display:flex;flex-direction:column;transition:right 0.38s cubic-bezier(0.4,0,0.2,1);box-shadow:-8px 0 40px rgba(0,0,0,0.12);}
-    #cart-drawer.open{right:0;}
-    .cart-item{display:flex;align-items:flex-start;gap:14px;padding:14px 0;border-bottom:1px solid rgba(74,110,61,0.07);}
-    .cart-item img{width:70px;height:70px;object-fit:contain;border-radius:12px;background:#f4f7f0;}
-    .cart-qty-btn{width:26px;height:26px;border-radius:50%;border:1px solid rgba(74,110,61,0.2);background:#fff;cursor:pointer;font-size:1rem;display:flex;align-items:center;justify-content:center;color:#2b3d24;transition:background 0.2s;}
-    .cart-qty-btn:hover{background:#f4f7f0;}
-    #paypal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:20000;align-items:flex-end;justify-content:center;padding:0;}
-    #paypal-overlay.open{display:flex;}
-    #paypal-modal{background:#fff;border-radius:24px 24px 0 0;max-width:480px;width:100%;padding:28px 20px 32px;position:relative;box-shadow:0 -8px 40px rgba(0,0,0,0.2);max-height:92vh;overflow-y:auto;-webkit-overflow-scrolling:touch;}
-    @media(min-width:600px){
-      #paypal-overlay{align-items:center;padding:20px;}
-      #paypal-modal{border-radius:24px;max-height:85vh;}
-    }
-    @keyframes spin{to{transform:rotate(360deg);}}
-  </style>
-
-  <div id="cart-overlay" onclick="closeCart()"></div>
-  <div id="cart-drawer">
-    <div style="display:flex;align-items:center;justify-content:space-between;padding:24px 24px 16px;border-bottom:1px solid rgba(74,110,61,0.1);">
-      <div>
-        <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:500;color:#2b3d24;" data-fr="Mon Panier" data-en="My Cart">Mon Panier</h3>
-        <p id="cart-item-count" style="font-size:0.75rem;color:#999;margin-top:2px;"></p>
-      </div>
-      <button onclick="closeCart()" style="background:none;border:none;cursor:pointer;color:#2b3d24;padding:8px;">
-        <i class="ph-bold ph-x" style="font-size:1.3rem;"></i>
-      </button>
-    </div>
-    <div id="cart-items" style="flex:1;overflow-y:auto;padding:16px 24px;"></div>
-    <div id="cart-footer" style="padding:20px 24px;border-top:1px solid rgba(74,110,61,0.1);"></div>
-  </div>
-
-  <div id="paypal-overlay">
-    <div id="paypal-modal">
-      <button onclick="closePayPal()" style="position:absolute;top:14px;right:16px;background:rgba(0,0,0,0.08);border:none;border-radius:50%;width:32px;height:32px;cursor:pointer;font-size:1rem;display:flex;align-items:center;justify-content:center;">✕</button>
-      <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.4rem;color:#2b3d24;margin-bottom:6px;" id="paypal-title">Paiement sécurisé</h3>
-      <p style="font-size:0.8rem;color:#999;margin-bottom:20px;" id="paypal-total"></p>
-      <div id="paypal-buttons"></div>
-    </div>
-  </div>`);
-})();
-
 /* ── State ── */
 let cart = JSON.parse(localStorage.getItem('mijahCart') || '{}');
 
@@ -174,7 +126,6 @@ function openPayPalCheckout() {
   document.getElementById('paypal-title').textContent = lang === 'fr' ? 'Paiement sécurisé' : 'Secure Payment';
   document.getElementById('paypal-total').textContent = '';
 
-  /* Step 1 — show shipping zone selector */
   document.getElementById('paypal-buttons').innerHTML = `
     <p style="font-size:0.82rem;color:#555;margin-bottom:10px;">${lang==='fr'?'Choisissez votre zone de livraison :':'Choose your delivery zone:'}</p>
     ${SHIPPING_ZONES.map(z => `
@@ -202,7 +153,6 @@ function openPayPalCheckout() {
     <div id="paypal-render"></div>`;
 
   document.getElementById('paypal-overlay').classList.add('open');
-
 }
 
 function selectZone(zoneId) {
@@ -212,13 +162,11 @@ function selectZone(zoneId) {
   const zone  = SHIPPING_ZONES.find(z => z.id === zoneId);
   const total = (subtotal + zone.fee).toFixed(2);
 
-  /* update summary */
   document.getElementById('zone-total').style.display = 'block';
   document.getElementById('zone-label').textContent = lang === 'fr' ? zone.fr : zone.en;
   document.getElementById('zone-fee').textContent = `+€${zone.fee.toFixed(2)}`;
   document.getElementById('zone-grand-total').textContent = `€${total}`;
 
-  /* render PayPal buttons */
   const container = document.getElementById('paypal-render');
   container.innerHTML = '';
 
@@ -269,9 +217,4 @@ document.addEventListener('DOMContentLoaded', () => {
   renderCart();
   const cartBtn = document.getElementById('cart-btn');
   if (cartBtn) cartBtn.addEventListener('click', openCart);
-  if (!document.querySelector('script[src*="paypal.com/sdk"]')) {
-    const s = document.createElement('script');
-    s.src = `https://www.paypal.com/sdk/js?client-id=${PAYPAL_CLIENT_ID}&currency=EUR`;
-    document.head.appendChild(s);
-  }
 });
