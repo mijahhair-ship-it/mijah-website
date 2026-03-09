@@ -147,6 +147,14 @@ function renderCart() {
     </button>`;
 }
 
+/* ── Shipping zones ── */
+const SHIPPING_ZONES = [
+  { id: 'fr',    fr: 'France métropolitaine',              en: 'Metropolitan France',               fee: 5.49  },
+  { id: 'domtom',fr: 'DOM-TOM & Outre-mer',               en: 'DOM-TOM & Overseas',                fee: 12.02 },
+  { id: 'eu',    fr: 'Europe',                             en: 'Europe',                            fee: 14.99 },
+  { id: 'intl',  fr: 'International (Caraïbes, Amériques…)',en: 'International (Caribbean, Americas…)',fee: 19.99 },
+];
+
 /* ── PayPal Checkout ── */
 function closePayPal() {
   document.getElementById('paypal-overlay').classList.remove('open');
@@ -156,26 +164,77 @@ function closePayPal() {
 function openPayPalCheckout() {
   const keys = Object.keys(cart).filter(k => PRODUCTS[k] && cart[k] > 0);
   if (!keys.length) return;
-  const lang  = typeof currentLang !== 'undefined' ? currentLang : (localStorage.getItem('mijahLang') || 'fr');
-  const total = keys.reduce((sum, id) => sum + PRODUCTS[id].price * cart[id], 0);
+  const lang     = typeof currentLang !== 'undefined' ? currentLang : (localStorage.getItem('mijahLang') || 'fr');
+  const subtotal = keys.reduce((sum, id) => sum + PRODUCTS[id].price * cart[id], 0);
 
   document.getElementById('paypal-title').textContent = lang === 'fr' ? 'Paiement sécurisé' : 'Secure Payment';
-  document.getElementById('paypal-total').textContent = `Total : €${total.toFixed(2)}`;
-  document.getElementById('paypal-buttons').innerHTML = `<div style="text-align:center;padding:20px;">
-    <div style="width:36px;height:36px;border:3px solid #e5ede0;border-top-color:#4a6e3d;border-radius:50%;animation:spin 0.8s linear infinite;margin:0 auto;"></div>
-  </div>`;
+  document.getElementById('paypal-total').textContent = '';
+
+  /* Step 1 — show shipping zone selector */
+  document.getElementById('paypal-buttons').innerHTML = `
+    <p style="font-size:0.82rem;color:#555;margin-bottom:10px;">${lang==='fr'?'Choisissez votre zone de livraison :':'Choose your delivery zone:'}</p>
+    ${SHIPPING_ZONES.map(z => `
+      <label style="display:flex;align-items:center;justify-content:space-between;padding:11px 14px;border:1.5px solid rgba(74,110,61,0.2);border-radius:12px;margin-bottom:8px;cursor:pointer;transition:border-color 0.2s;" onclick="selectZone('${z.id}')">
+        <span style="display:flex;align-items:center;gap:10px;">
+          <input type="radio" name="zone" value="${z.id}" style="accent-color:#4a6e3d;">
+          <span style="font-size:0.83rem;color:#2b3d24;">${lang==='fr'?z.fr:z.en}</span>
+        </span>
+        <span style="font-size:0.83rem;font-weight:600;color:#d4a853;">+€${z.fee.toFixed(2)}</span>
+      </label>`).join('')}
+    <div id="zone-total" style="display:none;margin:14px 0 10px;padding:12px 14px;background:#f4f7f0;border-radius:12px;">
+      <div style="display:flex;justify-content:space-between;font-size:0.8rem;color:#777;margin-bottom:4px;">
+        <span>${lang==='fr'?'Produits':'Products'}</span>
+        <span>€${subtotal.toFixed(2)}</span>
+      </div>
+      <div style="display:flex;justify-content:space-between;font-size:0.8rem;color:#777;margin-bottom:8px;">
+        <span id="zone-label">${lang==='fr'?'Livraison':'Shipping'}</span>
+        <span id="zone-fee"></span>
+      </div>
+      <div style="display:flex;justify-content:space-between;font-size:1rem;font-weight:700;color:#2b3d24;border-top:1px solid rgba(74,110,61,0.15);padding-top:8px;">
+        <span>Total</span>
+        <span id="zone-grand-total"></span>
+      </div>
+    </div>
+    <div id="paypal-render"></div>`;
+
   document.getElementById('paypal-overlay').classList.add('open');
 
-  function renderPayPalButtons() {
-    document.getElementById('paypal-buttons').innerHTML = '';
+  if (!window.paypal) {
+    const script = document.createElement('script');
+    script.src = `https://www.paypal.com/sdk/js?client-id=${PAYPAL_CLIENT_ID}&currency=EUR`;
+    document.head.appendChild(script);
+  }
+}
+
+function selectZone(zoneId) {
+  const lang  = typeof currentLang !== 'undefined' ? currentLang : (localStorage.getItem('mijahLang') || 'fr');
+  const keys  = Object.keys(cart).filter(k => PRODUCTS[k] && cart[k] > 0);
+  const subtotal = keys.reduce((sum, id) => sum + PRODUCTS[id].price * cart[id], 0);
+  const zone  = SHIPPING_ZONES.find(z => z.id === zoneId);
+  const total = (subtotal + zone.fee).toFixed(2);
+
+  /* update summary */
+  document.getElementById('zone-total').style.display = 'block';
+  document.getElementById('zone-label').textContent = lang === 'fr' ? zone.fr : zone.en;
+  document.getElementById('zone-fee').textContent = `+€${zone.fee.toFixed(2)}`;
+  document.getElementById('zone-grand-total').textContent = `€${total}`;
+
+  /* render PayPal buttons */
+  const container = document.getElementById('paypal-render');
+  container.innerHTML = '';
+
+  function doRender() {
     paypal.Buttons({
       style: { layout: 'vertical', color: 'gold', shape: 'pill', label: 'pay' },
       createOrder: (data, actions) => actions.order.create({
         purchase_units: [{
           amount: {
             currency_code: 'EUR',
-            value: total.toFixed(2),
-            breakdown: { item_total: { currency_code: 'EUR', value: total.toFixed(2) } }
+            value: total,
+            breakdown: {
+              item_total: { currency_code: 'EUR', value: subtotal.toFixed(2) },
+              shipping:   { currency_code: 'EUR', value: zone.fee.toFixed(2) }
+            }
           },
           items: keys.map(id => ({
             name: lang === 'fr' ? PRODUCTS[id].fr : PRODUCTS[id].en,
@@ -193,16 +252,15 @@ function openPayPalCheckout() {
       onError: () => {
         alert(lang === 'fr' ? 'Une erreur est survenue. Veuillez réessayer.' : 'An error occurred. Please try again.');
       }
-    }).render('#paypal-buttons');
+    }).render('#paypal-render');
   }
 
   if (window.paypal) {
-    renderPayPalButtons();
+    doRender();
   } else {
-    const script = document.createElement('script');
-    script.src = `https://www.paypal.com/sdk/js?client-id=${PAYPAL_CLIENT_ID}&currency=EUR`;
-    script.onload = renderPayPalButtons;
-    document.head.appendChild(script);
+    const interval = setInterval(() => {
+      if (window.paypal) { clearInterval(interval); doRender(); }
+    }, 100);
   }
 }
 
