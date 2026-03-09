@@ -1,17 +1,17 @@
 /* ═══════════════════════════════════════════════
-   MÎJAH — Shared Cart + Stripe Payment Link
+   MÎJAH — Shared Cart
    ═══════════════════════════════════════════════ */
 
 const PRODUCTS = {
-  elixir:   { fr:'Élixir Anti-Chute',     en:'Anti Hair-Loss Elixir', price:21.90, img:'photosAndvideos/mijah anti-chute.png',           priceId:'price_1T7077D7x2m6lpvVoJv7Mhlr' },
-  rosemary: { fr:'Huile de Croissance',   en:'Rosemary Growth Oil',   price:12.80, img:'photosAndvideos/Mijah hair growth oil.png',       priceId:'price_1T702JD7x2m6lpvVGAxXYXys' },
-  mango:    { fr:'Mango Hair Butter',     en:'Mango Hair Butter',     price:19.90, img:'photosAndvideos/Mango Hair Butter.png',           priceId:'price_1T70AGD7x2m6lpvVWEexJ0Lh' },
-  trio:     { fr:'Le Coffret MÎJAH Trio', en:'The MÎJAH Trio Set',    price:49.90, img:'photosAndvideos/Mijah Trio with Ingredient.jpeg', priceId:'price_1T70G1D7x2m6lpvV7br7zQut' }
+  elixir:   { fr:'Élixir Anti-Chute',     en:'Anti Hair-Loss Elixir', price:21.90, img:'photosAndvideos/mijah anti-chute.png' },
+  rosemary: { fr:'Huile de Croissance',   en:'Rosemary Growth Oil',   price:12.80, img:'photosAndvideos/Mijah hair growth oil.png' },
+  mango:    { fr:'Mango Hair Butter',     en:'Mango Hair Butter',     price:19.90, img:'photosAndvideos/Mango Hair Butter.png' },
+  trio:     { fr:'Le Coffret MÎJAH Trio', en:'The MÎJAH Trio Set',    price:49.90, img:'photosAndvideos/Mijah Trio with Ingredient.jpeg' }
 };
 
 /* ── Inject cart HTML into every page ── */
 (function injectCartHTML() {
-  if (document.getElementById('cart-drawer')) return; // already present
+  if (document.getElementById('cart-drawer')) return;
 
   const cartHTML = `
   <style>
@@ -22,7 +22,6 @@ const PRODUCTS = {
     .cart-item img{width:70px;height:70px;object-fit:contain;border-radius:12px;background:#f4f7f0;}
     .cart-qty-btn{width:26px;height:26px;border-radius:50%;border:1px solid rgba(74,110,61,0.2);background:#fff;cursor:pointer;font-size:1rem;display:flex;align-items:center;justify-content:center;color:#2b3d24;transition:background 0.2s;}
     .cart-qty-btn:hover{background:#f4f7f0;}
-    @keyframes spin{to{transform:rotate(360deg);}}
   </style>
 
   <div id="cart-overlay" onclick="closeCart()"></div>
@@ -38,9 +37,7 @@ const PRODUCTS = {
     </div>
     <div id="cart-items" style="flex:1;overflow-y:auto;padding:16px 24px;"></div>
     <div id="cart-footer" style="padding:20px 24px;border-top:1px solid rgba(74,110,61,0.1);"></div>
-  </div>
-
-  `;
+  </div>`;
 
   document.body.insertAdjacentHTML('beforeend', cartHTML);
 })();
@@ -48,13 +45,13 @@ const PRODUCTS = {
 /* ── State ── */
 let cart = JSON.parse(localStorage.getItem('mijahCart') || '{}');
 
-function saveCart()  { localStorage.setItem('mijahCart', JSON.stringify(cart)); }
+function saveCart() { localStorage.setItem('mijahCart', JSON.stringify(cart)); }
 
 function updateBadge() {
-  const total  = Object.values(cart).reduce((a, b) => a + b, 0);
+  const total = Object.values(cart).reduce((a, b) => a + b, 0);
   document.querySelectorAll('#cart-count').forEach(el => {
-    el.textContent    = total;
-    el.style.display  = total > 0 ? 'flex' : 'none';
+    el.textContent   = total;
+    el.style.display = total > 0 ? 'flex' : 'none';
   });
   const counter = document.getElementById('cart-item-count');
   if (counter) counter.textContent = total > 0 ? `${total} article${total > 1 ? 's' : ''}` : '';
@@ -132,18 +129,9 @@ function renderCart() {
       <span style="font-size:0.8rem;color:#999;">${lang==='fr'?'Sous-total':'Subtotal'}</span>
       <span style="font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:600;color:#2b3d24;">€${total.toFixed(2)}</span>
     </div>
-    <button onclick="openEmbeddedCheckout()" style="width:100%;padding:15px;background:linear-gradient(135deg,#c09040,#d4a853);color:#fff;border:none;border-radius:100px;font-family:'Jost',sans-serif;font-size:0.85rem;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;">
+    <button id="checkout-btn" style="width:100%;padding:15px;background:linear-gradient(135deg,#c09040,#d4a853);color:#fff;border:none;border-radius:100px;font-family:'Jost',sans-serif;font-size:0.85rem;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;">
       <i class="ph ph-lock-simple"></i> ${lang==='fr'?'Passer la Commande':'Checkout Securely'}
     </button>`;
-}
-
-/* ── Stripe Payment Link checkout ── */
-const STRIPE_PAYMENT_LINK = 'https://buy.stripe.com/4gM5kC9Aoca46oj5QQ1wY05';
-
-function openEmbeddedCheckout() {
-  const keys = Object.keys(cart).filter(k => PRODUCTS[k] && cart[k] > 0);
-  if (!keys.length) return;
-  window.location.href = STRIPE_PAYMENT_LINK;
 }
 
 /* ── Init ── */

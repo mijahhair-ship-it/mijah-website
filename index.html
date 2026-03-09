@@ -1787,10 +1787,10 @@
 <script>
 /* ── Cart Data ── */
 const PRODUCTS = {
-  elixir:   { fr:'Élixir Anti-Chute',    en:'Anti Hair-Loss Elixir',  price:21.90, img:'photosAndvideos/mijah anti-chute.png',           priceId:'price_1T7077D7x2m6lpvVoJv7Mhlr' },
-  rosemary: { fr:'Huile de Croissance',  en:'Rosemary Growth Oil',    price:12.80, img:'photosAndvideos/Mijah hair growth oil.png',       priceId:'price_1T702JD7x2m6lpvVGAxXYXys' },
-  mango:    { fr:'Mango Hair Butter',    en:'Mango Hair Butter',      price:19.90, img:'photosAndvideos/Mango Hair Butter.png',           priceId:'price_1T70AGD7x2m6lpvVWEexJ0Lh' },
-  trio:     { fr:'Le Coffret MÎJAH Trio',en:'The MÎJAH Trio Set',     price:49.90, img:'photosAndvideos/Mijah Trio with Ingredient.jpeg', priceId:'price_1T70G1D7x2m6lpvV7br7zQut' }
+  elixir:   { fr:'Élixir Anti-Chute',    en:'Anti Hair-Loss Elixir',  price:21.90, img:'photosAndvideos/mijah anti-chute.png' },
+  rosemary: { fr:'Huile de Croissance',  en:'Rosemary Growth Oil',    price:12.80, img:'photosAndvideos/Mijah hair growth oil.png' },
+  mango:    { fr:'Mango Hair Butter',    en:'Mango Hair Butter',      price:19.90, img:'photosAndvideos/Mango Hair Butter.png' },
+  trio:     { fr:'Le Coffret MÎJAH Trio',en:'The MÎJAH Trio Set',     price:49.90, img:'photosAndvideos/Mijah Trio with Ingredient.jpeg' }
 };
 
 let cart = JSON.parse(localStorage.getItem('mijahCart') || '{}');
@@ -1882,18 +1882,10 @@ function renderCart() {
     </div>
     <p style="font-size:0.72rem;color:#bbb;margin-bottom:16px;">${lang==='fr'?'Livraison calculée à la commande':'Shipping calculated at checkout'}</p>`;
 
-  footHtml += `<button onclick="openEmbeddedCheckout()" class="btn-gold" style="width:100%;justify-content:center;display:flex;gap:8px;border:none;cursor:pointer;">
+  footHtml += `<button id="checkout-btn" class="btn-gold" style="width:100%;justify-content:center;display:flex;gap:8px;border:none;cursor:pointer;">
     <i class="ph ph-lock-simple"></i> ${lang==='fr'?'Passer la Commande':'Checkout Securely'}
   </button>`;
   footer.innerHTML = footHtml;
-}
-
-const STRIPE_PAYMENT_LINK = 'https://buy.stripe.com/4gM5kC9Aoca46oj5QQ1wY05';
-
-function openEmbeddedCheckout() {
-  const keys = Object.keys(cart).filter(k => PRODUCTS[k] && cart[k] > 0);
-  if (!keys.length) return;
-  window.location.href = STRIPE_PAYMENT_LINK;
 }
 
 /* Init */
