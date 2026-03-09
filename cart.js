@@ -229,27 +229,76 @@ function submitOrder() {
     el.style.borderColor = 'rgba(74,110,61,0.25)';
   }
 
-  /* show payment step placeholder */
+  /* calculate total */
   const keys = Object.keys(cart).filter(k => PRODUCTS[k] && cart[k] > 0);
   const subtotal = keys.reduce((sum, id) => sum + PRODUCTS[id].price * cart[id], 0);
   const zone = SHIPPING_ZONES.find(z => z.id === document.getElementById('co-zone').value);
   const total = (subtotal + zone.fee).toFixed(2);
-  const name = document.getElementById('co-firstname').value + ' ' + document.getElementById('co-lastname').value;
+  const firstName = document.getElementById('co-firstname').value;
+  const lastName  = document.getElementById('co-lastname').value;
+  const address   = document.getElementById('co-address').value;
+  const postal    = document.getElementById('co-postal').value;
+  const city      = document.getElementById('co-city').value;
+  const email     = document.getElementById('co-email').value;
 
+  /* show PayPal payment step */
   document.getElementById('checkout-body').innerHTML = `
-    <div style="text-align:center;padding:30px 10px;">
-      <div style="width:64px;height:64px;background:linear-gradient(135deg,#2b3d24,#4a6e3d);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 18px;">
-        <i class="ph ph-check" style="font-size:2rem;color:#fff;"></i>
+    <div style="background:#f4f7f0;border-radius:14px;padding:14px 16px;margin-bottom:20px;">
+      <p style="font-size:0.7rem;letter-spacing:0.12em;text-transform:uppercase;color:#7a9a6e;font-weight:600;margin-bottom:8px;">${lang==='fr'?'Récapitulatif':'Summary'}</p>
+      <div style="display:flex;justify-content:space-between;font-size:0.82rem;color:#555;margin-bottom:4px;">
+        <span>${lang==='fr'?'Sous-total':'Subtotal'}</span><span>€${subtotal.toFixed(2)}</span>
       </div>
-      <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.5rem;color:#2b3d24;margin-bottom:8px;">${lang==='fr'?'Commande confirmée !':'Order Confirmed!'}</h3>
-      <p style="font-size:0.85rem;color:#777;margin-bottom:20px;">${lang==='fr'?`Merci ${name}, votre commande de €${total} est enregistrée.`:`Thank you ${name}, your order of €${total} has been recorded.`}</p>
-      <div style="background:#f4f7f0;border-radius:14px;padding:14px 16px;text-align:left;margin-bottom:20px;">
-        <p style="font-size:0.78rem;color:#555;margin-bottom:4px;"><strong>${lang==='fr'?'Livraison':'Shipping'}:</strong> ${lang==='fr'?zone.fr:zone.en} (+€${zone.fee.toFixed(2)})</p>
-        <p style="font-size:0.78rem;color:#555;margin-bottom:4px;"><strong>${lang==='fr'?'Adresse':'Address'}:</strong> ${document.getElementById('co-address').value}, ${document.getElementById('co-postal').value} ${document.getElementById('co-city').value}</p>
-        <p style="font-size:0.78rem;color:#555;"><strong>Total:</strong> €${total}</p>
+      <div style="display:flex;justify-content:space-between;font-size:0.82rem;color:#555;margin-bottom:4px;">
+        <span>${lang==='fr'?'Livraison':'Shipping'} (${lang==='fr'?zone.fr:zone.en})</span><span>+€${zone.fee.toFixed(2)}</span>
       </div>
-      <p style="font-size:0.78rem;color:#999;">${lang==='fr'?'Le paiement sera disponible très prochainement. Nous vous contacterons par email.':'Payment will be available very soon. We will contact you by email.'}</p>
-    </div>`;
+      <div style="display:flex;justify-content:space-between;font-size:1rem;font-weight:700;color:#2b3d24;margin-top:8px;padding-top:8px;border-top:1px solid rgba(74,110,61,0.15);">
+        <span>Total</span><span>€${total}</span>
+      </div>
+    </div>
+    <p style="font-size:0.8rem;color:#777;text-align:center;margin-bottom:14px;">${lang==='fr'?'Paiement sécurisé via PayPal':'Secure payment via PayPal'}</p>
+    <div id="paypal-button-container"></div>
+  `;
+
+  paypal.Buttons({
+    style: { layout:'vertical', color:'gold', shape:'pill', label:'pay' },
+    createOrder: (data, actions) => actions.order.create({
+      purchase_units: [{
+        amount: { value: total, currency_code: 'EUR' },
+        description: 'MÎJAH — Commande',
+        shipping: {
+          name: { full_name: `${firstName} ${lastName}` },
+          address: {
+            address_line_1: address,
+            postal_code: postal,
+            city: city,
+            country_code: zone.id === 'fr' || zone.id === 'domtom' ? 'FR' :
+                          zone.id === 'eu' ? 'FR' : 'US'
+          }
+        }
+      }],
+      payer: { email_address: email }
+    }),
+    onApprove: (data, actions) => actions.order.capture().then(() => {
+      cart = {};
+      saveCart();
+      updateBadge();
+      document.getElementById('checkout-body').innerHTML = `
+        <div style="text-align:center;padding:30px 10px;">
+          <div style="width:64px;height:64px;background:linear-gradient(135deg,#2b3d24,#4a6e3d);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 18px;">
+            <i class="ph ph-check" style="font-size:2rem;color:#fff;"></i>
+          </div>
+          <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.5rem;color:#2b3d24;margin-bottom:8px;">${lang==='fr'?'Paiement confirmé !':'Payment Confirmed!'}</h3>
+          <p style="font-size:0.85rem;color:#777;line-height:1.6;">${lang==='fr'?`Merci ${firstName}, votre commande de <strong>€${total}</strong> a bien été reçue. Un email de confirmation vous sera envoyé.`:`Thank you ${firstName}, your order of <strong>€${total}</strong> has been received. A confirmation email will be sent to you.`}</p>
+        </div>`;
+    }),
+    onError: (err) => {
+      console.error('PayPal error:', err);
+      const msg = lang==='fr'
+        ? 'Une erreur est survenue lors du paiement. Veuillez réessayer.'
+        : 'A payment error occurred. Please try again.';
+      alert(msg);
+    }
+  }).render('#paypal-button-container');
 }
 
 /* ── Init ── */
