@@ -144,7 +144,7 @@ function renderCart() {
 }
 
 /* ── Stripe Payment Link checkout ── */
-const STRIPE_PAYMENT_LINK = 'PASTE_YOUR_STRIPE_PAYMENT_LINK_HERE';
+const STRIPE_PAYMENT_LINK = 'https://buy.stripe.com/4gM5kC9Aoca46oj5QQ1wY05';
 
 function openEmbeddedCheckout() {
   const keys = Object.keys(cart).filter(k => PRODUCTS[k] && cart[k] > 0);
