@@ -143,20 +143,16 @@ function renderCart() {
     </button>`;
 }
 
-/* ── Embedded Stripe Checkout ── */
+/* ── Stripe Hosted Checkout (redirect) ── */
 async function openEmbeddedCheckout() {
   const keys = Object.keys(cart).filter(k => PRODUCTS[k] && cart[k] > 0);
   if (!keys.length) return;
   const lang = typeof currentLang !== 'undefined' ? currentLang : (localStorage.getItem('mijahLang') || 'fr');
   const items = keys.map(id => ({ priceId: PRODUCTS[id].priceId, quantity: cart[id] }));
 
-  const overlay   = document.getElementById('stripe-overlay');
-  const container = document.getElementById('stripe-container');
-  overlay.style.display = 'flex';
-  container.innerHTML = `<div style="text-align:center;padding:60px 20px;">
-    <div style="width:40px;height:40px;border:3px solid #e5ede0;border-top-color:#4a6e3d;border-radius:50%;animation:spin 0.8s linear infinite;margin:0 auto 16px;"></div>
-    <p style="font-family:'Jost',sans-serif;font-size:0.85rem;color:#666;">${lang==='fr'?'Chargement du paiement…':'Loading payment…'}</p>
-  </div>`;
+  // Show loading state on the checkout button
+  const btn = document.querySelector('#cart-footer button');
+  if (btn) { btn.disabled = true; btn.style.opacity = '0.7'; }
 
   try {
     const res = await fetch('/.netlify/functions/create-checkout', {
@@ -164,19 +160,14 @@ async function openEmbeddedCheckout() {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ items }),
     });
-    const { clientSecret, error } = await res.json();
+    const { url, error } = await res.json();
     if (error) throw new Error(error);
-
-    const stripe = Stripe('pk_live_51T6y3AD7x2m6lpvVv6dyV3G8zGORVXlrNYRS8F0fRMCeu6AisuC6j5GjVDlVpt5mYJYkbsEFZ3j5JHeD5qk8c6sp00aVYKzPi0');
-    container.innerHTML = '<div id="stripe-checkout"></div>';
-    const checkout = await stripe.initEmbeddedCheckout({ clientSecret });
-    checkout.mount('#stripe-checkout');
+    window.location.href = url;
   } catch (e) {
-    container.innerHTML = `<div style="text-align:center;padding:40px 20px;">
-      <p style="color:#c00;font-size:0.85rem;">${lang==='fr'?'Une erreur est survenue:':'Error:'}</p>
-      <p style="color:#c00;font-size:0.75rem;margin-top:8px;word-break:break-word;">${e.message}</p>
-      <button onclick="closeStripeOverlay()" style="margin-top:16px;padding:10px 24px;background:#2b3d24;color:#fff;border:none;border-radius:100px;cursor:pointer;font-family:\'Jost\',sans-serif;">OK</button>
-    </div>`;
+    if (btn) { btn.disabled = false; btn.style.opacity = '1'; }
+    alert(lang === 'fr'
+      ? 'Une erreur est survenue : ' + e.message
+      : 'An error occurred: ' + e.message);
   }
 }
 
