@@ -264,19 +264,8 @@ function submitOrder() {
     createOrder: (data, actions) => actions.order.create({
       purchase_units: [{
         amount: { value: total, currency_code: 'EUR' },
-        description: 'MÎJAH — Commande',
-        shipping: {
-          name: { full_name: `${firstName} ${lastName}` },
-          address: {
-            address_line_1: address,
-            postal_code: postal,
-            city: city,
-            country_code: zone.id === 'fr' || zone.id === 'domtom' ? 'FR' :
-                          zone.id === 'eu' ? 'FR' : 'US'
-          }
-        }
-      }],
-      payer: { email_address: email }
+        description: 'MÎJAH — Commande'
+      }]
     }),
     onApprove: (data, actions) => actions.order.capture().then(() => {
       cart = {};
