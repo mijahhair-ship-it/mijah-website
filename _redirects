@@ -1,0 +1,14 @@
+# Redirect .html URLs to clean URLs (301 permanent)
+/About.html         /about          301
+/collection.html    /collection     301
+/blog.html          /blog           301
+/contact.html       /contact        301
+/stockists.html     /stockists      301
+/product-elixir.html    /product-elixir     301
+/product-rosemary.html  /product-rosemary   301
+/product-mango.html     /product-mango      301
+/blog-chute-cheveux.html        /blog-chute-cheveux         301
+/blog-routine-crepus.html       /blog-routine-crepus        301
+/blog-huile-romarin.html        /blog-huile-romarin         301
+/blog-beurre-mangue.html        /blog-beurre-mangue         301
+/blog-erreurs-cheveux-afro.html /blog-erreurs-cheveux-afro  301
