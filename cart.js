@@ -10,11 +10,23 @@ const PRODUCTS = {
 };
 
 const SHIPPING_ZONES = [
-  { id:'fr',     fr:'France métropolitaine',               en:'Metropolitan France',                fee:5.49  },
+  { id:'fr',     fr:'France métropolitaine',               en:'Metropolitan France',                fee:null  },
   { id:'domtom', fr:'DOM-TOM & Outre-mer',                en:'DOM-TOM & Overseas',                 fee:12.02 },
   { id:'eu',     fr:'Europe',                              en:'Europe',                             fee:14.99 },
   { id:'intl',   fr:'International (Caraïbes, Amériques…)',en:'International (Caribbean, Americas…)',fee:19.99 },
 ];
+
+/* France: dynamic fee based on total quantity & subtotal */
+function getFranceFee(totalQty, subtotal) {
+  if (subtotal >= 50) return 0;
+  if (totalQty === 1)  return 5.49;
+  if (totalQty === 2)  return 7.59;
+  return 9.29; // 3+
+}
+
+function getZoneFee(zone, totalQty, subtotal) {
+  return zone.id === 'fr' ? getFranceFee(totalQty, subtotal) : zone.fee;
+}
 
 /* ── State ── */
 let cart = JSON.parse(localStorage.getItem('mijahCart') || '{}');
@@ -120,8 +132,19 @@ function openCheckout() {
   const subtotal = keys.reduce((sum, id) => sum + PRODUCTS[id].price * cart[id], 0);
 
   /* build zone options */
-  const zoneOptions = SHIPPING_ZONES.map(z => `
-    <option value="${z.id}">${lang==='fr'?z.fr:z.en} — +€${z.fee.toFixed(2)}</option>`).join('');
+  const totalQty = keys.reduce((sum, id) => sum + cart[id], 0);
+  const zoneOptions = SHIPPING_ZONES.map(z => {
+    let label;
+    if (z.id === 'fr') {
+      const fee = getFranceFee(totalQty, subtotal);
+      label = fee === 0
+        ? (lang==='fr' ? `${z.fr} — Gratuit 🎉` : `${z.en} — Free 🎉`)
+        : (lang==='fr' ? `${z.fr} — +€${fee.toFixed(2)}` : `${z.en} — +€${fee.toFixed(2)}`);
+    } else {
+      label = `${lang==='fr'?z.fr:z.en} — +€${z.fee.toFixed(2)}`;
+    }
+    return `<option value="${z.id}">${label}</option>`;
+  }).join('');
 
   /* build item list */
   const itemRows = keys.map(id => {
@@ -202,11 +225,16 @@ function openCheckout() {
 function updateDeliveryFee() {
   const keys = Object.keys(cart).filter(k => PRODUCTS[k] && cart[k] > 0);
   const subtotal = keys.reduce((sum, id) => sum + PRODUCTS[id].price * cart[id], 0);
+  const totalQty = keys.reduce((sum, id) => sum + cart[id], 0);
   const zoneId = document.getElementById('co-zone').value;
   const zone = SHIPPING_ZONES.find(z => z.id === zoneId);
   if (!zone) return;
-  document.getElementById('co-shipping').textContent = `+€${zone.fee.toFixed(2)}`;
-  document.getElementById('co-total').textContent = `€${(subtotal + zone.fee).toFixed(2)}`;
+  const lang = typeof currentLang !== 'undefined' ? currentLang : (localStorage.getItem('mijahLang') || 'fr');
+  const fee = getZoneFee(zone, totalQty, subtotal);
+  document.getElementById('co-shipping').textContent = fee === 0
+    ? (lang === 'fr' ? 'Gratuit 🎉' : 'Free 🎉')
+    : `+€${fee.toFixed(2)}`;
+  document.getElementById('co-total').textContent = `€${(subtotal + fee).toFixed(2)}`;
 }
 
 function closeCheckout() {
@@ -232,8 +260,10 @@ function submitOrder() {
   /* calculate total */
   const keys = Object.keys(cart).filter(k => PRODUCTS[k] && cart[k] > 0);
   const subtotal = keys.reduce((sum, id) => sum + PRODUCTS[id].price * cart[id], 0);
+  const totalQty = keys.reduce((sum, id) => sum + cart[id], 0);
   const zone = SHIPPING_ZONES.find(z => z.id === document.getElementById('co-zone').value);
-  const total = (subtotal + zone.fee).toFixed(2);
+  const fee = getZoneFee(zone, totalQty, subtotal);
+  const total = (subtotal + fee).toFixed(2);
   const firstName = document.getElementById('co-firstname').value;
   const lastName  = document.getElementById('co-lastname').value;
   const address   = document.getElementById('co-address').value;
@@ -249,7 +279,7 @@ function submitOrder() {
         <span>${lang==='fr'?'Sous-total':'Subtotal'}</span><span>€${subtotal.toFixed(2)}</span>
       </div>
       <div style="display:flex;justify-content:space-between;font-size:0.82rem;color:#555;margin-bottom:4px;">
-        <span>${lang==='fr'?'Livraison':'Shipping'} (${lang==='fr'?zone.fr:zone.en})</span><span>+€${zone.fee.toFixed(2)}</span>
+        <span>${lang==='fr'?'Livraison':'Shipping'} (${lang==='fr'?zone.fr:zone.en})</span><span>${fee===0?(lang==='fr'?'Gratuit':'Free'):`+€${fee.toFixed(2)}`}</span>
       </div>
       <div style="display:flex;justify-content:space-between;font-size:1rem;font-weight:700;color:#2b3d24;margin-top:8px;padding-top:8px;border-top:1px solid rgba(74,110,61,0.15);">
         <span>Total</span><span>€${total}</span>
