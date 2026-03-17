@@ -1588,10 +1588,10 @@
 <script>
 /* ── Cart Data ── */
 const PRODUCTS = {
-  elixir:   { fr:'Élixir Anti-Chute',    en:'Anti Hair-Loss Elixir',  price:34.90, img:'photosAndvideos/mijah anti-chute.png',               stripe:'https://buy.stripe.com/8x2fZgaEsgqk6ojbba1wY02' },
-  rosemary: { fr:'Huile de Croissance',  en:'Rosemary Growth Oil',    price:29.90, img:'photosAndvideos/Mijah hair growth oil.png',           stripe:'https://buy.stripe.com/aFa7sK27W2zuh2X6UU1wY03' },
-  mango:    { fr:'Mango Hair Butter',    en:'Mango Hair Butter',      price:24.90, img:'photosAndvideos/Mango Hair Butter.png',               stripe:'https://buy.stripe.com/aFa7sK9Aoa1W6ojfrq1wY01' },
-  trio:     { fr:'Le Coffret MÎJAH Trio',en:'The MÎJAH Trio Set',     price:74.90, img:'photosAndvideos/Mijah Trio with Ingredient.jpeg',     stripe:'https://buy.stripe.com/bJebJ0dQEeicdQLcfe1wY00' }
+  elixir:   { fr:'Élixir Anti-Chute',    en:'Anti Hair-Loss Elixir',  price:34.90, img:'photosAndvideos/mijah anti-chute.png' },
+  rosemary: { fr:'Huile de Croissance',  en:'Rosemary Growth Oil',    price:29.90, img:'photosAndvideos/Mijah hair growth oil.png' },
+  mango:    { fr:'Mango Hair Butter',    en:'Mango Hair Butter',      price:24.90, img:'photosAndvideos/Mango Hair Butter.png' },
+  trio:     { fr:'Le Coffret MÎJAH Trio',en:'The MÎJAH Trio Set',     price:74.90, img:'photosAndvideos/Mijah Trio with Ingredient.jpeg' }
 };
 
 let cart = JSON.parse(localStorage.getItem('mijahCart') || '{}');
