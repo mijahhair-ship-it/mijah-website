@@ -1,0 +1,80 @@
+[build]
+  publish = "."
+
+[[redirects]]
+  from = "/About.html"
+  to = "/about"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/collection.html"
+  to = "/collection"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog.html"
+  to = "/blog"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/contact.html"
+  to = "/contact"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/stockists.html"
+  to = "/stockists"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/product-elixir.html"
+  to = "/product-elixir"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/product-rosemary.html"
+  to = "/product-rosemary"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/product-mango.html"
+  to = "/product-mango"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog-chute-cheveux.html"
+  to = "/blog-chute-cheveux"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog-routine-crepus.html"
+  to = "/blog-routine-crepus"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog-huile-romarin.html"
+  to = "/blog-huile-romarin"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog-beurre-mangue.html"
+  to = "/blog-beurre-mangue"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog-erreurs-cheveux-afro.html"
+  to = "/blog-erreurs-cheveux-afro"
+  status = 301
+  force = true
