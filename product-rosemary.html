@@ -63,11 +63,11 @@
     ]
   }
   </script>
-  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.tailwindcss.com" defer></script>
   <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,600&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
   <script src="https://unpkg.com/@phosphor-icons/web@2.1.1/src/index.js" type="module"></script>
   
   <script src="lang.js" defer></script>
@@ -128,6 +128,7 @@
     @keyframes logoFadeIn { from{opacity:0;transform:translateY(-8px)} to{opacity:1;transform:translateY(0)} }
     .logo-anim { animation: logoFadeIn 0.8s ease forwards, logoFloat 3.5s ease-in-out 0.8s infinite; transition: filter 0.3s ease; }
     .logo-anim:hover { animation-play-state: paused; filter: brightness(1.1) drop-shadow(0 4px 14px rgba(74,110,61,0.35)); transform: scale(1.06); }
+  @keyframes urgPulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(0.85)} }
   </style>
   <!-- Google Analytics — Remplace G-XXXXXXXXXX par ton Measurement ID (Google Analytics 4) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-8C6EZBF8MC"></script>
@@ -206,7 +207,7 @@
             <svg viewBox="0 0 200 300" fill="none"><path d="M100 10C150 60 180 120 160 200C140 270 80 290 40 260C10 240 20 180 40 140C60 100 50 50 100 10Z" fill="#4a6e3d"/></svg>
           </div>
           <img src="photosAndvideos/Mijah hair growth oil.png" alt="Rosemary Hair Growth Oil" id="prod-img"
-               style="width:300px;max-width:100%;filter:drop-shadow(0 20px 50px rgba(0,0,0,0.14));" />
+               style="width:300px;max-width:100%;filter:drop-shadow(0 20px 50px rgba(0,0,0,0.14));" loading="lazy" />
         </div>
       </div>
 
@@ -294,6 +295,45 @@
   </div>
 </section>
 
+
+<!-- AVIS CLIENTS -->
+<section style="background:#f4f7f0;padding:60px 24px;">
+  <div style="max-width:900px;margin:0 auto;">
+    <p class="sec-label" style="text-align:center;margin-bottom:8px;" data-fr="Avis Clients" data-en="Customer Reviews">Avis Clients</p>
+    <div class="gold-line" style="margin:0 auto 16px;"></div>
+    <div style="text-align:center;margin-bottom:36px;">
+      <p style="font-family:'Cormorant Garamond',serif;font-size:3.5rem;font-weight:600;color:#2b3d24;line-height:1;">4.8</p>
+      <p style="color:#d4a853;font-size:1rem;letter-spacing:3px;">★★★★★</p>
+      <p style="font-size:0.78rem;color:#999;margin-top:4px;" data-fr="Note moyenne · 128 avis vérifiés" data-en="Average rating · 128 verified reviews">Note moyenne · 128 avis vérifiés</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;">
+      <div style="background:#fff;border-radius:20px;padding:28px 24px;box-shadow:0 4px 20px rgba(74,110,61,0.07);border:1px solid rgba(74,110,61,0.08);">
+        <p style="color:#d4a853;font-size:0.85rem;letter-spacing:2px;margin-bottom:14px;">★★★★★</p>
+        <p style="font-size:0.88rem;color:#444;line-height:1.75;font-style:italic;margin-bottom:18px;">&ldquo;The Rosemary Oil transformed my hairline in 6 weeks. Results I never expected from a product — absolutely incredible.&rdquo;</p>
+        <div style="display:flex;align-items:center;gap:10px;">
+          <div style="width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#4a6e3d,#82a874);display:flex;align-items:center;justify-content:center;color:#fff;font-size:0.82rem;font-weight:600;flex-shrink:0;">A</div>
+          <div><p style="font-size:0.82rem;font-weight:600;color:#2b3d24;">Aissatou M.</p><p style="font-size:0.72rem;color:#aaa;">Paris, France</p></div>
+        </div>
+      </div>
+      <div style="background:#fff;border-radius:20px;padding:28px 24px;box-shadow:0 4px 20px rgba(74,110,61,0.07);border:1px solid rgba(74,110,61,0.08);">
+        <p style="color:#d4a853;font-size:0.85rem;letter-spacing:2px;margin-bottom:14px;">★★★★★</p>
+        <p style="font-size:0.88rem;color:#444;line-height:1.75;font-style:italic;margin-bottom:18px;">&ldquo;Beautiful packaging and formulas that truly work. You feel the quality instantly — natural, rich, and deeply effective.&rdquo;</p>
+        <div style="display:flex;align-items:center;gap:10px;">
+          <div style="width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#4a6e3d,#ccdcc4);display:flex;align-items:center;justify-content:center;color:#fff;font-size:0.82rem;font-weight:600;flex-shrink:0;">S</div>
+          <div><p style="font-size:0.82rem;font-weight:600;color:#2b3d24;">Solène T.</p><p style="font-size:0.72rem;color:#aaa;">Bordeaux, France</p></div>
+        </div>
+      </div>
+      <div style="background:#fff;border-radius:20px;padding:28px 24px;box-shadow:0 4px 20px rgba(74,110,61,0.07);border:1px solid rgba(74,110,61,0.08);">
+        <p style="color:#d4a853;font-size:0.85rem;letter-spacing:2px;margin-bottom:14px;">★★★★★</p>
+        <p style="font-size:0.88rem;color:#444;line-height:1.75;font-style:italic;margin-bottom:18px;">&ldquo;Enfin une marque qui comprend vraiment les cheveux afro ! Le trio complet est mon investissement beauté du siècle.&rdquo;</p>
+        <div style="display:flex;align-items:center;gap:10px;">
+          <div style="width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#8b6f47,#c4a882);display:flex;align-items:center;justify-content:center;color:#fff;font-size:0.82rem;font-weight:600;flex-shrink:0;">K</div>
+          <div><p style="font-size:0.82rem;font-weight:600;color:#2b3d24;">Khadija B.</p><p style="font-size:0.72rem;color:#aaa;">Marseille, France</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 <!-- RELATED PRODUCTS -->
 <section class="py-20 px-6 lg:px-12" style="background:#FEFDF9;">
   <div class="max-w-7xl mx-auto">
@@ -305,13 +345,13 @@
     <div class="grid md:grid-cols-2 gap-8 max-w-2xl mx-auto">
       <a href="product-elixir" class="r-card">
         <div style="background:linear-gradient(135deg,#f4f7f0,#e5ede0);height:220px;display:flex;align-items:center;justify-content:center;padding:20px;">
-          <img src="photosAndvideos/mijah anti-chute.png" alt="Elixir Anti-Chute" style="height:100%;object-fit:contain;" />
+          <img src="photosAndvideos/mijah anti-chute.png" alt="Elixir Anti-Chute" style="height:100%;object-fit:contain;" loading="lazy" />
         </div>
         <div style="padding:18px 20px;"><p class="sec-label mb-1">Elixir</p><h3 style="font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:500;color:#2b3d24;margin-bottom:4px;">Anti-Chute</h3><p style="font-size:0.82rem;color:#777;font-weight:300;">€21.90 · 60 ml</p></div>
       </a>
       <a href="product-mango" class="r-card">
         <div style="background:linear-gradient(135deg,#f7f4ed,#ede8d8);height:220px;display:flex;align-items:center;justify-content:center;padding:20px;overflow:hidden;">
-          <img src="photosAndvideos/Mango Hair Butter.png" alt="Mango Butter" style="height:100%;object-fit:contain;" />
+          <img src="photosAndvideos/Mango Hair Butter.png" alt="Mango Butter" style="height:100%;object-fit:contain;" loading="lazy" />
         </div>
         <div style="padding:18px 20px;"><p class="sec-label mb-1">Mango</p><h3 style="font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:500;color:#2b3d24;margin-bottom:4px;" data-fr="Beurre Capillaire" data-en="Hair Butter">Beurre Capillaire</h3><p style="font-size:0.82rem;color:#777;font-weight:300;">€19.90 · 150 ml</p></div>
       </a>

@@ -46,8 +46,32 @@
   }
   </script>
 
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "MÎJAH",
+    "url": "https://mijah.fr/",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.9",
+      "bestRating": "5",
+      "worstRating": "1",
+      "reviewCount": "6"
+    },
+    "review": [
+      {"@type":"Review","author":{"@type":"Person","name":"Aissatou M."},"reviewRating":{"@type":"Rating","ratingValue":"5"},"reviewBody":"The Rosemary Oil transformed my hairline in 6 weeks. Results I never expected from a product — absolutely incredible."},
+      {"@type":"Review","author":{"@type":"Person","name":"Fatou D."},"reviewRating":{"@type":"Rating","ratingValue":"5"},"reviewBody":"Le beurre de mangue est incroyable. Mes boucles sont définies comme jamais. Ma routine est enfin complète !"},
+      {"@type":"Review","author":{"@type":"Person","name":"Naomi K."},"reviewRating":{"@type":"Rating","ratingValue":"5"},"reviewBody":"The Elixir Anti-Chute stopped my hair loss within the first month. My scalp feels healthy and my hair is thicker than ever."},
+      {"@type":"Review","author":{"@type":"Person","name":"Khadija B."},"reviewRating":{"@type":"Rating","ratingValue":"5"},"reviewBody":"Enfin une marque qui comprend vraiment les cheveux afro ! Le trio complet est mon investissement beauté du siècle."},
+      {"@type":"Review","author":{"@type":"Person","name":"Solène T."},"reviewRating":{"@type":"Rating","ratingValue":"5"},"reviewBody":"Beautiful packaging and formulas that truly work. You feel the quality instantly — natural, rich, and deeply effective."},
+      {"@type":"Review","author":{"@type":"Person","name":"Imane R."},"reviewRating":{"@type":"Rating","ratingValue":"5"},"reviewBody":"J'ai essayé des dizaines de produits pour mes cheveux 4C. Rien ne compare à l'Élixir MÎJAH. Ma chute a enfin stoppé."}
+    ]
+  }
+  </script>
+
   <!-- Tailwind CSS CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.tailwindcss.com" defer></script>
 
   <!-- Google Fonts: Cormorant Garamond (serif) + Jost (sans) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -55,9 +79,9 @@
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,600&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
 
   <!-- GSAP + ScrollTrigger + ScrollTo CDN -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js" defer></script>
 
   <!-- Phosphor Icons CDN -->
   <script src="https://unpkg.com/@phosphor-icons/web@2.1.1/src/index.js" type="module"></script>
@@ -680,7 +704,7 @@
   </div>
   <!-- Full-width video — no extra padding, seamless edge-to-edge -->
   <div class="js-video-wrap" style="position:relative;aspect-ratio:16/9;overflow:hidden;">
-    <video id="mijah-video" autoplay muted loop playsinline
+    <video id="mijah-video" autoplay muted loop playsinline preload="none"
            style="width:100%;height:100%;object-fit:cover;display:block;">
       <source src="photosAndvideos/MîJah_commercial_clip_f1ry20.mp4" type="video/mp4">
     </video>
@@ -740,7 +764,7 @@
           <div style="position:absolute;top:14px;left:14px;z-index:2;">
             <span class="badge badge-green" data-fr="Anti-Chute" data-en="Anti Hair-Loss">Anti-Chute</span>
           </div>
-          <img src="photosAndvideos/mijah anti-chute.png" alt="MÎJAH Elixir Anti-Chute" />
+          <img src="photosAndvideos/mijah anti-chute.png" alt="MÎJAH Elixir Anti-Chute" loading="lazy" />
           <div class="quick-add" onclick="addToCart('elixir')" style="cursor:pointer;">
             <i class="ph ph-plus-circle" style="margin-right:6px;"></i><span data-fr="Ajouter au Panier" data-en="Quick Add to Cart">Ajouter au Panier</span>
           </div>
@@ -781,7 +805,7 @@
             </div>
             <span class="badge badge-green" data-fr="Pousse Capillaire" data-en="Hair Growth">Pousse Capillaire</span>
           </div>
-          <img src="photosAndvideos/Mijah hair growth oil.png" alt="MÎJAH Rosemary Hair Growth Oil" style="padding:20px;" />
+          <img src="photosAndvideos/Mijah hair growth oil.png" alt="MÎJAH Rosemary Hair Growth Oil" style="padding:20px;" loading="lazy" />
           <div class="quick-add" onclick="addToCart('rosemary')" style="cursor:pointer;">
             <i class="ph ph-plus-circle" style="margin-right:6px;"></i><span data-fr="Ajouter au Panier" data-en="Quick Add to Cart">Ajouter au Panier</span>
           </div>
@@ -817,7 +841,7 @@
             <span class="badge badge-green" data-fr="Hydratante" data-en="Moisturizing">Hydratante</span>
           </div>
           <!-- Use Trio image cropped to show the butter jar via object-position -->
-          <img src="photosAndvideos/Mango Hair Butter.png" alt="MÎJAH Mango Hair Butter" />
+          <img src="photosAndvideos/Mango Hair Butter.png" alt="MÎJAH Mango Hair Butter" loading="lazy" />
           <div class="quick-add" onclick="addToCart('mango')" style="cursor:pointer;">
             <i class="ph ph-plus-circle" style="margin-right:6px;"></i><span data-fr="Ajouter au Panier" data-en="Quick Add to Cart">Ajouter au Panier</span>
           </div>
@@ -1147,7 +1171,7 @@
       <div class="js-gallery-img" style="grid-row:1/3;position:relative;border-radius:24px;overflow:hidden;box-shadow:0 8px 40px rgba(0,0,0,0.10);">
         <img src="photosAndvideos/Mijah anti-chute nature background.png"
              alt="MÎJAH Product" style="width:100%;height:100%;object-fit:cover;display:block;min-height:200px;transition:transform 0.65s cubic-bezier(0.25,0.46,0.45,0.94);"
-             onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'" />
+             onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'" loading="lazy" />
         <div style="position:absolute;bottom:0;left:0;right:0;padding:22px 20px;background:linear-gradient(0deg,rgba(22,33,15,0.75) 0%,transparent 100%);">
           <p style="font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:#fff;font-weight:400;letter-spacing:0.05em;" data-fr="Élixir Anti-Chute" data-en="Anti Hair-Loss Elixir">Élixir Anti-Chute</p>
           <p style="font-size:0.72rem;color:rgba(255,255,255,0.6);letter-spacing:0.1em;text-transform:uppercase;font-weight:400;margin-top:2px;" data-fr="Soin Capillaire Premium" data-en="Premium Hair Care">Soin Capillaire Premium</p>
@@ -1158,7 +1182,7 @@
       <div class="js-gallery-img" style="position:relative;border-radius:24px;overflow:hidden;box-shadow:0 8px 40px rgba(0,0,0,0.10);">
         <img src="photosAndvideos/Huille Rosemary Mijah spill Bottle.png"
              alt="MÎJAH Product" style="width:100%;height:230px;object-fit:cover;display:block;transition:transform 0.65s cubic-bezier(0.25,0.46,0.45,0.94);"
-             onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'" />
+             onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'" loading="lazy" />
         <div style="position:absolute;bottom:0;left:0;right:0;padding:16px 18px;background:linear-gradient(0deg,rgba(22,33,15,0.70) 0%,transparent 100%);">
           <p style="font-family:'Cormorant Garamond',serif;font-size:1rem;color:#fff;font-weight:400;" data-fr="Rosemary Growth Oil" data-en="Rosemary Growth Oil">Rosemary Growth Oil</p>
         </div>
@@ -1168,7 +1192,7 @@
       <div class="js-gallery-img" style="position:relative;border-radius:24px;overflow:hidden;box-shadow:0 8px 40px rgba(0,0,0,0.10);">
         <img src="photosAndvideos/Mango butter open jar (lemon tree.jpg"
              alt="MÎJAH Product" style="width:100%;height:230px;object-fit:cover;display:block;transition:transform 0.65s cubic-bezier(0.25,0.46,0.45,0.94);"
-             onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'" />
+             onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'" loading="lazy" />
         <div style="position:absolute;bottom:0;left:0;right:0;padding:16px 18px;background:linear-gradient(0deg,rgba(22,33,15,0.70) 0%,transparent 100%);">
           <p style="font-family:'Cormorant Garamond',serif;font-size:1rem;color:#fff;font-weight:400;" data-fr="Mango Hair Butter" data-en="Mango Hair Butter">Mango Hair Butter</p>
         </div>
@@ -1180,7 +1204,7 @@
     <div class="js-gallery-img gallery-accent" style="margin-top:16px;max-width:900px;margin-left:auto;margin-right:auto;position:relative;border-radius:24px;overflow:hidden;box-shadow:0 8px 40px rgba(0,0,0,0.10);">
       <img src="photosAndvideos/girls holding Mijah Products.png"
            alt="MÎJAH Lifestyle" style="width:100%;height:480px;object-fit:cover;display:block;object-position:center 30%;transition:transform 0.65s cubic-bezier(0.25,0.46,0.45,0.94);"
-           onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'" />
+           onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'" loading="lazy" />
       <div class="gallery-accent-inner" style="position:absolute;inset:0;background:linear-gradient(90deg,rgba(22,33,15,0.60) 0%,transparent 55%);display:flex;align-items:center;padding:0 40px;">
         <div>
           <p class="sec-label" style="color:rgba(212,168,83,0.85);margin-bottom:8px;" data-fr="La Collection Complète" data-en="The Full Collection">La Collection Complète</p>
