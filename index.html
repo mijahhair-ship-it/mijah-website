@@ -140,6 +140,7 @@
     .nav-link {
       font-size: 0.75rem; font-weight: 400; letter-spacing: 0.12em;
       text-transform: uppercase; text-decoration: none;
+      color: #C9A84C;
       transition: color 0.25s; position: relative;
     }
     .nav-link::after {
@@ -571,6 +572,12 @@
      HERO
 ════════════════════════════════════════════════ -->
 <section id="hero" class="relative flex items-center" style="min-height:100vh;overflow:hidden;">
+  <style>
+    @media (max-width: 640px) {
+      #hero { min-height: 70vh !important; }
+      #hero .hero-bg { background-position: center top !important; background-size: cover !important; }
+    }
+  </style>
 
   <!-- Background + overlay -->
   <div class="hero-bg" id="hero-bg"></div>
