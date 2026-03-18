@@ -574,8 +574,25 @@
 <section id="hero" class="relative flex items-center" style="min-height:100vh;overflow:hidden;">
   <style>
     @media (max-width: 640px) {
-      #hero { min-height: 70vh !important; }
-      #hero .hero-bg { background-position: center top !important; background-size: cover !important; }
+      #hero {
+        min-height: unset !important;
+        height: calc(100vw * 1024 / 1536) !important;
+        min-height: 260px !important;
+        max-height: 420px !important;
+      }
+      #hero .hero-bg {
+        background-size: contain !important;
+        background-position: center center !important;
+        background-repeat: no-repeat !important;
+        background-color: #0a0a0a !important;
+      }
+      #hero .max-w-7xl {
+        padding-top: 20px !important;
+        padding-bottom: 20px !important;
+      }
+      #hero .hero-overlay {
+        background: linear-gradient(to top, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.15) 60%, transparent 100%) !important;
+      }
     }
   </style>
 
