@@ -166,8 +166,18 @@
         rgba(58,85,44,0.50) 100%
       );
     }
-    .hero-line-wrap { overflow: hidden; display: block; }
+    .hero-line-wrap { display: block; }
     .hero-line { display: block; }
+    @keyframes heroFadeUp { from { opacity:0; transform:translateY(24px); } to { opacity:1; transform:translateY(0); } }
+    .hero-line { animation: heroFadeUp 0.9s ease forwards; }
+    .hero-line:nth-child(1) { animation-delay: 0.1s; }
+    .hero-line:nth-child(2) { animation-delay: 0.25s; }
+    .hero-line:nth-child(3) { animation-delay: 0.4s; }
+    #h-badge  { animation: heroFadeUp 0.8s ease 0.1s both; }
+    #h-sub    { animation: heroFadeUp 0.9s ease 0.5s both; }
+    #h-pills  { animation: heroFadeUp 0.8s ease 0.7s both; }
+    #h-ctas   { animation: heroFadeUp 0.8s ease 0.85s both; }
+    #h-social { animation: heroFadeUp 0.8s ease 1.0s both; }
 
     /* ── Promo Marketing Banner ──────────────────── */
     .promo-banner {
@@ -1601,18 +1611,7 @@
     onEnter: setHeaderDark, onLeaveBack: setHeaderClear,
   });
 
-  /* ─── HERO: cinematic entrance ──────────────── */
-  // Lines
-  gsap.from('.hero-line', {
-    y: '110%', opacity: 0, duration: 1.15, stagger: 0.16,
-    ease: 'power4.out', delay: 0.25,
-  });
-  gsap.from('#h-badge',  { opacity:0, y:18, duration:0.8, ease:'power3.out', delay:0.10 });
-  gsap.from('#h-sub',    { opacity:0, y:22, duration:0.9, ease:'power3.out', delay:0.80 });
-  gsap.from('#h-pills',  { opacity:0, y:18, duration:0.8, ease:'power3.out', delay:1.00 });
-  gsap.from('#h-ctas',   { opacity:0, y:22, duration:0.8, ease:'power3.out', delay:1.15 });
-  gsap.from('#h-social', { opacity:0,       duration:0.8, ease:'power3.out', delay:1.32 });
-  gsap.from('#h-scroll', { opacity:0,       duration:0.8, ease:'power3.out', delay:1.70 });
+  /* ─── HERO: entrance handled by CSS animations ──── */
 
   /* ─── HERO PARALLAX ─────────────────────────── */
   gsap.to('#hero-bg', {
