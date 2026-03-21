@@ -60,11 +60,11 @@
       "reviewCount": "6"
     },
     "review": [
-      {"@type":"Review","author":{"@type":"Person","name":"Aissatou M."},"reviewRating":{"@type":"Rating","ratingValue":"5"},"reviewBody":"The Rosemary Oil transformed my hairline in 6 weeks. Results I never expected from a product — absolutely incredible."},
+      {"@type":"Review","author":{"@type":"Person","name":"Aissatou M."},"reviewRating":{"@type":"Rating","ratingValue":"5"},"reviewBody":"L'Huile de Romarin a transformé ma ligne capillaire en 6 semaines. Des résultats que je n'espérais pas — absolument incroyable."},
       {"@type":"Review","author":{"@type":"Person","name":"Fatou D."},"reviewRating":{"@type":"Rating","ratingValue":"5"},"reviewBody":"Le beurre de mangue est incroyable. Mes boucles sont définies comme jamais. Ma routine est enfin complète !"},
-      {"@type":"Review","author":{"@type":"Person","name":"Naomi K."},"reviewRating":{"@type":"Rating","ratingValue":"5"},"reviewBody":"The Elixir Anti-Chute stopped my hair loss within the first month. My scalp feels healthy and my hair is thicker than ever."},
+      {"@type":"Review","author":{"@type":"Person","name":"Naomi K."},"reviewRating":{"@type":"Rating","ratingValue":"5"},"reviewBody":"L'Élixir Anti-Chute a stoppé ma chute dès le premier mois. Mon cuir chevelu est en pleine santé et mes cheveux sont plus épais que jamais."},
       {"@type":"Review","author":{"@type":"Person","name":"Khadija B."},"reviewRating":{"@type":"Rating","ratingValue":"5"},"reviewBody":"Enfin une marque qui comprend vraiment les cheveux afro ! Le trio complet est mon investissement beauté du siècle."},
-      {"@type":"Review","author":{"@type":"Person","name":"Solène T."},"reviewRating":{"@type":"Rating","ratingValue":"5"},"reviewBody":"Beautiful packaging and formulas that truly work. You feel the quality instantly — natural, rich, and deeply effective."},
+      {"@type":"Review","author":{"@type":"Person","name":"Solène T."},"reviewRating":{"@type":"Rating","ratingValue":"5"},"reviewBody":"Un packaging magnifique et des formules qui tiennent leurs promesses. On sent la qualité dès la première application — naturel, riche et profondément efficace."},
       {"@type":"Review","author":{"@type":"Person","name":"Imane R."},"reviewRating":{"@type":"Rating","ratingValue":"5"},"reviewBody":"J'ai essayé des dizaines de produits pour mes cheveux 4C. Rien ne compare à l'Élixir MÎJAH. Ma chute a enfin stoppé."}
     ]
   }
@@ -79,9 +79,9 @@
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,600&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
 
   <!-- GSAP + ScrollTrigger + ScrollTo CDN -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js"></script>
 
   <!-- Phosphor Icons CDN -->
   <script src="https://unpkg.com/@phosphor-icons/web@2.1.1/src/index.js" type="module"></script>
@@ -167,7 +167,7 @@
       );
     }
     .hero-line-wrap { overflow: hidden; display: block; }
-    .hero-line { display: block; transform: translateY(110%); opacity: 0; }
+    .hero-line { display: block; }
 
     /* ── Promo Marketing Banner ──────────────────── */
     .promo-banner {
@@ -560,7 +560,7 @@
       <button id="header-shop-btn" class="hidden md:block btn-gold"
               style="padding:10px 22px;font-size:0.72rem;opacity:0;pointer-events:none;
                      transition:opacity 0.4s;">
-        <span data-fr="Boutique" data-en="Shop Now">Shop Now</span>
+        <span data-fr="Boutique" data-en="Shop Now">Boutique</span>
       </button>
     </div>
 
@@ -620,7 +620,7 @@
       <div style="display:flex;flex-direction:column;gap:28px;align-items:center;">
 
         <!-- France badge -->
-        <div id="h-badge" style="opacity:0;transform:translateY(18px);">
+        <div id="h-badge">
           <span class="badge badge-gold">
             <i class="ph ph-flag" style="font-size:0.8rem;"></i>
             <span data-fr="Formulé en France" data-en="Formulated in France">Formulé en France</span>
@@ -639,7 +639,7 @@
 
         <!-- Sub -->
         <p id="h-sub"
-           style="opacity:0;transform:translateY(22px);font-size:0.95rem;line-height:1.8;
+           style="font-size:0.95rem;line-height:1.8;
                   color:rgba(255,255,255,0.68);max-width:520px;font-weight:300;"
            data-fr="Formules botaniques premium pour nourrir, renforcer et sublimer la beauté de votre texture naturelle — approuvées en France et au-delà."
            data-en="Premium botanical formulas designed to nourish, strengthen, and celebrate the beauty of your natural texture — trusted across France and beyond.">
@@ -647,7 +647,7 @@
         </p>
 
         <!-- Ingredient pills -->
-        <div id="h-pills" style="opacity:0;transform:translateY(18px);display:flex;flex-wrap:wrap;gap:9px;justify-content:center;">
+        <div id="h-pills" style="display:flex;flex-wrap:wrap;gap:9px;justify-content:center;">
           <span class="ingr-pill"><i class="ph ph-leaf" style="color:#82a874;"></i><span data-fr="Extrait de Romarin" data-en="Rosemary Extract">Extrait de Romarin</span></span>
           <span class="ingr-pill"><i class="ph ph-leaf" style="color:#82a874;"></i><span data-fr="Beurre de Mangue" data-en="Mango Butter">Beurre de Mangue</span></span>
           <span class="ingr-pill"><i class="ph ph-leaf" style="color:#82a874;"></i><span data-fr="Huile de Batana" data-en="Batana Oil">Huile de Batana</span></span>
@@ -655,7 +655,7 @@
         </div>
 
         <!-- CTAs -->
-        <div id="h-ctas" style="opacity:0;transform:translateY(22px);display:flex;flex-wrap:wrap;gap:14px;align-items:center;justify-content:center;">
+        <div id="h-ctas" style="display:flex;flex-wrap:wrap;gap:14px;align-items:center;justify-content:center;">
           <a href="collection" class="btn-gold" style="font-size:0.85rem;padding:16px 38px;">
             <span data-fr="Voir la Collection" data-en="Shop the Collection">Voir la Collection</span> <i class="ph-bold ph-arrow-right"></i>
           </a>
@@ -663,7 +663,7 @@
         </div>
 
         <!-- Social proof micro -->
-        <div id="h-social" style="opacity:0;display:flex;align-items:center;gap:14px;justify-content:center;">
+        <div id="h-social" style="display:flex;align-items:center;gap:14px;justify-content:center;">
           <div style="display:flex;margin-left:0;">
             <div style="width:32px;height:32px;border-radius:50%;border:2px solid rgba(255,255,255,0.3);background:linear-gradient(135deg,#4a6e3d,#82a874);margin-right:-8px;"></div>
             <div style="width:32px;height:32px;border-radius:50%;border:2px solid rgba(255,255,255,0.3);background:linear-gradient(135deg,#8b6f47,#c4a882);margin-right:-8px;"></div>
@@ -683,7 +683,7 @@
     <!-- Scroll indicator -->
     <div id="h-scroll"
          style="position:absolute;bottom:54px;left:50%;transform:translateX(-50%);
-                opacity:0;display:flex;flex-direction:column;align-items:center;gap:9px;">
+                display:flex;flex-direction:column;align-items:center;gap:9px;">
       <div class="scroll-mouse"><div class="scroll-dot"></div></div>
       <span style="color:rgba(255,255,255,0.38);font-size:0.58rem;letter-spacing:0.22em;text-transform:uppercase;">Scroll</span>
     </div>
@@ -1603,16 +1603,16 @@
 
   /* ─── HERO: cinematic entrance ──────────────── */
   // Lines
-  gsap.to('.hero-line', {
-    y: '0%', opacity: 1, duration: 1.15, stagger: 0.16,
+  gsap.from('.hero-line', {
+    y: '110%', opacity: 0, duration: 1.15, stagger: 0.16,
     ease: 'power4.out', delay: 0.25,
   });
-  gsap.to('#h-badge',  { opacity:1, y:0, duration:0.8, ease:'power3.out', delay:0.10 });
-  gsap.to('#h-sub',    { opacity:1, y:0, duration:0.9, ease:'power3.out', delay:0.80 });
-  gsap.to('#h-pills',  { opacity:1, y:0, duration:0.8, ease:'power3.out', delay:1.00 });
-  gsap.to('#h-ctas',   { opacity:1, y:0, duration:0.8, ease:'power3.out', delay:1.15 });
-  gsap.to('#h-social', { opacity:1,      duration:0.8, ease:'power3.out', delay:1.32 });
-  gsap.to('#h-scroll', { opacity:1,      duration:0.8, ease:'power3.out', delay:1.70 });
+  gsap.from('#h-badge',  { opacity:0, y:18, duration:0.8, ease:'power3.out', delay:0.10 });
+  gsap.from('#h-sub',    { opacity:0, y:22, duration:0.9, ease:'power3.out', delay:0.80 });
+  gsap.from('#h-pills',  { opacity:0, y:18, duration:0.8, ease:'power3.out', delay:1.00 });
+  gsap.from('#h-ctas',   { opacity:0, y:22, duration:0.8, ease:'power3.out', delay:1.15 });
+  gsap.from('#h-social', { opacity:0,       duration:0.8, ease:'power3.out', delay:1.32 });
+  gsap.from('#h-scroll', { opacity:0,       duration:0.8, ease:'power3.out', delay:1.70 });
 
   /* ─── HERO PARALLAX ─────────────────────────── */
   gsap.to('#hero-bg', {
