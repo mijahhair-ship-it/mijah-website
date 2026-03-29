@@ -1,0 +1,22 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(netlify status)",
+      "Bash(curl -s -H \"Authorization: Bearer nfc_kuSZBPxXxgQCkye87UmfcL7wnb6t4Ukida58\" \"https://api.netlify.com/api/v1/sites/2bd6e226-063b-44ae-9c6a-924233959d68/deploys?per_page=3\")",
+      "Bash(python -c \":*)"
+    ]
+  },
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo '{\"systemMessage\": \"⚠️ RAPPEL: Ce dossier est EXCLUSIVEMENT pour le site Mijah.fr. Ne rien créer ici qui ne concerne pas le site. Pour tout autre travail, utiliser C:\\\\Users\\\\PC\\\\Desktop\\\\Code.Folder\"}'",
+            "shell": "bash"
+          }
+        ]
+      }
+    ]
+  }
+}
