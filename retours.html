@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#2b3d24" />
+  <link rel="icon" type="image/png" href="photosAndvideos/MîJah.Logo.Png" />
+  <link rel="apple-touch-icon" href="photosAndvideos/MîJah.Logo.Png" />
+  <title>Politique de Retour — MÎJAH</title>
+  <meta name="description" content="Politique de retour MÎJAH : retours gratuits sous 30 jours pour tout produit non ouvert ou défectueux. Votre satisfaction est notre priorité." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://mijah.fr/retours" />
+  <script src="https://cdn.tailwindcss.com" defer></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,600&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/@phosphor-icons/web@2.1.1/src/index.js" type="module"></script>
+  <script src="lang.js" defer></script>
+  <script src="cart.js?v=6" defer></script>
+  <script>
+    tailwind.config = { theme: { extend: {
+      colors: { sage:{50:'#f4f7f0',100:'#e5ede0',200:'#ccdcc4',600:'#4a6e3d',900:'#2b3d24'}, gold:{300:'#e8c98a',400:'#d4a853',500:'#c09040'} },
+      fontFamily: { serif:['Cormorant Garamond','Georgia','serif'], sans:['Jost','system-ui','sans-serif'] }
+    }}}
+  </script>
+  <style>
+    *,*::before,*::after{margin:0;padding:0;box-sizing:border-box} html{scroll-behavior:smooth}
+    body{font-family:'Jost',sans-serif;background:#FEFDF9;color:#1A1A1A;overflow-x:hidden}
+    ::-webkit-scrollbar{width:5px}::-webkit-scrollbar-track{background:#f5f0e4}::-webkit-scrollbar-thumb{background:#4a6e3d;border-radius:4px}
+    .header-glass{background:rgba(254,253,249,0.92)!important;backdrop-filter:blur(22px);box-shadow:0 1px 0 rgba(74,110,61,0.10)}
+    .nav-link{font-size:0.75rem;font-weight:400;letter-spacing:0.12em;text-transform:uppercase;text-decoration:none;transition:color 0.25s;position:relative;color:#C9A84C}
+    .nav-link::after{content:'';position:absolute;bottom:-3px;left:0;width:0;height:1px;background:currentColor;transition:width 0.3s}
+    .nav-link:hover::after{width:100%}
+    .foot-link{display:block;font-size:0.82rem;color:rgba(255,255,255,0.5);text-decoration:none;margin-bottom:10px;font-weight:300;transition:color 0.2s}
+    .foot-link:hover{color:#e8c98a}
+    .gold-line{width:44px;height:2px;border-radius:2px;background:linear-gradient(90deg,#d4a853,#e8c98a)}
+    .sec-label{font-size:0.68rem;font-weight:600;letter-spacing:0.22em;text-transform:uppercase;color:#5f8a50}
+    h2.policy-title{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:500;color:#2b3d24;margin-bottom:10px;margin-top:36px}
+    p.policy-text{font-size:0.9rem;color:#444;line-height:1.85;margin-bottom:14px;font-weight:300}
+    ul.policy-list{list-style:none;margin-bottom:14px}
+    ul.policy-list li{font-size:0.9rem;color:#444;line-height:1.85;font-weight:300;padding-left:20px;position:relative;margin-bottom:6px}
+    ul.policy-list li::before{content:'—';position:absolute;left:0;color:#d4a853}
+  </style>
+</head>
+<body>
+
+<!-- ── HEADER ─────────────────────────────────── -->
+<header id="hdr" class="header-glass fixed top-0 left-0 right-0 z-50 transition-all duration-300">
+  <nav class="max-w-7xl mx-auto px-6 lg:px-10 h-16 flex items-center justify-between">
+    <a href="index.html">
+      <img src="photosAndvideos/MîJah.Logo.jpeg.jpeg" alt="MÎJAH" style="height:46px;width:auto;object-fit:contain;" />
+    </a>
+    <div class="hidden md:flex items-center gap-8">
+      <a href="collection.html" class="nav-link" data-fr="Collection" data-en="Collection">Collection</a>
+      <a href="about.html" class="nav-link" data-fr="Notre Histoire" data-en="Our Story">Notre Histoire</a>
+      <a href="blog.html" class="nav-link" data-fr="Blog" data-en="Blog">Blog</a>
+      <a href="contact.html" class="nav-link" data-fr="Contact" data-en="Contact">Contact</a>
+    </div>
+    <div class="flex items-center gap-4">
+      <div style="display:flex;align-items:center;gap:6px;border:1px solid rgba(74,110,61,0.2);border-radius:100px;padding:5px 12px;">
+        <i class="ph ph-globe" style="font-size:0.85rem;color:#4a6e3d;"></i>
+        <button onclick="setLang('fr')" id="btn-fr" style="font-size:0.72rem;font-weight:500;letter-spacing:0.08em;background:none;border:none;cursor:pointer;color:#4a6e3d;">FR</button>
+        <span style="color:rgba(74,110,61,0.3);font-size:0.72rem;">|</span>
+        <button onclick="setLang('en')" id="btn-en" style="font-size:0.72rem;font-weight:500;letter-spacing:0.08em;background:none;border:none;cursor:pointer;color:rgba(74,110,61,0.45);">EN</button>
+      </div>
+      <button id="cart-btn" onclick="toggleCart()" style="position:relative;width:36px;height:36px;background:none;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;">
+        <i class="ph ph-shopping-cart" style="font-size:1.2rem;color:#2b3d24;"></i>
+        <span id="cart-count" style="position:absolute;top:2px;right:2px;width:16px;height:16px;background:#d4a853;border-radius:50%;font-size:0.6rem;font-weight:600;color:#fff;display:none;align-items:center;justify-content:center;">0</span>
+      </button>
+    </div>
+  </nav>
+</header>
+
+<!-- ── CONTENT ─────────────────────────────────── -->
+<main style="padding-top:100px;padding-bottom:80px;">
+  <div class="max-w-3xl mx-auto px-6">
+
+    <div style="margin-bottom:32px;">
+      <p class="sec-label" data-fr="Informations légales" data-en="Legal information">Informations légales</p>
+      <div class="gold-line" style="margin:10px 0 16px;"></div>
+      <h1 style="font-family:'Cormorant Garamond',serif;font-size:2.6rem;font-weight:400;color:#2b3d24;line-height:1.2;" data-fr="Politique de Retour" data-en="Return Policy">Politique de Retour</h1>
+      <p style="font-size:0.8rem;color:#aaa;margin-top:10px;font-weight:300;">Dernière mise à jour : Mars 2025</p>
+    </div>
+
+    <h2 class="policy-title" data-fr="Notre engagement" data-en="Our commitment">Notre engagement</h2>
+    <p class="policy-text" data-fr="Chez MÎJAH, votre satisfaction est notre priorité absolue. Si pour quelque raison que ce soit vous n'êtes pas entièrement satisfaite de votre commande, nous nous engageons à trouver la meilleure solution pour vous." data-en="At MÎJAH, your satisfaction is our absolute priority. If for any reason you are not completely satisfied with your order, we are committed to finding the best solution for you.">
+      Chez MÎJAH, votre satisfaction est notre priorité absolue. Si pour quelque raison que ce soit vous n'êtes pas entièrement satisfaite de votre commande, nous nous engageons à trouver la meilleure solution pour vous.
+    </p>
+
+    <h2 class="policy-title" data-fr="Délai de retour" data-en="Return period">Délai de retour</h2>
+    <p class="policy-text" data-fr="Vous disposez de 30 jours à compter de la date de réception de votre commande pour effectuer un retour." data-en="You have 30 days from the date of receipt of your order to make a return.">
+      Vous disposez de <strong>30 jours</strong> à compter de la date de réception de votre commande pour effectuer un retour.
+    </p>
+
+    <h2 class="policy-title" data-fr="Conditions de retour" data-en="Return conditions">Conditions de retour</h2>
+    <p class="policy-text" data-fr="Pour être accepté, le retour doit respecter les conditions suivantes :" data-en="To be accepted, the return must meet the following conditions:">
+      Pour être accepté, le retour doit respecter les conditions suivantes :
+    </p>
+    <ul class="policy-list">
+      <li data-fr="Le produit doit être non ouvert et dans son emballage d'origine" data-en="The product must be unopened and in its original packaging">Le produit doit être non ouvert et dans son emballage d'origine</li>
+      <li data-fr="Le produit doit être dans le même état que lors de sa réception" data-en="The product must be in the same condition as when received">Le produit doit être dans le même état que lors de sa réception</li>
+      <li data-fr="Les produits défectueux ou endommagés à la livraison sont également acceptés" data-en="Defective or damaged products upon delivery are also accepted">Les produits défectueux ou endommagés à la livraison sont également acceptés</li>
+    </ul>
+
+    <h2 class="policy-title" data-fr="Comment effectuer un retour" data-en="How to make a return">Comment effectuer un retour</h2>
+    <p class="policy-text" data-fr="Pour initier un retour, contactez-nous par email à mijahhair@gmail.com en indiquant :" data-en="To initiate a return, contact us by email at mijahhair@gmail.com indicating:">
+      Pour initier un retour, contactez-nous par email à <a href="mailto:mijahhair@gmail.com" style="color:#4a6e3d;">mijahhair@gmail.com</a> en indiquant :
+    </p>
+    <ul class="policy-list">
+      <li data-fr="Votre numéro de commande" data-en="Your order number">Votre numéro de commande</li>
+      <li data-fr="Le(s) produit(s) concerné(s)" data-en="The product(s) concerned">Le(s) produit(s) concerné(s)</li>
+      <li data-fr="La raison du retour" data-en="The reason for return">La raison du retour</li>
+    </ul>
+    <p class="policy-text" data-fr="Nous vous répondrons sous 24-48h avec les instructions de retour." data-en="We will respond within 24-48h with return instructions.">
+      Nous vous répondrons sous 24-48h avec les instructions de retour.
+    </p>
+
+    <h2 class="policy-title" data-fr="Remboursement" data-en="Refund">Remboursement</h2>
+    <p class="policy-text" data-fr="Une fois votre retour reçu et inspecté, nous vous enverrons une notification par email. Si le retour est approuvé, le remboursement sera effectué sur votre moyen de paiement d'origine dans un délai de 5 à 10 jours ouvrés." data-en="Once your return is received and inspected, we will send you an email notification. If the return is approved, the refund will be processed to your original payment method within 5 to 10 business days.">
+      Une fois votre retour reçu et inspecté, nous vous enverrons une notification par email. Si le retour est approuvé, le remboursement sera effectué sur votre moyen de paiement d'origine dans un délai de <strong>5 à 10 jours ouvrés</strong>.
+    </p>
+
+    <h2 class="policy-title" data-fr="Échanges" data-en="Exchanges">Échanges</h2>
+    <p class="policy-text" data-fr="Si vous souhaitez échanger un produit contre un autre, contactez-nous à mijahhair@gmail.com et nous ferons le nécessaire pour vous satisfaire." data-en="If you wish to exchange a product for another, contact us at mijahhair@gmail.com and we will do our best to satisfy you.">
+      Si vous souhaitez échanger un produit contre un autre, contactez-nous à <a href="mailto:mijahhair@gmail.com" style="color:#4a6e3d;">mijahhair@gmail.com</a> et nous ferons le nécessaire pour vous satisfaire.
+    </p>
+
+    <h2 class="policy-title" data-fr="Contact" data-en="Contact">Contact</h2>
+    <p class="policy-text" data-fr="Pour toute question relative aux retours, contactez notre service client :" data-en="For any question related to returns, contact our customer service:">
+      Pour toute question relative aux retours, contactez notre service client :
+    </p>
+    <ul class="policy-list">
+      <li>Email : <a href="mailto:mijahhair@gmail.com" style="color:#4a6e3d;">mijahhair@gmail.com</a></li>
+      <li data-fr="Délai de réponse : 24-48h" data-en="Response time: 24-48h">Délai de réponse : 24-48h</li>
+    </ul>
+
+  </div>
+</main>
+
+<!-- ── FOOTER ─────────────────────────────────── -->
+<footer class="py-16 px-6 lg:px-12" style="background:#16210f;">
+  <div class="max-w-7xl mx-auto">
+    <div class="grid md:grid-cols-4 gap-10 mb-12">
+      <div class="md:col-span-2">
+        <img src="photosAndvideos/MîJah.Logo.jpeg.jpeg" alt="MÎJAH" style="height:75px;width:auto;object-fit:contain;margin-bottom:16px;" />
+        <p style="font-size:0.82rem;color:rgba(255,255,255,0.42);margin-top:4px;line-height:1.75;max-width:270px;font-weight:300;">
+          Premium natural care for Afro & Curly hair.<br>Formulated with love in France.
+        </p>
+        <div style="display:flex;gap:11px;margin-top:22px;">
+          <a href="https://www.instagram.com/mijah_hair?igsh=MXg0dmRkenRmYWFlZA==" target="_blank" style="width:36px;height:36px;border-radius:50%;border:1px solid rgba(255,255,255,0.14);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.48);transition:all 0.25s;" onmouseover="this.style.borderColor='rgba(212,168,83,0.5)';this.style.color='#e8c98a'" onmouseout="this.style.borderColor='rgba(255,255,255,0.14)';this.style.color='rgba(255,255,255,0.48)'">
+            <i class="ph ph-instagram-logo" style="font-size:1rem;"></i>
+          </a>
+          <a href="https://www.tiktok.com/@mijahhair?_r=1&_t=ZN-94O6pbmK9tW" target="_blank" style="width:36px;height:36px;border-radius:50%;border:1px solid rgba(255,255,255,0.14);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.48);transition:all 0.25s;" onmouseover="this.style.borderColor='rgba(212,168,83,0.5)';this.style.color='#e8c98a'" onmouseout="this.style.borderColor='rgba(255,255,255,0.14)';this.style.color='rgba(255,255,255,0.48)'">
+            <i class="ph ph-tiktok-logo" style="font-size:1rem;"></i>
+          </a>
+        </div>
+      </div>
+      <div>
+        <p style="font-size:0.68rem;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:rgba(255,255,255,0.36);margin-bottom:16px;" data-fr="Produits" data-en="Products">Produits</p>
+        <ul style="list-style:none;">
+          <li><a class="foot-link" href="product-elixir.html">Elixir Anti-Chute</a></li>
+          <li><a class="foot-link" href="product-rosemary.html">Rosemary Hair Growth Oil</a></li>
+          <li><a class="foot-link" href="product-mango.html">Mango Hair Butter</a></li>
+          <li><a class="foot-link" href="collection.html#bundle">The Complete Set</a></li>
+        </ul>
+      </div>
+      <div>
+        <p style="font-size:0.68rem;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:rgba(255,255,255,0.36);margin-bottom:16px;" data-fr="La Marque" data-en="Company">La Marque</p>
+        <ul style="list-style:none;">
+          <li><a class="foot-link" href="about.html">Notre Histoire</a></li>
+          <li><a class="foot-link" href="about.html#ingredients">Ingrédients</a></li>
+          <li><a class="foot-link" href="stockists.html">Points de Vente</a></li>
+          <li><a class="foot-link" href="contact.html">Contact</a></li>
+          <li><a class="foot-link" href="retours.html" data-fr="Politique de Retour" data-en="Return Policy">Politique de Retour</a></li>
+        </ul>
+      </div>
+    </div>
+    <div style="border-top:1px solid rgba(255,255,255,0.07);padding-top:22px;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:12px;">
+      <p style="font-size:0.73rem;color:rgba(255,255,255,0.28);" data-fr="© 2025 MÎJAH. Tous droits réservés. Fait avec amour en France." data-en="© 2025 MÎJAH. All rights reserved. Made with care in France.">
+        © 2025 MÎJAH. Tous droits réservés. Fait avec amour en France.
+      </p>
+      <div style="display:flex;gap:22px;">
+        <a href="retours.html" style="font-size:0.73rem;color:rgba(255,255,255,0.28);text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='rgba(255,255,255,0.6)'" onmouseout="this.style.color='rgba(255,255,255,0.28)'" data-fr="Politique de Retour" data-en="Return Policy">Politique de Retour</a>
+        <a href="#" style="font-size:0.73rem;color:rgba(255,255,255,0.28);text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='rgba(255,255,255,0.6)'" onmouseout="this.style.color='rgba(255,255,255,0.28)'">Privacy Policy</a>
+        <a href="#" style="font-size:0.73rem;color:rgba(255,255,255,0.28);text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='rgba(255,255,255,0.6)'" onmouseout="this.style.color='rgba(255,255,255,0.28)'">Terms of Service</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="//code.tidio.co/nvadwt66knsyuuhpt7zxbaogkaatl5nk.js" async></script>
+</body>
+</html>
