@@ -434,7 +434,12 @@
     @media (max-width: 767px) {
       /* Hero */
       #hero .max-w-7xl { padding-top: 100px !important; padding-bottom: 60px !important; }
+      .js-video-wrap { aspect-ratio: 4/5 !important; }
       .js-video-wrap .vid-overlay { padding: 20px 24px !important; }
+      /* Mobile: replace brand video with image */
+      .js-video-desktop { display: none !important; }
+      .js-video-mobile-img { display: block !important; }
+      #sound-btn { display: none !important; }
 
       /* Hero CTAs */
       #h-ctas { flex-direction: column !important; align-items: flex-start !important; }
@@ -740,12 +745,14 @@
   <div style="position:absolute;bottom:-8%;left:-2%;width:200px;opacity:0.06;pointer-events:none;transform:rotate(-20deg);">
     <svg viewBox="0 0 200 300" fill="none"><path d="M100 10C150 60 180 120 160 200C140 270 80 290 40 260C10 240 20 180 40 140C60 100 50 50 100 10Z" fill="#aac59e"/></svg>
   </div>
-  <!-- Full-width video — no extra padding, seamless edge-to-edge -->
-  <div class="js-video-wrap" style="position:relative;aspect-ratio:16/9;overflow:hidden;">
-    <video id="mijah-video" autoplay muted loop playsinline preload="none"
-           style="width:100%;height:100%;object-fit:cover;display:block;">
+  <!-- Full-width video — fits whole frame, no cropping -->
+  <div class="js-video-wrap" style="position:relative;aspect-ratio:16/9;overflow:hidden;background:#2b3d24;">
+    <video id="mijah-video" class="js-video-desktop" autoplay muted loop playsinline preload="none"
+           style="width:100%;height:100%;object-fit:contain;display:block;">
       <source src="photosAndvideos/MîJah_commercial_clip_f1ry20.mp4" type="video/mp4">
     </video>
+    <img class="js-video-mobile-img" src="photosAndvideos/groupe.mijah.jpeg" alt="MÎJAH"
+         style="display:none;width:100%;height:100%;object-fit:cover;" loading="lazy" />
     <!-- Dark vignette + text overlay at bottom -->
     <div class="vid-overlay" style="position:absolute;inset:0;background:linear-gradient(0deg,rgba(22,33,15,0.72) 0%,rgba(22,33,15,0.10) 50%,transparent 100%);display:flex;align-items:flex-end;justify-content:space-between;padding:40px 48px;">
       <div>
