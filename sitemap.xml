@@ -96,4 +96,16 @@
     <priority>0.7</priority>
     <changefreq>monthly</changefreq>
   </url>
+  <url>
+    <loc>https://mijah.fr/blog-cheveux-boucles-hiver</loc>
+    <lastmod>2026-04-26</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://mijah.fr/blog-cowash-vs-shampoing</loc>
+    <lastmod>2026-04-26</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+  </url>
 </urlset>
