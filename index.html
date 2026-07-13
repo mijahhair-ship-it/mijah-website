@@ -626,24 +626,28 @@
   <style>
     @media (max-width: 640px) {
       #hero {
-        min-height: unset !important;
-        height: calc(100vw * 1024 / 1536) !important;
-        min-height: 260px !important;
-        max-height: 420px !important;
+        min-height: 100svh !important;
+        height: auto !important;
+        max-height: none !important;
       }
       #hero .hero-bg {
-        background-size: contain !important;
+        object-fit: cover !important;
+        background-size: cover !important;
         background-position: center center !important;
         background-repeat: no-repeat !important;
         background-color: #0a0a0a !important;
       }
       #hero .max-w-7xl {
-        padding-top: 20px !important;
-        padding-bottom: 20px !important;
+        padding-top: 96px !important;
+        padding-bottom: 84px !important;
       }
+      #h-head { font-size: clamp(2.25rem, 12vw, 3.3rem) !important; }
+      #h-sub { font-size: 0.9rem !important; max-width: 330px !important; }
+      #h-pills, #h-social, #h-scroll { display: none !important; }
       #hero .hero-overlay {
-        background: linear-gradient(to top, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.15) 60%, transparent 100%) !important;
+        background: linear-gradient(to top, rgba(0,0,0,0.82) 0%, rgba(0,0,0,0.45) 58%, rgba(0,0,0,0.20) 100%) !important;
       }
+      .mobile-france-strip { display: block !important; }
     }
   </style>
 
@@ -651,7 +655,7 @@
   <video class="hero-bg" id="hero-bg" autoplay muted loop playsinline webkit-playsinline preload="none" aria-hidden="true"
          poster="photosAndvideos/Mijah Black girls trio.jpg"
          style="object-fit:contain;object-position:center;width:100%;height:100%;">
-    <source data-src="photosAndvideos/Mijah.New.video.mp4" type="video/mp4" />
+    <source src="photosAndvideos/Mijah.New.video.mp4" type="video/mp4" />
   </video>
   <div class="hero-overlay"></div>
 
@@ -745,6 +749,16 @@
     </div>
   </div>
 
+</section>
+
+<section class="mobile-france-strip" style="display:none;background:#f4f7f0;padding:18px 16px;border-bottom:1px solid rgba(74,110,61,0.12);">
+  <a href="soins-cheveux-afro-france" style="display:flex;align-items:center;justify-content:space-between;gap:14px;text-decoration:none;color:#2b3d24;background:#fff;border:1px solid rgba(74,110,61,0.12);border-radius:16px;padding:16px;box-shadow:0 10px 24px rgba(43,61,36,0.08);">
+    <span>
+      <span style="display:block;font-size:0.64rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:#c09040;margin-bottom:4px;">Nouveau · France métropolitaine</span>
+      <span style="display:block;font-family:'Cormorant Garamond',serif;font-size:1.35rem;line-height:1.05;color:#2b3d24;">Soins cheveux afro en France</span>
+    </span>
+    <i class="ph-bold ph-arrow-right" style="font-size:1.1rem;color:#c09040;"></i>
+  </a>
 </section>
 
 <!-- ════════════════════════════════════════════════
