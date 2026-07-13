@@ -15,6 +15,12 @@
   force = true
 
 [[redirects]]
+  from = "/soins-cheveux-afro-france.html"
+  to = "/soins-cheveux-afro-france"
+  status = 301
+  force = true
+
+[[redirects]]
   from = "/blog.html"
   to = "/blog"
   status = 301

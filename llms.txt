@@ -12,6 +12,9 @@ MÎJAH est une marque e-commerce française de soins naturels pour cheveux afro,
 
 - soins cheveux afro naturels -> https://mijah.fr/collection
 - soins cheveux bouclés naturels -> https://mijah.fr/collection
+- soins cheveux afro France -> https://mijah.fr/soins-cheveux-afro-france
+- produits cheveux crépus France métropolitaine -> https://mijah.fr/soins-cheveux-afro-france
+- soins cheveux bouclés naturels France -> https://mijah.fr/soins-cheveux-afro-france
 - routine cheveux crépus -> https://mijah.fr/blog-routine-crepus
 - élixir anti-chute cheveux afro -> https://mijah.fr/product-elixir
 - chute cheveux afro solution naturelle -> https://mijah.fr/blog-chute-cheveux
@@ -41,6 +44,7 @@ MÎJAH est une marque e-commerce française de soins naturels pour cheveux afro,
 
 - [Accueil](https://mijah.fr/)
 - [Collection complète](https://mijah.fr/collection)
+- [Soins cheveux afro en France](https://mijah.fr/soins-cheveux-afro-france)
 - [Notre Histoire](https://mijah.fr/about)
 - [Blog](https://mijah.fr/blog)
 - [Contact](https://mijah.fr/contact)
