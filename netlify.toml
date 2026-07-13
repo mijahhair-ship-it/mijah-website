@@ -1,5 +1,6 @@
 [build]
-  publish = "."
+  publish = "dist"
+  command = "npm install && npm run build"
 
 [[redirects]]
   from = "/About.html"
@@ -76,5 +77,59 @@
 [[redirects]]
   from = "/blog-erreurs-cheveux-afro.html"
   to = "/blog-erreurs-cheveux-afro"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog-hydratation-cheveux-secs.html"
+  to = "/blog-hydratation-cheveux-secs"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog-pousse-cheveux-naturels.html"
+  to = "/blog-pousse-cheveux-naturels"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog-cheveux-boucles-hiver.html"
+  to = "/blog-cheveux-boucles-hiver"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog-cowash-vs-shampoing.html"
+  to = "/blog-cowash-vs-shampoing"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog-porosite-cheveux-afro.html"
+  to = "/blog-porosite-cheveux-afro"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog-routine-pousse-cheveux-4c.html"
+  to = "/blog-routine-pousse-cheveux-4c"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog-sceller-hydratation-cheveux.html"
+  to = "/blog-sceller-hydratation-cheveux"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/privacy.html"
+  to = "/privacy"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/terms.html"
+  to = "/terms"
   status = 301
   force = true

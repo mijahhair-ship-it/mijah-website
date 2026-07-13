@@ -16,6 +16,66 @@ const SHIPPING_ZONES = [
   { id:'intl',   fr:'International (Caraïbes, Amériques…)',en:'International (Caribbean, Americas…)',fee:19.99 },
 ];
 
+const PAYPAL_CLIENT_ID = 'Aaz6On1Loged87kr3EhV4uGYYhr74CGlJdS1YpXdUInAC_B9HFNn5HKtNdk0RQL0uPBjnQGxbIvZNGs9';
+const ORDER_NOTIFICATION_ENDPOINT = 'https://formspree.io/f/maqdrqbd';
+let paypalSdkPromise;
+
+function trackCommerceEvent(eventName, params = {}) {
+  if (typeof window.gtag === 'function') window.gtag('event', eventName, params);
+}
+
+function commerceItems(keys) {
+  return keys.map(id => ({
+    item_id: id,
+    item_name: PRODUCTS[id].fr,
+    price: PRODUCTS[id].price,
+    quantity: cart[id],
+  }));
+}
+
+function loadPayPalSdk() {
+  if (window.paypal) return Promise.resolve(window.paypal);
+  if (paypalSdkPromise) return paypalSdkPromise;
+
+  paypalSdkPromise = new Promise((resolve, reject) => {
+    const script = document.createElement('script');
+    script.src = `https://www.paypal.com/sdk/js?client-id=${PAYPAL_CLIENT_ID}&currency=EUR&intent=capture`;
+    script.async = true;
+    script.onload = () => window.paypal ? resolve(window.paypal) : reject(new Error('PayPal SDK unavailable'));
+    script.onerror = () => reject(new Error('PayPal SDK failed to load'));
+    document.head.appendChild(script);
+  });
+
+  return paypalSdkPromise;
+}
+
+async function notifyMerchant(order) {
+  const data = new FormData();
+  data.append('_subject', `Nouvelle commande MÎJAH — ${order.reference}`);
+  data.append('type', 'Commande payée');
+  data.append('reference', order.reference);
+  data.append('paypal_order_id', order.paypalOrderId);
+  data.append('paypal_status', order.paypalStatus);
+  data.append('customer', `${order.firstName} ${order.lastName}`);
+  data.append('email', order.email);
+  data.append('address', order.address);
+  data.append('postal_code', order.postal);
+  data.append('city', order.city);
+  data.append('country', order.country);
+  data.append('shipping_zone', order.zone);
+  data.append('items', order.items);
+  data.append('subtotal', `€${order.subtotal}`);
+  data.append('shipping', `€${order.shipping}`);
+  data.append('total', `€${order.total}`);
+
+  const response = await fetch(ORDER_NOTIFICATION_ENDPOINT, {
+    method: 'POST',
+    body: data,
+    headers: { Accept: 'application/json' },
+  });
+  if (!response.ok) throw new Error(`Order notification failed (${response.status})`);
+}
+
 /* France: dynamic fee based on total quantity & subtotal */
 function getFranceFee(totalQty, subtotal) {
   if (subtotal >= 50) return 0;
@@ -59,6 +119,16 @@ function closeCart() {
 function addToCart(id) {
   cart[id] = (cart[id] || 0) + 1;
   saveCart(); updateBadge(); renderCart(); openCart();
+  trackCommerceEvent('add_to_cart', {
+    currency: 'EUR',
+    value: PRODUCTS[id].price,
+    items: [{
+      item_id: id,
+      item_name: PRODUCTS[id].fr,
+      price: PRODUCTS[id].price,
+      quantity: 1,
+    }],
+  });
 }
 function removeFromCart(id) {
   delete cart[id];
@@ -130,6 +200,13 @@ function openCheckout() {
   if (!keys.length) return;
   const lang = typeof currentLang !== 'undefined' ? currentLang : (localStorage.getItem('mijahLang') || 'fr');
   const subtotal = keys.reduce((sum, id) => sum + PRODUCTS[id].price * cart[id], 0);
+
+  closeCart();
+  trackCommerceEvent('begin_checkout', {
+    currency: 'EUR',
+    value: subtotal,
+    items: commerceItems(keys),
+  });
 
   /* build zone options */
   const totalQty = keys.reduce((sum, id) => sum + cart[id], 0);
@@ -212,6 +289,9 @@ function openCheckout() {
       </div>
     </div>
 
+    <label class="co-label">${lang==='fr'?'Pays *':'Country *'}</label>
+    <input id="co-country" class="co-input" type="text" placeholder="${lang==='fr'?'France':'France'}" style="margin-bottom:18px;" required>
+
     <button onclick="submitOrder()" style="width:100%;padding:15px;background:linear-gradient(135deg,#2b3d24,#4a6e3d);color:#fff;border:none;border-radius:100px;font-family:'Jost',sans-serif;font-size:0.85rem;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;">
       <i class="ph ph-check-circle"></i> ${lang==='fr'?'Confirmer la commande':'Confirm Order'}
     </button>
@@ -242,14 +322,14 @@ function closeCheckout() {
   document.body.style.overflow = '';
 }
 
-function submitOrder() {
+async function submitOrder() {
   const lang = typeof currentLang !== 'undefined' ? currentLang : (localStorage.getItem('mijahLang') || 'fr');
 
   /* validate */
-  const fields = ['co-zone','co-firstname','co-lastname','co-email','co-address','co-postal','co-city'];
+  const fields = ['co-zone','co-firstname','co-lastname','co-email','co-address','co-postal','co-city','co-country'];
   for (const id of fields) {
     const el = document.getElementById(id);
-    if (!el || !el.value.trim()) {
+    if (!el || !el.value.trim() || (typeof el.checkValidity === 'function' && !el.checkValidity())) {
       el.style.borderColor = '#e55';
       el.focus();
       return;
@@ -270,6 +350,16 @@ function submitOrder() {
   const postal    = document.getElementById('co-postal').value;
   const city      = document.getElementById('co-city').value;
   const email     = document.getElementById('co-email').value;
+  const country   = document.getElementById('co-country').value;
+  const reference = `MIJAH-${Date.now().toString(36).toUpperCase()}`;
+  const items = commerceItems(keys);
+
+  trackCommerceEvent('add_shipping_info', {
+    currency: 'EUR',
+    value: Number(total),
+    shipping_tier: zone.id,
+    items,
+  });
 
   /* show PayPal payment step */
   document.getElementById('checkout-body').innerHTML = `
@@ -286,18 +376,81 @@ function submitOrder() {
       </div>
     </div>
     <p style="font-size:0.8rem;color:#777;text-align:center;margin-bottom:14px;">${lang==='fr'?'Paiement sécurisé via PayPal':'Secure payment via PayPal'}</p>
+    <div id="paypal-loading" style="padding:18px;text-align:center;color:#777;font-size:0.82rem;">${lang==='fr'?'Chargement du paiement sécurisé…':'Loading secure payment…'}</div>
     <div id="paypal-button-container"></div>
   `;
 
-  paypal.Buttons({
+  let paypalApi;
+  try {
+    paypalApi = await loadPayPalSdk();
+    document.getElementById('paypal-loading')?.remove();
+  } catch (error) {
+    console.error(error);
+    document.getElementById('checkout-body').insertAdjacentHTML('beforeend', `<p style="color:#b42318;text-align:center;font-size:0.82rem;">${lang==='fr'?'Le paiement ne peut pas être chargé. Vérifiez votre connexion et réessayez.':'Payment could not be loaded. Check your connection and try again.'}</p>`);
+    return;
+  }
+
+  paypalApi.Buttons({
     style: { layout:'vertical', color:'gold', shape:'pill', label:'pay' },
     createOrder: (data, actions) => actions.order.create({
+      application_context: { shipping_preference: 'GET_FROM_FILE', user_action: 'PAY_NOW' },
       purchase_units: [{
-        amount: { value: total, currency_code: 'EUR' },
-        description: 'MÎJAH — Commande'
+        custom_id: reference,
+        description: `MÎJAH — ${keys.map(id => `${PRODUCTS[id].fr} x${cart[id]}`).join(', ')}`.slice(0, 127),
+        amount: {
+          value: total,
+          currency_code: 'EUR',
+          breakdown: {
+            item_total: { value: subtotal.toFixed(2), currency_code: 'EUR' },
+            shipping: { value: fee.toFixed(2), currency_code: 'EUR' },
+          },
+        },
+        items: keys.map(id => ({
+          name: PRODUCTS[id].fr,
+          sku: id,
+          quantity: String(cart[id]),
+          category: 'PHYSICAL_GOODS',
+          unit_amount: { value: PRODUCTS[id].price.toFixed(2), currency_code: 'EUR' },
+        })),
       }]
     }),
-    onApprove: (data, actions) => actions.order.capture().then(() => {
+    onApprove: (data, actions) => actions.order.capture().then(async details => {
+      const paypalStatus = details.status || 'COMPLETED';
+      const paypalOrderId = details.id || data.orderID;
+      const itemSummary = keys.map(id => `${PRODUCTS[id].fr} x${cart[id]}`).join(' | ');
+      const orderRecord = {
+        reference,
+        paypalOrderId,
+        paypalStatus,
+        firstName,
+        lastName,
+        email,
+        address,
+        postal,
+        city,
+        country,
+        zone: lang === 'fr' ? zone.fr : zone.en,
+        items: itemSummary,
+        subtotal: subtotal.toFixed(2),
+        shipping: fee.toFixed(2),
+        total,
+      };
+
+      try {
+        await notifyMerchant(orderRecord);
+      } catch (error) {
+        console.error('Order notification error:', error);
+      }
+
+      trackCommerceEvent('purchase', {
+        transaction_id: paypalOrderId,
+        affiliation: 'MÎJAH',
+        currency: 'EUR',
+        value: Number(total),
+        shipping: fee,
+        items,
+      });
+
       cart = {};
       saveCart();
       updateBadge();
@@ -307,7 +460,7 @@ function submitOrder() {
             <i class="ph ph-check" style="font-size:2rem;color:#fff;"></i>
           </div>
           <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.5rem;color:#2b3d24;margin-bottom:8px;">${lang==='fr'?'Paiement confirmé !':'Payment Confirmed!'}</h3>
-          <p style="font-size:0.85rem;color:#777;line-height:1.6;">${lang==='fr'?`Merci ${firstName}, votre commande de <strong>€${total}</strong> a bien été reçue. Un email de confirmation vous sera envoyé.`:`Thank you ${firstName}, your order of <strong>€${total}</strong> has been received. A confirmation email will be sent to you.`}</p>
+          <p style="font-size:0.85rem;color:#777;line-height:1.6;">${lang==='fr'?`Merci, votre commande de <strong>€${total}</strong> a bien été reçue. Conservez la référence <strong>${reference}</strong> et votre reçu PayPal.`:`Thank you, your order of <strong>€${total}</strong> has been received. Keep reference <strong>${reference}</strong> and your PayPal receipt.`}</p>
         </div>`;
     }),
     onError: (err) => {

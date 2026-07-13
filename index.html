@@ -6,8 +6,8 @@
   <meta name="theme-color" content="#2b3d24" />
   <link rel="icon" type="image/png" href="/favicon.png" />
   <link rel="apple-touch-icon" href="/favicon.png" />
-  <title>MÎJAH — Soins Capillaires Naturels pour Cheveux Afro & Bouclés</title>
-  <meta name="description" content="MÎJAH — Soins capillaires naturels formulés en France pour cheveux afro et bouclés. Romarin, mangue, batana, ricin. Élixir anti-chute, huile de croissance, beurre capillaire. Livraison Europe." />
+  <title>Soins Cheveux Afro & Bouclés Naturels | MÎJAH France</title>
+  <meta name="description" content="Soins capillaires naturels MÎJAH pour cheveux afro, bouclés et crépus : élixir anti-chute, huile de romarin et beurre de mangue. Formulé en France." />
   <meta name="keywords" content="soins cheveux afro, cheveux bouclés, cheveux métissés, élixir anti-chute, huile rosemary, beurre de mangue, soin naturel, pousse cheveux, cheveux naturels, afro hair care, curly hair france" />
   <meta name="author" content="MÎJAH" />
   <meta name="robots" content="index, follow" />
@@ -18,15 +18,17 @@
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="MÎJAH" />
-  <meta property="og:title" content="MÎJAH — Soins Naturels pour Cheveux Afro & Bouclés" />
-  <meta property="og:description" content="Découvrez les soins capillaires naturels MÎJAH : Élixir Anti-Chute, Huile de Croissance Rosemary et Beurre de Mangue. Formulés pour cheveux Afro, Bouclés et Métissés." />
+  <meta property="og:title" content="Soins Cheveux Afro & Bouclés Naturels | MÎJAH France" />
+  <meta property="og:description" content="Élixir anti-chute, huile de romarin et beurre de mangue pour cheveux afro, bouclés et crépus. Formules naturelles développées en France." />
   <meta property="og:image" content="https://mijah.fr/photosAndvideos/Mijah%20Black%20girls%20trio.jpg" />
+  <meta property="og:image:width" content="1536" />
+  <meta property="og:image:height" content="1024" />
   <meta property="og:url" content="https://mijah.fr/" />
   <meta property="og:locale" content="fr_FR" />
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="MÎJAH — Soins Naturels pour Cheveux Afro & Bouclés" />
-  <meta name="twitter:description" content="Découvrez les soins capillaires naturels MÎJAH : Élixir Anti-Chute, Huile de Croissance Rosemary et Beurre de Mangue." />
+  <meta name="twitter:title" content="Soins Cheveux Afro & Bouclés Naturels | MÎJAH France" />
+  <meta name="twitter:description" content="Élixir anti-chute, huile de romarin et beurre de mangue pour cheveux afro, bouclés et crépus." />
   <meta name="twitter:image" content="https://mijah.fr/photosAndvideos/Mijah%20Black%20girls%20trio.jpg" />
   <!-- Structured Data -->
   <script type="application/ld+json">
@@ -47,16 +49,7 @@
     "sameAs": [
       "https://www.instagram.com/mijah_hair",
       "https://www.tiktok.com/@mijahhair"
-    ]
-  }
-  </script>
-
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    "name": "MÎJAH",
-    "url": "https://mijah.fr/",
+    ],
     "aggregateRating": {
       "@type": "AggregateRating",
       "ratingValue": "4.9",
@@ -144,7 +137,7 @@
   <link rel="preload" as="image" href="/photosAndvideos/Mijah%20Black%20girls%20trio.jpg" fetchpriority="high" />
 
   <!-- Tailwind CSS CDN -->
-  <script src="https://cdn.tailwindcss.com" defer></script>
+  <link rel="stylesheet" href="/output.css" />
 
   <!-- Google Fonts: Cormorant Garamond (serif) + Jost (sans) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -164,28 +157,7 @@
   <script src="cart.js?v=6" defer></script>
 
   <!-- Tailwind Config -->
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            sage: {
-              50:  '#f4f7f0', 100: '#e5ede0', 200: '#ccdcc4',
-              300: '#aac59e', 400: '#82a874', 500: '#5f8a50',
-              600: '#4a6e3d', 700: '#3d5a33', 800: '#33492b', 900: '#2b3d24',
-            },
-            cream: { 50: '#fefdf9', 100: '#faf8f0', 200: '#f5f0e4', 300: '#ede4d0' },
-            gold:  { 300: '#e8c98a', 400: '#d4a853', 500: '#c09040', 600: '#a67830' },
-            wood:  { 300: '#c4a882', 400: '#a8875c', 500: '#8b6f47', 600: '#725840' },
-          },
-          fontFamily: {
-            serif: ['Cormorant Garamond', 'Georgia', 'serif'],
-            sans:  ['Jost', 'system-ui', 'sans-serif'],
-          },
-        }
-      }
-    }
-  </script>
+
 
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
@@ -581,19 +553,10 @@
     .cart-item img{width:70px;height:70px;object-fit:contain;border-radius:12px;background:#f4f7f0;}
     .cart-qty-btn{width:26px;height:26px;border-radius:50%;border:1px solid rgba(74,110,61,0.2);background:#fff;cursor:pointer;font-size:1rem;display:flex;align-items:center;justify-content:center;color:#2b3d24;transition:background 0.2s;}
     .cart-qty-btn:hover{background:#f4f7f0;}
-    /* ── Checkout Overlay ── */
-    #checkout-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:20000;align-items:flex-end;justify-content:center;padding:0;}
-    #checkout-overlay.open{display:flex;}
-    #checkout-modal{background:#fff;border-radius:24px 24px 0 0;max-width:480px;width:100%;padding:28px 20px 32px;position:relative;box-shadow:0 -8px 40px rgba(0,0,0,0.2);max-height:92vh;overflow-y:auto;-webkit-overflow-scrolling:touch;}
-    @media(min-width:600px){#checkout-overlay{align-items:center;padding:20px;}#checkout-modal{border-radius:24px;max-height:85vh;}}
-    .co-label{display:block;font-size:0.75rem;font-weight:600;color:#2b3d24;letter-spacing:0.06em;text-transform:uppercase;margin-bottom:6px;}
-    .co-input{width:100%;padding:11px 14px;border:1.5px solid rgba(74,110,61,0.25);border-radius:10px;font-family:'Jost',sans-serif;font-size:0.85rem;color:#2b3d24;box-sizing:border-box;outline:none;transition:border-color 0.2s;}
-    .co-input:focus{border-color:#4a6e3d;}#paypal-modal{border-radius:24px;max-height:85vh;}}
   </style>
   <!-- Google Analytics — Remplace G-8C6EZBF8MC par ton Measurement ID (Google Analytics 4) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-8C6EZBF8MC"></script>
   <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-8C6EZBF8MC");</script>
-  <script src="https://www.paypal.com/sdk/js?client-id=Aaz6On1Loged87kr3EhV4uGYYhr74CGlJdS1YpXdUInAC_B9HFNn5HKtNdk0RQL0uPBjnQGxbIvZNGs9&currency=EUR"></script>
 </head>
 
 <body>
@@ -659,7 +622,7 @@
 <!-- ════════════════════════════════════════════════
      HERO
 ════════════════════════════════════════════════ -->
-<section id="hero" class="relative flex items-center" style="min-height:100vh;overflow:hidden;">
+<section id="hero" class="relative flex items-center" style="min-height:100vh;overflow:hidden;background:#0a0a0a;">
   <style>
     @media (max-width: 640px) {
       #hero {
@@ -685,10 +648,10 @@
   </style>
 
   <!-- Background + overlay -->
-  <video class="hero-bg" id="hero-bg" autoplay muted loop playsinline preload="auto"
+  <video class="hero-bg" id="hero-bg" muted loop playsinline preload="none" aria-hidden="true"
          poster="photosAndvideos/Mijah Black girls trio.jpg"
-         style="object-fit:cover;width:100%;height:100%;">
-    <source src="photosAndvideos/mijah.commercial.video.mp4" type="video/mp4" />
+         style="object-fit:contain;object-position:center;width:100%;height:100%;">
+    <source data-src="photosAndvideos/Mijah.New.video.mp4" type="video/mp4" />
   </video>
   <div class="hero-overlay"></div>
 
@@ -820,9 +783,9 @@
   </div>
   <!-- Full-width video — fits whole frame, no cropping -->
   <div class="js-video-wrap" style="position:relative;aspect-ratio:16/9;overflow:hidden;background:#2b3d24;">
-    <video id="mijah-video" class="js-video-desktop" autoplay muted loop playsinline preload="none"
+    <video id="mijah-video" class="js-video-desktop" muted loop playsinline preload="none"
            style="width:100%;height:100%;object-fit:contain;display:block;">
-      <source src="photosAndvideos/MîJah_commercial_clip_f1ry20.mp4" type="video/mp4">
+      <source data-src="photosAndvideos/MîJah_commercial_clip_f1ry20.mp4" type="video/mp4">
     </video>
     <img class="js-video-mobile-img" src="photosAndvideos/groupe.mijah.jpeg" alt="MÎJAH"
          style="display:none;width:100%;height:100%;object-fit:cover;" loading="lazy" />
@@ -855,6 +818,43 @@
     }
   </script>
 </section>
+
+<script>
+  (function loadDesktopVideosResponsibly() {
+    const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+    const shouldLoadVideo = window.matchMedia('(min-width: 768px)').matches
+      && !window.matchMedia('(prefers-reduced-motion: reduce)').matches
+      && !(connection && connection.saveData);
+
+    if (!shouldLoadVideo) return;
+
+    function loadVideo(video) {
+      if (!video || video.dataset.loaded === 'true') return;
+      const source = video.querySelector('source[data-src]');
+      if (!source) return;
+      source.src = source.dataset.src;
+      source.removeAttribute('data-src');
+      video.dataset.loaded = 'true';
+      video.load();
+      video.play().catch(() => {});
+    }
+
+    loadVideo(document.getElementById('hero-bg'));
+
+    const brandVideo = document.getElementById('mijah-video');
+    const brandSection = document.querySelector('.js-video-section');
+    if ('IntersectionObserver' in window && brandSection) {
+      const observer = new IntersectionObserver((entries) => {
+        if (!entries.some(entry => entry.isIntersecting)) return;
+        loadVideo(brandVideo);
+        observer.disconnect();
+      }, { rootMargin: '300px 0px' });
+      observer.observe(brandSection);
+    } else {
+      loadVideo(brandVideo);
+    }
+  })();
+</script>
 
 
 <!-- ════════════════════════════════════════════════
@@ -1365,72 +1365,72 @@
     <!-- 3 Article Cards -->
     <div class="grid md:grid-cols-3 gap-7 mb-12">
 
-      <!-- Article 1: Chute des cheveux -->
-      <a href="blog-chute-cheveux" class="block group" style="text-decoration:none;">
+      <!-- Article 1: Porosité cheveux afro -->
+      <a href="blog-porosite-cheveux-afro" class="block group" style="text-decoration:none;">
         <article style="background:#fff;border:1px solid rgba(43,61,36,0.1);border-radius:16px;
                         padding:32px 28px;height:100%;transition:box-shadow 0.3s,transform 0.3s;"
                  onmouseover="this.style.boxShadow='0 12px 36px rgba(43,61,36,0.10)';this.style.transform='translateY(-4px)'"
                  onmouseout="this.style.boxShadow='none';this.style.transform='translateY(0)'">
           <span class="badge badge-green" style="font-size:0.65rem;margin-bottom:18px;display:inline-block;"
-                data-fr="Chute des cheveux" data-en="Hair Loss">Chute des cheveux</span>
+                data-fr="Porosité" data-en="Porosity">Porosité</span>
           <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.35rem;font-weight:500;
                      color:#2b3d24;line-height:1.3;margin-bottom:12px;"
-              data-fr="Comment stopper la chute des cheveux naturellement"
-              data-en="How to Stop Hair Loss Naturally">
-            Comment stopper la chute des cheveux naturellement
+              data-fr="Porosité cheveux afro : comprendre et adapter sa routine"
+              data-en="Afro hair porosity: understand and adapt your routine">
+            Porosité cheveux afro : comprendre et adapter sa routine
           </h3>
           <p style="font-size:0.84rem;color:#666;line-height:1.75;font-weight:300;margin-bottom:20px;"
-             data-fr="Causes, solutions naturelles et la routine complète pour stopper la chute et relancer la pousse."
-             data-en="Causes, natural solutions and the complete routine to stop hair loss and restart growth.">
-            Causes, solutions naturelles et la routine complète pour stopper la chute et relancer la pousse.
+             data-fr="Faible ou forte porosité ? Le guide simple pour choisir les bons soins et garder l'hydratation."
+             data-en="Low or high porosity? A simple guide to choose the right care and keep hydration.">
+            Faible ou forte porosité ? Le guide simple pour choisir les bons soins et garder l'hydratation.
           </p>
           <span style="font-size:0.8rem;color:#4a6e3d;font-weight:500;letter-spacing:0.04em;text-transform:uppercase;"
                 data-fr="Lire l'article →" data-en="Read article →">Lire l'article →</span>
         </article>
       </a>
 
-      <!-- Article 2: Routine crépus -->
-      <a href="blog-routine-crepus" class="block group" style="text-decoration:none;">
+      <!-- Article 2: Routine pousse 4C -->
+      <a href="blog-routine-pousse-cheveux-4c" class="block group" style="text-decoration:none;">
         <article style="background:#fff;border:1px solid rgba(43,61,36,0.1);border-radius:16px;
                         padding:32px 28px;height:100%;transition:box-shadow 0.3s,transform 0.3s;"
                  onmouseover="this.style.boxShadow='0 12px 36px rgba(43,61,36,0.10)';this.style.transform='translateY(-4px)'"
                  onmouseout="this.style.boxShadow='none';this.style.transform='translateY(0)'">
           <span class="badge badge-green" style="font-size:0.65rem;margin-bottom:18px;display:inline-block;"
-                data-fr="Routine capillaire" data-en="Hair Routine">Routine capillaire</span>
+                data-fr="Pousse capillaire" data-en="Hair Growth">Pousse capillaire</span>
           <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.35rem;font-weight:500;
                      color:#2b3d24;line-height:1.3;margin-bottom:12px;"
-              data-fr="Routine complète cheveux crépus : les 3 étapes essentielles"
-              data-en="Complete Curly Hair Routine: the 3 Essential Steps">
-            Routine complète cheveux crépus : les 3 étapes essentielles
+              data-fr="Routine pousse cheveux 4C : cuir chevelu et longueurs"
+              data-en="4C hair growth routine: scalp and lengths">
+            Routine pousse cheveux 4C : cuir chevelu et longueurs
           </h3>
           <p style="font-size:0.84rem;color:#666;line-height:1.75;font-weight:300;margin-bottom:20px;"
-             data-fr="La méthode en 3 étapes pour transformer des cheveux crépus secs en boucles définies et hydratées."
-             data-en="The 3-step method to transform dry curly hair into defined, moisturised curls.">
-            La méthode en 3 étapes pour transformer des cheveux crépus secs en boucles définies et hydratées.
+             data-fr="Stimuler le cuir chevelu, limiter la casse et protéger les pointes pour conserver la longueur."
+             data-en="Stimulate the scalp, reduce breakage and protect ends to retain length.">
+            Stimuler le cuir chevelu, limiter la casse et protéger les pointes pour conserver la longueur.
           </p>
           <span style="font-size:0.8rem;color:#4a6e3d;font-weight:500;letter-spacing:0.04em;text-transform:uppercase;"
                 data-fr="Lire l'article →" data-en="Read article →">Lire l'article →</span>
         </article>
       </a>
 
-      <!-- Article 3: Huile de Romarin -->
-      <a href="blog-huile-romarin" class="block group" style="text-decoration:none;">
+      <!-- Article 3: Sceller l'hydratation -->
+      <a href="blog-sceller-hydratation-cheveux" class="block group" style="text-decoration:none;">
         <article style="background:#fff;border:1px solid rgba(43,61,36,0.1);border-radius:16px;
                         padding:32px 28px;height:100%;transition:box-shadow 0.3s,transform 0.3s;"
                  onmouseover="this.style.boxShadow='0 12px 36px rgba(43,61,36,0.10)';this.style.transform='translateY(-4px)'"
                  onmouseout="this.style.boxShadow='none';this.style.transform='translateY(0)'">
           <span class="badge badge-green" style="font-size:0.65rem;margin-bottom:18px;display:inline-block;"
-                data-fr="Ingrédients naturels" data-en="Natural Ingredients">Ingrédients naturels</span>
+                data-fr="Hydratation" data-en="Hydration">Hydratation</span>
           <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.35rem;font-weight:500;
                      color:#2b3d24;line-height:1.3;margin-bottom:12px;"
-              data-fr="Huile de Romarin : pourquoi elle fait pousser les cheveux"
-              data-en="Rosemary Oil: Why It Makes Your Hair Grow">
-            Huile de Romarin : pourquoi elle fait pousser les cheveux
+              data-fr="Sceller l'hydratation des cheveux afro et bouclés"
+              data-en="Seal hydration for afro and curly hair">
+            Sceller l'hydratation des cheveux afro et bouclés
           </h3>
           <p style="font-size:0.84rem;color:#666;line-height:1.75;font-weight:300;margin-bottom:20px;"
-             data-fr="La science derrière l'huile de romarin et comment l'utiliser pour une pousse optimale."
-             data-en="The science behind rosemary oil and how to use it for optimal hair growth.">
-            La science derrière l'huile de romarin et comment l'utiliser pour une pousse optimale.
+             data-fr="Comment garder l'eau dans la fibre capillaire avec les bons gestes, huiles et beurres."
+             data-en="How to keep water in the hair fiber with the right gestures, oils and butters.">
+            Comment garder l'eau dans la fibre capillaire avec les bons gestes, huiles et beurres.
           </p>
           <span style="font-size:0.8rem;color:#4a6e3d;font-weight:500;letter-spacing:0.04em;text-transform:uppercase;"
                 data-fr="Lire l'article →" data-en="Read article →">Lire l'article →</span>
@@ -1450,6 +1450,30 @@
         <span data-fr="Voir tous les articles" data-en="View all articles">Voir tous les articles</span>
         <i class="ph-bold ph-arrow-right" style="font-size:0.75rem;"></i>
       </a>
+    </div>
+
+    <div style="margin-top:64px;padding:34px 28px;border:1px solid rgba(74,110,61,0.12);background:#fff;border-radius:16px;text-align:left;">
+      <p style="font-size:0.68rem;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:#c09040;margin-bottom:16px;"
+         data-fr="Guides populaires" data-en="Popular guides">Guides populaires</p>
+      <h3 style="font-family:'Cormorant Garamond',serif;font-size:clamp(1.7rem,3vw,2.2rem);font-weight:400;color:#2b3d24;line-height:1.18;margin-bottom:14px;"
+          data-fr="Trouver le bon soin pour cheveux afro, bouclés et crépus"
+          data-en="Find the right care for afro, curly and coily hair">
+        Trouver le bon soin pour cheveux afro, bouclés et crépus
+      </h3>
+      <p style="font-size:0.9rem;line-height:1.8;color:#666;font-weight:300;max-width:760px;margin-bottom:22px;"
+         data-fr="Nos articles et soins répondent aux recherches les plus fréquentes : chute, pousse, hydratation, définition des boucles et routine naturelle."
+         data-en="Our guides and products answer the most common searches: hair loss, growth, hydration, curl definition and natural routines.">
+        Nos articles et soins répondent aux recherches les plus fréquentes : chute, pousse, hydratation, définition des boucles et routine naturelle.
+      </p>
+      <div style="display:flex;flex-wrap:wrap;gap:10px;">
+        <a href="product-elixir" style="padding:10px 14px;border-radius:100px;background:#f4f7f0;color:#2b3d24;text-decoration:none;font-size:0.82rem;font-weight:500;">élixir anti-chute cheveux afro</a>
+        <a href="product-rosemary" style="padding:10px 14px;border-radius:100px;background:#f4f7f0;color:#2b3d24;text-decoration:none;font-size:0.82rem;font-weight:500;">huile de romarin cheveux</a>
+        <a href="product-mango" style="padding:10px 14px;border-radius:100px;background:#f4f7f0;color:#2b3d24;text-decoration:none;font-size:0.82rem;font-weight:500;">beurre de mangue cheveux bouclés</a>
+        <a href="blog-routine-crepus" style="padding:10px 14px;border-radius:100px;background:#f4f7f0;color:#2b3d24;text-decoration:none;font-size:0.82rem;font-weight:500;">routine cheveux crépus</a>
+        <a href="blog-hydratation-cheveux-secs" style="padding:10px 14px;border-radius:100px;background:#f4f7f0;color:#2b3d24;text-decoration:none;font-size:0.82rem;font-weight:500;">hydratation cheveux afro secs</a>
+        <a href="blog-cowash-vs-shampoing" style="padding:10px 14px;border-radius:100px;background:#f4f7f0;color:#2b3d24;text-decoration:none;font-size:0.82rem;font-weight:500;">co-wash ou shampoing cheveux afro</a>
+        <a href="collection" style="padding:10px 14px;border-radius:100px;background:#2b3d24;color:#fff;text-decoration:none;font-size:0.82rem;font-weight:500;">soins cheveux afro naturels</a>
+      </div>
     </div>
 
   </div>
@@ -1611,17 +1635,17 @@
                 display:flex;flex-wrap:wrap;justify-content:space-between;
                 align-items:center;gap:12px;">
       <p style="font-size:0.73rem;color:rgba(255,255,255,0.28);"
-         data-fr="© 2024 MÎJAH. Tous droits réservés. Fait avec amour en France."
-         data-en="© 2024 MÎJAH. All rights reserved. Made with care in France.">
-        © 2024 MÎJAH. Tous droits réservés. Fait avec amour en France.
+         data-fr="© 2026 MÎJAH. Tous droits réservés. Fait avec amour en France."
+         data-en="© 2026 MÎJAH. All rights reserved. Made with care in France.">
+        © 2026 MÎJAH. Tous droits réservés. Fait avec amour en France.
       </p>
       <div style="display:flex;gap:22px;">
         <a href="retours.html" style="font-size:0.73rem;color:rgba(255,255,255,0.28);text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='rgba(255,255,255,0.6)'" onmouseout="this.style.color='rgba(255,255,255,0.28)'">Politique de Retour</a>
-        <a href="#" style="font-size:0.73rem;color:rgba(255,255,255,0.28);text-decoration:none;
+        <a href="privacy" style="font-size:0.73rem;color:rgba(255,255,255,0.28);text-decoration:none;
                            transition:color 0.2s;"
            onmouseover="this.style.color='rgba(255,255,255,0.6)'"
            onmouseout="this.style.color='rgba(255,255,255,0.28)'">Privacy Policy</a>
-        <a href="#" style="font-size:0.73rem;color:rgba(255,255,255,0.28);text-decoration:none;
+        <a href="terms" style="font-size:0.73rem;color:rgba(255,255,255,0.28);text-decoration:none;
                            transition:color 0.2s;"
            onmouseover="this.style.color='rgba(255,255,255,0.6)'"
            onmouseout="this.style.color='rgba(255,255,255,0.28)'">Terms of Service</a>
@@ -1939,60 +1963,22 @@
   </div>
 </div>
 
-
-<!-- ══ DISCOUNT POPUP ══════════════════════════ -->
-<div id="promo-overlay" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.55);z-index:10000;align-items:center;justify-content:center;padding:20px;">
-  <div style="background:#fff;border-radius:24px;max-width:420px;width:100%;overflow:hidden;box-shadow:0 24px 80px rgba(0,0,0,0.2);position:relative;animation:promoIn 0.45s cubic-bezier(0.34,1.56,0.64,1) both;">
-    <div style="background:linear-gradient(135deg,#2b3d24,#4a6e3d);padding:32px 28px 24px;text-align:center;position:relative;">
-      <button onclick="closePromo()" style="position:absolute;top:14px;right:16px;background:rgba(255,255,255,0.15);border:none;border-radius:50%;width:32px;height:32px;color:#fff;cursor:pointer;font-size:1rem;display:flex;align-items:center;justify-content:center;">✕</button>
-      <p style="font-size:0.7rem;letter-spacing:0.2em;text-transform:uppercase;color:rgba(212,168,83,0.9);margin-bottom:10px;" data-fr="Offre Exclusive" data-en="Exclusive Offer">Offre Exclusive</p>
-      <h2 style="font-family:'Cormorant Garamond',serif;font-size:2.8rem;font-weight:400;color:#fff;line-height:1;">-10%</h2>
-      <p style="font-family:'Cormorant Garamond',serif;font-size:1.3rem;color:rgba(255,255,255,0.85);margin-top:4px;" data-fr="sur votre première commande" data-en="on your first order">sur votre première commande</p>
-    </div>
-    <div style="padding:28px;text-align:center;">
-      <p style="font-size:0.85rem;color:#777;line-height:1.7;margin-bottom:20px;" data-fr="Inscrivez-vous et recevez votre code promo exclusif directement dans votre boîte mail." data-en="Sign up and receive your exclusive promo code directly in your inbox.">Inscrivez-vous et recevez votre code promo exclusif directement dans votre boîte mail.</p>
-      <input type="email" id="promo-email" placeholder="votre@email.com" data-fr-placeholder="votre@email.com" data-en-placeholder="your@email.com" style="width:100%;padding:13px 16px;border:1.5px solid rgba(74,110,61,0.25);border-radius:12px;font-family:'Jost',sans-serif;font-size:0.88rem;outline:none;margin-bottom:12px;box-sizing:border-box;" />
-      <button onclick="claimPromo()" style="width:100%;padding:14px;background:linear-gradient(135deg,#c09040,#d4a853);color:#fff;border:none;border-radius:100px;font-family:'Jost',sans-serif;font-size:0.85rem;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;cursor:pointer;" data-fr="Obtenir mon -10% →" data-en="Get my -10% →">Obtenir mon -10% →</button>
-      <p onclick="closePromo()" style="font-size:0.75rem;color:#bbb;margin-top:14px;cursor:pointer;text-decoration:underline;" data-fr="Non merci, je préfère payer plein tarif" data-en="No thanks, I'd rather pay full price">Non merci, je préfère payer plein tarif</p>
-    </div>
-  </div>
-</div>
-<style>
-  @keyframes promoIn { from { opacity:0; transform:scale(0.85); } to { opacity:1; transform:scale(1); } }
-</style>
 <script>
-  function closePromo() {
-    document.getElementById('promo-overlay').style.display = 'none';
-    sessionStorage.setItem('promoSeen', '1');
-  }
-  function claimPromo() {
-    const email = document.getElementById('promo-email').value;
-    const lang = localStorage.getItem('mijahLang') || 'fr';
-    if (!email || !email.includes('@')) {
-      alert(lang === 'en' ? 'Please enter a valid email address.' : 'Veuillez entrer une adresse email valide.');
-      return;
+  (function deferCustomerChat() {
+    let loaded = false;
+    function loadChat() {
+      if (loaded) return;
+      loaded = true;
+      const script = document.createElement('script');
+      script.src = 'https://code.tidio.co/nvadwt66knsyuuhpt7zxbaogkaatl5nk.js';
+      script.async = true;
+      document.body.appendChild(script);
     }
-    const thanks = lang === 'en' ? 'Thank you!' : 'Merci !';
-    const msg = lang === 'en'
-      ? `Your promo code <strong style="color:#c09040;">MIJAH10</strong> has been sent to <strong>${email}</strong>.`
-      : `Votre code promo <strong style="color:#c09040;">MIJAH10</strong> a été envoyé à <strong>${email}</strong>.`;
-    const cta = lang === 'en' ? 'Discover the Collection →' : 'Découvrir la Collection →';
-    document.getElementById('promo-overlay').innerHTML = `<div style="background:#fff;border-radius:24px;max-width:420px;width:100%;padding:48px 28px;text-align:center;box-shadow:0 24px 80px rgba(0,0,0,0.2);">
-      <div style="font-size:3rem;margin-bottom:16px;">🎉</div>
-      <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.8rem;color:#2b3d24;margin-bottom:10px;">${thanks}</h3>
-      <p style="font-size:0.85rem;color:#777;line-height:1.7;margin-bottom:20px;">${msg}</p>
-      <button onclick="closePromo()" style="padding:12px 32px;background:linear-gradient(135deg,#2b3d24,#4a6e3d);color:#fff;border:none;border-radius:100px;font-family:'Jost',sans-serif;font-size:0.85rem;cursor:pointer;">${cta}</button>
-    </div>`;
-  }
-  // Show popup after 6 seconds if not already seen
-  if (!sessionStorage.getItem('promoSeen')) {
-    setTimeout(() => {
-      const el = document.getElementById('promo-overlay');
-      el.style.display = 'flex';
-    }, 6000);
-  }
+    ['pointerdown', 'keydown', 'scroll'].forEach(eventName => {
+      window.addEventListener(eventName, loadChat, { once: true, passive: true });
+    });
+    window.setTimeout(loadChat, 12000);
+  })();
 </script>
-
-<script src="//code.tidio.co/nvadwt66knsyuuhpt7zxbaogkaatl5nk.js" async></script>
 </body>
 </html>

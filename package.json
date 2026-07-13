@@ -1,5 +1,13 @@
 {
   "name": "mijah-website",
   "version": "1.0.0",
-  "dependencies": {}
+  "scripts": {
+    "build:css": "tailwindcss -i src/input.css -o output.css --minify",
+    "build:site": "node scripts/build-site.mjs",
+    "build": "npm run build:css && npm run build:site",
+    "watch:css": "tailwindcss -i src/input.css -o output.css --watch"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.0"
+  }
 }
