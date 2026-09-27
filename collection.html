@@ -90,6 +90,45 @@
     .p-card:hover .p-card-img-wrap img{transform:scale(1.08)}
     .quick-add{position:absolute;bottom:0;left:0;right:0;transform:translateY(100%);transition:transform 0.4s;background:linear-gradient(135deg,#3d5a33,#4a6e3d);color:#fff;text-align:center;padding:13px;font-size:0.72rem;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;cursor:pointer}
     .p-card:hover .quick-add{transform:translateY(0)}
+    /* ── Cinematic product photos (full-bleed) ─── */
+    .p-card-img-wrap.cine { height: auto !important; aspect-ratio: 4 / 5; background: #1f2a1a !important; isolation: isolate; }
+    .p-card-img-wrap.cine img {
+      padding: 0 !important; object-fit: cover; object-position: center 40%;
+      transform: scale(1.04); filter: saturate(1.04) contrast(1.03);
+      transition: transform 2.4s cubic-bezier(0.16,1,0.3,1), filter 1.2s ease;
+    }
+    .p-card:hover .p-card-img-wrap.cine img { transform: scale(1.11) translateY(-1.5%); filter: saturate(1.1) contrast(1.06); }
+    /* vignette + top/bottom grade so badges and the quick-add bar stay legible */
+    .p-card-img-wrap.cine::before {
+      content: ''; position: absolute; inset: 0; z-index: 1; pointer-events: none;
+      background:
+        linear-gradient(to bottom, rgba(20,28,16,0.38) 0%, rgba(20,28,16,0) 22%, rgba(20,28,16,0) 70%, rgba(20,28,16,0.45) 100%),
+        radial-gradient(ellipse at center, rgba(0,0,0,0) 55%, rgba(0,0,0,0.28) 100%);
+    }
+    /* film grain + light sweep */
+    .p-card-img-wrap.cine::after {
+      content: ''; position: absolute; inset: -40% -60%; z-index: 1; pointer-events: none;
+      background:
+        linear-gradient(105deg, transparent 42%, rgba(255,240,210,0.22) 50%, transparent 58%),
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+      background-size: 100% 100%, 140px 140px;
+      background-position: -120% 0, 0 0;
+      mix-blend-mode: soft-light; opacity: 0.55;
+      transition: background-position 1.4s cubic-bezier(0.16,1,0.3,1);
+    }
+    .p-card:hover .p-card-img-wrap.cine::after { background-position: 220% 0, 0 0; }
+    .p-card-img-wrap.cine > div, .p-card-img-wrap.cine .quick-add { z-index: 2; }
+    /* scroll-in "camera push" — only armed when JS adds .cine-arm */
+    .p-card-img-wrap.cine.cine-arm { clip-path: inset(8% 6% 8% 6% round 18px); transition: clip-path 1.5s cubic-bezier(0.16,1,0.3,1); }
+    .p-card-img-wrap.cine.cine-arm img { transform: scale(1.28); }
+    .p-card-img-wrap.cine.cine-arm.is-in { clip-path: inset(0 0 0 0 round 0); }
+    .p-card-img-wrap.cine.cine-arm.is-in img { transform: scale(1.04); }
+    .p-card:hover .p-card-img-wrap.cine.cine-arm.is-in img { transform: scale(1.11) translateY(-1.5%); }
+    @media (prefers-reduced-motion: reduce) {
+      .p-card-img-wrap.cine img, .p-card-img-wrap.cine::after { transition: none; }
+      .p-card:hover .p-card-img-wrap.cine img { transform: scale(1.04); }
+    }
+
     /* Filter pills */
     .filter-pill{display:inline-flex;align-items:center;gap:6px;padding:8px 20px;border-radius:100px;border:1.5px solid rgba(74,110,61,0.22);background:transparent;font-family:'Jost',sans-serif;font-size:0.75rem;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;color:#4a6e3d;cursor:pointer;transition:all 0.25s}
     .filter-pill:hover,.filter-pill.active{background:#4a6e3d;color:#fff;border-color:#4a6e3d}
@@ -147,7 +186,7 @@
 <header id="site-header" class="header-glass fixed top-0 left-0 right-0 z-50">
   <nav class="max-w-7xl mx-auto px-6 lg:px-12 h-[66px] flex items-center justify-between">
     <a href="/" class="flex items-center gap-2.5 shrink-0">
-      <img src="photosAndvideos/MîJah.Logo.Png" alt="MÎJAH Logo" class="logo-anim" style="height:78px;width:auto;object-fit:contain;" />
+      <img src="photosAndvideos/mijah-logo.png" alt="MÎJAH Logo" class="logo-anim" style="height:48px;width:auto;object-fit:contain;" />
     </a>
     <div class="hidden md:flex items-center gap-9">
       <a href="collection" class="nav-link nav-active" data-fr="Collection" data-en="Collection">Collection</a>
@@ -214,9 +253,9 @@
 
       <!-- Elixir Anti-Chute -->
       <div class="p-card js-card" data-tags="scalp">
-        <div class="p-card-img-wrap" style="background:linear-gradient(135deg,#f4f7f0,#e5ede0);">
+        <div class="p-card-img-wrap cine" style="background:linear-gradient(135deg,#f4f7f0,#e5ede0);">
           <div style="position:absolute;top:14px;left:14px;z-index:2;"><span class="badge badge-green" data-fr="Anti-Chute" data-en="Anti Hair-Loss">Anti-Chute</span></div>
-          <img src="photosAndvideos/mijah anti-chute.png" alt="MÎJAH Elixir Anti-Chute" loading="lazy" />
+          <img src="photosAndvideos/mijah-elixir-anti-chute.jpg" alt="Elixir Anti-Chute MÎJAH 60 ml, flacon compte-gouttes entouré de romarin et d'huile" width="800" height="1034" loading="lazy" decoding="async" />
           <div class="quick-add"><i class="ph ph-plus-circle" style="margin-right:6px;"></i><span data-fr="Ajouter au Panier" data-en="Quick Add">Ajouter au Panier</span></div>
         </div>
         <div style="padding:24px 26px 26px;">
@@ -240,10 +279,10 @@
 
       <!-- Rosemary Hair Growth Oil -->
       <div class="p-card js-card" data-tags="growth scalp" style="transform:translateY(-20px);">
-        <div class="p-card-img-wrap" style="background:linear-gradient(135deg,#e5ede0,#ccdcc4);">
+        <div class="p-card-img-wrap cine" style="background:linear-gradient(135deg,#e5ede0,#ccdcc4);">
           <div style="position:absolute;top:14px;left:14px;z-index:2;"><span class="badge badge-green" data-fr="Pousse Capillaire" data-en="Hair Growth">Pousse Capillaire</span></div>
           <div style="position:absolute;top:14px;right:14px;z-index:2;background:linear-gradient(135deg,#c09040,#d4a853);color:#fff;padding:4px 12px;border-radius:100px;font-size:0.63rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;" data-fr="Meilleures Ventes" data-en="Best Seller">Meilleures Ventes</div>
-          <img src="photosAndvideos/Mijah hair growth oil.png" alt="MÎJAH Rosemary Hair Growth Oil" loading="lazy" />
+          <img src="photosAndvideos/mijah-rosemary-huile-croissance.jpg" alt="Huile de croissance Rosemary MÎJAH 100 ml sur pierre naturelle avec branches de romarin" width="800" height="1034" loading="lazy" decoding="async" />
           <div class="quick-add"><i class="ph ph-plus-circle" style="margin-right:6px;"></i><span data-fr="Ajouter au Panier" data-en="Quick Add">Ajouter au Panier</span></div>
         </div>
         <div style="padding:24px 26px 26px;">
@@ -268,9 +307,9 @@
 
       <!-- Mango Hair Butter -->
       <div class="p-card js-card" data-tags="moisturizing">
-        <div class="p-card-img-wrap" style="background:linear-gradient(135deg,#f7f4ed,#ede8d8);">
+        <div class="p-card-img-wrap cine" style="background:linear-gradient(135deg,#f7f4ed,#ede8d8);">
           <div style="position:absolute;top:14px;left:14px;z-index:2;"><span class="badge badge-green" data-fr="Hydratante" data-en="Moisturizing">Hydratante</span></div>
-          <img src="photosAndvideos/Mango Hair Butter.png" alt="MÎJAH Mango Hair Butter" loading="lazy" />
+          <img src="photosAndvideos/mijah-mango-beurre-capillaire.jpg" alt="Beurre capillaire Mango MÎJAH 150 ml avec mangue fraîche et noix de batana" width="800" height="1034" loading="lazy" decoding="async" />
           <div class="quick-add"><i class="ph ph-plus-circle" style="margin-right:6px;"></i><span data-fr="Ajouter au Panier" data-en="Quick Add">Ajouter au Panier</span></div>
         </div>
         <div style="padding:24px 26px 26px;">
@@ -379,8 +418,8 @@
   <div class="max-w-7xl mx-auto">
     <div class="grid md:grid-cols-4 gap-10 mb-10">
       <div class="md:col-span-2">
-        <img src="photosAndvideos/MîJah.Logo.Png" alt="MÎJAH" style="height:75px;width:auto;object-fit:contain;margin-bottom:16px;" />
-        <p style="font-size:0.82rem;color:rgba(255,255,255,0.42);margin-top:10px;line-height:1.75;max-width:270px;font-weight:300;" data-fr="Soin naturel premium pour cheveux Afro &amp; Bouclés.<br>Formulé avec amour en France." data-en="Premium natural care for Afro &amp; Curly hair.<br>Formulated with love in France.">Soin naturel premium pour cheveux Afro &amp; Bouclés.<br>Formulé avec amour en France.</p>
+        <img src="photosAndvideos/mijah-logo-light.png" alt="MÎJAH" style="height:54px;width:auto;object-fit:contain;margin-bottom:16px;" />
+        <p style="font-size:0.82rem;color:rgba(255,255,255,0.42);margin-top:10px;line-height:1.75;max-width:270px;font-weight:300;" data-fr="Soin naturel premium pour cheveux Afro &amp; Bouclés. Formulé avec amour en France." data-en="Premium natural care for Afro &amp; Curly hair. Formulated with love in France.">Soin naturel premium pour cheveux Afro &amp; Bouclés. Formulé avec amour en France.</p>
         <div style="display:flex;gap:11px;margin-top:20px;">
           <a href="https://www.instagram.com/mijah_hair?igsh=MXg0dmRkenRmYWFlZA==" target="_blank" style="width:34px;height:34px;border-radius:50%;border:1px solid rgba(255,255,255,0.14);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.48);transition:all 0.25s;" onmouseover="this.style.borderColor='rgba(212,168,83,0.5)';this.style.color='#e8c98a'" onmouseout="this.style.borderColor='rgba(255,255,255,0.14)';this.style.color='rgba(255,255,255,0.48)'"><i class="ph ph-instagram-logo"></i></a>
           <a href="https://www.tiktok.com/@mijahhair?_r=1&_t=ZN-94O6pbmK9tW" target="_blank" style="width:34px;height:34px;border-radius:50%;border:1px solid rgba(255,255,255,0.14);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.48);transition:all 0.25s;" onmouseover="this.style.borderColor='rgba(212,168,83,0.5)';this.style.color='#e8c98a'" onmouseout="this.style.borderColor='rgba(255,255,255,0.14)';this.style.color='rgba(255,255,255,0.48)'"><i class="ph ph-tiktok-logo"></i></a>
@@ -398,13 +437,15 @@
     </div>
     <div style="border-top:1px solid rgba(255,255,255,0.07);padding-top:20px;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:12px;">
       <p style="font-size:0.73rem;color:rgba(255,255,255,0.28);" data-fr="© 2026 MÎJAH. Tous droits réservés. Fabriqué en France." data-en="© 2026 MÎJAH. All rights reserved. Made in France.">© 2026 MÎJAH. Tous droits réservés. Fabriqué en France.</p>
-      <div style="display:flex;gap:20px;">
-        <a href="retours.html" style="font-size:0.73rem;color:rgba(255,255,255,0.28);text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='rgba(255,255,255,0.6)'" onmouseout="this.style.color='rgba(255,255,255,0.28)'">Politique de Retour</a><a href="privacy" class="foot-link" style="font-size:0.73rem;" data-fr="Politique de Confidentialité" data-en="Privacy Policy">Politique de Confidentialité</a><a href="terms" class="foot-link" style="font-size:0.73rem;" data-fr="Conditions d'Utilisation" data-en="Terms of Service">Conditions d'Utilisation</a></div>
+      <div style="display:flex;flex-wrap:wrap;gap:8px 20px;">
+        <a href="retours" class="foot-link" style="font-size:0.73rem;">Politique de Retour</a><a href="privacy" class="foot-link" style="font-size:0.73rem;" data-fr="Politique de Confidentialité" data-en="Privacy Policy">Politique de Confidentialité</a><a href="terms" class="foot-link" style="font-size:0.73rem;" data-fr="Conditions d'Utilisation" data-en="Terms of Service">Conditions d'Utilisation</a></div>
     </div>
   </div>
 </footer>
 
 <script>
+  // GSAP is loaded with `defer`, so wait for DOMContentLoaded (fires after deferred scripts run)
+  document.addEventListener('DOMContentLoaded', () => {
   gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
   // Scroll to bundle on hash
@@ -433,6 +474,27 @@
     c.addEventListener('mouseleave', () => gsap.to(c, { y: base,   duration:0.35, ease:'power2.out' }));
   });
 
+  /* ─── PRODUCT PHOTO camera push-in ───────────── */
+  (function () {
+    const wraps = document.querySelectorAll('.p-card-img-wrap.cine');
+    if (!wraps.length || !('IntersectionObserver' in window) ||
+        window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const io = new IntersectionObserver(entries => entries.forEach(e => {
+      if (!e.isIntersecting) return;
+      const w = e.target, img = w.querySelector('img');
+      w.classList.add('is-in');
+      io.unobserve(w);
+      // drop the stagger once revealed so hover zoom reacts instantly
+      setTimeout(() => { w.style.transitionDelay = ''; img.style.transitionDelay = ''; }, 2800);
+    }), { threshold: 0.25 });
+    wraps.forEach((w, i) => {
+      w.classList.add('cine-arm');
+      w.style.transitionDelay = (i * 0.14) + 's';
+      w.querySelector('img').style.transitionDelay = (i * 0.14) + 's';
+      io.observe(w);
+    });
+  })();
+
   // Filter pills
   const pills = document.querySelectorAll('.filter-pill');
   const cards = document.querySelectorAll('.js-card');
@@ -448,6 +510,8 @@
       });
     });
   });
+  });
+
   function toggleMobMenu() {
     var m = document.getElementById('mob-menu');
     if (m.classList.contains('open')) { m.classList.remove('open'); document.body.style.overflow=''; }

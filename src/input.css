@@ -70,3 +70,22 @@
     }
   }
 }
+
+/* ── Mobile framing ─────────────────────────────────────────────
+   `clip` (unlike `hidden`) stops sideways panning on iOS Safari
+   without turning <html>/<body> into scroll containers. */
+html, body { overflow-x: clip; }
+
+/* Closed cart drawer: slide it out with transform instead of parking it
+   at right:-420px, and hide it, so it can't widen the page on iPhone. */
+#cart-drawer {
+  right: 0 !important;
+  transform: translateX(105%);
+  visibility: hidden;
+  transition: transform 0.38s cubic-bezier(0.4,0,0.2,1), visibility 0s linear 0.38s !important;
+}
+#cart-drawer.open {
+  transform: none;
+  visibility: visible;
+  transition: transform 0.38s cubic-bezier(0.4,0,0.2,1), visibility 0s !important;
+}
