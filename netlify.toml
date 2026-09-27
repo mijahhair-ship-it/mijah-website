@@ -2,6 +2,20 @@
   publish = "dist"
   command = "npm install && npm run build"
 
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    X-Frame-Options = "SAMEORIGIN"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=(), interest-cohort=()"
+
+# Image/video filenames are not content-hashed, so cache for 7 days rather than a year.
+[[headers]]
+  for = "/photosAndvideos/*"
+  [headers.values]
+    Cache-Control = "public, max-age=604800, stale-while-revalidate=86400"
+
 [[redirects]]
   from = "/About.html"
   to = "/about"
@@ -137,5 +151,23 @@
 [[redirects]]
   from = "/terms.html"
   to = "/terms"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog-elixir-anti-chute-routine.html"
+  to = "/blog-elixir-anti-chute-routine"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog-beurre-mangue-cheveux-secs.html"
+  to = "/blog-beurre-mangue-cheveux-secs"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/mentions-legales.html"
+  to = "/mentions-legales"
   status = 301
   force = true

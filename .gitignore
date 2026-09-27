@@ -9,3 +9,6 @@ package-lock.json
 # Local notes / Claude Code
 tasks/
 .claude/
+
+# Supabase CLI local link metadata
+supabase/.temp/

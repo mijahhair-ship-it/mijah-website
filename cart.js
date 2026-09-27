@@ -9,6 +9,22 @@ const PRODUCTS = {
   trio:     { fr:'Le Coffret MÎJAH Trio', en:'The MÎJAH Trio Set',    price:45.80, img:'photosAndvideos/Mijah Trio with Ingredient.jpeg' }
 };
 
+// Supabase is the source of truth when available; keep the local catalogue as
+// a resilient fallback so the shop remains usable during a temporary outage.
+window.addEventListener('mijah:catalog-loaded', (event) => {
+  for (const product of event.detail || []) {
+    if (!PRODUCTS[product.slug]) continue;
+    PRODUCTS[product.slug] = {
+      ...PRODUCTS[product.slug],
+      fr: product.name || PRODUCTS[product.slug].fr,
+      price: Number(product.price),
+      img: product.image_url || PRODUCTS[product.slug].img,
+      stock: Number(product.stock ?? PRODUCTS[product.slug].stock ?? 0),
+    };
+  }
+  renderCart();
+});
+
 const SHIPPING_ZONES = [
   { id:'fr',     fr:'France métropolitaine',               en:'Metropolitan France',                fee:null  },
   { id:'domtom', fr:'DOM-TOM & Outre-mer',                en:'DOM-TOM & Overseas',                 fee:12.02 },

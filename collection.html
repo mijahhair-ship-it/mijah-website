@@ -51,6 +51,8 @@
   <script src="https://unpkg.com/@phosphor-icons/web@2.1.1/src/index.js" type="module"></script>
 
   <script src="lang.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
+  <script src="supabase-client.js" defer></script>
   <script src="cart.js?v=7" defer></script>
 
   <style>
@@ -172,8 +174,8 @@
   <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-8C6EZBF8MC");</script>
   <style>
     #cart-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.4);z-index:9998;}
-    #cart-drawer{position:fixed;top:0;right:-420px;width:100%;max-width:420px;height:100%;background:#fff;z-index:9999;display:flex;flex-direction:column;transition:right 0.38s cubic-bezier(0.4,0,0.2,1);box-shadow:-8px 0 40px rgba(0,0,0,0.12);}
-    #cart-drawer.open{right:0;}
+    #cart-drawer{position:fixed;top:0;right:0;width:100%;max-width:420px;height:100%;background:#fff;z-index:9999;display:flex;flex-direction:column;transform:translateX(105%);visibility:hidden;transition:transform 0.38s cubic-bezier(0.4,0,0.2,1),visibility 0s linear 0.38s;box-shadow:-8px 0 40px rgba(0,0,0,0.12);}
+    #cart-drawer.open{transform:translateX(0);visibility:visible;transition:transform 0.38s cubic-bezier(0.4,0,0.2,1),visibility 0s;}
     .cart-item{display:flex;align-items:flex-start;gap:14px;padding:14px 0;border-bottom:1px solid rgba(74,110,61,0.07);}
     .cart-item img{width:70px;height:70px;object-fit:contain;border-radius:12px;background:#f4f7f0;}
     .cart-qty-btn{width:26px;height:26px;border-radius:50%;border:1px solid rgba(74,110,61,0.2);background:#fff;cursor:pointer;font-size:1rem;display:flex;align-items:center;justify-content:center;color:#2b3d24;transition:background 0.2s;}
@@ -252,7 +254,7 @@
     <div class="grid md:grid-cols-3 gap-8 lg:gap-10" id="product-grid">
 
       <!-- Elixir Anti-Chute -->
-      <div class="p-card js-card" data-tags="scalp">
+      <div class="p-card js-card" data-tags="scalp" data-product-slug="elixir">
         <div class="p-card-img-wrap cine" style="background:linear-gradient(135deg,#f4f7f0,#e5ede0);">
           <div style="position:absolute;top:14px;left:14px;z-index:2;"><span class="badge badge-green" data-fr="Anti-Chute" data-en="Anti Hair-Loss">Anti-Chute</span></div>
           <img src="photosAndvideos/mijah-elixir-anti-chute.jpg" alt="Elixir Anti-Chute MÎJAH 60 ml, flacon compte-gouttes entouré de romarin et d'huile" width="800" height="1034" loading="lazy" decoding="async" />
@@ -278,7 +280,7 @@
       </div>
 
       <!-- Rosemary Hair Growth Oil -->
-      <div class="p-card js-card" data-tags="growth scalp" style="transform:translateY(-20px);">
+      <div class="p-card js-card" data-tags="growth scalp" data-product-slug="rosemary" style="transform:translateY(-20px);">
         <div class="p-card-img-wrap cine" style="background:linear-gradient(135deg,#e5ede0,#ccdcc4);">
           <div style="position:absolute;top:14px;left:14px;z-index:2;"><span class="badge badge-green" data-fr="Pousse Capillaire" data-en="Hair Growth">Pousse Capillaire</span></div>
           <div style="position:absolute;top:14px;right:14px;z-index:2;background:linear-gradient(135deg,#c09040,#d4a853);color:#fff;padding:4px 12px;border-radius:100px;font-size:0.63rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;" data-fr="Meilleures Ventes" data-en="Best Seller">Meilleures Ventes</div>
@@ -306,7 +308,7 @@
       </div>
 
       <!-- Mango Hair Butter -->
-      <div class="p-card js-card" data-tags="moisturizing">
+      <div class="p-card js-card" data-tags="moisturizing" data-product-slug="mango">
         <div class="p-card-img-wrap cine" style="background:linear-gradient(135deg,#f7f4ed,#ede8d8);">
           <div style="position:absolute;top:14px;left:14px;z-index:2;"><span class="badge badge-green" data-fr="Hydratante" data-en="Moisturizing">Hydratante</span></div>
           <img src="photosAndvideos/mijah-mango-beurre-capillaire.jpg" alt="Beurre capillaire Mango MÎJAH 150 ml avec mangue fraîche et noix de batana" width="800" height="1034" loading="lazy" decoding="async" />

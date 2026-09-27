@@ -49,21 +49,6 @@
     "sameAs": [
       "https://www.instagram.com/mijah_hair",
       "https://www.tiktok.com/@mijahhair"
-    ],
-    "aggregateRating": {
-      "@type": "AggregateRating",
-      "ratingValue": "4.9",
-      "bestRating": "5",
-      "worstRating": "1",
-      "reviewCount": "579"
-    },
-    "review": [
-      {"@type":"Review","author":{"@type":"Person","name":"Aissatou M."},"reviewRating":{"@type":"Rating","ratingValue":"5"},"reviewBody":"L'Huile de Romarin a transformé ma ligne capillaire en 6 semaines. Des résultats que je n'espérais pas — absolument incroyable."},
-      {"@type":"Review","author":{"@type":"Person","name":"Fatou D."},"reviewRating":{"@type":"Rating","ratingValue":"5"},"reviewBody":"Le beurre de mangue est incroyable. Mes boucles sont définies comme jamais. Ma routine est enfin complète !"},
-      {"@type":"Review","author":{"@type":"Person","name":"Naomi K."},"reviewRating":{"@type":"Rating","ratingValue":"5"},"reviewBody":"L'Élixir Anti-Chute a stoppé ma chute dès le premier mois. Mon cuir chevelu est en pleine santé et mes cheveux sont plus épais que jamais."},
-      {"@type":"Review","author":{"@type":"Person","name":"Khadija B."},"reviewRating":{"@type":"Rating","ratingValue":"5"},"reviewBody":"Enfin une marque qui comprend vraiment les cheveux afro ! Le trio complet est mon investissement beauté du siècle."},
-      {"@type":"Review","author":{"@type":"Person","name":"Solène T."},"reviewRating":{"@type":"Rating","ratingValue":"5"},"reviewBody":"Un packaging magnifique et des formules qui tiennent leurs promesses. On sent la qualité dès la première application — naturel, riche et profondément efficace."},
-      {"@type":"Review","author":{"@type":"Person","name":"Imane R."},"reviewRating":{"@type":"Rating","ratingValue":"5"},"reviewBody":"J'ai essayé des dizaines de produits pour mes cheveux 4C. Rien ne compare à l'Élixir MÎJAH. Ma chute a enfin stoppé."}
     ]
   }
   </script>
@@ -78,7 +63,7 @@
         "name": "MÎJAH convient à quel type de cheveux ?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "MÎJAH est formulé spécifiquement pour les cheveux afro, bouclés, crépus et frisés (types 2C à 4C). L'Élixir Anti-Chute et l'Huile Rosemary ciblent le cuir chevelu pour stimuler la pousse et stopper la chute, tandis que le Beurre de Mangue hydrate et définit les longueurs. Les trois produits conviennent à tous les niveaux de porosité et peuvent être utilisés ensemble en routine complète."
+          "text": "MÎJAH est formulé spécifiquement pour les cheveux afro, bouclés, crépus et frisés (types 2C à 4C). L'Élixir Anti-Chute et l'Huile Rosemary ciblent le cuir chevelu pour favoriser la pousse et aider à limiter la chute, tandis que le Beurre de Mangue hydrate et définit les longueurs. Les trois produits conviennent à tous les niveaux de porosité et peuvent être utilisés ensemble en routine complète."
         }
       },
       {
@@ -133,8 +118,8 @@
   }
   </script>
 
-  <!-- Preload hero poster for LCP -->
-  <link rel="preload" as="image" href="/photosAndvideos/mijah-shopping-cart-hero-wide.png" fetchpriority="high" />
+  <!-- Preload the actual hero video so mobile and desktop use the same experience. -->
+  <link rel="preload" as="video" href="/photosAndvideos/mijah-hero-video.mp4" type="video/mp4" fetchpriority="high" />
 
   <!-- Tailwind CSS CDN -->
   <link rel="stylesheet" href="/output.css" />
@@ -144,16 +129,19 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,600&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
 
+  <link rel="preload" as="image" href="photosAndvideos/mijah-hero-poster.webp" fetchpriority="high" />
   <!-- GSAP + ScrollTrigger + ScrollTo CDN -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js" defer></script>
 
   <!-- Phosphor Icons CDN -->
   <script src="https://unpkg.com/@phosphor-icons/web@2.1.1/src/index.js" type="module"></script>
 
   <!-- Language switcher -->
   <script src="lang.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
+  <script src="supabase-client.js" defer></script>
   <script src="cart.js?v=7" defer></script>
 
   <!-- Tailwind Config -->
@@ -201,18 +189,8 @@
       width: 100%; height: 100%;
       object-fit: cover;
       display: block;
-      background-image: url('photosAndvideos/mijah-shopping-cart-hero-wide.png');
-      background-size: cover;
-      background-position: center center;
-      background-repeat: no-repeat;
       background-color: #11160d;
       will-change: transform;
-    }
-    @media (prefers-reduced-motion: reduce) {
-      .hero-bg { display: none; }
-      #hero {
-        background: #11160d url('photosAndvideos/mijah-shopping-cart-hero-wide.png') center center / cover no-repeat !important;
-      }
     }
     .hero-overlay {
       position: absolute; inset: 0;
@@ -226,7 +204,8 @@
     .hero-line-wrap { display: block; }
     .hero-line { display: block; }
     @keyframes heroFadeUp { from { opacity:0; transform:translateY(24px); } to { opacity:1; transform:translateY(0); } }
-    .hero-line { animation: heroFadeUp 0.9s ease forwards; }
+    @keyframes heroSlideUp { from { transform:translateY(24px); } to { transform:translateY(0); } }
+    .hero-line { animation: heroSlideUp 0.9s ease both; }
     .hero-line:nth-child(1) { animation-delay: 0.1s; }
     .hero-line:nth-child(2) { animation-delay: 0.25s; }
     .hero-line:nth-child(3) { animation-delay: 0.4s; }
@@ -522,8 +501,16 @@
       .p-card-img-wrap img { padding: 16px !important; }
 
       /* Product grid — single column */
-      .grid.md\:grid-cols-3 { grid-template-columns: 1fr !important; gap: 20px !important; }
-      .p-card { transform: none !important; }
+      #products .grid.md\:grid-cols-3 {
+        grid-template-columns: minmax(0, 1fr) !important;
+        gap: 20px !important;
+        width: 100%;
+      }
+      #products .p-card {
+        width: 100%;
+        min-width: 0;
+        transform: none !important;
+      }
 
       /* Section padding */
       .py-24 { padding-top: 48px !important; padding-bottom: 48px !important; }
@@ -566,8 +553,8 @@
     .logo-anim:hover { animation-play-state: paused; filter: brightness(1.1) drop-shadow(0 4px 14px rgba(74,110,61,0.35)); transform: scale(1.06); }
     /* ── Cart Drawer ── */
     #cart-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.4);z-index:9998;}
-    #cart-drawer{position:fixed;top:0;right:-420px;width:100%;max-width:420px;height:100%;background:#fff;z-index:9999;display:flex;flex-direction:column;transition:right 0.38s cubic-bezier(0.4,0,0.2,1);box-shadow:-8px 0 40px rgba(0,0,0,0.12);}
-    #cart-drawer.open{right:0;}
+    #cart-drawer{position:fixed;top:0;right:0;width:100%;max-width:420px;height:100%;background:#fff;z-index:9999;display:flex;flex-direction:column;transform:translateX(105%);visibility:hidden;transition:transform 0.38s cubic-bezier(0.4,0,0.2,1),visibility 0s linear 0.38s;box-shadow:-8px 0 40px rgba(0,0,0,0.12);}
+    #cart-drawer.open{transform:translateX(0);visibility:visible;transition:transform 0.38s cubic-bezier(0.4,0,0.2,1),visibility 0s;}
     .cart-item{display:flex;align-items:flex-start;gap:14px;padding:14px 0;border-bottom:1px solid rgba(74,110,61,0.07);}
     .cart-item img{width:70px;height:70px;object-fit:contain;border-radius:12px;background:#f4f7f0;}
     .cart-qty-btn{width:26px;height:26px;border-radius:50%;border:1px solid rgba(74,110,61,0.2);background:#fff;cursor:pointer;font-size:1rem;display:flex;align-items:center;justify-content:center;color:#2b3d24;transition:background 0.2s;}
@@ -651,9 +638,6 @@
       }
       #hero .hero-bg {
         object-fit: cover !important;
-        background-size: cover !important;
-        background-position: center center !important;
-        background-repeat: no-repeat !important;
         background-color: #0a0a0a !important;
       }
       #hero .max-w-7xl {
@@ -671,9 +655,9 @@
   </style>
 
   <!-- Background + overlay -->
-  <video class="hero-bg" id="hero-bg" autoplay muted loop playsinline preload="metadata"
-         poster="photosAndvideos/mijah-shopping-cart-hero-wide.png" aria-hidden="true" tabindex="-1">
-    <source data-src="photosAndvideos/mijah-hero-video.mp4" type="video/mp4">
+  <video class="hero-bg" id="hero-bg" autoplay muted loop playsinline preload="auto" poster="photosAndvideos/mijah-hero-poster.webp"
+         aria-hidden="true" tabindex="-1" disablepictureinpicture>
+    <source src="photosAndvideos/mijah-hero-video.mp4" type="video/mp4">
   </video>
   <div class="hero-overlay"></div>
 
@@ -893,16 +877,16 @@
   })();
 
   (function loadHeroVideoResponsibly() {
-    const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || (connection && connection.saveData)) return;
     const video = document.getElementById('hero-bg');
-    const source = video && video.querySelector('source[data-src]');
-    if (!source) return;
-    source.src = source.dataset.src;
-    source.removeAttribute('data-src');
-    video.dataset.loaded = 'true';
+    if (!video) return;
+    video.muted = true;
+    video.setAttribute('muted', '');
+    video.setAttribute('playsinline', '');
     video.load();
-    video.play().catch(() => {});
+    video.play().catch(() => {
+      // iOS may delay autoplay until the first paint; retry once on load (the poster covers the gap).
+      window.addEventListener('load', () => video.play().catch(() => {}), { once: true });
+    });
   })();
 </script>
 
@@ -933,7 +917,7 @@
     <div class="grid md:grid-cols-3 gap-8 lg:gap-10 items-start">
 
       <!-- ── Card 1: Elixir Anti-Chute ── -->
-      <div class="p-card js-prod-card">
+      <div class="p-card js-prod-card" data-product-slug="elixir">
         <div class="p-card-img-wrap cine" style="background:linear-gradient(135deg,#f4f7f0,#e5ede0);">
           <div style="position:absolute;top:14px;left:14px;z-index:2;">
             <span class="badge badge-green" data-fr="Anti-Chute" data-en="Anti Hair-Loss">Anti-Chute</span>
@@ -968,7 +952,7 @@
       </div>
 
       <!-- ── Card 2: Rosemary Oil (FEATURED — elevated) ── -->
-      <div class="p-card js-prod-card" style="transform:translateY(-20px);">
+      <div class="p-card js-prod-card" data-product-slug="rosemary" style="transform:translateY(-20px);">
         <div class="p-card-img-wrap cine" style="background:linear-gradient(135deg,#e5ede0,#ccdcc4);">
           <div style="position:absolute;top:14px;left:14px;z-index:2;display:flex;flex-direction:column;gap:6px;align-items:flex-start;">
             <div style="background:linear-gradient(135deg,#c09040,#d4a853);color:#fff;
@@ -1010,7 +994,7 @@
       </div>
 
       <!-- ── Card 3: Mango Hair Butter ── -->
-      <div class="p-card js-prod-card">
+      <div class="p-card js-prod-card" data-product-slug="mango">
         <div class="p-card-img-wrap cine" style="background:linear-gradient(135deg,#f7f4ed,#ede8d8);">
           <div style="position:absolute;top:14px;left:14px;z-index:2;">
             <span class="badge badge-green" data-fr="Hydratante" data-en="Moisturizing">Hydratante</span>
@@ -1299,6 +1283,9 @@
      JAVASCRIPT — GSAP ANIMATIONS & LANGUAGE TOGGLE
 ════════════════════════════════════════════════ -->
 <script>
+  // Global kept for cart.js; GSAP is deferred, so run the animation code once it has loaded.
+  let currentLang = 'fr';
+  document.addEventListener('DOMContentLoaded', () => {
   gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
   /* ─── LOGO ANIMATIONS ───────────────────────── */
@@ -1507,7 +1494,6 @@
   }
 
   /* ─── LANGUAGE TOGGLE LOGIC ─────────────────── */
-  let currentLang = 'fr';
   function toggleLang() {
     // Switch language state
     currentLang = currentLang === 'fr' ? 'en' : 'fr';
@@ -1533,6 +1519,9 @@
       if (el) { el.style.fontWeight = enWeight; el.style.opacity = enOpacity; }
     });
   }
+  // Exposed for onclick handlers (toggleLang is provided by lang.js).
+  window.toggleMobMenu = toggleMobMenu;
+  });
 </script>
 
 

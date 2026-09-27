@@ -19,6 +19,7 @@ const allowedFiles = new Set([
   '_redirects',
   'BingSiteAuth.xml',
   'cart.js',
+  'supabase-client.js',
   'favicon.png',
   'lang.js',
   'llms.txt',

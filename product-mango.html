@@ -17,7 +17,7 @@
   <meta property="og:site_name" content="MÎJAH" />
   <meta property="og:title" content="Beurre de Mangue Cheveux Afro & Bouclés | MÎJAH" />
   <meta property="og:description" content="Soin naturel pour hydrater les cheveux texturés, nourrir les longueurs et définir les boucles." />
-  <meta property="og:image" content="https://mijah.fr/photosAndvideos/Mango%20Hair%20Butter.png" />
+  <meta property="og:image" content="https://mijah.fr/photosAndvideos/new%20Mango%20Beurre%20Capillaire.png" />
   <meta property="og:image:width" content="1024" />
   <meta property="og:image:height" content="1024" />
   <meta property="og:url" content="https://mijah.fr/product-mango" />
@@ -25,13 +25,13 @@
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Beurre de Mangue Cheveux Afro & Bouclés | MÎJAH" />
   <meta name="twitter:description" content="Soin naturel pour hydrater les cheveux texturés, nourrir les longueurs et définir les boucles." />
-  <meta name="twitter:image" content="https://mijah.fr/photosAndvideos/Mango%20Hair%20Butter.png" />
+  <meta name="twitter:image" content="https://mijah.fr/photosAndvideos/new%20Mango%20Beurre%20Capillaire.png" />
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "Product",
     "name": "Beurre de Mangue MÎJAH",
-    "image": "https://mijah.fr/photosAndvideos/Mango%20Hair%20Butter.png",
+    "image": "https://mijah.fr/photosAndvideos/new%20Mango%20Beurre%20Capillaire.png",
     "description": "Beurre capillaire naturel qui hydrate intensément les cheveux Afro et Bouclés pour des boucles définies et nourries. Riche en vitamines et acides gras essentiels. Pour tous types de cheveux texturés (2C à 4C). 100% naturel, vegan, cruelty-free. Sans sulfates, sans parabènes. Fabriqué en France. 150 ml / 5 fl oz.",
     "sku": "MIJAH-MANGO-150ML",
     "category": "Soins capillaires / Beurre hydratant longueurs",
@@ -46,13 +46,6 @@
       { "@type": "PropertyValue", "name": "Ingrédients clés", "value": "Beurre de mangue, Huiles botaniques, Vitamines A, C, E" },
       { "@type": "PropertyValue", "name": "Usage", "value": "Leave-in, masque hebdomadaire, scellant d'humidité" }
     ],
-    "aggregateRating": {
-      "@type": "AggregateRating",
-      "ratingValue": "4.7",
-      "bestRating": "5",
-      "worstRating": "1",
-      "ratingCount": "189"
-    },
     "offers": {
       "@type": "Offer",
       "price": "14.90",
@@ -60,7 +53,25 @@
       "availability": "https://schema.org/InStock",
       "itemCondition": "https://schema.org/NewCondition",
       "url": "https://mijah.fr/product-mango",
-      "seller": { "@type": "Organization", "name": "MÎJAH" }
+      "seller": { "@type": "Organization", "name": "MÎJAH" },
+      "shippingDetails": {
+        "@type": "OfferShippingDetails",
+        "shippingRate": { "@type": "MonetaryAmount", "value": "5.49", "currency": "EUR" },
+        "shippingDestination": { "@type": "DefinedRegion", "addressCountry": "FR" },
+        "deliveryTime": {
+          "@type": "ShippingDeliveryTime",
+          "handlingTime": { "@type": "QuantitativeValue", "minValue": 0, "maxValue": 1, "unitCode": "DAY" },
+          "transitTime": { "@type": "QuantitativeValue", "minValue": 2, "maxValue": 3, "unitCode": "DAY" }
+        }
+      },
+      "hasMerchantReturnPolicy": {
+        "@type": "MerchantReturnPolicy",
+        "applicableCountry": "FR",
+        "returnPolicyCategory": "https://schema.org/MerchantReturnFiniteReturnWindow",
+        "merchantReturnDays": 30,
+        "returnMethod": "https://schema.org/ReturnByMail",
+        "returnFees": "https://schema.org/FreeReturn"
+      }
     }
   }
   </script>
@@ -131,6 +142,8 @@
   <script src="https://unpkg.com/@phosphor-icons/web@2.1.1/src/index.js" type="module"></script>
   
   <script src="lang.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
+  <script src="supabase-client.js" defer></script>
   <script src="cart.js?v=7" defer></script>
   
   <style>
@@ -190,8 +203,8 @@
   <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-8C6EZBF8MC");</script>
   <style>
     #cart-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.4);z-index:9998;}
-    #cart-drawer{position:fixed;top:0;right:-420px;width:100%;max-width:420px;height:100%;background:#fff;z-index:9999;display:flex;flex-direction:column;transition:right 0.38s cubic-bezier(0.4,0,0.2,1);box-shadow:-8px 0 40px rgba(0,0,0,0.12);}
-    #cart-drawer.open{right:0;}
+    #cart-drawer{position:fixed;top:0;right:0;width:100%;max-width:420px;height:100%;background:#fff;z-index:9999;display:flex;flex-direction:column;transform:translateX(105%);visibility:hidden;transition:transform 0.38s cubic-bezier(0.4,0,0.2,1),visibility 0s linear 0.38s;box-shadow:-8px 0 40px rgba(0,0,0,0.12);}
+    #cart-drawer.open{transform:translateX(0);visibility:visible;transition:transform 0.38s cubic-bezier(0.4,0,0.2,1),visibility 0s;}
     .cart-item{display:flex;align-items:flex-start;gap:14px;padding:14px 0;border-bottom:1px solid rgba(74,110,61,0.07);}
     .cart-item img{width:70px;height:70px;object-fit:contain;border-radius:12px;background:#f4f7f0;}
     .cart-qty-btn{width:26px;height:26px;border-radius:50%;border:1px solid rgba(74,110,61,0.2);background:#fff;cursor:pointer;font-size:1rem;display:flex;align-items:center;justify-content:center;color:#2b3d24;transition:background 0.2s;}
@@ -251,8 +264,8 @@
       <!-- Image -->
       <div style="position:sticky;top:90px;">
         <div style="background:linear-gradient(135deg,#f7f4ed,#ede8d8);border-radius:28px;padding:40px;display:flex;align-items:center;justify-content:center;min-height:480px;position:relative;overflow:hidden;">
-          <img src="photosAndvideos/Mango Hair Butter.png" alt="Mango Hair Butter" id="prod-img"
-               style="width:340px;max-width:100%;filter:drop-shadow(0 20px 50px rgba(0,0,0,0.12));object-fit:contain;" loading="lazy" />
+      <img src="photosAndvideos/mango-beurre-capillaire-800.webp" width="800" height="1034" alt="Mango Hair Butter" id="prod-img" fetchpriority="high"
+               style="width:340px;max-width:100%;filter:drop-shadow(0 20px 50px rgba(0,0,0,0.12));object-fit:contain;height:auto;" />
         </div>
       </div>
       <!-- Details -->
@@ -266,10 +279,6 @@
           <p class="sec-label mb-2">Mango</p>
           <h1 style="font-family:'Cormorant Garamond',serif;font-size:clamp(2.2rem,4vw,3.2rem);font-weight:400;color:#2b3d24;line-height:1.1;margin-bottom:10px;" data-fr="Beurre de Mangue MÎJAH" data-en="MÎJAH Mango Hair Butter">Beurre de Mangue MÎJAH</h1>
           <p style="font-size:0.82rem;color:#999;letter-spacing:0.06em;">Beurre Nourrissante · Net 5 fl oz / 150 ml</p>
-        </div>
-        <div style="display:flex;align-items:center;gap:10px;">
-          <span style="color:#d4a853;font-size:0.9rem;letter-spacing:2px;">★★★★★</span>
-          <span style="font-size:0.8rem;color:#999;" data-fr="(167 avis)" data-en="(167 reviews)">(167 avis)</span>
         </div>
         <div style="display:flex;align-items:baseline;gap:14px;">
           <span style="display:flex;align-items:baseline;gap:8px;flex-wrap:wrap;"><span style="color:#111;text-decoration:line-through;text-decoration-thickness:2px;font-size:1rem;">€19.90</span><span class="price">€14.90</span></span>
@@ -348,8 +357,8 @@
       <h2 style="font-family:'Cormorant Garamond',serif;font-size:2.4rem;font-weight:400;color:#2b3d24;" data-fr="Vous Aimerez Aussi" data-en="You May Also Like">Vous Aimerez Aussi</h2>
     </div>
     <div class="grid md:grid-cols-2 gap-8 max-w-2xl mx-auto">
-      <a href="product-elixir" class="r-card"><div style="background:linear-gradient(135deg,#f4f7f0,#e5ede0);height:220px;display:flex;align-items:center;justify-content:center;padding:20px;"><img src="photosAndvideos/mijah anti-chute.png" alt="Elixir" style="height:100%;object-fit:contain;" loading="lazy" /></div><div style="padding:18px 20px;"><p class="sec-label mb-1">Elixir</p><h3 style="font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:500;color:#2b3d24;margin-bottom:4px;">Anti-Chute</h3><p style="font-size:0.82rem;color:#777;font-weight:300;"><span style="color:#111;text-decoration:line-through;text-decoration-thickness:2px;">€21.90</span> €18.10 · 60 ml</p></div></a>
-      <a href="product-rosemary" class="r-card"><div style="background:linear-gradient(135deg,#e5ede0,#ccdcc4);height:220px;display:flex;align-items:center;justify-content:center;padding:20px;"><img src="photosAndvideos/Mijah hair growth oil.png" alt="Rosemary Oil" style="height:100%;object-fit:contain;" loading="lazy" /></div><div style="padding:18px 20px;"><p class="sec-label mb-1" style="color:#c09040;">Rosemary</p><h3 style="font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:500;color:#2b3d24;margin-bottom:4px;" data-fr="Huile de Croissance" data-en="Hair Growth Oil">Huile de Croissance</h3><p style="font-size:0.82rem;color:#777;font-weight:300;">€12.80 · 100 ml</p></div></a>
+      <a href="product-elixir" class="r-card"><div style="background:linear-gradient(135deg,#f4f7f0,#e5ede0);height:220px;display:flex;align-items:center;justify-content:center;padding:20px;"><img src="photosAndvideos/elixir-anti-chute-800.webp" width="800" height="1034" alt="Elixir" style="height:100%;object-fit:contain;width:auto;" loading="lazy" /></div><div style="padding:18px 20px;"><p class="sec-label mb-1">Elixir</p><h3 style="font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:500;color:#2b3d24;margin-bottom:4px;">Anti-Chute</h3><p style="font-size:0.82rem;color:#777;font-weight:300;"><span style="color:#111;text-decoration:line-through;text-decoration-thickness:2px;">€21.90</span> €18.10 · 60 ml</p></div></a>
+      <a href="product-rosemary" class="r-card"><div style="background:linear-gradient(135deg,#e5ede0,#ccdcc4);height:220px;display:flex;align-items:center;justify-content:center;padding:20px;"><img src="photosAndvideos/rosemary-huile-croissance-800.webp" width="800" height="1034" alt="Rosemary Oil" style="height:100%;object-fit:contain;width:auto;" loading="lazy" /></div><div style="padding:18px 20px;"><p class="sec-label mb-1" style="color:#c09040;">Rosemary</p><h3 style="font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:500;color:#2b3d24;margin-bottom:4px;" data-fr="Huile de Croissance" data-en="Hair Growth Oil">Huile de Croissance</h3><p style="font-size:0.82rem;color:#777;font-weight:300;">€12.80 · 100 ml</p></div></a>
     </div>
     <div class="text-center mt-10"><a href="collection" class="btn-dark" style="font-size:0.82rem;padding:12px 28px;"><i class="ph ph-arrow-left"></i> <span data-fr="Voir toute la collection" data-en="View full collection">Voir toute la collection</span></a></div>
   </div>
