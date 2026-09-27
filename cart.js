@@ -3,10 +3,10 @@
    ═══════════════════════════════════════════════ */
 
 const PRODUCTS = {
-  elixir:   { fr:'Élixir Anti-Chute',     en:'Anti Hair-Loss Elixir', price:21.90, img:'photosAndvideos/mijah anti-chute.png' },
+  elixir:   { fr:'Élixir Anti-Chute',     en:'Anti Hair-Loss Elixir', price:18.10, img:'photosAndvideos/mijah anti-chute.png' },
   rosemary: { fr:'Huile de Croissance',   en:'Rosemary Growth Oil',   price:12.80, img:'photosAndvideos/Mijah hair growth oil.png' },
-  mango:    { fr:'Mango Hair Butter',     en:'Mango Hair Butter',     price:19.90, img:'photosAndvideos/Mango Hair Butter.png' },
-  trio:     { fr:'Le Coffret MÎJAH Trio', en:'The MÎJAH Trio Set',    price:49.90, img:'photosAndvideos/Mijah Trio with Ingredient.jpeg' }
+  mango:    { fr:'Mango Hair Butter',     en:'Mango Hair Butter',     price:14.90, img:'photosAndvideos/Mango Hair Butter.png' },
+  trio:     { fr:'Le Coffret MÎJAH Trio', en:'The MÎJAH Trio Set',    price:45.80, img:'photosAndvideos/Mijah Trio with Ingredient.jpeg' }
 };
 
 const SHIPPING_ZONES = [

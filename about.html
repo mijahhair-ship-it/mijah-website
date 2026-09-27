@@ -106,6 +106,51 @@
       .grid.md\:grid-cols-2,.grid.md\:grid-cols-3{grid-template-columns:1fr!important}
       .btn-gold{width:100%!important;justify-content:center!important}
     }
+    .marquee-outer { overflow: hidden; }
+    .marquee-track {
+      display: flex; gap: 0; width: max-content;
+      animation: marquee 38s linear infinite;
+    }
+    .marquee-track:hover { animation-play-state: paused; }
+    @keyframes marquee {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+    .t-card {
+      background: #fff; border: 1px solid rgba(74,110,61,0.09); border-radius: 20px;
+      padding: 26px 30px; min-width: 330px; max-width: 330px; margin: 0 10px;
+    }
+
+    #testimonials { scroll-margin-top:80px; }
+    @media(max-width:767px) {
+      #testimonials { background-attachment:scroll!important; }
+      #testimonials .t-card { min-width:280px; max-width:280px; padding:24px 20px; }
+    }
+    @media(prefers-reduced-motion:reduce) {
+      #testimonials .marquee-track { animation:none; }
+      #testimonials .marquee-outer { overflow-x:auto; }
+    }
+    /* ── CTA band ────────────────────────────────── */
+    .cta-band {
+      background:
+        linear-gradient(135deg, rgba(43,61,36,0.82) 0%, rgba(61,90,51,0.78) 55%, rgba(74,110,61,0.80) 100%),
+        url('photosAndvideos/woman%20holding%20Mijah%20product.jpeg') center/cover no-repeat;
+      position: relative; overflow: hidden;
+    }
+    .btn-ghost-white {
+      display: inline-flex; align-items: center; gap: 8px;
+      border: 1.5px solid rgba(255,255,255,0.45); color: rgba(255,255,255,0.88);
+      padding: 14px 32px; border-radius: 100px;
+      font-weight: 400; letter-spacing: 0.06em; font-size: 0.82rem;
+      text-decoration: none; cursor: pointer; background: transparent;
+      transition: background 0.25s, border-color 0.25s;
+    }
+    .btn-ghost-white:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.75); }
+    .cta-band { scroll-margin-top:80px; }
+    @media(max-width:767px) {
+      .cta-band { padding:48px 24px!important; }
+      .cta-band a { width:100%; justify-content:center; }
+    }
   </style>
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-8C6EZBF8MC"></script>
   <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-8C6EZBF8MC");</script>
@@ -398,22 +443,185 @@
   </div>
 </section>
 
-<!-- CTA -->
-<section class="py-20 px-6" style="background:linear-gradient(135deg,#2b3d24,#4a6e3d);text-align:center;">
-  <div style="max-width:600px;margin:0 auto;">
-    <p class="sec-label" style="color:#e8c98a;margin-bottom:16px;" data-fr="Prête à transformer vos cheveux ?" data-en="Ready to transform your hair?">Prête à transformer vos cheveux ?</p>
-    <div class="gold-line" style="margin:0 auto 24px;"></div>
-    <h2 style="font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,4vw,3rem);font-weight:400;color:#fff;margin-bottom:14px;"
-        data-fr="Découvrez la Collection" data-en="Discover the Collection">Découvrez la Collection</h2>
-    <p style="font-size:0.9rem;color:rgba(255,255,255,0.65);line-height:1.8;font-weight:300;margin-bottom:32px;"
-       data-fr="Nos 3 produits phares, formulés pour nourrir et embellir vos cheveux naturels."
-       data-en="Our 3 flagship products, formulated to nourish and beautify your natural hair.">
-      Nos 3 produits phares, formulés pour nourrir et embellir vos cheveux naturels.
+<!-- ════════════════════════════════════════════════
+     TESTIMONIAL MARQUEE
+════════════════════════════════════════════════ -->
+<section id="testimonials" class="py-24" style="background:#FEFDF9;overflow:hidden;background-image:url('photosAndvideos/mijah For all hair.jpg');background-size:cover;background-position:center;background-attachment:fixed;position:relative;">
+  <div style="position:absolute;inset:0;background:rgba(254,253,249,0.82);"></div>
+
+  <div style="position:relative;z-index:1;">
+  <div class="max-w-7xl mx-auto px-6 lg:px-12 text-center mb-14 js-test-hdr">
+    <p class="sec-label mb-4" data-fr="Avis de notre Communauté" data-en="Customer Love">Avis de notre Communauté</p>
+    <div class="gold-line mx-auto mb-6"></div>
+    <h2 style="font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,4vw,3.3rem);
+               font-weight:400;color:#2b3d24;"
+        data-fr="Ce que dit notre Communauté" data-en="What Our Community Says">
+      Ce que dit notre Communauté
+    </h2>
+  </div>
+
+  <div style="position:relative;">
+    <!-- Fade masks -->
+    <div style="position:absolute;left:0;top:0;bottom:0;width:110px;
+                background:linear-gradient(90deg,#FEFDF9,transparent);z-index:10;pointer-events:none;"></div>
+    <div style="position:absolute;right:0;top:0;bottom:0;width:110px;
+                background:linear-gradient(270deg,#FEFDF9,transparent);z-index:10;pointer-events:none;"></div>
+
+    <div class="marquee-outer" style="padding:8px 0 12px;">
+      <div class="marquee-track">
+
+        <!-- === 6 cards × 2 sets for seamless loop === -->
+
+        <div class="t-card">
+          <p style="color:#d4a853;font-size:0.8rem;letter-spacing:2px;margin-bottom:12px;">★★★★★</p>
+          <p style="font-size:0.88rem;color:#444;line-height:1.72;font-style:italic;margin-bottom:16px;">"The Rosemary Oil transformed my hairline in 6 weeks. Results I never expected from a product — absolutely incredible."</p>
+          <div style="display:flex;align-items:center;gap:10px;">
+            <div style="width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,#4a6e3d,#82a874);display:flex;align-items:center;justify-content:center;color:#fff;font-size:0.78rem;font-weight:600;">A</div>
+            <div><p style="font-size:0.8rem;font-weight:600;color:#2b3d24;">Aissatou M.</p><p style="font-size:0.7rem;color:#aaa;">Paris, France</p></div>
+          </div>
+        </div>
+
+        <div class="t-card">
+          <p style="color:#d4a853;font-size:0.8rem;letter-spacing:2px;margin-bottom:12px;">★★★★★</p>
+          <p style="font-size:0.88rem;color:#444;line-height:1.72;font-style:italic;margin-bottom:16px;">"Le beurre de mangue est incroyable. Mes boucles sont définies comme jamais. Ma routine est enfin complète !"</p>
+          <div style="display:flex;align-items:center;gap:10px;">
+            <div style="width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,#c09040,#e8c98a);display:flex;align-items:center;justify-content:center;color:#fff;font-size:0.78rem;font-weight:600;">F</div>
+            <div><p style="font-size:0.8rem;font-weight:600;color:#2b3d24;">Fatou D.</p><p style="font-size:0.7rem;color:#aaa;">Lyon, France</p></div>
+          </div>
+        </div>
+
+        <div class="t-card">
+          <p style="color:#d4a853;font-size:0.8rem;letter-spacing:2px;margin-bottom:12px;">★★★★★</p>
+          <p style="font-size:0.88rem;color:#444;line-height:1.72;font-style:italic;margin-bottom:16px;">"The Elixir Anti-Chute stopped my hair loss within the first month. My scalp feels healthy and my hair is thicker than ever."</p>
+          <div style="display:flex;align-items:center;gap:10px;">
+            <div style="width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,#3d5a33,#5f8a50);display:flex;align-items:center;justify-content:center;color:#fff;font-size:0.78rem;font-weight:600;">N</div>
+            <div><p style="font-size:0.8rem;font-weight:600;color:#2b3d24;">Naomi K.</p><p style="font-size:0.7rem;color:#aaa;">Brussels, Belgium</p></div>
+          </div>
+        </div>
+
+        <div class="t-card">
+          <p style="color:#d4a853;font-size:0.8rem;letter-spacing:2px;margin-bottom:12px;">★★★★★</p>
+          <p style="font-size:0.88rem;color:#444;line-height:1.72;font-style:italic;margin-bottom:16px;">"Enfin une marque qui comprend vraiment les cheveux afro ! Le trio complet est mon investissement beauté du siècle."</p>
+          <div style="display:flex;align-items:center;gap:10px;">
+            <div style="width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,#8b6f47,#c4a882);display:flex;align-items:center;justify-content:center;color:#fff;font-size:0.78rem;font-weight:600;">K</div>
+            <div><p style="font-size:0.8rem;font-weight:600;color:#2b3d24;">Khadija B.</p><p style="font-size:0.7rem;color:#aaa;">Marseille, France</p></div>
+          </div>
+        </div>
+
+        <div class="t-card">
+          <p style="color:#d4a853;font-size:0.8rem;letter-spacing:2px;margin-bottom:12px;">★★★★★</p>
+          <p style="font-size:0.88rem;color:#444;line-height:1.72;font-style:italic;margin-bottom:16px;">"Beautiful packaging and formulas that truly work. You feel the quality instantly — natural, rich, and deeply effective."</p>
+          <div style="display:flex;align-items:center;gap:10px;">
+            <div style="width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,#4a6e3d,#ccdcc4);display:flex;align-items:center;justify-content:center;color:#fff;font-size:0.78rem;font-weight:600;">S</div>
+            <div><p style="font-size:0.8rem;font-weight:600;color:#2b3d24;">Solène T.</p><p style="font-size:0.7rem;color:#aaa;">Bordeaux, France</p></div>
+          </div>
+        </div>
+
+        <div class="t-card">
+          <p style="color:#d4a853;font-size:0.8rem;letter-spacing:2px;margin-bottom:12px;">★★★★★</p>
+          <p style="font-size:0.88rem;color:#444;line-height:1.72;font-style:italic;margin-bottom:16px;">"J'ai essayé des dizaines de produits pour mes cheveux 4C. Rien ne compare à l'Élixir MÎJAH. Ma chute a enfin stoppé."</p>
+          <div style="display:flex;align-items:center;gap:10px;">
+            <div style="width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,#5f8a50,#e5ede0);display:flex;align-items:center;justify-content:center;color:#2b3d24;font-size:0.78rem;font-weight:600;">I</div>
+            <div><p style="font-size:0.8rem;font-weight:600;color:#2b3d24;">Imane R.</p><p style="font-size:0.7rem;color:#aaa;">Lille, France</p></div>
+          </div>
+        </div>
+
+        <!-- Duplicate set for seamless loop -->
+
+        <div class="t-card">
+          <p style="color:#d4a853;font-size:0.8rem;letter-spacing:2px;margin-bottom:12px;">★★★★★</p>
+          <p style="font-size:0.88rem;color:#444;line-height:1.72;font-style:italic;margin-bottom:16px;">"The Rosemary Oil transformed my hairline in 6 weeks. Results I never expected from a product — absolutely incredible."</p>
+          <div style="display:flex;align-items:center;gap:10px;">
+            <div style="width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,#4a6e3d,#82a874);display:flex;align-items:center;justify-content:center;color:#fff;font-size:0.78rem;font-weight:600;">A</div>
+            <div><p style="font-size:0.8rem;font-weight:600;color:#2b3d24;">Aissatou M.</p><p style="font-size:0.7rem;color:#aaa;">Paris, France</p></div>
+          </div>
+        </div>
+
+        <div class="t-card">
+          <p style="color:#d4a853;font-size:0.8rem;letter-spacing:2px;margin-bottom:12px;">★★★★★</p>
+          <p style="font-size:0.88rem;color:#444;line-height:1.72;font-style:italic;margin-bottom:16px;">"Le beurre de mangue est incroyable. Mes boucles sont définies comme jamais. Ma routine est enfin complète !"</p>
+          <div style="display:flex;align-items:center;gap:10px;">
+            <div style="width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,#c09040,#e8c98a);display:flex;align-items:center;justify-content:center;color:#fff;font-size:0.78rem;font-weight:600;">F</div>
+            <div><p style="font-size:0.8rem;font-weight:600;color:#2b3d24;">Fatou D.</p><p style="font-size:0.7rem;color:#aaa;">Lyon, France</p></div>
+          </div>
+        </div>
+
+        <div class="t-card">
+          <p style="color:#d4a853;font-size:0.8rem;letter-spacing:2px;margin-bottom:12px;">★★★★★</p>
+          <p style="font-size:0.88rem;color:#444;line-height:1.72;font-style:italic;margin-bottom:16px;">"The Elixir Anti-Chute stopped my hair loss within the first month. My scalp feels healthy and my hair is thicker than ever."</p>
+          <div style="display:flex;align-items:center;gap:10px;">
+            <div style="width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,#3d5a33,#5f8a50);display:flex;align-items:center;justify-content:center;color:#fff;font-size:0.78rem;font-weight:600;">N</div>
+            <div><p style="font-size:0.8rem;font-weight:600;color:#2b3d24;">Naomi K.</p><p style="font-size:0.7rem;color:#aaa;">Brussels, Belgium</p></div>
+          </div>
+        </div>
+
+        <div class="t-card">
+          <p style="color:#d4a853;font-size:0.8rem;letter-spacing:2px;margin-bottom:12px;">★★★★★</p>
+          <p style="font-size:0.88rem;color:#444;line-height:1.72;font-style:italic;margin-bottom:16px;">"Enfin une marque qui comprend vraiment les cheveux afro ! Le trio complet est mon investissement beauté du siècle."</p>
+          <div style="display:flex;align-items:center;gap:10px;">
+            <div style="width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,#8b6f47,#c4a882);display:flex;align-items:center;justify-content:center;color:#fff;font-size:0.78rem;font-weight:600;">K</div>
+            <div><p style="font-size:0.8rem;font-weight:600;color:#2b3d24;">Khadija B.</p><p style="font-size:0.7rem;color:#aaa;">Marseille, France</p></div>
+          </div>
+        </div>
+
+        <div class="t-card">
+          <p style="color:#d4a853;font-size:0.8rem;letter-spacing:2px;margin-bottom:12px;">★★★★★</p>
+          <p style="font-size:0.88rem;color:#444;line-height:1.72;font-style:italic;margin-bottom:16px;">"Beautiful packaging and formulas that truly work. You feel the quality instantly — natural, rich, and deeply effective."</p>
+          <div style="display:flex;align-items:center;gap:10px;">
+            <div style="width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,#4a6e3d,#ccdcc4);display:flex;align-items:center;justify-content:center;color:#fff;font-size:0.78rem;font-weight:600;">S</div>
+            <div><p style="font-size:0.8rem;font-weight:600;color:#2b3d24;">Solène T.</p><p style="font-size:0.7rem;color:#aaa;">Bordeaux, France</p></div>
+          </div>
+        </div>
+
+        <div class="t-card">
+          <p style="color:#d4a853;font-size:0.8rem;letter-spacing:2px;margin-bottom:12px;">★★★★★</p>
+          <p style="font-size:0.88rem;color:#444;line-height:1.72;font-style:italic;margin-bottom:16px;">"J'ai essayé des dizaines de produits pour mes cheveux 4C. Rien ne compare à l'Élixir MÎJAH. Ma chute a enfin stoppé."</p>
+          <div style="display:flex;align-items:center;gap:10px;">
+            <div style="width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,#5f8a50,#e5ede0);display:flex;align-items:center;justify-content:center;color:#2b3d24;font-size:0.78rem;font-weight:600;">I</div>
+            <div><p style="font-size:0.8rem;font-weight:600;color:#2b3d24;">Imane R.</p><p style="font-size:0.7rem;color:#aaa;">Lille, France</p></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  </div><!-- /z-index wrapper -->
+
+</section>
+
+
+<!-- Collection invitation moved from the homepage -->
+<section id="discover-collection" class="cta-band py-28 px-6 lg:px-12">
+  <!-- Decorative leaf shapes -->
+  <div style="position:absolute;top:-15%;right:-4%;width:320px;opacity:0.07;pointer-events:none;">
+    <svg viewBox="0 0 200 300" fill="none"><path d="M100 10C150 60 180 120 160 200C140 270 80 290 40 260C10 240 20 180 40 140C60 100 50 50 100 10Z" fill="#82a874"/></svg>
+  </div>
+  <div style="position:absolute;bottom:-10%;left:-4%;width:260px;opacity:0.05;pointer-events:none;transform:rotate(30deg) scaleX(-1);">
+    <svg viewBox="0 0 200 300" fill="none"><path d="M100 10C150 60 180 120 160 200C140 270 80 290 40 260C10 240 20 180 40 140C60 100 50 50 100 10Z" fill="#ccdcc4"/></svg>
+  </div>
+
+  <div class="max-w-3xl mx-auto text-center relative z-10">
+    <p class="sec-label mb-5" style="color:rgba(212,168,83,0.75);"
+       data-fr="Prête à Transformer vos Cheveux ?" data-en="Ready to Transform Your Hair?">Prête à Transformer vos Cheveux ?</p>
+    <div class="gold-line mx-auto mb-8"></div>
+    <h2 style="font-family:'Cormorant Garamond',serif;font-size:clamp(2.3rem,5vw,4.2rem);
+               font-weight:400;color:#fff;line-height:1.12;margin-bottom:20px;">
+      <span data-fr="Vos Boucles Méritent" data-en="Your Curls Deserve">Vos Boucles Méritent</span><br><em style="color:#e8c98a;" data-fr="le Meilleur." data-en="the Very Best.">le Meilleur.</em>
+    </h2>
+    <p style="font-size:0.93rem;color:rgba(255,255,255,0.62);max-width:420px;margin:0 auto 40px;
+              line-height:1.78;font-weight:300;"
+       data-fr="Rejoignez plus de 500 femmes qui ont transformé leur routine capillaire avec MÎJAH. Premium, naturel, fait pour vous."
+       data-en="Join over 500 women who have transformed their hair journey with MÎJAH. Premium, natural, and made for you.">
+      Rejoignez plus de 500 femmes qui ont transformé leur routine capillaire avec MÎJAH. Premium, naturel, fait pour vous.
     </p>
-    <a href="collection" class="btn-gold">
-      <span data-fr="Voir la Collection" data-en="Shop the Collection">Voir la Collection</span>
-      <i class="ph-bold ph-arrow-right"></i>
-    </a>
+    <div style="display:flex;flex-wrap:wrap;gap:14px;justify-content:center;">
+      <a href="collection" class="btn-gold" style="font-size:0.87rem;padding:17px 40px;">
+        <span data-fr="Voir la Collection" data-en="Shop the Collection">Voir la Collection</span> <i class="ph-bold ph-arrow-right"></i>
+      </a>
+      <a href="collection.html#bundle" class="btn-ghost-white" style="font-size:0.87rem;padding:16px 36px;">
+        <i class="ph ph-gift"></i> <span data-fr="Découvrir nos Coffrets" data-en="Discover Our Sets">Découvrir nos Coffrets</span>
+      </a>
+    </div>
   </div>
 </section>
 

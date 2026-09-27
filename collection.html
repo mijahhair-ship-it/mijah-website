@@ -34,10 +34,10 @@
     "description": "Découvrez tous les soins capillaires naturels MÎJAH pour cheveux Afro et Bouclés.",
     "url": "https://mijah.fr/collection",
     "hasPart": [
-      {"@type": "Product", "name": "Élixir Anti-Chute MÎJAH", "image": "https://mijah.fr/photosAndvideos/mijah%20anti-chute.png", "offers": {"@type": "Offer", "price": "21.90", "priceCurrency": "EUR", "availability": "https://schema.org/InStock"}, "url": "https://mijah.fr/product-elixir"},
+      {"@type": "Product", "name": "Élixir Anti-Chute MÎJAH", "image": "https://mijah.fr/photosAndvideos/mijah%20anti-chute.png", "offers": {"@type": "Offer", "price": "18.10", "priceCurrency": "EUR", "availability": "https://schema.org/InStock"}, "url": "https://mijah.fr/product-elixir"},
       {"@type": "Product", "name": "Huile de Croissance Rosemary MÎJAH", "image": "https://mijah.fr/photosAndvideos/Mijah%20hair%20growth%20oil.png", "offers": {"@type": "Offer", "price": "12.80", "priceCurrency": "EUR", "availability": "https://schema.org/InStock"}, "url": "https://mijah.fr/product-rosemary"},
-      {"@type": "Product", "name": "Beurre de Mangue MÎJAH", "image": "https://mijah.fr/photosAndvideos/Mango%20Hair%20Butter.png", "offers": {"@type": "Offer", "price": "19.90", "priceCurrency": "EUR", "availability": "https://schema.org/InStock"}, "url": "https://mijah.fr/product-mango"},
-      {"@type": "Product", "name": "Le Coffret MÎJAH Trio", "image": "https://mijah.fr/photosAndvideos/Mijah%20Trio%20with%20Ingredient.jpeg", "offers": {"@type": "Offer", "price": "49.90", "priceCurrency": "EUR"}}
+      {"@type": "Product", "name": "Beurre de Mangue MÎJAH", "image": "https://mijah.fr/photosAndvideos/Mango%20Hair%20Butter.png", "offers": {"@type": "Offer", "price": "14.90", "priceCurrency": "EUR", "availability": "https://schema.org/InStock"}, "url": "https://mijah.fr/product-mango"},
+      {"@type": "Product", "name": "Le Coffret MÎJAH Trio", "image": "https://mijah.fr/photosAndvideos/Mijah%20Trio%20with%20Ingredient.jpeg", "offers": {"@type": "Offer", "price": "45.80", "priceCurrency": "EUR"}}
     ]
   }
   </script>
@@ -51,7 +51,7 @@
   <script src="https://unpkg.com/@phosphor-icons/web@2.1.1/src/index.js" type="module"></script>
 
   <script src="lang.js" defer></script>
-  <script src="cart.js?v=6" defer></script>
+  <script src="cart.js?v=7" defer></script>
 
   <style>
     *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
@@ -229,7 +229,7 @@
             <span class="badge badge-green" style="padding:3px 10px;font-size:0.65rem;">60 ml</span>
           </div>
           <div style="display:flex;align-items:center;justify-content:space-between;">
-            <span class="price">€21.90</span>
+            <span style="display:flex;align-items:baseline;gap:8px;flex-wrap:wrap;"><span style="color:#111;text-decoration:line-through;text-decoration-thickness:2px;font-size:1rem;">€21.90</span><span class="price">€18.10</span></span>
             <div style="display:flex;gap:8px;">
               <a href="product-elixir" class="btn-outline-dark" data-fr="Détails" data-en="Details">Détails</a>
               <button class="btn-dark" onclick="addToCart('elixir')" data-fr="Ajouter" data-en="Add">Ajouter</button>
@@ -262,6 +262,7 @@
               <button class="btn-gold" style="padding:10px 22px;font-size:0.72rem;" onclick="addToCart('rosemary')" data-fr="Ajouter" data-en="Add">Ajouter</button>
             </div>
           </div>
+          <p style="font-size:0.72rem;color:#777;margin-top:10px;font-weight:400;">200 ml · €23.90 · <strong style="color:#8a4a3d;">Rupture de stock</strong></p>
         </div>
       </div>
 
@@ -282,7 +283,7 @@
             <span class="badge badge-green" style="padding:3px 10px;font-size:0.65rem;">150 ml</span>
           </div>
           <div style="display:flex;align-items:center;justify-content:space-between;">
-            <span class="price">€19.90</span>
+            <span style="display:flex;align-items:baseline;gap:8px;flex-wrap:wrap;"><span style="color:#111;text-decoration:line-through;text-decoration-thickness:2px;font-size:1rem;">€19.90</span><span class="price">€14.90</span></span>
             <div style="display:flex;gap:8px;">
               <a href="product-mango" class="btn-outline-dark" data-fr="Détails" data-en="Details">Détails</a>
               <button class="btn-dark" onclick="addToCart('mango')" data-fr="Ajouter" data-en="Add">Ajouter</button>
@@ -318,9 +319,9 @@
           </div>
           <div style="display:flex;align-items:center;gap:18px;flex-wrap:wrap;">
             <div>
-              <p style="font-size:0.75rem;color:#999;text-decoration:line-through;font-family:'Jost';">€54.60</p>
-              <p style="font-family:'Cormorant Garamond',serif;font-size:2.2rem;font-weight:600;color:#4a6e3d;line-height:1;">€49.90</p>
-              <p style="font-size:0.7rem;color:#5f8a50;font-weight:600;letter-spacing:0.08em;" data-fr="Économisez €4.70" data-en="Save €4.70">Économisez €4.70</p>
+              <p style="font-size:0.75rem;color:#111;text-decoration:line-through;text-decoration-thickness:2px;font-family:'Jost';">€54.60</p>
+              <p style="font-family:'Cormorant Garamond',serif;font-size:2.2rem;font-weight:600;color:#4a6e3d;line-height:1;">€45.80</p>
+              <p style="font-size:0.7rem;color:#5f8a50;font-weight:600;letter-spacing:0.08em;" data-fr="Économisez €8.80" data-en="Save €8.80">Économisez €8.80</p>
             </div>
             <button onclick="addToCart('trio')" class="btn-gold" style="display:inline-flex;align-items:center;gap:8px;border:none;cursor:pointer;">
               <span data-fr="Commander le Trio" data-en="Shop the Trio">Commander le Trio</span> <i class="ph-bold ph-arrow-right"></i>

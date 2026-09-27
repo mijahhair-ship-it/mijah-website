@@ -20,7 +20,7 @@
   <meta property="og:site_name" content="MÎJAH" />
   <meta property="og:title" content="Soins Cheveux Afro & Bouclés Naturels | MÎJAH France" />
   <meta property="og:description" content="Élixir anti-chute, huile de romarin et beurre de mangue pour cheveux afro, bouclés et crépus. Formules naturelles développées en France." />
-  <meta property="og:image" content="https://mijah.fr/photosAndvideos/Mijah%20Black%20girls%20trio.jpg" />
+  <meta property="og:image" content="https://mijah.fr/photosAndvideos/mijah-shopping-cart-hero-wide.png" />
   <meta property="og:image:width" content="1536" />
   <meta property="og:image:height" content="1024" />
   <meta property="og:url" content="https://mijah.fr/" />
@@ -29,7 +29,7 @@
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Soins Cheveux Afro & Bouclés Naturels | MÎJAH France" />
   <meta name="twitter:description" content="Élixir anti-chute, huile de romarin et beurre de mangue pour cheveux afro, bouclés et crépus." />
-  <meta name="twitter:image" content="https://mijah.fr/photosAndvideos/Mijah%20Black%20girls%20trio.jpg" />
+  <meta name="twitter:image" content="https://mijah.fr/photosAndvideos/mijah-shopping-cart-hero-wide.png" />
   <!-- Structured Data -->
   <script type="application/ld+json">
   {
@@ -86,7 +86,7 @@
         "name": "Comment utiliser les produits MÎJAH ensemble ?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Routine complète recommandée : 1) Huile Rosemary en pré-shampoing : appliquez sur le cuir chevelu 30 min avant le lavage, massez 5 minutes. 2) Élixir Anti-Chute après le shampoing : quelques gouttes directement sur le cuir chevelu propre, 2 à 3 fois par semaine, sans rincer. 3) Beurre de Mangue en leave-in : sur les longueurs humides pour définir et nourrir. Le coffret Trio est disponible à €49.90."
+          "text": "Routine complète recommandée : 1) Huile Rosemary en pré-shampoing : appliquez sur le cuir chevelu 30 min avant le lavage, massez 5 minutes. 2) Élixir Anti-Chute après le shampoing : quelques gouttes directement sur le cuir chevelu propre, 2 à 3 fois par semaine, sans rincer. 3) Beurre de Mangue en leave-in : sur les longueurs humides pour définir et nourrir. Le coffret Trio est disponible à €45.80."
         }
       },
       {
@@ -126,7 +126,7 @@
         "name": "Quelle est la différence entre l'Huile Rosemary et le Beurre de Mangue MÎJAH ?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "L'Huile de Croissance Rosemary (€12.80, 100 ml) est un soin cuir chevelu : elle stimule la pousse et revitalise les follicules pileux grâce au romarin pressé à froid. Application : sur le cuir chevelu en pré-shampoing ou quotidiennement en soin express. Le Beurre de Mangue (€19.90, 150 ml) est un soin longueurs : il hydrate intensément, scelle l'humidité et définit les boucles. Application : en leave-in ou masque hebdomadaire sur les longueurs. Les deux sont complémentaires et forment avec l'Élixir Anti-Chute (€21.90) la routine MÎJAH complète."
+          "text": "L'Huile de Croissance Rosemary (€12.80, 100 ml) est un soin cuir chevelu : elle stimule la pousse et revitalise les follicules pileux grâce au romarin pressé à froid. Application : sur le cuir chevelu en pré-shampoing ou quotidiennement en soin express. Le Beurre de Mangue (€14.90, 150 ml) est un soin longueurs : il hydrate intensément, scelle l'humidité et définit les boucles. Application : en leave-in ou masque hebdomadaire sur les longueurs. Les deux sont complémentaires et forment avec l'Élixir Anti-Chute (€18.10) la routine MÎJAH complète."
         }
       }
     ]
@@ -134,7 +134,7 @@
   </script>
 
   <!-- Preload hero poster for LCP -->
-  <link rel="preload" as="image" href="/photosAndvideos/Mijah%20Black%20girls%20trio.jpg" fetchpriority="high" />
+  <link rel="preload" as="image" href="/photosAndvideos/mijah-shopping-cart-hero-wide.png" fetchpriority="high" />
 
   <!-- Tailwind CSS CDN -->
   <link rel="stylesheet" href="/output.css" />
@@ -154,7 +154,7 @@
 
   <!-- Language switcher -->
   <script src="lang.js" defer></script>
-  <script src="cart.js?v=6" defer></script>
+  <script src="cart.js?v=7" defer></script>
 
   <!-- Tailwind Config -->
 
@@ -198,9 +198,21 @@
     /* ── Hero ───────────────────────────────────── */
     .hero-bg {
       position: absolute; inset: 0;
-      background-image: url('photosAndvideos/Mijah Black girls trio.jpg');
-      background-size: cover; background-position: center;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+      background-image: url('photosAndvideos/mijah-shopping-cart-hero-wide.png');
+      background-size: cover;
+      background-position: center center;
+      background-repeat: no-repeat;
+      background-color: #11160d;
       will-change: transform;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .hero-bg { display: none; }
+      #hero {
+        background: #11160d url('photosAndvideos/mijah-shopping-cart-hero-wide.png') center center / cover no-repeat !important;
+      }
     }
     .hero-overlay {
       position: absolute; inset: 0;
@@ -369,20 +381,6 @@
     .v-icon-gold { background: linear-gradient(135deg, #f5e8cc, #edd9a3); }
 
     /* ── Testimonial marquee ─────────────────────── */
-    .marquee-outer { overflow: hidden; }
-    .marquee-track {
-      display: flex; gap: 0; width: max-content;
-      animation: marquee 38s linear infinite;
-    }
-    .marquee-track:hover { animation-play-state: paused; }
-    @keyframes marquee {
-      from { transform: translateX(0); }
-      to   { transform: translateX(-50%); }
-    }
-    .t-card {
-      background: #fff; border: 1px solid rgba(74,110,61,0.09); border-radius: 20px;
-      padding: 26px 30px; min-width: 330px; max-width: 330px; margin: 0 10px;
-    }
 
     /* ── Hero product float ──────────────────────── */
     .prod-float {
@@ -422,13 +420,6 @@
       font-size: 2.6rem; font-weight: 500; color: #4a6e3d;
     }
 
-    /* ── CTA band ────────────────────────────────── */
-    .cta-band {
-      background:
-        linear-gradient(135deg, rgba(43,61,36,0.82) 0%, rgba(61,90,51,0.78) 55%, rgba(74,110,61,0.80) 100%),
-        url('photosAndvideos/woman%20holding%20Mijah%20product.jpeg') center/cover no-repeat;
-      position: relative; overflow: hidden;
-    }
 
     /* ── Footer ──────────────────────────────────── */
     footer { background: #17221100; }
@@ -479,12 +470,6 @@
     @media (max-width: 767px) {
       /* Hero */
       #hero .max-w-7xl { padding-top: 100px !important; padding-bottom: 60px !important; }
-      .js-video-wrap { aspect-ratio: 4/5 !important; }
-      .js-video-wrap .vid-overlay { padding: 20px 24px !important; }
-      /* Mobile: replace brand video with image */
-      .js-video-desktop { display: none !important; }
-      .js-video-mobile-img { display: block !important; }
-      #sound-btn { display: none !important; }
 
       /* Hero CTAs */
       #h-ctas { flex-direction: column !important; align-items: flex-start !important; }
@@ -515,9 +500,6 @@
       /* Routine grid — single column */
       .js-gallery-grid + * { margin-top: 12px !important; }
 
-      /* Testimonials — scrollable cards */
-      .js-test-track { gap: 12px !important; }
-      .t-card { min-width: calc(85vw) !important; max-width: calc(85vw) !important; margin: 0 !important; padding: 24px 20px !important; }
 
       /* Stats grid */
       .grid.grid-cols-4 { grid-template-columns: repeat(2, 1fr) !important; gap: 16px !important; }
@@ -526,11 +508,6 @@
       /* Decorative SVGs — hide on mobile */
       svg.absolute, .absolute svg { display: none !important; }
 
-      /* CTA band */
-      .cta-band { padding-left: 24px !important; padding-right: 24px !important; }
-      .cta-band h2 { font-size: 2rem !important; }
-      .cta-band .flex { flex-direction: column !important; gap: 12px !important; }
-      .cta-band a { width: 100% !important; justify-content: center !important; }
 
       /* Cart drawer full width on small phones */
       #cart-drawer { max-width: 100% !important; }
@@ -652,10 +629,9 @@
   </style>
 
   <!-- Background + overlay -->
-  <video class="hero-bg" id="hero-bg" autoplay muted loop playsinline webkit-playsinline preload="none" aria-hidden="true"
-         poster="photosAndvideos/Mijah Black girls trio.jpg"
-         style="object-fit:contain;object-position:center;width:100%;height:100%;">
-    <source src="photosAndvideos/Mijah.New.video.mp4" type="video/mp4" />
+  <video class="hero-bg" id="hero-bg" autoplay muted loop playsinline preload="metadata"
+         poster="photosAndvideos/mijah-shopping-cart-hero-wide.png" aria-hidden="true" tabindex="-1">
+    <source data-src="photosAndvideos/mijah-hero-video.mp4" type="video/mp4">
   </video>
   <div class="hero-overlay"></div>
 
@@ -785,92 +761,108 @@
   </div>
 </div>
 
-<!-- ════════════════════════════════════════════════
-     BRAND VIDEO
-════════════════════════════════════════════════ -->
-<section class="js-video-section" style="background:#2b3d24;position:relative;overflow:hidden;padding:0;">
-  <!-- Decorative leaves -->
-  <div style="position:absolute;top:-10%;right:-3%;width:250px;opacity:0.07;pointer-events:none;">
-    <svg viewBox="0 0 200 300" fill="none"><path d="M100 10C150 60 180 120 160 200C140 270 80 290 40 260C10 240 20 180 40 140C60 100 50 50 100 10Z" fill="#82a874"/></svg>
-  </div>
-  <div style="position:absolute;bottom:-8%;left:-2%;width:200px;opacity:0.06;pointer-events:none;transform:rotate(-20deg);">
-    <svg viewBox="0 0 200 300" fill="none"><path d="M100 10C150 60 180 120 160 200C140 270 80 290 40 260C10 240 20 180 40 140C60 100 50 50 100 10Z" fill="#aac59e"/></svg>
-  </div>
-  <!-- Full-width video — fits whole frame, no cropping -->
-  <div class="js-video-wrap" style="position:relative;aspect-ratio:16/9;overflow:hidden;background:#2b3d24;">
-    <video id="mijah-video" class="js-video-desktop" muted loop playsinline preload="none"
-           style="width:100%;height:100%;object-fit:contain;display:block;">
-      <source data-src="photosAndvideos/MîJah_commercial_clip_f1ry20.mp4" type="video/mp4">
-    </video>
-    <img class="js-video-mobile-img" src="photosAndvideos/groupe.mijah.jpeg" alt="MÎJAH"
-         style="display:none;width:100%;height:100%;object-fit:cover;" loading="lazy" />
-    <!-- Dark vignette + text overlay at bottom -->
-    <div class="vid-overlay" style="position:absolute;inset:0;background:linear-gradient(0deg,rgba(22,33,15,0.72) 0%,rgba(22,33,15,0.10) 50%,transparent 100%);display:flex;align-items:flex-end;justify-content:space-between;padding:40px 48px;">
+<!-- Brand ingredient gallery -->
+<section id="discover-mijah" class="discover-mijah" aria-labelledby="discover-title">
+  <div class="discover-inner">
+    <div class="discover-heading">
       <div>
-        <p class="sec-label" style="color:rgba(212,168,83,0.85);margin-bottom:8px;" data-fr="La Marque en Mouvement" data-en="The Brand in Motion">La Marque en Mouvement</p>
-        <h2 style="font-family:'Cormorant Garamond',serif;font-size:clamp(1.8rem,4vw,3rem);font-weight:400;color:#fff;line-height:1.1;margin-bottom:20px;" data-fr="Découvrez MÎJAH" data-en="Discover MÎJAH">Découvrez MÎJAH</h2>
-        <a href="about"
-           style="display:inline-flex;align-items:center;gap:10px;background:rgba(255,255,255,0.12);backdrop-filter:blur(10px);border:1.5px solid rgba(255,255,255,0.45);color:#fff;padding:12px 28px;border-radius:100px;font-family:'Jost',sans-serif;font-size:0.78rem;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;text-decoration:none;transition:background 0.25s,border-color 0.25s,transform 0.25s;"
-           onmouseover="this.style.background='rgba(255,255,255,0.22)';this.style.borderColor='rgba(255,255,255,0.75)';this.style.transform='translateY(-2px)'"
-           onmouseout="this.style.background='rgba(255,255,255,0.12)';this.style.borderColor='rgba(255,255,255,0.45)';this.style.transform='translateY(0)'"
-           data-fr="Notre Histoire" data-en="Our Story">
-          Notre Histoire <i class="ph ph-arrow-right" style="font-size:0.85rem;"></i>
-        </a>
+        <p class="sec-label" data-fr="Au cœur de nos formules" data-en="Inside our formulas">Au cœur de nos formules</p>
+        <h2 id="discover-title" data-fr="Découvrez MÎJAH" data-en="Discover MÎJAH">Découvrez MÎJAH</h2>
+        <p class="discover-intro" data-fr="Trois essentiels. Toute la richesse des plantes." data-en="Three essentials. All the richness of botanicals.">Trois essentiels. Toute la richesse des plantes.</p>
       </div>
-      <!-- Sound toggle button -->
-      <button id="sound-btn" onclick="toggleSound()" style="background:rgba(255,255,255,0.15);backdrop-filter:blur(8px);border:1.5px solid rgba(255,255,255,0.3);border-radius:50%;width:48px;height:48px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background 0.25s;flex-shrink:0;" onmouseover="this.style.background='rgba(255,255,255,0.25)'" onmouseout="this.style.background='rgba(255,255,255,0.15)'">
-        <i id="sound-icon" class="ph-bold ph-speaker-slash" style="color:#fff;font-size:1.2rem;"></i>
-      </button>
+      <a class="discover-story" href="about"><span data-fr="Notre histoire" data-en="Our story">Notre histoire</span><span aria-hidden="true">↗</span></a>
+    </div>
+    <div class="discover-grid">
+      <a class="discover-card" href="product-elixir">
+        <div class="discover-image"><img src="photosAndvideos/mijah-elixir-ingredients.jpeg" width="1024" height="1536" loading="lazy" decoding="async" alt="Élixir Anti-Chute MÎJAH : romarin, huile d’olive et huile de ricin." /></div>
+        <div class="discover-caption"><span class="discover-number" aria-hidden="true">01</span><div><span class="discover-category" data-fr="Renforcer" data-en="Strengthen">Renforcer</span><h3>Élixir Anti-Chute</h3></div><span class="discover-arrow" aria-hidden="true">↗</span></div>
+      </a>
+      <a class="discover-card" href="product-rosemary">
+        <div class="discover-image"><img src="photosAndvideos/mijah-rosemary-ingredients.jpeg" width="1024" height="1536" loading="lazy" decoding="async" alt="Huile Rosemary MÎJAH : romarin, fenugrec, ail, clou de girofle, cannelle, camomille, anis étoilé et nigelle." /></div>
+        <div class="discover-caption"><span class="discover-number" aria-hidden="true">02</span><div><span class="discover-category" data-fr="Nourrir" data-en="Nourish">Nourrir</span><h3>Rosemary</h3></div><span class="discover-arrow" aria-hidden="true">↗</span></div>
+      </a>
+      <a class="discover-card" href="product-mango">
+        <div class="discover-image"><img src="photosAndvideos/mijah-mango-ingredients.jpeg" width="1024" height="1536" loading="lazy" decoding="async" alt="Beurre capillaire Mango MÎJAH : beurre de mangue et huiles de batana, d’olive, de ricin et de coco." /></div>
+        <div class="discover-caption"><span class="discover-number" aria-hidden="true">03</span><div><span class="discover-category" data-fr="Sublimer" data-en="Enhance">Sublimer</span><h3>Mango Hair Butter</h3></div><span class="discover-arrow" aria-hidden="true">↗</span></div>
+      </a>
     </div>
   </div>
-  <script>
-    function toggleSound() {
-      const video = document.getElementById('mijah-video');
-      const icon  = document.getElementById('sound-icon');
-      video.muted = !video.muted;
-      icon.className = video.muted ? 'ph-bold ph-speaker-slash' : 'ph-bold ph-speaker-high';
-      icon.style.color = '#fff';
-    }
-  </script>
 </section>
-
+<style>
+  .discover-mijah { position:relative; overflow:hidden; padding:90px 40px 96px; background:radial-gradient(ellipse at 50% 40%,#36472c 0%,#192619 75%); color:#f5efdf; }
+  .discover-inner { max-width:1280px; margin:auto; }
+  .discover-heading { display:flex; justify-content:space-between; align-items:flex-end; gap:24px; margin-bottom:44px; }
+  .discover-heading .sec-label { color:#d8b975; margin-bottom:14px; }
+  .discover-heading h2 { font-family:'Cormorant Garamond',serif; font-size:clamp(2.6rem,5vw,4.4rem); font-weight:400; line-height:1.08; }
+  .discover-intro { color:#c3c9b9; font-size:0.94rem; margin-top:16px; line-height:1.7; }
+  .discover-story { display:inline-flex; align-items:center; gap:24px; color:#e8c98a; text-decoration:none; border-bottom:1px solid #82744c; padding:10px 0; white-space:nowrap; font-size:0.85rem; }
+  .discover-story span:last-child { font-size:1.4rem; transition:transform 240ms ease; }
+  .discover-story:hover span:last-child { transform:translate(3px,-3px); }
+  .discover-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:28px; align-items:start; }
+  .discover-card { color:inherit; text-decoration:none; display:block; transition:transform 450ms cubic-bezier(.2,.65,.3,1),opacity 650ms ease; }
+  .discover-card:nth-child(2) { margin-top:42px; }
+  .discover-image { border:1px solid rgba(232,201,138,.35); border-radius:14px; overflow:hidden; background:#b8a178; box-shadow:0 20px 44px rgba(0,0,0,.22); transition:box-shadow 450ms ease; }
+  .discover-image img { width:100%; height:auto; display:block; aspect-ratio:2/3; object-fit:contain; }
+  .discover-caption { display:flex; align-items:center; gap:14px; padding:22px 0; border-bottom:1px solid rgba(232,201,138,.22); }
+  .discover-number { font-family:'Cormorant Garamond',serif; font-size:1.6rem; color:#a4946c; }
+  .discover-category { display:block; text-transform:uppercase; letter-spacing:.18em; font-size:.61rem; color:#d8b975; margin-bottom:6px; }
+  .discover-caption h3 { font-family:'Cormorant Garamond',serif; font-size:clamp(1.3rem,2.2vw,1.9rem); font-weight:400; line-height:1.1; }
+  .discover-arrow { margin-left:auto; width:36px; height:36px; display:grid; place-items:center; border:1px solid #657153; border-radius:50%; color:#e8c98a; transition:background 250ms,color 250ms,transform 250ms; }
+  .discover-card:focus-visible,.discover-story:focus-visible { outline:2px solid #e8c98a; outline-offset:7px; }
+  @media (hover:hover) and (prefers-reduced-motion:no-preference) {
+    .discover-card:hover { transform:translateY(-9px); }
+    .discover-card:hover .discover-image { box-shadow:0 28px 50px rgba(0,0,0,.32); }
+    .discover-card:hover .discover-arrow { background:#e8c98a; color:#192619; transform:rotate(45deg); }
+  }
+  @media (prefers-reduced-motion:no-preference) {
+    .discover-card.discover-pending { opacity:0; transform:translateY(36px); }
+    .discover-card.discover-enter { animation:discoverReveal 800ms cubic-bezier(.16,1,.3,1) both; }
+    .discover-card.discover-enter:nth-child(2) { animation-delay:130ms; }
+    .discover-card.discover-enter:nth-child(3) { animation-delay:260ms; }
+    @keyframes discoverReveal { from { opacity:0; transform:translateY(36px); } to { opacity:1; transform:translateY(0); } }
+  }
+  @media (max-width:767px) {
+    .discover-mijah { padding-top:56px; padding-bottom:52px; }
+    .discover-heading { display:block; margin-bottom:30px; }
+    .discover-story { margin-top:18px; }
+    .discover-grid { grid-template-columns:1fr; gap:28px; max-width:440px; margin:auto; }
+    .discover-card:nth-child(2) { margin-top:0; }
+    .discover-image { border-radius:12px; }
+    .discover-caption h3 { font-size:1.8rem; }
+  }
+  @media (prefers-reduced-motion:reduce) {
+    .discover-card,.discover-image,.discover-arrow,.discover-story span { transition:none; }
+  }
+</style>
 <script>
-  (function loadDesktopVideosResponsibly() {
+  (function initDiscoverGallery() {
+    if (!('IntersectionObserver' in window) || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const cards = document.querySelectorAll('.discover-card');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.remove('discover-pending');
+        entry.target.classList.add('discover-enter');
+        entry.target.addEventListener('animationend', () => entry.target.classList.remove('discover-enter'), { once:true });
+        observer.unobserve(entry.target);
+      });
+    }, { threshold:0.12 });
+    cards.forEach(card => { card.classList.add('discover-pending'); observer.observe(card); });
+  })();
+
+  (function loadHeroVideoResponsibly() {
     const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
-    const shouldLoadVideo = window.matchMedia('(min-width: 768px)').matches
-      && !window.matchMedia('(prefers-reduced-motion: reduce)').matches
-      && !(connection && connection.saveData);
-
-    if (!shouldLoadVideo) return;
-
-    function loadVideo(video) {
-      if (!video || video.dataset.loaded === 'true') return;
-      const source = video.querySelector('source[data-src]');
-      if (!source) return;
-      source.src = source.dataset.src;
-      source.removeAttribute('data-src');
-      video.dataset.loaded = 'true';
-      video.load();
-      video.play().catch(() => {});
-    }
-
-    loadVideo(document.getElementById('hero-bg'));
-
-    const brandVideo = document.getElementById('mijah-video');
-    const brandSection = document.querySelector('.js-video-section');
-    if ('IntersectionObserver' in window && brandSection) {
-      const observer = new IntersectionObserver((entries) => {
-        if (!entries.some(entry => entry.isIntersecting)) return;
-        loadVideo(brandVideo);
-        observer.disconnect();
-      }, { rootMargin: '300px 0px' });
-      observer.observe(brandSection);
-    } else {
-      loadVideo(brandVideo);
-    }
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || (connection && connection.saveData)) return;
+    const video = document.getElementById('hero-bg');
+    const source = video && video.querySelector('source[data-src]');
+    if (!source) return;
+    source.src = source.dataset.src;
+    source.removeAttribute('data-src');
+    video.dataset.loaded = 'true';
+    video.load();
+    video.play().catch(() => {});
   })();
 </script>
-
 
 <!-- ════════════════════════════════════════════════
      PRODUCT SHOWCASE
@@ -924,7 +916,7 @@
             <span class="badge badge-green" style="padding:3px 10px;font-size:0.65rem;">60 ml</span>
           </div>
           <div style="display:flex;align-items:center;justify-content:space-between;">
-            <span class="price">€21.90</span>
+            <span style="display:flex;align-items:baseline;gap:8px;flex-wrap:wrap;"><span style="color:#111;text-decoration:line-through;text-decoration-thickness:2px;font-size:1rem;">€21.90</span><span class="price">€18.10</span></span>
             <div style="display:flex;gap:8px;">
               <a href="product-elixir" class="btn-dark-outline" data-fr="Détails" data-en="Details">Détails</a>
               <button onclick="addToCart('elixir')" class="btn-dark" data-fr="Ajouter" data-en="Add to Cart">Ajouter</button>
@@ -971,6 +963,7 @@
               <button onclick="addToCart('rosemary')" class="btn-gold" style="padding:10px 22px;font-size:0.72rem;" data-fr="Ajouter" data-en="Add to Cart">Ajouter</button>
             </div>
           </div>
+          <p style="font-size:0.72rem;color:#777;margin-top:10px;font-weight:400;">200 ml · €23.90 · <strong style="color:#8a4a3d;">Rupture de stock</strong></p>
         </div>
       </div>
 
@@ -1001,7 +994,7 @@
             <span class="badge badge-green" style="padding:3px 10px;font-size:0.65rem;">150 ml</span>
           </div>
           <div style="display:flex;align-items:center;justify-content:space-between;">
-            <span class="price">€19.90</span>
+            <span style="display:flex;align-items:baseline;gap:8px;flex-wrap:wrap;"><span style="color:#111;text-decoration:line-through;text-decoration-thickness:2px;font-size:1rem;">€19.90</span><span class="price">€14.90</span></span>
             <div style="display:flex;gap:8px;">
               <a href="product-mango" class="btn-dark-outline" data-fr="Détails" data-en="Details">Détails</a>
               <button onclick="addToCart('mango')" class="btn-dark" data-fr="Ajouter" data-en="Add to Cart">Ajouter</button>
@@ -1116,422 +1109,11 @@
 
     </div>
 
-    <!-- Stats row -->
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mt-20 js-stats"
-         style="border-top:1px solid rgba(74,110,61,0.11);padding-top:42px;">
-      <div class="text-center js-stat">
-        <p class="stat-num" data-target="500" data-suffix="+">500+</p>
-        <p style="font-size:0.72rem;color:#999;letter-spacing:0.1em;text-transform:uppercase;font-weight:500;margin-top:4px;" data-fr="Clientes Satisfaites" data-en="Happy Customers">Clientes Satisfaites</p>
-      </div>
-      <div class="text-center js-stat">
-        <p class="stat-num">100%</p>
-        <p style="font-size:0.72rem;color:#999;letter-spacing:0.1em;text-transform:uppercase;font-weight:500;margin-top:4px;" data-fr="Formules Naturelles" data-en="Natural Formulas">Formules Naturelles</p>
-      </div>
-      <div class="text-center js-stat">
-        <p class="stat-num" data-target="3">3</p>
-        <p style="font-size:0.72rem;color:#999;letter-spacing:0.1em;text-transform:uppercase;font-weight:500;margin-top:4px;" data-fr="Produits Phares" data-en="Flagship Products">Produits Phares</p>
-      </div>
-      <div class="text-center js-stat">
-        <p class="stat-num">★ 4.5</p>
-        <p style="font-size:0.72rem;color:#999;letter-spacing:0.1em;text-transform:uppercase;font-weight:500;margin-top:4px;" data-fr="Moyenne" data-en="Average Rating">Moyenne</p>
-      </div>
-    </div>
-
   </div>
 </section>
 
 
-<!-- ════════════════════════════════════════════════
-     TESTIMONIAL MARQUEE
-════════════════════════════════════════════════ -->
-<section id="testimonials" class="py-24" style="background:#FEFDF9;overflow:hidden;background-image:url('photosAndvideos/mijah For all hair.jpg');background-size:cover;background-position:center;background-attachment:fixed;position:relative;">
-  <div style="position:absolute;inset:0;background:rgba(254,253,249,0.82);"></div>
 
-  <div style="position:relative;z-index:1;">
-  <div class="max-w-7xl mx-auto px-6 lg:px-12 text-center mb-14 js-test-hdr">
-    <p class="sec-label mb-4" data-fr="Avis de notre Communauté" data-en="Customer Love">Avis de notre Communauté</p>
-    <div class="gold-line mx-auto mb-6"></div>
-    <h2 style="font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,4vw,3.3rem);
-               font-weight:400;color:#2b3d24;"
-        data-fr="Ce que dit notre Communauté" data-en="What Our Community Says">
-      Ce que dit notre Communauté
-    </h2>
-  </div>
-
-  <div style="position:relative;">
-    <!-- Fade masks -->
-    <div style="position:absolute;left:0;top:0;bottom:0;width:110px;
-                background:linear-gradient(90deg,#FEFDF9,transparent);z-index:10;pointer-events:none;"></div>
-    <div style="position:absolute;right:0;top:0;bottom:0;width:110px;
-                background:linear-gradient(270deg,#FEFDF9,transparent);z-index:10;pointer-events:none;"></div>
-
-    <div class="marquee-outer" style="padding:8px 0 12px;">
-      <div class="marquee-track">
-
-        <!-- === 6 cards × 2 sets for seamless loop === -->
-
-        <div class="t-card">
-          <p style="color:#d4a853;font-size:0.8rem;letter-spacing:2px;margin-bottom:12px;">★★★★★</p>
-          <p style="font-size:0.88rem;color:#444;line-height:1.72;font-style:italic;margin-bottom:16px;">"The Rosemary Oil transformed my hairline in 6 weeks. Results I never expected from a product — absolutely incredible."</p>
-          <div style="display:flex;align-items:center;gap:10px;">
-            <div style="width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,#4a6e3d,#82a874);display:flex;align-items:center;justify-content:center;color:#fff;font-size:0.78rem;font-weight:600;">A</div>
-            <div><p style="font-size:0.8rem;font-weight:600;color:#2b3d24;">Aissatou M.</p><p style="font-size:0.7rem;color:#aaa;">Paris, France</p></div>
-          </div>
-        </div>
-
-        <div class="t-card">
-          <p style="color:#d4a853;font-size:0.8rem;letter-spacing:2px;margin-bottom:12px;">★★★★★</p>
-          <p style="font-size:0.88rem;color:#444;line-height:1.72;font-style:italic;margin-bottom:16px;">"Le beurre de mangue est incroyable. Mes boucles sont définies comme jamais. Ma routine est enfin complète !"</p>
-          <div style="display:flex;align-items:center;gap:10px;">
-            <div style="width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,#c09040,#e8c98a);display:flex;align-items:center;justify-content:center;color:#fff;font-size:0.78rem;font-weight:600;">F</div>
-            <div><p style="font-size:0.8rem;font-weight:600;color:#2b3d24;">Fatou D.</p><p style="font-size:0.7rem;color:#aaa;">Lyon, France</p></div>
-          </div>
-        </div>
-
-        <div class="t-card">
-          <p style="color:#d4a853;font-size:0.8rem;letter-spacing:2px;margin-bottom:12px;">★★★★★</p>
-          <p style="font-size:0.88rem;color:#444;line-height:1.72;font-style:italic;margin-bottom:16px;">"The Elixir Anti-Chute stopped my hair loss within the first month. My scalp feels healthy and my hair is thicker than ever."</p>
-          <div style="display:flex;align-items:center;gap:10px;">
-            <div style="width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,#3d5a33,#5f8a50);display:flex;align-items:center;justify-content:center;color:#fff;font-size:0.78rem;font-weight:600;">N</div>
-            <div><p style="font-size:0.8rem;font-weight:600;color:#2b3d24;">Naomi K.</p><p style="font-size:0.7rem;color:#aaa;">Brussels, Belgium</p></div>
-          </div>
-        </div>
-
-        <div class="t-card">
-          <p style="color:#d4a853;font-size:0.8rem;letter-spacing:2px;margin-bottom:12px;">★★★★★</p>
-          <p style="font-size:0.88rem;color:#444;line-height:1.72;font-style:italic;margin-bottom:16px;">"Enfin une marque qui comprend vraiment les cheveux afro ! Le trio complet est mon investissement beauté du siècle."</p>
-          <div style="display:flex;align-items:center;gap:10px;">
-            <div style="width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,#8b6f47,#c4a882);display:flex;align-items:center;justify-content:center;color:#fff;font-size:0.78rem;font-weight:600;">K</div>
-            <div><p style="font-size:0.8rem;font-weight:600;color:#2b3d24;">Khadija B.</p><p style="font-size:0.7rem;color:#aaa;">Marseille, France</p></div>
-          </div>
-        </div>
-
-        <div class="t-card">
-          <p style="color:#d4a853;font-size:0.8rem;letter-spacing:2px;margin-bottom:12px;">★★★★★</p>
-          <p style="font-size:0.88rem;color:#444;line-height:1.72;font-style:italic;margin-bottom:16px;">"Beautiful packaging and formulas that truly work. You feel the quality instantly — natural, rich, and deeply effective."</p>
-          <div style="display:flex;align-items:center;gap:10px;">
-            <div style="width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,#4a6e3d,#ccdcc4);display:flex;align-items:center;justify-content:center;color:#fff;font-size:0.78rem;font-weight:600;">S</div>
-            <div><p style="font-size:0.8rem;font-weight:600;color:#2b3d24;">Solène T.</p><p style="font-size:0.7rem;color:#aaa;">Bordeaux, France</p></div>
-          </div>
-        </div>
-
-        <div class="t-card">
-          <p style="color:#d4a853;font-size:0.8rem;letter-spacing:2px;margin-bottom:12px;">★★★★★</p>
-          <p style="font-size:0.88rem;color:#444;line-height:1.72;font-style:italic;margin-bottom:16px;">"J'ai essayé des dizaines de produits pour mes cheveux 4C. Rien ne compare à l'Élixir MÎJAH. Ma chute a enfin stoppé."</p>
-          <div style="display:flex;align-items:center;gap:10px;">
-            <div style="width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,#5f8a50,#e5ede0);display:flex;align-items:center;justify-content:center;color:#2b3d24;font-size:0.78rem;font-weight:600;">I</div>
-            <div><p style="font-size:0.8rem;font-weight:600;color:#2b3d24;">Imane R.</p><p style="font-size:0.7rem;color:#aaa;">Lille, France</p></div>
-          </div>
-        </div>
-
-        <!-- Duplicate set for seamless loop -->
-
-        <div class="t-card">
-          <p style="color:#d4a853;font-size:0.8rem;letter-spacing:2px;margin-bottom:12px;">★★★★★</p>
-          <p style="font-size:0.88rem;color:#444;line-height:1.72;font-style:italic;margin-bottom:16px;">"The Rosemary Oil transformed my hairline in 6 weeks. Results I never expected from a product — absolutely incredible."</p>
-          <div style="display:flex;align-items:center;gap:10px;">
-            <div style="width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,#4a6e3d,#82a874);display:flex;align-items:center;justify-content:center;color:#fff;font-size:0.78rem;font-weight:600;">A</div>
-            <div><p style="font-size:0.8rem;font-weight:600;color:#2b3d24;">Aissatou M.</p><p style="font-size:0.7rem;color:#aaa;">Paris, France</p></div>
-          </div>
-        </div>
-
-        <div class="t-card">
-          <p style="color:#d4a853;font-size:0.8rem;letter-spacing:2px;margin-bottom:12px;">★★★★★</p>
-          <p style="font-size:0.88rem;color:#444;line-height:1.72;font-style:italic;margin-bottom:16px;">"Le beurre de mangue est incroyable. Mes boucles sont définies comme jamais. Ma routine est enfin complète !"</p>
-          <div style="display:flex;align-items:center;gap:10px;">
-            <div style="width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,#c09040,#e8c98a);display:flex;align-items:center;justify-content:center;color:#fff;font-size:0.78rem;font-weight:600;">F</div>
-            <div><p style="font-size:0.8rem;font-weight:600;color:#2b3d24;">Fatou D.</p><p style="font-size:0.7rem;color:#aaa;">Lyon, France</p></div>
-          </div>
-        </div>
-
-        <div class="t-card">
-          <p style="color:#d4a853;font-size:0.8rem;letter-spacing:2px;margin-bottom:12px;">★★★★★</p>
-          <p style="font-size:0.88rem;color:#444;line-height:1.72;font-style:italic;margin-bottom:16px;">"The Elixir Anti-Chute stopped my hair loss within the first month. My scalp feels healthy and my hair is thicker than ever."</p>
-          <div style="display:flex;align-items:center;gap:10px;">
-            <div style="width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,#3d5a33,#5f8a50);display:flex;align-items:center;justify-content:center;color:#fff;font-size:0.78rem;font-weight:600;">N</div>
-            <div><p style="font-size:0.8rem;font-weight:600;color:#2b3d24;">Naomi K.</p><p style="font-size:0.7rem;color:#aaa;">Brussels, Belgium</p></div>
-          </div>
-        </div>
-
-        <div class="t-card">
-          <p style="color:#d4a853;font-size:0.8rem;letter-spacing:2px;margin-bottom:12px;">★★★★★</p>
-          <p style="font-size:0.88rem;color:#444;line-height:1.72;font-style:italic;margin-bottom:16px;">"Enfin une marque qui comprend vraiment les cheveux afro ! Le trio complet est mon investissement beauté du siècle."</p>
-          <div style="display:flex;align-items:center;gap:10px;">
-            <div style="width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,#8b6f47,#c4a882);display:flex;align-items:center;justify-content:center;color:#fff;font-size:0.78rem;font-weight:600;">K</div>
-            <div><p style="font-size:0.8rem;font-weight:600;color:#2b3d24;">Khadija B.</p><p style="font-size:0.7rem;color:#aaa;">Marseille, France</p></div>
-          </div>
-        </div>
-
-        <div class="t-card">
-          <p style="color:#d4a853;font-size:0.8rem;letter-spacing:2px;margin-bottom:12px;">★★★★★</p>
-          <p style="font-size:0.88rem;color:#444;line-height:1.72;font-style:italic;margin-bottom:16px;">"Beautiful packaging and formulas that truly work. You feel the quality instantly — natural, rich, and deeply effective."</p>
-          <div style="display:flex;align-items:center;gap:10px;">
-            <div style="width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,#4a6e3d,#ccdcc4);display:flex;align-items:center;justify-content:center;color:#fff;font-size:0.78rem;font-weight:600;">S</div>
-            <div><p style="font-size:0.8rem;font-weight:600;color:#2b3d24;">Solène T.</p><p style="font-size:0.7rem;color:#aaa;">Bordeaux, France</p></div>
-          </div>
-        </div>
-
-        <div class="t-card">
-          <p style="color:#d4a853;font-size:0.8rem;letter-spacing:2px;margin-bottom:12px;">★★★★★</p>
-          <p style="font-size:0.88rem;color:#444;line-height:1.72;font-style:italic;margin-bottom:16px;">"J'ai essayé des dizaines de produits pour mes cheveux 4C. Rien ne compare à l'Élixir MÎJAH. Ma chute a enfin stoppé."</p>
-          <div style="display:flex;align-items:center;gap:10px;">
-            <div style="width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,#5f8a50,#e5ede0);display:flex;align-items:center;justify-content:center;color:#2b3d24;font-size:0.78rem;font-weight:600;">I</div>
-            <div><p style="font-size:0.8rem;font-weight:600;color:#2b3d24;">Imane R.</p><p style="font-size:0.7rem;color:#aaa;">Lille, France</p></div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </div>
-  </div><!-- /z-index wrapper -->
-
-</section>
-
-
-<!-- ════════════════════════════════════════════════
-     PHOTO GALLERY — La Routine MÎJAH
-════════════════════════════════════════════════ -->
-<section class="py-24 px-6 lg:px-12" style="background:linear-gradient(180deg,#FEFDF9,#f4f7f0);">
-  <div class="max-w-7xl mx-auto">
-
-    <!-- Section header -->
-    <div class="text-center mb-14 js-gallery-hdr">
-      <p class="sec-label mb-4" data-fr="En Images" data-en="In Pictures">En Images</p>
-      <div class="gold-line mx-auto mb-6"></div>
-      <h2 style="font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,4vw,3.3rem);font-weight:400;color:#2b3d24;"
-          data-fr="La Routine MÎJAH" data-en="The MÎJAH Routine">La Routine MÎJAH</h2>
-      <p style="font-size:0.93rem;color:#777;margin-top:12px;max-width:420px;margin-left:auto;margin-right:auto;font-weight:300;line-height:1.75;"
-         data-fr="Des formules pensées pour sublimer chaque boucle, chaque texture." data-en="Formulas designed to elevate every curl, every texture.">Des formules pensées pour sublimer chaque boucle, chaque texture.</p>
-    </div>
-
-    <!-- Asymmetric 2-col masonry grid -->
-    <div class="js-gallery-grid" style="display:grid;grid-template-columns:1fr 1fr;grid-template-rows:auto;gap:16px;max-width:900px;margin:0 auto;">
-
-      <!-- LEFT: tall portrait spanning 2 rows -->
-      <div class="js-gallery-img" style="grid-row:1/3;position:relative;border-radius:24px;overflow:hidden;box-shadow:0 8px 40px rgba(0,0,0,0.10);">
-        <img src="photosAndvideos/Mijah anti-chute nature background.png"
-             alt="MÎJAH Product" style="width:100%;height:100%;object-fit:cover;display:block;min-height:200px;transition:transform 0.65s cubic-bezier(0.25,0.46,0.45,0.94);"
-             onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'" loading="lazy" />
-        <div style="position:absolute;bottom:0;left:0;right:0;padding:22px 20px;background:linear-gradient(0deg,rgba(22,33,15,0.75) 0%,transparent 100%);">
-          <p style="font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:#fff;font-weight:400;letter-spacing:0.05em;" data-fr="Élixir Anti-Chute" data-en="Anti Hair-Loss Elixir">Élixir Anti-Chute</p>
-          <p style="font-size:0.72rem;color:rgba(255,255,255,0.6);letter-spacing:0.1em;text-transform:uppercase;font-weight:400;margin-top:2px;" data-fr="Soin Capillaire Premium" data-en="Premium Hair Care">Soin Capillaire Premium</p>
-        </div>
-      </div>
-
-      <!-- RIGHT TOP: landscape -->
-      <div class="js-gallery-img" style="position:relative;border-radius:24px;overflow:hidden;box-shadow:0 8px 40px rgba(0,0,0,0.10);">
-        <img src="photosAndvideos/Huille Rosemary Mijah spill Bottle.png"
-             alt="MÎJAH Product" style="width:100%;height:230px;object-fit:cover;display:block;transition:transform 0.65s cubic-bezier(0.25,0.46,0.45,0.94);"
-             onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'" loading="lazy" />
-        <div style="position:absolute;bottom:0;left:0;right:0;padding:16px 18px;background:linear-gradient(0deg,rgba(22,33,15,0.70) 0%,transparent 100%);">
-          <p style="font-family:'Cormorant Garamond',serif;font-size:1rem;color:#fff;font-weight:400;" data-fr="Rosemary Growth Oil" data-en="Rosemary Growth Oil">Rosemary Growth Oil</p>
-        </div>
-      </div>
-
-      <!-- RIGHT BOTTOM: square -->
-      <div class="js-gallery-img" style="position:relative;border-radius:24px;overflow:hidden;box-shadow:0 8px 40px rgba(0,0,0,0.10);">
-        <img src="photosAndvideos/Mango butter open jar (lemon tree.jpg"
-             alt="MÎJAH Product" style="width:100%;height:230px;object-fit:cover;display:block;transition:transform 0.65s cubic-bezier(0.25,0.46,0.45,0.94);"
-             onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'" loading="lazy" />
-        <div style="position:absolute;bottom:0;left:0;right:0;padding:16px 18px;background:linear-gradient(0deg,rgba(22,33,15,0.70) 0%,transparent 100%);">
-          <p style="font-family:'Cormorant Garamond',serif;font-size:1rem;color:#fff;font-weight:400;" data-fr="Mango Hair Butter" data-en="Mango Hair Butter">Mango Hair Butter</p>
-        </div>
-      </div>
-
-    </div>
-
-    <!-- 4th photo — full width accent strip below -->
-    <div class="js-gallery-img gallery-accent" style="margin-top:16px;max-width:900px;margin-left:auto;margin-right:auto;position:relative;border-radius:24px;overflow:hidden;box-shadow:0 8px 40px rgba(0,0,0,0.10);">
-      <img src="photosAndvideos/groupe.mijah.jpeg"
-           alt="MÎJAH Lifestyle" style="width:100%;height:480px;object-fit:cover;display:block;object-position:center 30%;transition:transform 0.65s cubic-bezier(0.25,0.46,0.45,0.94);"
-           onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'" loading="lazy" />
-      <div class="gallery-accent-inner" style="position:absolute;inset:0;background:linear-gradient(90deg,rgba(22,33,15,0.60) 0%,transparent 55%);display:flex;align-items:center;padding:0 40px;">
-        <div>
-          <p class="sec-label" style="color:rgba(212,168,83,0.85);margin-bottom:8px;" data-fr="La Collection Complète" data-en="The Full Collection">La Collection Complète</p>
-          <h3 style="font-family:'Cormorant Garamond',serif;font-size:clamp(1.6rem,3vw,2.4rem);color:#fff;font-weight:400;line-height:1.2;" data-fr="Votre Routine Naturelle" data-en="Your Natural Routine">Votre Routine Naturelle</h3>
-          <a href="collection" class="btn-gold" style="margin-top:18px;display:inline-flex;padding:12px 28px;font-size:0.8rem;">
-            <span data-fr="Découvrir" data-en="Shop Now">Découvrir</span> <i class="ph-bold ph-arrow-right"></i>
-          </a>
-        </div>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-
-<!-- ════════════════════════════════════════════════
-     DERNIERS ARTICLES
-════════════════════════════════════════════════ -->
-<section id="latest-articles" class="py-24 px-6 lg:px-12" style="background:#FEFDF9;">
-  <div class="max-w-7xl mx-auto">
-
-    <!-- Header -->
-    <div class="text-center mb-14">
-      <p class="sec-label mb-4" data-fr="LE BLOG MÎJAH" data-en="THE MÎJAH BLOG">LE BLOG MÎJAH</p>
-      <div class="gold-line mx-auto mb-6"></div>
-      <h2 style="font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,4vw,3.3rem);
-                 font-weight:400;color:#2b3d24;letter-spacing:-0.01em;"
-          data-fr="Derniers Articles" data-en="Latest Posts">
-        Derniers Articles
-      </h2>
-    </div>
-
-    <!-- 3 Article Cards -->
-    <div class="grid md:grid-cols-3 gap-7 mb-12">
-
-      <!-- Article 1: Porosité cheveux afro -->
-      <a href="blog-porosite-cheveux-afro" class="block group" style="text-decoration:none;">
-        <article style="background:#fff;border:1px solid rgba(43,61,36,0.1);border-radius:16px;
-                        padding:32px 28px;height:100%;transition:box-shadow 0.3s,transform 0.3s;"
-                 onmouseover="this.style.boxShadow='0 12px 36px rgba(43,61,36,0.10)';this.style.transform='translateY(-4px)'"
-                 onmouseout="this.style.boxShadow='none';this.style.transform='translateY(0)'">
-          <span class="badge badge-green" style="font-size:0.65rem;margin-bottom:18px;display:inline-block;"
-                data-fr="Porosité" data-en="Porosity">Porosité</span>
-          <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.35rem;font-weight:500;
-                     color:#2b3d24;line-height:1.3;margin-bottom:12px;"
-              data-fr="Porosité cheveux afro : comprendre et adapter sa routine"
-              data-en="Afro hair porosity: understand and adapt your routine">
-            Porosité cheveux afro : comprendre et adapter sa routine
-          </h3>
-          <p style="font-size:0.84rem;color:#666;line-height:1.75;font-weight:300;margin-bottom:20px;"
-             data-fr="Faible ou forte porosité ? Le guide simple pour choisir les bons soins et garder l'hydratation."
-             data-en="Low or high porosity? A simple guide to choose the right care and keep hydration.">
-            Faible ou forte porosité ? Le guide simple pour choisir les bons soins et garder l'hydratation.
-          </p>
-          <span style="font-size:0.8rem;color:#4a6e3d;font-weight:500;letter-spacing:0.04em;text-transform:uppercase;"
-                data-fr="Lire l'article →" data-en="Read article →">Lire l'article →</span>
-        </article>
-      </a>
-
-      <!-- Article 2: Routine pousse 4C -->
-      <a href="blog-routine-pousse-cheveux-4c" class="block group" style="text-decoration:none;">
-        <article style="background:#fff;border:1px solid rgba(43,61,36,0.1);border-radius:16px;
-                        padding:32px 28px;height:100%;transition:box-shadow 0.3s,transform 0.3s;"
-                 onmouseover="this.style.boxShadow='0 12px 36px rgba(43,61,36,0.10)';this.style.transform='translateY(-4px)'"
-                 onmouseout="this.style.boxShadow='none';this.style.transform='translateY(0)'">
-          <span class="badge badge-green" style="font-size:0.65rem;margin-bottom:18px;display:inline-block;"
-                data-fr="Pousse capillaire" data-en="Hair Growth">Pousse capillaire</span>
-          <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.35rem;font-weight:500;
-                     color:#2b3d24;line-height:1.3;margin-bottom:12px;"
-              data-fr="Routine pousse cheveux 4C : cuir chevelu et longueurs"
-              data-en="4C hair growth routine: scalp and lengths">
-            Routine pousse cheveux 4C : cuir chevelu et longueurs
-          </h3>
-          <p style="font-size:0.84rem;color:#666;line-height:1.75;font-weight:300;margin-bottom:20px;"
-             data-fr="Stimuler le cuir chevelu, limiter la casse et protéger les pointes pour conserver la longueur."
-             data-en="Stimulate the scalp, reduce breakage and protect ends to retain length.">
-            Stimuler le cuir chevelu, limiter la casse et protéger les pointes pour conserver la longueur.
-          </p>
-          <span style="font-size:0.8rem;color:#4a6e3d;font-weight:500;letter-spacing:0.04em;text-transform:uppercase;"
-                data-fr="Lire l'article →" data-en="Read article →">Lire l'article →</span>
-        </article>
-      </a>
-
-      <!-- Article 3: Sceller l'hydratation -->
-      <a href="blog-sceller-hydratation-cheveux" class="block group" style="text-decoration:none;">
-        <article style="background:#fff;border:1px solid rgba(43,61,36,0.1);border-radius:16px;
-                        padding:32px 28px;height:100%;transition:box-shadow 0.3s,transform 0.3s;"
-                 onmouseover="this.style.boxShadow='0 12px 36px rgba(43,61,36,0.10)';this.style.transform='translateY(-4px)'"
-                 onmouseout="this.style.boxShadow='none';this.style.transform='translateY(0)'">
-          <span class="badge badge-green" style="font-size:0.65rem;margin-bottom:18px;display:inline-block;"
-                data-fr="Hydratation" data-en="Hydration">Hydratation</span>
-          <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.35rem;font-weight:500;
-                     color:#2b3d24;line-height:1.3;margin-bottom:12px;"
-              data-fr="Sceller l'hydratation des cheveux afro et bouclés"
-              data-en="Seal hydration for afro and curly hair">
-            Sceller l'hydratation des cheveux afro et bouclés
-          </h3>
-          <p style="font-size:0.84rem;color:#666;line-height:1.75;font-weight:300;margin-bottom:20px;"
-             data-fr="Comment garder l'eau dans la fibre capillaire avec les bons gestes, huiles et beurres."
-             data-en="How to keep water in the hair fiber with the right gestures, oils and butters.">
-            Comment garder l'eau dans la fibre capillaire avec les bons gestes, huiles et beurres.
-          </p>
-          <span style="font-size:0.8rem;color:#4a6e3d;font-weight:500;letter-spacing:0.04em;text-transform:uppercase;"
-                data-fr="Lire l'article →" data-en="Read article →">Lire l'article →</span>
-        </article>
-      </a>
-
-    </div>
-
-    <!-- CTA link -->
-    <div class="text-center">
-      <a href="blog" style="display:inline-flex;align-items:center;gap:8px;
-         font-size:0.85rem;font-weight:500;color:#4a6e3d;letter-spacing:0.06em;
-         text-transform:uppercase;text-decoration:none;border-bottom:1px solid rgba(74,110,61,0.35);
-         padding-bottom:3px;transition:color 0.2s,border-color 0.2s;"
-         onmouseover="this.style.color='#2b3d24';this.style.borderColor='rgba(43,61,36,0.7)'"
-         onmouseout="this.style.color='#4a6e3d';this.style.borderColor='rgba(74,110,61,0.35)'">
-        <span data-fr="Voir tous les articles" data-en="View all articles">Voir tous les articles</span>
-        <i class="ph-bold ph-arrow-right" style="font-size:0.75rem;"></i>
-      </a>
-    </div>
-
-    <div style="margin-top:64px;padding:34px 28px;border:1px solid rgba(74,110,61,0.12);background:#fff;border-radius:16px;text-align:left;">
-      <p style="font-size:0.68rem;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:#c09040;margin-bottom:16px;"
-         data-fr="Guides populaires" data-en="Popular guides">Guides populaires</p>
-      <h3 style="font-family:'Cormorant Garamond',serif;font-size:clamp(1.7rem,3vw,2.2rem);font-weight:400;color:#2b3d24;line-height:1.18;margin-bottom:14px;"
-          data-fr="Trouver le bon soin pour cheveux afro, bouclés et crépus"
-          data-en="Find the right care for afro, curly and coily hair">
-        Trouver le bon soin pour cheveux afro, bouclés et crépus
-      </h3>
-      <p style="font-size:0.9rem;line-height:1.8;color:#666;font-weight:300;max-width:760px;margin-bottom:22px;"
-         data-fr="Nos articles et soins répondent aux recherches les plus fréquentes : chute, pousse, hydratation, définition des boucles et routine naturelle."
-         data-en="Our guides and products answer the most common searches: hair loss, growth, hydration, curl definition and natural routines.">
-        Nos articles et soins répondent aux recherches les plus fréquentes : chute, pousse, hydratation, définition des boucles et routine naturelle.
-      </p>
-      <div style="display:flex;flex-wrap:wrap;gap:10px;">
-        <a href="product-elixir" style="padding:10px 14px;border-radius:100px;background:#f4f7f0;color:#2b3d24;text-decoration:none;font-size:0.82rem;font-weight:500;">élixir anti-chute cheveux afro</a>
-        <a href="product-rosemary" style="padding:10px 14px;border-radius:100px;background:#f4f7f0;color:#2b3d24;text-decoration:none;font-size:0.82rem;font-weight:500;">huile de romarin cheveux</a>
-        <a href="product-mango" style="padding:10px 14px;border-radius:100px;background:#f4f7f0;color:#2b3d24;text-decoration:none;font-size:0.82rem;font-weight:500;">beurre de mangue cheveux bouclés</a>
-        <a href="blog-routine-crepus" style="padding:10px 14px;border-radius:100px;background:#f4f7f0;color:#2b3d24;text-decoration:none;font-size:0.82rem;font-weight:500;">routine cheveux crépus</a>
-        <a href="blog-hydratation-cheveux-secs" style="padding:10px 14px;border-radius:100px;background:#f4f7f0;color:#2b3d24;text-decoration:none;font-size:0.82rem;font-weight:500;">hydratation cheveux afro secs</a>
-        <a href="blog-cowash-vs-shampoing" style="padding:10px 14px;border-radius:100px;background:#f4f7f0;color:#2b3d24;text-decoration:none;font-size:0.82rem;font-weight:500;">co-wash ou shampoing cheveux afro</a>
-        <a href="soins-cheveux-afro-france" style="padding:10px 14px;border-radius:100px;background:#f4f7f0;color:#2b3d24;text-decoration:none;font-size:0.82rem;font-weight:500;">soins cheveux afro France</a>
-        <a href="collection" style="padding:10px 14px;border-radius:100px;background:#2b3d24;color:#fff;text-decoration:none;font-size:0.82rem;font-weight:500;">soins cheveux afro naturels</a>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-
-<!-- ════════════════════════════════════════════════
-     CTA BAND
-════════════════════════════════════════════════ -->
-<section class="cta-band py-28 px-6 lg:px-12">
-  <!-- Decorative leaf shapes -->
-  <div style="position:absolute;top:-15%;right:-4%;width:320px;opacity:0.07;pointer-events:none;">
-    <svg viewBox="0 0 200 300" fill="none"><path d="M100 10C150 60 180 120 160 200C140 270 80 290 40 260C10 240 20 180 40 140C60 100 50 50 100 10Z" fill="#82a874"/></svg>
-  </div>
-  <div style="position:absolute;bottom:-10%;left:-4%;width:260px;opacity:0.05;pointer-events:none;transform:rotate(30deg) scaleX(-1);">
-    <svg viewBox="0 0 200 300" fill="none"><path d="M100 10C150 60 180 120 160 200C140 270 80 290 40 260C10 240 20 180 40 140C60 100 50 50 100 10Z" fill="#ccdcc4"/></svg>
-  </div>
-
-  <div class="max-w-3xl mx-auto text-center relative z-10 js-cta-band">
-    <p class="sec-label mb-5" style="color:rgba(212,168,83,0.75);"
-       data-fr="Prête à Transformer vos Cheveux ?" data-en="Ready to Transform Your Hair?">Prête à Transformer vos Cheveux ?</p>
-    <div class="gold-line mx-auto mb-8"></div>
-    <h2 style="font-family:'Cormorant Garamond',serif;font-size:clamp(2.3rem,5vw,4.2rem);
-               font-weight:400;color:#fff;line-height:1.12;margin-bottom:20px;">
-      <span data-fr="Vos Boucles Méritent" data-en="Your Curls Deserve">Vos Boucles Méritent</span><br><em style="color:#e8c98a;" data-fr="le Meilleur." data-en="the Very Best.">le Meilleur.</em>
-    </h2>
-    <p style="font-size:0.93rem;color:rgba(255,255,255,0.62);max-width:420px;margin:0 auto 40px;
-              line-height:1.78;font-weight:300;"
-       data-fr="Rejoignez plus de 500 femmes qui ont transformé leur routine capillaire avec MÎJAH. Premium, naturel, fait pour vous."
-       data-en="Join over 500 women who have transformed their hair journey with MÎJAH. Premium, natural, and made for you.">
-      Rejoignez plus de 500 femmes qui ont transformé leur routine capillaire avec MÎJAH. Premium, naturel, fait pour vous.
-    </p>
-    <div style="display:flex;flex-wrap:wrap;gap:14px;justify-content:center;">
-      <a href="collection" class="btn-gold" style="font-size:0.87rem;padding:17px 40px;">
-        <span data-fr="Voir la Collection" data-en="Shop the Collection">Voir la Collection</span> <i class="ph-bold ph-arrow-right"></i>
-      </a>
-      <a href="collection.html#bundle" class="btn-ghost-white" style="font-size:0.87rem;padding:16px 36px;">
-        <i class="ph ph-gift"></i> <span data-fr="Découvrir nos Coffrets" data-en="Discover Our Sets">Découvrir nos Coffrets</span>
-      </a>
-    </div>
-  </div>
-</section>
 
 
 <!-- ════════════════════════════════════════════════
@@ -1801,17 +1383,6 @@
     }
   });
 
-  /* ─── BRAND VIDEO (top of page, scroll-in) ─── */
-  gsap.from('.js-video-wrap', {
-    opacity:0, scale:0.97, duration:1.2, ease:'power3.out',
-    scrollTrigger: { trigger:'.js-video-section', start:'top 90%' },
-  });
-
-  /* ─── TESTIMONIALS HEADER ──────────────────── */
-  gsap.from('.js-test-hdr', {
-    opacity:0, y:42, duration:0.9, ease:'power3.out',
-    scrollTrigger: { trigger:'#testimonials', start:'top 82%' },
-  });
 
   /* ─── PHOTO GALLERY ─────────────────────────── */
   gsap.from('.js-gallery-hdr', {
@@ -1823,11 +1394,6 @@
     scrollTrigger: { trigger:'.js-gallery-grid', start:'top 80%' },
   });
 
-  /* ─── CTA BAND ──────────────────────────────── */
-  gsap.from('.js-cta-band', {
-    opacity:0, y:48, duration:1.0, ease:'power3.out',
-    scrollTrigger: { trigger:'.cta-band', start:'top 76%' },
-  });
 
   /* ─── NEWSLETTER ─────────────────────────────── */
   gsap.to('.js-nl-badge', {

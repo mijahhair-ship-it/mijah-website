@@ -1,6 +1,7 @@
 import { cp, mkdir, readdir, rm } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { generateMetaCatalog } from './generate-meta-catalog.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const output = path.join(root, 'dist');
@@ -35,5 +36,7 @@ for (const entry of rootFiles) {
 await cp(path.join(root, 'photosAndvideos'), path.join(output, 'photosAndvideos'), {
   recursive: true,
 });
+
+await generateMetaCatalog(root, path.join(output, 'meta-catalog.csv'));
 
 console.log('Built public site in dist/');
