@@ -21,12 +21,12 @@
   #checkout-modal {
     position: relative;
     width: 100%;
-    max-width: 480px;
+    max-width: 560px;
     max-height: 92vh;
     overflow-y: auto;
-    padding: 28px 20px 32px;
+    padding: 32px 28px calc(28px + env(safe-area-inset-bottom));
     border-radius: 24px 24px 0 0;
-    background: #fff;
+    background: #fefdf9;
     box-shadow: 0 -8px 40px rgb(0 0 0 / 20%);
     -webkit-overflow-scrolling: touch;
   }
@@ -35,27 +35,30 @@
     display: block;
     margin-bottom: 6px;
     color: #2b3d24;
-    font-size: 0.75rem;
-    font-weight: 600;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
+    font-size: 0.875rem;
+    font-weight: 500;
   }
 
   .co-input {
     box-sizing: border-box;
     width: 100%;
-    padding: 11px 14px;
+    display: block;
+    min-width: 0;
+    min-height: 50px;
+    padding: 12px 14px;
+    background: #fff;
     border: 1.5px solid rgb(74 110 61 / 25%);
     border-radius: 10px;
     outline: none;
     color: #2b3d24;
     font-family: Jost, sans-serif;
-    font-size: 0.85rem;
-    transition: border-color 0.2s;
+    font-size: 16px;
+    transition: border-color 0.2s, box-shadow 0.2s;
   }
 
   .co-input:focus {
     border-color: #4a6e3d;
+    box-shadow: 0 0 0 3px rgb(74 110 61 / 12%);
   }
 
   @media (min-width: 600px) {
@@ -75,6 +78,45 @@
    `clip` (unlike `hidden`) stops sideways panning on iOS Safari
    without turning <html>/<body> into scroll containers. */
 html, body { overflow-x: clip; }
+
+/* Shared checkout: explicit rules also cover dynamically rendered form fields. */
+#checkout-modal { overscroll-behavior: contain; max-height: 92dvh; font-family: Jost, sans-serif; }
+#checkout-modal > h3 { font-size: 2rem !important; margin: 0 40px 20px 0 !important; }
+#checkout-modal > button { min-width: 40px; min-height: 40px; }
+#checkout-modal button:focus-visible { outline: 3px solid #7a9a6e; outline-offset: 3px; }
+.co-steps { display: flex; gap: 18px; border-bottom: 1px solid #dce2d5; padding-bottom: 20px; margin-bottom: 24px; font-size: 14px; color: #72766d; }
+.co-steps span { display: flex; align-items: center; gap: 8px; }
+.co-steps b { display: grid; place-items: center; width: 26px; height: 26px; border: 1px solid #cbd4c4; border-radius: 50%; font-weight: 500; }
+.co-steps [aria-current="step"] { color: #2b3d24; font-weight: 500; }
+.co-steps [aria-current="step"] b { background: #2b3d24; color: #fff; border-color: #2b3d24; }
+.co-heading { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 26px; color: #2b3d24; margin: 22px 0 4px; }
+.co-hint { font-size: 14px; line-height: 1.5; color: #697060; margin: 0 0 18px; }
+.co-row { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: 16px; }
+.co-field { min-width: 0; margin-bottom: 16px; }
+.co-input::placeholder { color: #92978b; opacity: 1; }
+.co-primary { width: 100%; min-height: 54px; padding: 14px 18px; border: 0; border-radius: 10px; background: #2b3d24; color: #fff; font: 500 16px Jost, sans-serif; display: flex; align-items: center; justify-content: center; gap: 12px; cursor: pointer; transition: background .2s; }
+.co-primary:hover { background: #405536; }
+.co-primary:disabled { opacity: .65; cursor: wait; }
+.co-trust { color: #68715f; font-size: 13px; text-align: center; line-height: 1.6; margin: 12px 0 0; }
+.co-error { color: #a32a23; font-size: 14px; line-height: 1.5; margin-bottom: 14px; }
+#paypal-button-container { margin-top: 20px; }
+.co-section { padding: 20px; margin-bottom: 22px; background: #fff; border: 1px solid #e1e4db; border-top: 3px solid #91a382; border-radius: 12px; }
+.co-summary { background: #f4f7f0; }
+.co-address-section { border-top-color: #48613a; }
+.co-payment-section { border-top-color: #c09040; background: #fffcf5; }
+.co-section-title { display: flex; align-items: center; gap: 12px; font-family: 'Cormorant Garamond', Georgia, serif; font-size: 25px; line-height: 1.2; color: #2b3d24; margin: 0 0 14px; padding-bottom: 16px; border-bottom: 1px solid #cbd6c2; }
+.co-section-title span { color: #657b54; font-family: Jost, sans-serif; font-size: 12px; letter-spacing: .08em; }
+.co-payment-section .co-section-title { border-bottom-color: #dcc18b; }
+.co-payment-section .co-section-title span { color: #916b28; }
+.co-section .co-field:last-child { margin-bottom: 0; }
+@media (max-width: 599px) {
+  #checkout-modal { padding: 26px 20px calc(24px + env(safe-area-inset-bottom)); }
+  .co-section { padding: 18px 16px; }
+  .co-row { grid-template-columns: minmax(0, 1fr); gap: 0; }
+}
+@media (max-width: 359px) {
+  .co-row { grid-template-columns: minmax(0, 1fr); gap: 0; }
+}
 
 /* Closed cart drawer: slide it out with transform instead of parking it
    at right:-420px, and hide it, so it can't widen the page on iPhone. */

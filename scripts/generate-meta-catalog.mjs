@@ -101,7 +101,7 @@ export async function generateMetaCatalog(root, outputPath) {
     availability: availabilityValue(trio.offers.availability || 'InStock'),
     condition: 'new',
     price: `${Number(trio.offers.price).toFixed(2)} ${trio.offers.priceCurrency || 'EUR'}`,
-    link: 'https://mijah.fr/collection#bundle',
+    link: 'https://mijah.fr/gamme-complete',
     image_link: trio.image,
     brand: 'MÎJAH',
     google_product_category: GOOGLE_PRODUCT_CATEGORY,

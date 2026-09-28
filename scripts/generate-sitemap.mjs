@@ -30,8 +30,10 @@ async function lastModified(root, file) {
  * Builds sitemap.xml from the indexable root HTML pages: skips noindex pages,
  * uses each page's canonical URL, and attaches its og:image as an image entry.
  */
-export async function generateSitemap(root, outputFile) {
-  const files = (await readdir(root)).filter((name) => name.endsWith('.html')).sort();
+export async function generateSitemap(root, outputFile, excludeFiles = new Set()) {
+  const files = (await readdir(root))
+    .filter((name) => name.endsWith('.html') && !excludeFiles.has(name))
+    .sort();
   const entries = [];
 
   for (const file of files) {

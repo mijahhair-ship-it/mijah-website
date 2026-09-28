@@ -26,8 +26,8 @@ MÎJAH est une marque e-commerce française de soins naturels pour cheveux afro,
 
 ## Produits
 
-- [Élixir Anti-Chute MÎJAH](https://mijah.fr/product-elixir): Élixir sérumique naturel qui réduit la chute des cheveux et renforce le cuir chevelu. Prix : €21.90 (60 ml). Ingrédients clés : batana, ricin, romarin. Résultats visibles en 3-4 semaines. Convient aux types 2C-4C.
-- [Huile de Croissance Rosemary MÎJAH](https://mijah.fr/product-rosemary): Huile botanique pressée à froid qui stimule la pousse des cheveux et revitalise le cuir chevelu. Prix : €12.80 (100 ml). Ingrédients clés : romarin pressé à froid, huiles botaniques.
+- [Élixir Anti-Chute MÎJAH](https://mijah.fr/product-elixir): Élixir sérumique naturel qui aide à limiter la chute des cheveux et fortifie le cuir chevelu. Prix : €18.10 (60 ml). Ingrédients clés : batana, ricin, romarin. À utiliser 2 à 3 fois par semaine, sur 2 à 3 mois. Convient aux types 2C-4C.
+- [Huile de Croissance Rosemary MÎJAH](https://mijah.fr/product-rosemary): Huile botanique pressée à froid pour masser et revitaliser le cuir chevelu dans une routine pousse. Prix : €12.80 (100 ml). Ingrédients clés : romarin pressé à froid, huiles botaniques.
 - [Beurre de Mangue MÎJAH](https://mijah.fr/product-mango): Beurre capillaire naturel qui hydrate intensément et définit les boucles. Prix : €19.90 (150 ml). Ingrédients clés : beurre de mangue, vitamines A, C, E. Usage : leave-in ou masque hebdomadaire.
 - [Coffret Trio MÎJAH](https://mijah.fr/collection): Les 3 produits réunis. Prix : €49.90.
 
@@ -59,21 +59,40 @@ MÎJAH est une marque e-commerce française de soins naturels pour cheveux afro,
 - **Les produits sont-ils vegan et cruelty-free ?** Oui, 100% vegan et cruelty-free. Aucun ingrédient animal, jamais testé sur les animaux.
 - **Peut-on utiliser MÎJAH enceinte ou allaitante ?** Par précaution, consultez votre médecin pour l'Élixir (romarin en concentration active).
 - **Délais de livraison ?** 2-3 jours ouvrés en France métropolitaine, 4-7 jours en Europe et dans les DOM-TOM.
-- **En combien de temps voit-on les résultats ?** Réduction de la chute en 3-4 semaines, pousse visible en 6-8 semaines, transformation complète en 2-3 mois.
+- **En combien de temps voit-on les résultats ?** Le cheveu pousse d'environ 1 cm par mois : comptez 8 à 12 semaines d'utilisation régulière pour juger une routine cuir chevelu, et 6 mois pour un bilan de longueur. Les produits MÎJAH sont des cosmétiques et ne remplacent pas un avis médical.
 - **Quelle est la différence entre l'Huile Rosemary et le Beurre de Mangue ?** L'Huile Rosemary cible le cuir chevelu (pousse), le Beurre de Mangue cible les longueurs (hydratation et définition des boucles).
 - **Peut-on utiliser les 3 produits ensemble ?** Oui. Routine complète : Huile Rosemary en pré-shampoing → Élixir Anti-Chute sur cuir chevelu propre → Beurre de Mangue en leave-in.
 
 ## Blog
 
+### Routines et bases
+- [Routine Complète Cheveux Crépus : Les 3 Étapes Essentielles](https://mijah.fr/blog-routine-crepus)
+- [Co-wash ou Shampoing : Que Choisir pour vos Cheveux Afro ?](https://mijah.fr/blog-cowash-vs-shampoing)
+- [Cheveux Bouclés en Hiver : la Routine Anti-Sec en 5 Étapes](https://mijah.fr/blog-cheveux-boucles-hiver)
+- [5 Erreurs qui Abîment les Cheveux Afro](https://mijah.fr/blog-erreurs-cheveux-afro)
+- [Routine capillaire afro : la semaine type](https://mijah.fr/blog-routine-capillaire-afro-semaine)
+- [Cheveux afro des enfants : une routine douce et simple](https://mijah.fr/blog-soins-cheveux-afro-enfants)
+
+### Hydratation et beurre de mangue
+- [Beurre de Mangue : L'Essentiel pour les Cheveux Bouclés](https://mijah.fr/blog-beurre-mangue)
+- [Beurre de Mangue : hydrater les cheveux afro secs](https://mijah.fr/blog-beurre-mangue-cheveux-secs)
+- [5 Astuces Pour Hydrater les Cheveux Afro Très Secs](https://mijah.fr/blog-hydratation-cheveux-secs)
+- [Sceller l'Hydratation des Cheveux Afro et Bouclés](https://mijah.fr/blog-sceller-hydratation-cheveux)
+- [Porosité Cheveux Afro : Adapter sa Routine Naturelle](https://mijah.fr/blog-porosite-cheveux-afro)
+- [Méthode LOC ou LCO : dans quel ordre appliquer ses soins ?](https://mijah.fr/blog-methode-loc-lco-cheveux-afro)
+- [Comment choisir son beurre capillaire pour cheveux afro ?](https://mijah.fr/blog-choisir-beurre-capillaire)
+
+### Pousse et huile de romarin
 - [Huile de Romarin : Pourquoi Elle Fait Pousser les Cheveux](https://mijah.fr/blog-huile-romarin)
-- [Porosité cheveux afro : comprendre et adapter sa routine](https://mijah.fr/blog-porosite-cheveux-afro)
-- [Routine pousse cheveux 4C : cuir chevelu et longueurs](https://mijah.fr/blog-routine-pousse-cheveux-4c)
-- [Sceller l'hydratation des cheveux afro et bouclés](https://mijah.fr/blog-sceller-hydratation-cheveux)
-- [Routine cheveux crépus : le protocole complet](https://mijah.fr/blog-routine-crepus)
-- [Chute de cheveux : causes et solutions naturelles](https://mijah.fr/blog-chute-cheveux)
-- [Beurre de mangue pour cheveux afro](https://mijah.fr/blog-beurre-mangue)
-- [Les erreurs à éviter avec les cheveux afro](https://mijah.fr/blog-erreurs-cheveux-afro)
-- [Hydratation cheveux secs et abîmés](https://mijah.fr/blog-hydratation-cheveux-secs)
-- [Pousse des cheveux naturels : le guide complet](https://mijah.fr/blog-pousse-cheveux-naturels)
-- [Cheveux bouclés en hiver : routine anti-chute saisonnière](https://mijah.fr/blog-cheveux-boucles-hiver)
-- [Co-wash vs shampoing : lequel choisir pour cheveux afro ?](https://mijah.fr/blog-cowash-vs-shampoing)
+- [Comment Faire Pousser ses Cheveux Naturellement : 7 Méthodes](https://mijah.fr/blog-pousse-cheveux-naturels)
+- [Routine Pousse Cheveux 4C : Cuir Chevelu et Longueurs](https://mijah.fr/blog-routine-pousse-cheveux-4c)
+- [Huile de ricin ou huile de romarin : laquelle choisir ?](https://mijah.fr/blog-huile-ricin-vs-huile-romarin)
+- [Repousse des cheveux afro : combien de temps faut-il ?](https://mijah.fr/blog-repousse-cheveux-afro-combien-de-temps)
+- [Shrinkage des cheveux 4C : le comprendre et l’étirer en douceur](https://mijah.fr/blog-shrinkage-cheveux-4c)
+
+### Chute et cuir chevelu
+- [Comment Stopper la Chute des Cheveux Naturellement](https://mijah.fr/blog-chute-cheveux)
+- [Élixir Anti-Chute : une routine simple pour cheveux afro](https://mijah.fr/blog-elixir-anti-chute-routine)
+- [Chute de cheveux post-partum : que faire ?](https://mijah.fr/blog-chute-cheveux-post-partum)
+- [Coiffures protectrices : comment protéger sans casser](https://mijah.fr/blog-coiffures-protectrices-sans-casse)
+- [Cuir chevelu sec et pellicules : que faire sur cheveux afro ?](https://mijah.fr/blog-cuir-chevelu-sec-pellicules-afro)

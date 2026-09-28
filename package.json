@@ -5,6 +5,7 @@
     "build:css": "tailwindcss -i src/input.css -o output.css --minify",
     "build:site": "node scripts/build-site.mjs",
     "build": "npm run build:css && npm run build:site",
+    "preview:local": "node scripts/local-preview-server.mjs",
     "watch:css": "tailwindcss -i src/input.css -o output.css --watch",
     "indexnow": "node scripts/indexnow.mjs"
   },

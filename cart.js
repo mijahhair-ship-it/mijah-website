@@ -36,6 +36,23 @@ const PAYPAL_CLIENT_ID = 'Aaz6On1Loged87kr3EhV4uGYYhr74CGlJdS1YpXdUInAC_B9HFNn5H
 const ORDER_NOTIFICATION_ENDPOINT = 'https://formspree.io/f/maqdrqbd';
 let paypalSdkPromise;
 
+const ORDER_FUNCTION_URL = 'https://fozuetpukdurdforfbyh.supabase.co/functions/v1/create-order';
+const PAYMENT_FUNCTION_URL = 'https://fozuetpukdurdforfbyh.supabase.co/functions/v1/paypal-payment';
+// Legacy anon JWT is public and accepted by Supabase Edge Function gateway.
+// Never replace this with a service_role/secret key.
+const SUPABASE_PUBLIC_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZvenVldHB1a2R1cmRmb3JtYnloIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY0MjU0NDMsImV4cCI6MjA5MjAwMTQ0M30.7dsgruYKmYgGo94ORBOiUGehnwJDyY6OiOKa9GA3uJQ';
+
+async function callSupabaseFunction(url, body) {
+  const response = await fetch(url, {
+    method: 'POST',
+    headers: { apikey: SUPABASE_PUBLIC_KEY, Authorization: `Bearer ${SUPABASE_PUBLIC_KEY}`, 'Content-Type': 'application/json' },
+    body: JSON.stringify(body),
+  });
+  const payload = await response.json().catch(() => ({}));
+  if (!response.ok) throw new Error(payload.error || 'Backend request failed');
+  return payload;
+}
+
 function trackCommerceEvent(eventName, params = {}) {
   if (typeof window.gtag === 'function') window.gtag('event', eventName, params);
 }
@@ -249,8 +266,12 @@ function openCheckout() {
   }).join('');
 
   document.getElementById('checkout-body').innerHTML = `
+    <div class="co-steps" aria-label="${lang==='fr'?'Étapes de commande':'Checkout steps'}">
+      <span aria-current="step"><b>1</b> ${lang==='fr'?'Livraison':'Delivery'}</span>
+      <span><b>2</b> ${lang==='fr'?'Paiement':'Payment'}</span>
+    </div>
     <!-- Order summary -->
-    <div style="background:#f4f7f0;border-radius:14px;padding:14px 16px;margin-bottom:20px;">
+    <div class="co-section co-summary">
       <p style="font-size:0.7rem;letter-spacing:0.12em;text-transform:uppercase;color:#7a9a6e;font-weight:600;margin-bottom:10px;">${lang==='fr'?'Récapitulatif':'Order Summary'}</p>
       ${itemRows}
       <div style="border-top:1px solid rgba(74,110,61,0.15);margin-top:8px;padding-top:8px;display:flex;justify-content:space-between;font-size:0.82rem;color:#777;">
@@ -268,50 +289,73 @@ function openCheckout() {
     </div>
 
     <!-- Delivery zone -->
-    <label style="display:block;font-size:0.75rem;font-weight:600;color:#2b3d24;letter-spacing:0.06em;text-transform:uppercase;margin-bottom:6px;">${lang==='fr'?'Zone de livraison *':'Delivery Zone *'}</label>
-    <select id="co-zone" onchange="updateDeliveryFee()" style="width:100%;padding:11px 14px;border:1.5px solid rgba(74,110,61,0.25);border-radius:10px;font-size:0.85rem;color:#2b3d24;margin-bottom:18px;background:#fff;appearance:none;-webkit-appearance:none;">
+    <form id="co-form" onsubmit="event.preventDefault(); submitOrder()">
+    <section class="co-section co-address-section" aria-labelledby="co-address-title">
+    <h4 id="co-address-title" class="co-section-title"><span>01</span> ${lang==='fr'?'Adresse de livraison':'Delivery address'}</h4>
+    <p class="co-hint">${lang==='fr'?'Les champs marqués * sont obligatoires.':'Fields marked * are required.'}</p>
+    <div class="co-field">
+    <label for="co-zone" class="co-label">${lang==='fr'?'Zone de livraison *':'Delivery zone *'}</label>
+    <select id="co-zone" class="co-input" onchange="updateDeliveryFee()" required>
       <option value="">${lang==='fr'?'— Choisir votre zone —':'— Select your zone —'}</option>
       ${zoneOptions}
     </select>
+    </div>
 
     <!-- Address form -->
-    <p style="font-size:0.7rem;letter-spacing:0.12em;text-transform:uppercase;color:#7a9a6e;font-weight:600;margin-bottom:12px;">${lang==='fr'?'Adresse de livraison':'Delivery Address'}</p>
 
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px;">
-      <div>
-        <label class="co-label">${lang==='fr'?'Prénom *':'First Name *'}</label>
-        <input id="co-firstname" class="co-input" type="text" placeholder="${lang==='fr'?'Marie':'Marie'}" required>
+    <div class="co-row">
+      <div class="co-field">
+        <label for="co-firstname" class="co-label">${lang==='fr'?'Prénom *':'First name *'}</label>
+        <input id="co-firstname" name="given-name" autocomplete="given-name" class="co-input" type="text" placeholder="Marie" required>
       </div>
-      <div>
-        <label class="co-label">${lang==='fr'?'Nom *':'Last Name *'}</label>
-        <input id="co-lastname" class="co-input" type="text" placeholder="${lang==='fr'?'Dupont':'Dupont'}" required>
-      </div>
-    </div>
-
-    <label class="co-label">Email *</label>
-    <input id="co-email" class="co-input" type="email" placeholder="email@example.com" style="margin-bottom:10px;" required>
-
-    <label class="co-label">${lang==='fr'?'Adresse *':'Address *'}</label>
-    <input id="co-address" class="co-input" type="text" placeholder="${lang==='fr'?'12 rue de la Paix':'12 Peace Street'}" style="margin-bottom:10px;" required>
-
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:18px;">
-      <div>
-        <label class="co-label">${lang==='fr'?'Code postal *':'Postal Code *'}</label>
-        <input id="co-postal" class="co-input" type="text" placeholder="75001" required>
-      </div>
-      <div>
-        <label class="co-label">${lang==='fr'?'Ville *':'City *'}</label>
-        <input id="co-city" class="co-input" type="text" placeholder="${lang==='fr'?'Paris':'Paris'}" required>
+      <div class="co-field">
+        <label for="co-lastname" class="co-label">${lang==='fr'?'Nom *':'Last name *'}</label>
+        <input id="co-lastname" name="family-name" autocomplete="family-name" class="co-input" type="text" placeholder="Dupont" required>
       </div>
     </div>
 
-    <label class="co-label">${lang==='fr'?'Pays *':'Country *'}</label>
-    <input id="co-country" class="co-input" type="text" placeholder="${lang==='fr'?'France':'France'}" style="margin-bottom:18px;" required>
+    <div class="co-field">
+    <label for="co-email" class="co-label">Email *</label>
+    <input id="co-email" name="email" autocomplete="email" class="co-input" type="email" placeholder="vous@exemple.fr" required>
+    </div>
 
-    <button onclick="submitOrder()" style="width:100%;padding:15px;background:linear-gradient(135deg,#2b3d24,#4a6e3d);color:#fff;border:none;border-radius:100px;font-family:'Jost',sans-serif;font-size:0.85rem;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;">
-      <i class="ph ph-check-circle"></i> ${lang==='fr'?'Confirmer la commande':'Confirm Order'}
+    <div class="co-field">
+    <label for="co-address" class="co-label">${lang==='fr'?'Adresse *':'Address *'}</label>
+    <input id="co-address" name="street-address" autocomplete="street-address" class="co-input" type="text" placeholder="${lang==='fr'?'Numéro et nom de rue, appartement':'Street address, apartment'}" required>
+    </div>
+
+    <div class="co-row">
+      <div class="co-field">
+        <label for="co-postal" class="co-label">${lang==='fr'?'Code postal *':'Postal code *'}</label>
+        <input id="co-postal" name="postal-code" autocomplete="postal-code" class="co-input" type="text" placeholder="75001" required>
+      </div>
+      <div class="co-field">
+        <label for="co-city" class="co-label">${lang==='fr'?'Ville *':'City *'}</label>
+        <input id="co-city" name="address-level2" autocomplete="address-level2" class="co-input" type="text" placeholder="Paris" required>
+      </div>
+    </div>
+
+    <div class="co-field">
+    <label for="co-country" class="co-label">${lang==='fr'?'Pays *':'Country *'}</label>
+    <input id="co-country" name="country-name" autocomplete="country-name" class="co-input" type="text" placeholder="France" required>
+    </div>
+
+    <label class="co-newsletter-consent" style="display:flex;align-items:flex-start;gap:10px;margin-top:12px;color:#52604c;font-size:0.78rem;line-height:1.5;cursor:pointer;">
+      <input id="co-newsletter-opt-in" type="checkbox" style="margin-top:3px;accent-color:#4a6e3d;">
+      <span>${lang==='fr'?'Je souhaite recevoir les conseils et offres MÎJAH par email. Désinscription possible à tout moment.':'I would like to receive MÎJAH tips and offers by email. Unsubscribe at any time.'}</span>
+    </label>
+
+    </section>
+    <section class="co-section co-payment-section" aria-labelledby="co-payment-title">
+    <h4 id="co-payment-title" class="co-section-title"><span>02</span> ${lang==='fr'?'Paiement sécurisé':'Secure payment'}</h4>
+    <p class="co-hint">${lang==='fr'?'Validez votre adresse pour afficher les moyens de paiement proposés par PayPal.':'Confirm your address to display the payment methods offered by PayPal.'}</p>
+    <p id="co-error" class="co-error" role="alert" hidden></p>
+    <button id="co-submit" type="submit" class="co-primary">
+      ${lang==='fr'?'Continuer vers le paiement':'Continue to payment'} <i class="ph ph-arrow-right" aria-hidden="true"></i>
     </button>
-    <p style="font-size:0.7rem;color:#bbb;text-align:center;margin-top:10px;">${lang==='fr'?'Paiement sécurisé à l\'étape suivante':'Secure payment at next step'}</p>
+    <p class="co-trust"><i class="ph ph-lock-simple" aria-hidden="true"></i> ${lang==='fr'?'Paiement sécurisé via PayPal à l’étape suivante.':'Secure payment via PayPal in the next step.'}</p>
+    </section>
+    </form>
   `;
 
   document.getElementById('checkout-overlay').classList.add('open');
@@ -340,14 +384,18 @@ function closeCheckout() {
 
 async function submitOrder() {
   const lang = typeof currentLang !== 'undefined' ? currentLang : (localStorage.getItem('mijahLang') || 'fr');
+  const submitButton = document.getElementById('co-submit');
+  if (submitButton?.disabled) return;
 
   /* validate */
   const fields = ['co-zone','co-firstname','co-lastname','co-email','co-address','co-postal','co-city','co-country'];
   for (const id of fields) {
     const el = document.getElementById(id);
     if (!el || !el.value.trim() || (typeof el.checkValidity === 'function' && !el.checkValidity())) {
-      el.style.borderColor = '#e55';
-      el.focus();
+      if (el) {
+        el.style.borderColor = '#e55';
+        el.focus();
+      }
       return;
     }
     el.style.borderColor = 'rgba(74,110,61,0.25)';
@@ -367,6 +415,7 @@ async function submitOrder() {
   const city      = document.getElementById('co-city').value;
   const email     = document.getElementById('co-email').value;
   const country   = document.getElementById('co-country').value;
+  const newsletterOptIn = Boolean(document.getElementById('co-newsletter-opt-in')?.checked);
   const reference = `MIJAH-${Date.now().toString(36).toUpperCase()}`;
   const items = commerceItems(keys);
 
@@ -377,8 +426,56 @@ async function submitOrder() {
     items,
   });
 
+  let serverOrder;
+  let paypalOrderId;
+  if (submitButton) {
+    submitButton.disabled = true;
+    submitButton.textContent = lang === 'fr' ? 'Préparation du paiement…' : 'Preparing payment…';
+  }
+  const formError = document.getElementById('co-error');
+  if (formError) formError.hidden = true;
+  try {
+    serverOrder = await callSupabaseFunction(ORDER_FUNCTION_URL, {
+      shipping_zone: zone.id,
+      items: keys.map(id => ({ slug: id, quantity: cart[id] })),
+      customer: {
+        email,
+        first_name: firstName,
+        last_name: lastName,
+        address,
+        postal_code: postal,
+        city,
+        country,
+      },
+      newsletter_opt_in: newsletterOptIn,
+    });
+    const payment = await callSupabaseFunction(PAYMENT_FUNCTION_URL, {
+      action: 'create',
+      order_id: serverOrder.order.id,
+    });
+    paypalOrderId = payment.paypal_order_id;
+  } catch (error) {
+    console.error('Secure order creation failed:', error);
+    if (formError) {
+      formError.textContent = lang === 'fr' ? 'Le paiement ne peut pas être préparé pour le moment. Vos informations sont conservées. Veuillez réessayer.' : 'Payment could not be prepared. Your details have been kept. Please try again.';
+      formError.hidden = false;
+    }
+    if (submitButton) {
+      submitButton.disabled = false;
+      submitButton.textContent = lang === 'fr' ? 'Continuer vers le paiement' : 'Continue to payment';
+    }
+    return;
+  }
+
   /* show PayPal payment step */
   document.getElementById('checkout-body').innerHTML = `
+    <div class="co-steps" aria-label="${lang==='fr'?'Étapes de commande':'Checkout steps'}">
+      <span><b>✓</b> ${lang==='fr'?'Livraison':'Delivery'}</span>
+      <span aria-current="step"><b>2</b> ${lang==='fr'?'Paiement':'Payment'}</span>
+    </div>
+    <section class="co-section co-payment-section" aria-labelledby="co-payment-title">
+    <h4 id="co-payment-title" class="co-section-title"><span>02</span> ${lang==='fr'?'Paiement sécurisé':'Secure payment'}</h4>
+    <p class="co-hint">${lang==='fr'?'Choisissez votre moyen de paiement parmi les options proposées ci-dessous.':'Choose your payment method from the options below.'}</p>
     <div style="background:#f4f7f0;border-radius:14px;padding:14px 16px;margin-bottom:20px;">
       <p style="font-size:0.7rem;letter-spacing:0.12em;text-transform:uppercase;color:#7a9a6e;font-weight:600;margin-bottom:8px;">${lang==='fr'?'Récapitulatif':'Summary'}</p>
       <div style="display:flex;justify-content:space-between;font-size:0.82rem;color:#555;margin-bottom:4px;">
@@ -391,12 +488,17 @@ async function submitOrder() {
         <span>Total</span><span>€${total}</span>
       </div>
     </div>
-    <p style="font-size:0.8rem;color:#777;text-align:center;margin-bottom:14px;">${lang==='fr'?'Paiement sécurisé via PayPal':'Secure payment via PayPal'}</p>
+    <p style="font-size:0.8rem;color:#777;text-align:center;margin-bottom:8px;">${lang==='fr'?'Paiement sécurisé via PayPal':'Secure payment via PayPal'}</p>
+    <p style="font-size:0.74rem;color:#555;text-align:center;line-height:1.55;margin-bottom:14px;">${lang==='fr'
+      ?'En cliquant sur le bouton de paiement, vous passez une <strong>commande avec obligation de paiement</strong> et acceptez nos <a href="/terms" target="_blank" rel="noopener" style="color:#4a6e3d;">conditions générales de vente</a>. Droit de rétractation de 14 jours : voir notre <a href="/retours" target="_blank" rel="noopener" style="color:#4a6e3d;">politique de retour</a>.'
+      :'By clicking the payment button, you place an <strong>order with an obligation to pay</strong> and accept our <a href="/terms" target="_blank" rel="noopener" style="color:#4a6e3d;">terms of sale</a>. 14-day right of withdrawal: see our <a href="/retours" target="_blank" rel="noopener" style="color:#4a6e3d;">returns policy</a>.'}</p>
     <div id="paypal-loading" style="padding:18px;text-align:center;color:#777;font-size:0.82rem;">${lang==='fr'?'Chargement du paiement sécurisé…':'Loading secure payment…'}</div>
     <div id="paypal-button-container"></div>
+    </section>
   `;
 
   let paypalApi;
+  document.getElementById('checkout-modal').scrollTop = 0;
   try {
     paypalApi = await loadPayPalSdk();
     document.getElementById('paypal-loading')?.remove();
@@ -408,35 +510,18 @@ async function submitOrder() {
 
   paypalApi.Buttons({
     style: { layout:'vertical', color:'gold', shape:'pill', label:'pay' },
-    createOrder: (data, actions) => actions.order.create({
-      application_context: { shipping_preference: 'GET_FROM_FILE', user_action: 'PAY_NOW' },
-      purchase_units: [{
-        custom_id: reference,
-        description: `MÎJAH — ${keys.map(id => `${PRODUCTS[id].fr} x${cart[id]}`).join(', ')}`.slice(0, 127),
-        amount: {
-          value: total,
-          currency_code: 'EUR',
-          breakdown: {
-            item_total: { value: subtotal.toFixed(2), currency_code: 'EUR' },
-            shipping: { value: fee.toFixed(2), currency_code: 'EUR' },
-          },
-        },
-        items: keys.map(id => ({
-          name: PRODUCTS[id].fr,
-          sku: id,
-          quantity: String(cart[id]),
-          category: 'PHYSICAL_GOODS',
-          unit_amount: { value: PRODUCTS[id].price.toFixed(2), currency_code: 'EUR' },
-        })),
-      }]
-    }),
-    onApprove: (data, actions) => actions.order.capture().then(async details => {
-      const paypalStatus = details.status || 'COMPLETED';
-      const paypalOrderId = details.id || data.orderID;
+    createOrder: () => paypalOrderId,
+    onApprove: (data) => callSupabaseFunction(PAYMENT_FUNCTION_URL, {
+      action: 'capture',
+      order_id: serverOrder.order.id,
+      paypal_order_id: data.orderID || paypalOrderId,
+    }).then(async details => {
+      const paypalStatus = 'COMPLETED';
+      const capturedPaypalOrderId = details.paypal_order_id || data.orderID;
       const itemSummary = keys.map(id => `${PRODUCTS[id].fr} x${cart[id]}`).join(' | ');
       const orderRecord = {
         reference,
-        paypalOrderId,
+        paypalOrderId: capturedPaypalOrderId,
         paypalStatus,
         firstName,
         lastName,
@@ -459,7 +544,7 @@ async function submitOrder() {
       }
 
       trackCommerceEvent('purchase', {
-        transaction_id: paypalOrderId,
+        transaction_id: capturedPaypalOrderId,
         affiliation: 'MÎJAH',
         currency: 'EUR',
         value: Number(total),

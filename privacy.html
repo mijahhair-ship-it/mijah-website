@@ -18,13 +18,11 @@
   <meta property="og:description" content="Informations sur la collecte et l'utilisation des données personnelles par MÎJAH." />
   <meta property="og:url" content="https://mijah.fr/privacy" />
   <meta property="og:locale" content="fr_FR" />
-  <link rel="stylesheet" href="/output.css" />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,600&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
-  <script src="https://unpkg.com/@phosphor-icons/web@2.1.1/src/index.js" type="module"></script>
+  <link rel="stylesheet" href="/output.css?v=checkout-20260928" />
+  <link rel="stylesheet" href="/fonts/fonts.css">
+  <link rel="stylesheet" href="/fonts/phosphor.css">
   <script src="lang.js" defer></script>
-  <script src="cart.js?v=9" defer></script>
+  <script src="cart.js?v=10" defer></script>
   <style>
     *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
     body{font-family:'Jost',sans-serif;background:#FEFDF9;color:#1A1A1A;overflow-x:hidden}
@@ -38,6 +36,7 @@
     p.policy-text{font-size:0.9rem;color:#444;line-height:1.85;margin-bottom:14px;font-weight:300}
     ul.policy-list{list-style:none;margin-bottom:14px}ul.policy-list li{font-size:0.9rem;color:#444;line-height:1.85;font-weight:300;padding-left:20px;position:relative;margin-bottom:6px}ul.policy-list li::before{content:'—';position:absolute;left:0;color:#d4a853}
   </style>
+  <script src="consent.js" defer></script>
 </head>
 <body>
 <header class="header-glass fixed top-0 left-0 right-0 z-50">
@@ -54,7 +53,7 @@
       <p class="sec-label">Informations légales</p>
       <div class="gold-line" style="margin:10px 0 16px;"></div>
       <h1 style="font-family:'Cormorant Garamond',serif;font-size:2.6rem;font-weight:400;color:#2b3d24;line-height:1.2;">Politique de Confidentialité</h1>
-      <p style="font-size:0.8rem;color:#aaa;margin-top:10px;font-weight:300;">Dernière mise à jour : 13 juillet 2026</p>
+      <p style="font-size:0.8rem;color:#aaa;margin-top:10px;font-weight:300;">Dernière mise à jour : 28 septembre 2026</p>
     </div>
 
     <p class="policy-text">La présente politique explique comment MÎJAH collecte, utilise et protège les données personnelles transmises via le site <a href="https://mijah.fr/" style="color:#4a6e3d;">mijah.fr</a>.</p>
@@ -87,13 +86,30 @@
     <p class="policy-text">Les paiements sont traités par des prestataires sécurisés tels que PayPal. MÎJAH ne stocke pas les données complètes de carte bancaire. Les informations de paiement sont traitées selon les politiques de confidentialité et de sécurité des prestataires concernés.</p>
 
     <h2 class="policy-title">Cookies et mesure d'audience</h2>
-    <p class="policy-text">Le site peut utiliser des cookies ou traceurs nécessaires à son fonctionnement, ainsi que des outils de mesure d'audience comme Google Analytics. Certains traceurs peuvent nécessiter votre consentement selon leur finalité. Vous pouvez configurer votre navigateur pour refuser ou supprimer les cookies.</p>
+    <p class="policy-text">Le site utilise uniquement les éléments strictement nécessaires à son fonctionnement (contenu du panier et mémorisation de votre choix en matière de cookies, stockés dans votre navigateur), qui ne nécessitent pas de consentement.</p>
+    <p class="policy-text">Avec votre accord uniquement, nous utilisons <strong>Google Analytics</strong> (Google Ireland Ltd / Google LLC) pour mesurer l'audience du site. Aucun cookie de mesure d'audience n'est déposé tant que vous n'avez pas cliqué sur « Tout accepter ». Refuser est aussi simple qu'accepter, et votre choix est conservé 6 mois. Vous pouvez le modifier à tout moment via le lien <a href="#" onclick="window.mijahConsent&&window.mijahConsent.open();return false;" style="color:#4a6e3d;">Gestion des cookies</a> présent en bas de chaque page. Les cookies Google Analytics ont une durée de vie maximale de 13 mois.</p>
+    <p class="policy-text">Les polices de caractères et icônes du site sont hébergées sur nos propres serveurs : aucune donnée n'est transmise à Google Fonts ou à un autre service tiers lors de leur chargement.</p>
 
-    <h2 class="policy-title">Destinataires des données</h2>
-    <p class="policy-text">Vos données peuvent être transmises uniquement aux prestataires nécessaires au fonctionnement du service : paiement, livraison, hébergement, email, formulaire de contact, analyse d'audience et service client. Ces prestataires n'accèdent aux données que dans la limite nécessaire à leur mission.</p>
+    <h2 class="policy-title">Destinataires et sous-traitants</h2>
+    <p class="policy-text">Vos données ne sont jamais vendues. Elles sont transmises uniquement aux prestataires nécessaires au fonctionnement du service, dans la limite de leur mission :</p>
+    <ul class="policy-list">
+      <li>Netlify, Inc. (États-Unis) — hébergement du site ;</li>
+      <li>PayPal (Europe) S.à r.l. et Cie, S.C.A. (Luxembourg) — paiement des commandes ;</li>
+      <li>Google Ireland Ltd / Google LLC — mesure d'audience (uniquement avec votre consentement) et messagerie email ;</li>
+      <li>Formspree, Inc. (États-Unis) — formulaire de contact ;</li>
+      <li>Brevo (France/UE) — gestion des abonnements et envoi de la newsletter ;</li>
+      <li>transporteurs — livraison de vos commandes.</li>
+    </ul>
+    <p class="policy-text">Certains de ces prestataires sont situés hors de l'Union européenne, notamment aux États-Unis. Ces transferts sont encadrés par le cadre de protection des données UE–États-Unis (Data Privacy Framework) lorsque le prestataire y adhère, ou à défaut par les clauses contractuelles types de la Commission européenne.</p>
 
     <h2 class="policy-title">Durée de conservation</h2>
-    <p class="policy-text">Les données sont conservées pendant la durée nécessaire aux finalités décrites ci-dessus. Les données liées aux commandes peuvent être conservées plus longtemps lorsqu'une obligation comptable, fiscale ou légale l'exige. Les demandes de contact sont conservées le temps nécessaire à leur traitement et à leur suivi.</p>
+    <ul class="policy-list">
+      <li>commandes et factures : 10 ans (obligations comptables et fiscales) ;</li>
+      <li>données clients hors obligations comptables : 3 ans après la dernière commande ;</li>
+      <li>demandes de contact : 3 ans après le dernier échange ;</li>
+      <li>newsletter : jusqu'à votre désinscription, ou 3 ans sans interaction de votre part ;</li>
+      <li>choix en matière de cookies : 6 mois ; cookies de mesure d'audience : 13 mois maximum.</li>
+    </ul>
 
     <h2 class="policy-title">Vos droits</h2>
     <p class="policy-text">Conformément au RGPD, vous pouvez demander l'accès, la rectification, l'effacement, la limitation, l'opposition au traitement ou la portabilité de vos données lorsque ces droits s'appliquent. Vous pouvez exercer vos droits en écrivant à <a href="mailto:mijahhair@gmail.com" style="color:#4a6e3d;">mijahhair@gmail.com</a>.</p>

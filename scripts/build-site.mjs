@@ -20,6 +20,7 @@ const allowedFiles = new Set([
   '_redirects',
   'BingSiteAuth.xml',
   'cart.js',
+  'consent.js',
   'supabase-client.js',
   'favicon.png',
   'lang.js',
@@ -29,8 +30,12 @@ const allowedFiles = new Set([
   '04fadf5d466d34f519e9a95b78627bec.txt', // IndexNow key
 ]);
 
+// Drafts with unfilled legal placeholders must never go live.
+const draftFiles = new Set(['mentions-legales.html']);
+
 for (const entry of rootFiles) {
   if (!entry.isFile()) continue;
+  if (draftFiles.has(entry.name)) continue;
   if (!allowedFiles.has(entry.name) && !allowedExtensions.has(path.extname(entry.name))) continue;
   await cp(path.join(root, entry.name), path.join(output, entry.name));
 }
@@ -38,9 +43,10 @@ for (const entry of rootFiles) {
 await cp(path.join(root, 'photosAndvideos'), path.join(output, 'photosAndvideos'), {
   recursive: true,
 });
+await cp(path.join(root, 'fonts'), path.join(output, 'fonts'), { recursive: true });
 
 await generateMetaCatalog(root, path.join(output, 'meta-catalog.csv'));
-const sitemapCount = await generateSitemap(root, path.join(output, 'sitemap.xml'));
+const sitemapCount = await generateSitemap(root, path.join(output, 'sitemap.xml'), draftFiles);
 console.log(`sitemap.xml: ${sitemapCount} URLs`);
 
 console.log('Built public site in dist/');

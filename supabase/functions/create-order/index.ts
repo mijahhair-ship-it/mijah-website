@@ -26,6 +26,19 @@ function franceFee(quantity: number, subtotal: number) {
   return 9.29;
 }
 
+async function addToNewsletter(email: string) {
+  const apiKey = Deno.env.get('BREVO_API_KEY');
+  if (!apiKey) return;
+  const listId = Number(Deno.env.get('BREVO_LIST_ID') || '3');
+  if (!Number.isInteger(listId) || listId < 1) return;
+  const response = await fetch('https://api.brevo.com/v3/contacts', {
+    method: 'POST',
+    headers: { accept: 'application/json', 'api-key': apiKey, 'content-type': 'application/json' },
+    body: JSON.stringify({ email, listIds: [listId], updateEnabled: true, attributes: { SOURCE: 'order-checkout' } }),
+  });
+  if (!response.ok) console.error('Brevo order opt-in failed', response.status);
+}
+
 Deno.serve(async (request) => {
   if (request.method === 'OPTIONS') return new Response('ok', { headers: corsHeaders });
   if (request.method !== 'POST') return json({ error: 'Method not allowed' }, 405);
@@ -111,6 +124,11 @@ Deno.serve(async (request) => {
       quantity,
     })));
     if (itemsError) throw itemsError;
+
+    // Newsletter subscription is opt-in only and must never block checkout.
+    if (body?.newsletter_opt_in === true) {
+      try { await addToNewsletter(email); } catch (error) { console.error('Brevo opt-in error', error); }
+    }
 
     return json({ order });
   } catch (error) {
