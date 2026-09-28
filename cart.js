@@ -496,3 +496,46 @@ document.addEventListener('DOMContentLoaded', () => {
   const cartBtn = document.getElementById('cart-btn');
   if (cartBtn) cartBtn.addEventListener('click', openCart);
 });
+
+/* ─── STICKY MOBILE ADD-TO-CART (product pages) ───────────────────────
+   Shows a bottom bar on small screens while the page's main add-to-cart
+   button is scrolled out of view. Leaves room on the right for the Tidio
+   chat bubble. */
+document.addEventListener('DOMContentLoaded', () => {
+  const mainBtn = document.querySelector('#prod-img') &&
+    document.querySelector('button[onclick^="addToCart("]');
+  if (!mainBtn || !('IntersectionObserver' in window)) return;
+  const id = (mainBtn.getAttribute('onclick').match(/addToCart\('([a-z]+)'\)/) || [])[1];
+  const product = id && PRODUCTS[id];
+  if (!product) return;
+
+  const title = (document.querySelector('h1')?.textContent || product.fr).trim();
+  const bar = document.createElement('div');
+  bar.id = 'sticky-atc';
+  bar.setAttribute('aria-hidden', 'true');
+  bar.innerHTML = `
+    <div style="min-width:0;flex:1;">
+      <p style="font-size:0.78rem;color:#2b3d24;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin:0;"></p>
+      <p style="font-size:0.95rem;color:#4a6e3d;font-weight:600;margin:0;">€${product.price.toFixed(2)}</p>
+    </div>
+    <button type="button" tabindex="-1" style="flex-shrink:0;background:linear-gradient(135deg,#d4a853,#e8c98a);color:#172211;border:none;border-radius:100px;padding:11px 16px;font-size:0.72rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;cursor:pointer;">Ajouter</button>`;
+  bar.querySelector('p').textContent = title;
+  bar.querySelector('button').addEventListener('click', () => addToCart(id));
+
+  const style = document.createElement('style');
+  style.textContent = `
+    #sticky-atc{position:fixed;left:12px;right:88px;bottom:12px;z-index:40;display:none;align-items:center;gap:12px;
+      padding:10px 10px 10px 16px;background:rgba(254,253,249,0.97);border:1px solid rgba(74,110,61,0.15);border-radius:16px;
+      box-shadow:0 8px 28px rgba(0,0,0,0.12);transform:translateY(140%);transition:transform .3s ease}
+    #sticky-atc.show{transform:translateY(0)}
+    @media(max-width:767px){#sticky-atc{display:flex}}`;
+  document.head.appendChild(style);
+  document.body.appendChild(bar);
+
+  new IntersectionObserver(([entry]) => {
+    // Visible whenever the main button is off-screen — it starts below the fold on mobile.
+    const show = !entry.isIntersecting;
+    bar.classList.toggle('show', show);
+    bar.setAttribute('aria-hidden', String(!show));
+  }).observe(mainBtn);
+});
