@@ -31,7 +31,8 @@ const allowedFiles = new Set([
 ]);
 
 // Drafts with unfilled legal placeholders must never go live.
-const draftFiles = new Set(['mentions-legales.html']);
+// newsletter-welcome-email.html is a Brevo email template, not a site page.
+const draftFiles = new Set(['mentions-legales.html', 'newsletter-welcome-email.html']);
 
 for (const entry of rootFiles) {
   if (!entry.isFile()) continue;
