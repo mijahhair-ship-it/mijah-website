@@ -32,6 +32,9 @@
   <meta name="twitter:image" content="https://mijah.fr/photosAndvideos/mijah-shopping-cart-hero-wide.png" />
   <!-- Structured Data -->
   <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"WebSite","name":"MÎJAH","alternateName":"Mijah","url":"https://mijah.fr/","inLanguage":"fr-FR","publisher":{"@type":"Organization","name":"MÎJAH","url":"https://mijah.fr/"}}
+  </script>
+  <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "Organization",
@@ -142,7 +145,7 @@
   <script src="lang.js" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
   <script src="supabase-client.js" defer></script>
-  <script src="cart.js?v=7" defer></script>
+  <script src="cart.js?v=9" defer></script>
 
   <!-- Tailwind Config -->
 
@@ -800,15 +803,15 @@
     </div>
     <div class="discover-grid">
       <a class="discover-card" href="product-elixir">
-        <div class="discover-image"><img src="photosAndvideos/mijah-elixir-ingredients.jpeg" width="1024" height="1536" loading="lazy" decoding="async" alt="Élixir Anti-Chute MÎJAH : romarin, huile d’olive et huile de ricin." /></div>
+        <div class="discover-image"><img src="photosAndvideos/mijah-elixir-ingredients.webp" width="800" height="1200" loading="lazy" decoding="async" alt="Élixir Anti-Chute MÎJAH : romarin, huile d’olive et huile de ricin." /></div>
         <div class="discover-caption"><span class="discover-number" aria-hidden="true">01</span><div><span class="discover-category" data-fr="Renforcer" data-en="Strengthen">Renforcer</span><h3>Élixir Anti-Chute</h3></div><span class="discover-arrow" aria-hidden="true">↗</span></div>
       </a>
       <a class="discover-card" href="product-rosemary">
-        <div class="discover-image"><img src="photosAndvideos/mijah-rosemary-ingredients.jpeg" width="1024" height="1536" loading="lazy" decoding="async" alt="Huile Rosemary MÎJAH : romarin, fenugrec, ail, clou de girofle, cannelle, camomille, anis étoilé et nigelle." /></div>
+        <div class="discover-image"><img src="photosAndvideos/mijah-rosemary-ingredients.webp" width="800" height="1200" loading="lazy" decoding="async" alt="Huile Rosemary MÎJAH : romarin, fenugrec, ail, clou de girofle, cannelle, camomille, anis étoilé et nigelle." /></div>
         <div class="discover-caption"><span class="discover-number" aria-hidden="true">02</span><div><span class="discover-category" data-fr="Nourrir" data-en="Nourish">Nourrir</span><h3>Rosemary</h3></div><span class="discover-arrow" aria-hidden="true">↗</span></div>
       </a>
       <a class="discover-card" href="product-mango">
-        <div class="discover-image"><img src="photosAndvideos/mijah-mango-ingredients.jpeg" width="1024" height="1536" loading="lazy" decoding="async" alt="Beurre capillaire Mango MÎJAH : beurre de mangue et huiles de batana, d’olive, de ricin et de coco." /></div>
+        <div class="discover-image"><img src="photosAndvideos/mijah-mango-ingredients.webp" width="800" height="1200" loading="lazy" decoding="async" alt="Beurre capillaire Mango MÎJAH : beurre de mangue et huiles de batana, d’olive, de ricin et de coco." /></div>
         <div class="discover-caption"><span class="discover-number" aria-hidden="true">03</span><div><span class="discover-category" data-fr="Sublimer" data-en="Enhance">Sublimer</span><h3>Mango Hair Butter</h3></div><span class="discover-arrow" aria-hidden="true">↗</span></div>
       </a>
     </div>
@@ -922,7 +925,7 @@
           <div style="position:absolute;top:14px;left:14px;z-index:2;">
             <span class="badge badge-green" data-fr="Anti-Chute" data-en="Anti Hair-Loss">Anti-Chute</span>
           </div>
-          <img src="photosAndvideos/mijah-elixir-anti-chute.jpg" alt="Elixir Anti-Chute MÎJAH 60 ml, flacon compte-gouttes entouré de romarin et d'huile" width="800" height="1034" loading="lazy" decoding="async" />
+          <img src="photosAndvideos/mijah-elixir-anti-chute.webp" alt="Elixir Anti-Chute MÎJAH 60 ml, flacon compte-gouttes entouré de romarin et d'huile" width="800" height="1034" loading="lazy" decoding="async" />
           <div class="quick-add" onclick="addToCart('elixir')" style="cursor:pointer;">
             <i class="ph ph-plus-circle" style="margin-right:6px;"></i><span data-fr="Ajouter au Panier" data-en="Quick Add to Cart">Ajouter au Panier</span>
           </div>
@@ -963,7 +966,7 @@
             </div>
             <span class="badge badge-green" data-fr="Pousse Capillaire" data-en="Hair Growth">Pousse Capillaire</span>
           </div>
-          <img src="photosAndvideos/mijah-rosemary-huile-croissance.jpg" alt="Huile de croissance Rosemary MÎJAH 100 ml sur pierre naturelle avec branches de romarin" width="800" height="1034" loading="lazy" decoding="async" />
+          <img src="photosAndvideos/mijah-rosemary-huile-croissance.webp" alt="Huile de croissance Rosemary MÎJAH 100 ml sur pierre naturelle avec branches de romarin" width="800" height="1034" loading="lazy" decoding="async" />
           <div class="quick-add" onclick="addToCart('rosemary')" style="cursor:pointer;">
             <i class="ph ph-plus-circle" style="margin-right:6px;"></i><span data-fr="Ajouter au Panier" data-en="Quick Add to Cart">Ajouter au Panier</span>
           </div>
@@ -999,7 +1002,7 @@
           <div style="position:absolute;top:14px;left:14px;z-index:2;">
             <span class="badge badge-green" data-fr="Hydratante" data-en="Moisturizing">Hydratante</span>
           </div>
-          <img src="photosAndvideos/mijah-mango-beurre-capillaire.jpg" alt="Beurre capillaire Mango MÎJAH 150 ml avec mangue fraîche et noix de batana" width="800" height="1034" loading="lazy" decoding="async" />
+          <img src="photosAndvideos/mijah-mango-beurre-capillaire.webp" alt="Beurre capillaire Mango MÎJAH 150 ml avec mangue fraîche et noix de batana" width="800" height="1034" loading="lazy" decoding="async" />
           <div class="quick-add" onclick="addToCart('mango')" style="cursor:pointer;">
             <i class="ph ph-plus-circle" style="margin-right:6px;"></i><span data-fr="Ajouter au Panier" data-en="Quick Add to Cart">Ajouter au Panier</span>
           </div>
@@ -1151,22 +1154,22 @@
       url('photosAndvideos/Black%20girl%20holding%20Mijah%20product.jpeg') center center/55% auto no-repeat;
   ">
   <div class="max-w-2xl mx-auto text-center" style="position:relative;z-index:2;">
-    <span class="js-nl-badge" style="font-size:0.7rem;letter-spacing:0.2em;text-transform:uppercase;color:#d4a853;font-weight:500;opacity:0;transform:translateY(20px);display:inline-block;">
+    <span class="js-nl-badge" style="font-size:0.7rem;letter-spacing:0.2em;text-transform:uppercase;color:#d4a853;font-weight:500;display:inline-block;">
       Newsletter
     </span>
     <h2 class="js-nl-title" style="font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,4vw,3rem);
-               font-weight:400;color:#fff;margin-top:12px;line-height:1.15;opacity:0;transform:translateY(30px);"
+               font-weight:400;color:#fff;margin-top:12px;line-height:1.15;"
         data-fr="Rejoignez la Communauté MÎJAH"
         data-en="Join the MÎJAH Community">
       Rejoignez la Communauté MÎJAH
     </h2>
-    <p class="js-nl-body" style="color:rgba(255,255,255,0.72);font-size:0.9rem;line-height:1.8;margin-top:16px;font-weight:300;opacity:0;transform:translateY(24px);"
+    <p class="js-nl-body" style="color:rgba(255,255,255,0.72);font-size:0.9rem;line-height:1.8;margin-top:16px;font-weight:300;"
        data-fr="Conseils capillaires exclusifs, offres réservées aux membres et nouveautés en avant-première — directement dans votre boîte mail."
        data-en="Exclusive hair care tips, member-only offers, and early access to new launches — straight to your inbox.">
       Conseils capillaires exclusifs, offres réservées aux membres et nouveautés en avant-première — directement dans votre boîte mail.
     </p>
     <form class="js-nl-form" action="https://formsubmit.co/mijahhair@gmail.com" method="post" target="_blank"
-          style="display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:32px;opacity:0;transform:translateY(24px);">
+          style="display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:32px;">
       <input type="email" name="EMAIL" required
              placeholder="Votre adresse email"
              style="flex:1;min-width:240px;max-width:360px;padding:15px 20px;border-radius:4px;
@@ -1424,20 +1427,20 @@
 
 
   /* ─── NEWSLETTER ─────────────────────────────── */
-  gsap.to('.js-nl-badge', {
-    opacity:1, y:0, duration:0.7, ease:'power3.out',
+  gsap.from('.js-nl-badge', {
+    opacity:0, y:20, duration:0.7, ease:'power3.out',
     scrollTrigger: { trigger:'#newsletter-section', start:'top 80%' },
   });
-  gsap.to('.js-nl-title', {
-    opacity:1, y:0, duration:0.9, ease:'power3.out', delay:0.12,
+  gsap.from('.js-nl-title', {
+    opacity:0, y:24, duration:0.9, ease:'power3.out', delay:0.12,
     scrollTrigger: { trigger:'#newsletter-section', start:'top 80%' },
   });
-  gsap.to('.js-nl-body', {
-    opacity:1, y:0, duration:0.85, ease:'power3.out', delay:0.25,
+  gsap.from('.js-nl-body', {
+    opacity:0, y:24, duration:0.85, ease:'power3.out', delay:0.25,
     scrollTrigger: { trigger:'#newsletter-section', start:'top 80%' },
   });
-  gsap.to('.js-nl-form', {
-    opacity:1, y:0, duration:0.85, ease:'power3.out', delay:0.40,
+  gsap.from('.js-nl-form', {
+    opacity:0, y:24, duration:0.85, ease:'power3.out', delay:0.40,
     scrollTrigger: { trigger:'#newsletter-section', start:'top 80%' },
   });
   /* subtle parallax on the background image */

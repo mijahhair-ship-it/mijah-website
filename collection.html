@@ -37,7 +37,7 @@
       {"@type": "Product", "name": "Élixir Anti-Chute MÎJAH", "image": "https://mijah.fr/photosAndvideos/mijah%20anti-chute.png", "offers": {"@type": "Offer", "price": "18.10", "priceCurrency": "EUR", "availability": "https://schema.org/InStock"}, "url": "https://mijah.fr/product-elixir"},
       {"@type": "Product", "name": "Huile de Croissance Rosemary MÎJAH", "image": "https://mijah.fr/photosAndvideos/Mijah%20hair%20growth%20oil.png", "offers": {"@type": "Offer", "price": "12.80", "priceCurrency": "EUR", "availability": "https://schema.org/InStock"}, "url": "https://mijah.fr/product-rosemary"},
       {"@type": "Product", "name": "Beurre de Mangue MÎJAH", "image": "https://mijah.fr/photosAndvideos/Mango%20Hair%20Butter.png", "offers": {"@type": "Offer", "price": "14.90", "priceCurrency": "EUR", "availability": "https://schema.org/InStock"}, "url": "https://mijah.fr/product-mango"},
-      {"@type": "Product", "name": "Le Coffret MÎJAH Trio", "image": "https://mijah.fr/photosAndvideos/Mijah%20Trio%20with%20Ingredient.jpeg", "offers": {"@type": "Offer", "price": "45.80", "priceCurrency": "EUR"}}
+      {"@type": "Product", "name": "Le Coffret MÎJAH Trio", "image": "https://mijah.fr/photosAndvideos/Mijah%20Trio%20with%20Ingredient.jpeg", "offers": {"@type": "Offer", "price": "45.80", "priceCurrency": "EUR", "availability": "https://schema.org/InStock"}}
     ]
   }
   </script>
@@ -53,7 +53,7 @@
   <script src="lang.js" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
   <script src="supabase-client.js" defer></script>
-  <script src="cart.js?v=7" defer></script>
+  <script src="cart.js?v=9" defer></script>
 
   <style>
     *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
@@ -257,7 +257,7 @@
       <div class="p-card js-card" data-tags="scalp" data-product-slug="elixir">
         <div class="p-card-img-wrap cine" style="background:linear-gradient(135deg,#f4f7f0,#e5ede0);">
           <div style="position:absolute;top:14px;left:14px;z-index:2;"><span class="badge badge-green" data-fr="Anti-Chute" data-en="Anti Hair-Loss">Anti-Chute</span></div>
-          <img src="photosAndvideos/mijah-elixir-anti-chute.jpg" alt="Elixir Anti-Chute MÎJAH 60 ml, flacon compte-gouttes entouré de romarin et d'huile" width="800" height="1034" loading="lazy" decoding="async" />
+          <img fetchpriority="high" src="photosAndvideos/mijah-elixir-anti-chute.webp" alt="Elixir Anti-Chute MÎJAH 60 ml, flacon compte-gouttes entouré de romarin et d'huile" width="800" height="1034" decoding="async" />
           <div class="quick-add"><i class="ph ph-plus-circle" style="margin-right:6px;"></i><span data-fr="Ajouter au Panier" data-en="Quick Add">Ajouter au Panier</span></div>
         </div>
         <div style="padding:24px 26px 26px;">
@@ -284,7 +284,7 @@
         <div class="p-card-img-wrap cine" style="background:linear-gradient(135deg,#e5ede0,#ccdcc4);">
           <div style="position:absolute;top:14px;left:14px;z-index:2;"><span class="badge badge-green" data-fr="Pousse Capillaire" data-en="Hair Growth">Pousse Capillaire</span></div>
           <div style="position:absolute;top:14px;right:14px;z-index:2;background:linear-gradient(135deg,#c09040,#d4a853);color:#fff;padding:4px 12px;border-radius:100px;font-size:0.63rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;" data-fr="Meilleures Ventes" data-en="Best Seller">Meilleures Ventes</div>
-          <img src="photosAndvideos/mijah-rosemary-huile-croissance.jpg" alt="Huile de croissance Rosemary MÎJAH 100 ml sur pierre naturelle avec branches de romarin" width="800" height="1034" loading="lazy" decoding="async" />
+          <img src="photosAndvideos/mijah-rosemary-huile-croissance.webp" alt="Huile de croissance Rosemary MÎJAH 100 ml sur pierre naturelle avec branches de romarin" width="800" height="1034" loading="lazy" decoding="async" />
           <div class="quick-add"><i class="ph ph-plus-circle" style="margin-right:6px;"></i><span data-fr="Ajouter au Panier" data-en="Quick Add">Ajouter au Panier</span></div>
         </div>
         <div style="padding:24px 26px 26px;">
@@ -311,7 +311,7 @@
       <div class="p-card js-card" data-tags="moisturizing" data-product-slug="mango">
         <div class="p-card-img-wrap cine" style="background:linear-gradient(135deg,#f7f4ed,#ede8d8);">
           <div style="position:absolute;top:14px;left:14px;z-index:2;"><span class="badge badge-green" data-fr="Hydratante" data-en="Moisturizing">Hydratante</span></div>
-          <img src="photosAndvideos/mijah-mango-beurre-capillaire.jpg" alt="Beurre capillaire Mango MÎJAH 150 ml avec mangue fraîche et noix de batana" width="800" height="1034" loading="lazy" decoding="async" />
+          <img src="photosAndvideos/mijah-mango-beurre-capillaire.webp" alt="Beurre capillaire Mango MÎJAH 150 ml avec mangue fraîche et noix de batana" width="800" height="1034" loading="lazy" decoding="async" />
           <div class="quick-add"><i class="ph ph-plus-circle" style="margin-right:6px;"></i><span data-fr="Ajouter au Panier" data-en="Quick Add">Ajouter au Panier</span></div>
         </div>
         <div style="padding:24px 26px 26px;">
@@ -370,7 +370,7 @@
           </div>
         </div>
         <div class="flex justify-center">
-          <img src="photosAndvideos/mijah-gamme-complete.jpg" alt="Gamme complète MÎJAH : huile Rosemary, beurre Mango et Elixir anti-chute" width="800" height="800" style="width:380px;max-width:100%;height:auto;filter:drop-shadow(0 20px 50px rgba(0,0,0,0.12));" loading="lazy" />
+          <img src="photosAndvideos/mijah-gamme-complete.webp" alt="Gamme complète MÎJAH : huile Rosemary, beurre Mango et Elixir anti-chute" width="800" height="800" style="width:380px;max-width:100%;height:auto;filter:drop-shadow(0 20px 50px rgba(0,0,0,0.12));" loading="lazy" />
         </div>
       </div>
     </div>

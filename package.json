@@ -5,7 +5,8 @@
     "build:css": "tailwindcss -i src/input.css -o output.css --minify",
     "build:site": "node scripts/build-site.mjs",
     "build": "npm run build:css && npm run build:site",
-    "watch:css": "tailwindcss -i src/input.css -o output.css --watch"
+    "watch:css": "tailwindcss -i src/input.css -o output.css --watch",
+    "indexnow": "node scripts/indexnow.mjs"
   },
   "devDependencies": {
     "tailwindcss": "^3.4.0"

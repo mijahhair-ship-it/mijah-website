@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#2b3d24" />
+  <link rel="icon" type="image/png" href="/favicon.png" />
+  <link rel="apple-touch-icon" href="/favicon.png" />
+  <title>Page introuvable — MÎJAH</title>
+  <meta name="robots" content="noindex, follow" />
+  <link rel="stylesheet" href="/output.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,600&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/@phosphor-icons/web@2.1.1/src/index.js" type="module"></script>
+  <script src="/lang.js" defer></script>
+  <script src="/cart.js?v=9" defer></script>
+  <style>
+    *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
+    body{font-family:'Jost',sans-serif;background:#FEFDF9;color:#1A1A1A;overflow-x:hidden}
+    .header-glass{background:rgba(254,253,249,0.92)!important;backdrop-filter:blur(22px);box-shadow:0 1px 0 rgba(74,110,61,0.10)}
+    .nav-link{font-size:0.75rem;font-weight:400;letter-spacing:0.12em;text-transform:uppercase;text-decoration:none;transition:color 0.25s;position:relative;color:#C9A84C}
+    .nav-link::after{content:'';position:absolute;bottom:-3px;left:0;width:0;height:1px;background:currentColor;transition:width 0.3s}.nav-link:hover::after{width:100%}
+    .foot-link{display:block;font-size:0.82rem;color:rgba(255,255,255,0.5);text-decoration:none;margin-bottom:10px;font-weight:300;transition:color 0.2s}.foot-link:hover{color:#e8c98a}
+    .gold-line{width:44px;height:2px;border-radius:2px;background:linear-gradient(90deg,#d4a853,#e8c98a)}
+    .sec-label{font-size:0.68rem;font-weight:600;letter-spacing:0.22em;text-transform:uppercase;color:#5f8a50}
+    h2.policy-title{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:500;color:#2b3d24;margin-bottom:10px;margin-top:36px}
+    p.policy-text{font-size:0.9rem;color:#444;line-height:1.85;margin-bottom:14px;font-weight:300}
+    ul.policy-list{list-style:none;margin-bottom:14px}ul.policy-list li{font-size:0.9rem;color:#444;line-height:1.85;font-weight:300;padding-left:20px;position:relative;margin-bottom:6px}ul.policy-list li::before{content:'—';position:absolute;left:0;color:#d4a853}
+  </style>
+</head>
+<body>
+<header class="header-glass fixed top-0 left-0 right-0 z-50">
+  <nav class="max-w-7xl mx-auto px-6 lg:px-10 h-16 flex items-center justify-between">
+    <a href="/"><img src="/photosAndvideos/mijah-logo.png" alt="MÎJAH" style="height:42px;width:auto;object-fit:contain;" /></a>
+    <div class="hidden md:flex items-center gap-8"><a href="/collection" class="nav-link">Collection</a><a href="/about" class="nav-link">Notre Histoire</a><a href="/blog" class="nav-link">Blog</a><a href="/contact" class="nav-link">Contact</a></div>
+    <button id="cart-btn" onclick="toggleCart()" style="position:relative;width:36px;height:36px;background:none;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;"><i class="ph ph-shopping-cart" style="font-size:1.2rem;color:#2b3d24;"></i><span id="cart-count" style="position:absolute;top:2px;right:2px;width:16px;height:16px;background:#d4a853;border-radius:50%;font-size:0.6rem;font-weight:600;color:#fff;display:none;align-items:center;justify-content:center;">0</span></button>
+  </nav>
+</header>
+
+<main style="padding-top:120px;padding-bottom:80px;">
+  <div class="max-w-3xl mx-auto px-6" style="text-align:center;">
+    <p class="sec-label">Erreur 404</p>
+    <div class="gold-line" style="margin:10px auto 16px;"></div>
+    <h1 style="font-family:'Cormorant Garamond',serif;font-size:2.6rem;font-weight:400;color:#2b3d24;line-height:1.2;">Cette page est introuvable</h1>
+    <p class="policy-text" style="margin-top:14px;">Le lien est peut-être ancien ou la page a été déplacée. Retrouvez nos soins pour cheveux afro et bouclés ci-dessous.</p>
+    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin:24px 0 40px;">
+      <a href="/" style="padding:12px 24px;border-radius:100px;background:#2b3d24;color:#fff;text-decoration:none;font-size:0.8rem;letter-spacing:0.08em;text-transform:uppercase;">Accueil</a>
+      <a href="/collection" style="padding:12px 24px;border-radius:100px;background:linear-gradient(135deg,#d4a853,#e8c98a);color:#172211;text-decoration:none;font-size:0.8rem;letter-spacing:0.08em;text-transform:uppercase;font-weight:600;">Voir la Collection</a>
+      <a href="/blog" style="padding:12px 24px;border-radius:100px;border:1px solid #4a6e3d;color:#4a6e3d;text-decoration:none;font-size:0.8rem;letter-spacing:0.08em;text-transform:uppercase;">Le Blog</a>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:16px;">
+      <a href="/product-elixir" style="display:block;text-decoration:none;background:#f4f7f0;border-radius:16px;padding:16px;text-align:center;">
+          <img src="/photosAndvideos/elixir-anti-chute-800.webp" alt="Élixir Anti-Chute" width="800" height="1034" loading="lazy" style="width:100%;height:auto;border-radius:10px;" />
+          <p style="font-family:'Cormorant Garamond',serif;font-size:1.15rem;color:#2b3d24;margin-top:10px;">Élixir Anti-Chute</p>
+          <p style="font-size:0.85rem;color:#4a6e3d;font-weight:500;">€18.10</p></a>
+      <a href="/product-rosemary" style="display:block;text-decoration:none;background:#f4f7f0;border-radius:16px;padding:16px;text-align:center;">
+          <img src="/photosAndvideos/rosemary-huile-croissance-800.webp" alt="Huile de Romarin" width="800" height="1034" loading="lazy" style="width:100%;height:auto;border-radius:10px;" />
+          <p style="font-family:'Cormorant Garamond',serif;font-size:1.15rem;color:#2b3d24;margin-top:10px;">Huile de Romarin</p>
+          <p style="font-size:0.85rem;color:#4a6e3d;font-weight:500;">€12.80</p></a>
+      <a href="/product-mango" style="display:block;text-decoration:none;background:#f4f7f0;border-radius:16px;padding:16px;text-align:center;">
+          <img src="/photosAndvideos/mango-beurre-capillaire-800.webp" alt="Beurre de Mangue" width="800" height="1034" loading="lazy" style="width:100%;height:auto;border-radius:10px;" />
+          <p style="font-family:'Cormorant Garamond',serif;font-size:1.15rem;color:#2b3d24;margin-top:10px;">Beurre de Mangue</p>
+          <p style="font-size:0.85rem;color:#4a6e3d;font-weight:500;">€14.90</p></a>
+    </div>
+  </div>
+</main>
+
+<footer class="py-16 px-6 lg:px-12" style="background:#16210f;">
+  <div class="max-w-7xl mx-auto">
+    <div class="grid md:grid-cols-4 gap-10 mb-12">
+      <div class="md:col-span-2"><img src="/photosAndvideos/mijah-logo-light.png" alt="MÎJAH" style="height:54px;width:auto;object-fit:contain;margin-bottom:16px;" /><p style="font-size:0.82rem;color:rgba(255,255,255,0.42);line-height:1.75;max-width:270px;font-weight:300;">Soin naturel premium pour cheveux Afro & Bouclés. Formulé avec amour en France.</p></div>
+      <div><p style="font-size:0.68rem;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:rgba(255,255,255,0.36);margin-bottom:16px;">Produits</p><ul style="list-style:none;"><li><a class="foot-link" href="product-elixir">Elixir Anti-Chute</a></li><li><a class="foot-link" href="product-rosemary">Rosemary Hair Growth Oil</a></li><li><a class="foot-link" href="product-mango">Mango Hair Butter</a></li><li><a class="foot-link" href="/collection">Collection</a></li></ul></div>
+      <div><p style="font-size:0.68rem;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:rgba(255,255,255,0.36);margin-bottom:16px;">La Marque</p><ul style="list-style:none;"><li><a class="foot-link" href="/about">Notre Histoire</a></li><li><a class="foot-link" href="/blog">Blog</a></li><li><a class="foot-link" href="stockists">Points de Vente</a></li><li><a class="foot-link" href="/contact">Contact</a></li></ul></div>
+    </div>
+    <div style="border-top:1px solid rgba(255,255,255,0.07);padding-top:22px;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:12px;"><p style="font-size:0.73rem;color:rgba(255,255,255,0.28);">© 2026 MÎJAH. Tous droits réservés.</p><div style="display:flex;gap:22px;flex-wrap:wrap;"><a href="/retours" style="font-size:0.73rem;color:rgba(255,255,255,0.28);text-decoration:none;">Politique de Retour</a><a href="/privacy" style="font-size:0.73rem;color:rgba(255,255,255,0.28);text-decoration:none;">Politique de Confidentialité</a><a href="/terms" style="font-size:0.73rem;color:rgba(255,255,255,0.28);text-decoration:none;">Conditions d'Utilisation</a></div></div>
+  </div>
+</footer>
+</body>
+</html>

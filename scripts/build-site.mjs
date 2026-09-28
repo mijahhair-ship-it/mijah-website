@@ -2,6 +2,7 @@ import { cp, mkdir, readdir, rm } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { generateMetaCatalog } from './generate-meta-catalog.mjs';
+import { generateSitemap } from './generate-sitemap.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const output = path.join(root, 'dist');
@@ -25,7 +26,7 @@ const allowedFiles = new Set([
   'llms.txt',
   'output.css',
   'robots.txt',
-  'sitemap.xml',
+  '04fadf5d466d34f519e9a95b78627bec.txt', // IndexNow key
 ]);
 
 for (const entry of rootFiles) {
@@ -39,5 +40,7 @@ await cp(path.join(root, 'photosAndvideos'), path.join(output, 'photosAndvideos'
 });
 
 await generateMetaCatalog(root, path.join(output, 'meta-catalog.csv'));
+const sitemapCount = await generateSitemap(root, path.join(output, 'sitemap.xml'));
+console.log(`sitemap.xml: ${sitemapCount} URLs`);
 
 console.log('Built public site in dist/');

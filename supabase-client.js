@@ -33,7 +33,11 @@
       const image = card.querySelector('[data-product-image], .p-card-img-wrap img');
       const price = card.querySelector('[data-product-price], .price');
       const name = card.querySelector('[data-product-name], h3');
-      if (image && product.image_url) image.src = product.image_url;
+      // Same photo in another format (e.g. the page's .webp vs the catalog's .jpg): keep the page's lighter file.
+      const stem = (url) => decodeURIComponent(url).split('/').pop().replace(/\.[a-z0-9]+$/i, '');
+      if (image && product.image_url && stem(image.getAttribute('src') || '') !== stem(product.image_url)) {
+        image.src = product.image_url;
+      }
       if (name && product.name) name.textContent = product.name;
       if (price && Number.isFinite(Number(product.price))) price.textContent = `€${Number(product.price).toFixed(2)}`;
       card.dataset.stock = String(product.stock ?? '');

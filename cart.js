@@ -539,3 +539,10 @@ document.addEventListener('DOMContentLoaded', () => {
     bar.setAttribute('aria-hidden', String(!show));
   }).observe(mainBtn);
 });
+
+/* Header icon buttons: at least 44×44px touch area on every page. */
+(() => {
+  const style = document.createElement('style');
+  style.textContent = '#cart-btn,#mob-menu-btn{min-width:44px;min-height:44px}';
+  document.head.appendChild(style);
+})();
